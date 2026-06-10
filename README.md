@@ -1,5 +1,5 @@
 # VeriSlicer
-##Our baselines
+## Our baselines
 Model: llama3.3
   - Baseline1: Raw verilog code + Error timestamp
   - Baseline2: Description + Raw verilog code + Error timestamp
