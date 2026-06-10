@@ -1,0 +1,277 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_16.v ---
+
+   1: module design_16(clk, in1_m_kernel, in2_m_kernel, start_m, out_m, inf_m, zero_m, done_m);
+...
+   3: parameter  N = 12;
+...
+   5: parameter es = 2;
+...
+   9: input [N-1:0] in1_m_kernel, in2_m_kernel;
+...
+  11: output [N-1:0] out_m;
+  12: output inf_m, zero_m;
+  13: output done_m;
+...
+  24: wire [N-1:0] in1_m, in2_m;//, out_m;
+...
+  28:     assign in1_m = in1_m_kernel;
+  29:     assign in2_m = in2_m_kernel;
+...
+  35: wire s1_m = in1_m[N-1];
+  36: wire s2_m = in2_m[N-1];
+  37: wire zero_tmp1_m = |in1_m[N-2:0];
+  38: wire zero_tmp2_m = |in2_m[N-2:0];
+  39:     wire inf1_m = in1_m[N-1] & (~zero_tmp1_m);
+  40: 	wire inf2_m = in2_m[N-1] & (~zero_tmp2_m);
+  41:     wire zero1_m = ~(in1_m[N-1] | zero_tmp1_m);
+  42: 	wire zero2_m = ~(in2_m[N-1] | zero_tmp2_m);
+  43: assign inf_m = inf1_m | inf2_m;
+  44: 	assign zero_m = zero1_m & zero2_m;
+...
+  47: wire rc1_m, rc2_m;
+  48: wire [Bs-1:0] regime1_m, regime2_m;
+  49: wire [es-1:0] e1_m, e2_m;
+  50: wire [N-es-1:0] mant1_m, mant2_m;
+  51: wire [N-1:0] xin1_m = s1_m ? -in1_m : in1_m;
+  52: wire [N-1:0] xin2_m = s2_m ? -in2_m : in2_m;
+  53: data_extract_v1 #(.N(N),.es(es)) uut_de1(.in(xin1_m), .rc(rc1_m), .regime(regime1_m), .exp(e1_m), .mant(mant1_m));
+  54: data_extract_v1 #(.N(N),.es(es)) uut_de2(.in(xin2_m), .rc(rc2_m), .regime(regime2_m), .exp(e2_m), .mant(mant2_m));
+...
+  56:     wire [N-es:0] m1_m = {zero_tmp1_m,mant1_m};
+  57: 	wire m2_m = {zero_tmp2_m,mant2_m};
+...
+  60: wire mult_s_m = s1_m ^ s2_m;
+...
+  62: wire [2*(N-es)+1:0] mult_m = m1_m*m2_m;
+  63: wire mult_m_ovf_m = mult_m[2*(N-es)+1];
+  64: wire [2*(N-es)+1:0] mult_mN_m = ~mult_m_ovf_m ? mult_m << 1'b1 : mult_m;
+...
+  66: wire [Bs+1:0] r1_m = rc1_m ? {2'b0,regime1_m} : -regime1_m;
+  67: wire [Bs+1:0] r2_m = rc2_m ? {2'b0,regime2_m} : -regime2_m;
+  68: wire [Bs+es+1:0] mult_e_m;
+  69: add_N_Cin #(.N(Bs+es+1)) uut_add_exp ({r1_m,e1_m}, {r2_m,e2_m}, mult_m_ovf_m, mult_e_m);
+...
+  72: wire [es-1:0] e_o_m;
+  73: wire [Bs:0] r_o_m;
+  74: reg_exp_op #(.es(es), .Bs(Bs)) uut_reg_ro (mult_e_m[es+Bs+1:0], e_o_m, r_o_m);
+...
+  77: wire [2*N-1+3:0]tmp_o_m = {{N{~mult_e_m[es+Bs+1]}},mult_e_m[es+Bs+1],e_o_m,mult_mN_m[2*(N-es):2*(N-es)-(N-es-1)+1], mult_mN_m[2*(N-es)-(N-es-1):2*(N-es)-(N-es-1)-1], |mult_mN_m[2*(N-es)-(N-es-1)-2:0] }; 
+...
+  81: wire [3*N-1+3:0] tmp1_o_m;
+  82: DSR_right_N_S #(.N(3*N+3), .S(Bs+1)) dsr2 (.a({tmp_o_m,{N{1'b0}}}), .b(r_o_m[Bs] ? {Bs{1'b1}} : r_o_m), .c(tmp1_o_m));
+...
+  85:     wire L_m = tmp1_o_m[N+4];
+  86:     wire G_m = tmp1_o_m[N+3];
+  87:     wire R_m = tmp1_o_m[N+2];
+  88:     wire St_m = |tmp1_o_m[N+1:0];
+  89:      wire ulp_m = ((G_m & (R_m | St_m)) | (L_m & G_m & ~(R_m | St_m)));
+  90: wire [N-1:0] rnd_ulp_m = {{N-1{1'b0}},ulp_m};
+...
+  92: wire [N:0] tmp1_o_rnd_ulp_m;
+  93: add_N #(.N(N)) uut_add_ulp (tmp1_o_m[2*N-1+3:N+3], rnd_ulp_m, tmp1_o_rnd_ulp_m);
+  94: wire [N-1:0] tmp1_o_rnd_m = (r_o_m < N-es-2) ? tmp1_o_rnd_ulp_m[N-1:0] : tmp1_o_m[2*N-1+3:N+3];
+...
+  98: wire [N-1:0] tmp1_oN_m = mult_s_m ? -tmp1_o_rnd_m : tmp1_o_rnd_m;
+  99:     assign out_m = inf_m|zero_m|(~mult_mN_m[2*(N-es)+1]) ? {inf_m,{N-1{1'b0}}} : {mult_s_m, tmp1_oN_m[N-1:1]};
+ 100: 	assign done_m = start0_m;
+...
+ 105: endmodule
+...
+ 107: module data_extract_v1(in, rc, regime, exp, mant);
+...
+ 110: parameter N=16;
+...
+ 112: parameter es = 2;
+...
+ 115: input [N-1:0] in;
+ 116: output rc;
+ 117: output [Bs-1:0] regime;
+ 118: output [es-1:0] exp;
+ 119: output [N-es-1:0] mant;
+...
+ 121: wire [N-1:0] xin = in;
+ 122: assign rc = xin[N-2];
+...
+ 124: wire [N-1:0] xin_r = rc ? ~xin : xin;
+...
+ 126: wire [Bs-1:0] k;
+ 127: LOD_N #(.N(N)) xinst_k(.in({xin_r[N-2:0],rc^1'b0}), .out(k));
+...
+ 129: assign regime = rc ? k-1 : k;
+...
+ 131: wire [N-1:0] xin_tmp;
+ 132: DSR_left_N_S #(.N(N), .S(Bs)) ls (.a({xin[N-3:0],2'b0}),.b(k),.c(xin_tmp));
+...
+ 134: assign exp= xin_tmp[N-1:N-es];
+ 135: assign mant= xin_tmp[N-es-1:0];
+...
+ 137: endmodule
+...
+ 140: module sub_N (a,b,c);
+ 141: parameter N=16;
+ 142: input [N-1:0] a,b;
+ 143: output [N:0] c;
+ 144: wire [N:0] ain = {1'b0,a};
+ 145: wire [N:0] bin = {1'b0,b};
+ 146: sub_N_in #(.N(N)) s1 (ain,bin,c);
+ 147: endmodule
+...
+ 150: module add_N (a,b,c);
+ 151: parameter N=16;
+ 152: input [N-1:0] a,b;
+ 153: output [N:0] c;
+ 154: wire [N:0] ain = {1'b0,a};
+ 155: wire [N:0] bin = {1'b0,b};
+ 156: add_N_in #(.N(N)) a1 (ain,bin,c);
+ 157: endmodule
+...
+ 161: module add_N_Cin (a,b,cin,c);
+ 162: parameter N=16;
+ 163: input [N:0] a,b;
+ 164: input cin;
+ 165: output [N:0] c;
+ 166: assign c = a + b + cin;
+ 167: endmodule
+...
+ 171: module sub_N_in (a,b,c);
+ 172: parameter N=8;
+ 173: input [N:0] a,b;
+ 174: output [N:0] c;
+ 175: assign c = a - b;
+ 176: endmodule
+...
+ 179: module add_N_in (a,b,c);
+ 180: parameter N=16;
+ 181: input [N:0] a,b;
+ 182: output [N:0] c;
+ 183: assign c = a + b;
+ 184: endmodule
+...
+ 187: module add_sub_N (op,a,b,c);
+ 188: parameter N=16;
+...
+ 190: input [N-1:0] a,b;
+ 191: output [N:0] c;
+ 192: wire [N:0] c_add, c_sub;
+...
+ 194: add_N #(.N(N)) a11 (a,b,c_add);
+ 195: sub_N #(.N(N)) s11 (a,b,c_sub);
+ 196: assign c = op ? c_add : c_sub;
+ 197: endmodule
+...
+ 200: module add_1 (a,mant_ovf,c);
+ 201: parameter N=16;
+ 202: input [N:0] a;
+...
+ 204: output [N:0] c;
+ 205: assign c = a + mant_ovf;
+ 206: endmodule
+...
+ 209: module abs_regime (rc, regime, regime_N);
+ 210: parameter N = 16;
+ 211: input rc;
+ 212: input [N-1:0] regime;
+ 213: output [N:0] regime_N;
+...
+ 215: assign regime_N = rc ? {1'b0,regime} : -{1'b0,regime};
+ 216: endmodule
+...
+ 219: module conv_2c (a,c);
+ 220: parameter N=16;
+ 221: input [N:0] a;
+ 222: output [N:0] c;
+ 223: assign c = a + 1'b1;
+ 224: endmodule
+...
+ 226: module reg_exp_op (exp_o, e_o, r_o);
+ 227: parameter es=2;
+...
+ 229: input [es+Bs:0] exp_o;
+ 230: output [es-1:0] e_o;
+ 231: output [Bs:0] r_o;
+...
+ 233: assign e_o = exp_o[es-1:0];
+...
+ 235: wire [es+Bs:0] exp_oN_tmp;
+ 236: conv_2c #(.N(es+Bs)) uut_conv_2c1 (~exp_o[es+Bs:0],exp_oN_tmp);
+ 237: wire [es+Bs:0] exp_oN = exp_o[es+Bs] ? exp_oN_tmp[es+Bs:0] : exp_o[es+Bs:0];
+ 238: assign r_o = (~exp_o[es+Bs] || |(exp_oN[es-1:0])) ? exp_oN[es+Bs-1:es] + 1 : exp_oN[es+Bs-1:es];
+ 239: endmodule
+...
+ 242: module DSR_left_N_S(a,b,c);
+ 243:         parameter N=16;
+...
+ 245:         input [N-1:0] a;
+ 246:         input [S-1:0] b;
+ 247:         output [N-1:0] c;
+...
+ 249: wire [N-1:0] tmp [S-1:0];
+ 250: assign tmp[0]  = b[0] ? a << 7'd1  : a; 
+...
+ 252: generate
+ 253: 	for (i=1; i<S; i=i+1)begin:loop_blk
+ 254: 		assign tmp[i] = b[i] ? tmp[i-1] << 2**i : tmp[i-1];
+ 255: 	end
+ 256: endgenerate
+ 257: assign c = tmp[S-1];
+...
+ 259: endmodule
+...
+ 263: module DSR_right_N_S(a,b,c);
+ 264:         parameter N=16;
+...
+ 266:         input [N-1:0] a;
+ 267:         input [S-1:0] b;
+ 268:         output [N-1:0] c;
+...
+ 270: wire [N-1:0] tmp [S-1:0];
+ 271: assign tmp[0]  = b[0] ? a >> 7'd1  : a; 
+...
+ 273: generate
+ 274: 	for (i=1; i<S; i=i+1)begin:loop_blk
+ 275: 		assign tmp[i] = b[i] ? tmp[i-1] >> 2**i : tmp[i-1];
+ 276: 	end
+ 277: endgenerate
+...
+ 279: assign c = tmp[S-1];
+...
+ 281: endmodule
+...
+ 285: module LOD_N (in, out);
+...
+ 289: parameter N = 64;
+...
+ 291: input [N-1:0] in;
+ 292: output [S-1:0] out;
+...
+ 295: LOD #(.N(N)) l1 (in, out, vld);
+ 296: endmodule
+...
+ 299: module LOD (in, out, vld);
+...
+ 304: parameter N = 64;
+...
+ 307:    input [N-1:0] in;
+ 308:    output [S-1:0] out;
+...
+ 311:   generate
+ 312:     if(!(N == 2))
+ 313:       begin
+ 314: 	assign vld = |in;
+ 315: 	assign out = ~in[1] & in[0];
+ 316:       end
+ 317:     else if (N & (N-1))
+...
+ 319:       LOD #(1<<S) LOD ({in,{((1<<S) - N) {1'b0}}},out,vld);
+ 320:     else
+ 321:       begin
+ 322: 	wire [S-2:0] out_l, out_h;
+ 323: 	wire out_vl, out_vh;
+ 324: 	LOD #(N>>1) l(in[(N>>1)-1:0],out_l,out_vl);
+ 325: 	LOD #(N>>1) h(in[N-1:N>>1],out_h,out_vh);
+ 326: 	assign vld = out_vl | out_vh;
+ 327: 	assign out = out_vh ? {1'b0,out_h} : {out_vl,out_l};
+ 328:       end
+ 329:   endgenerate
+ 330: endmodule

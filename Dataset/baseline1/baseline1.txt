@@ -1,0 +1,78 @@
+============================================================
+🚀 STARTING BASELINE 1 (VANILLA) EVALUATION PIPELINE
+Found 42 error directories to process.
+============================================================
+
+[*] Cleared previous results file: gemmini_results_baseline1/master_results.jsonl
+--- Processing error_design_1_1 (design_1) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_1_1...
+[Baseline 1] Ground Truth    : Line 23
+[Baseline 1] Top-1 Predicted : Line 79
+[Baseline 1] Top-5 List     : [79, 83, 23, 50, 51]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 3)
+--- error_design_1_1 COMPLETE ---
+
+--- Processing error_design_1_2 (design_1) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_1_2...
+[Baseline 1] Ground Truth    : Line 80
+[Baseline 1] Top-1 Predicted : Line 79
+[Baseline 1] Top-5 List     : [79, 83, 80, 84, 81]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 3)
+--- error_design_1_2 COMPLETE ---
+
+--- Processing error_design_1_3 (design_1) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_1_3...
+[Baseline 1] Ground Truth    : Line 90
+[Baseline 1] Top-1 Predicted : Line 90
+[Baseline 1] Top-5 List     : [90, 79, 80, 88, 89]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_1_3 COMPLETE ---
+
+--- Processing error_design_1_4 (design_1) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_1_4...
+[Baseline 1] Ground Truth    : Line 51
+[Baseline 1] Top-1 Predicted : Line 51
+[Baseline 1] Top-5 List     : [51, 79, 80, 50, 23]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_1_4 COMPLETE ---
+
+--- Processing error_design_2_1 (design_2) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_2_1...
+[Baseline 1] Ground Truth    : Line 105
+[Baseline 1] Top-1 Predicted : Line 146
+[Baseline 1] Top-5 List     : [146, 117, 97, 121, 139]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The logic failed at the failing timestamp because the condition for setting r_State to 2'h1 in the case statement is incorrect. The current implementation sets r_State to 2'h2 when (r_Read_Select ? i_Read_Request : i_Write_Request) & w_Same_Row_And_Bank is not true, which causes o_Write_Grant to be deasserted prematurely.
+--- error_design_2_1 COMPLETE ---
+
+--- Processing error_design_2_2 (design_2) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_2_2...
+[Baseline 1] Ground Truth    : Line 173
+[Baseline 1] Top-1 Predicted : Line 169
+[Baseline 1] Top-5 List     : [169, 173, 170, 172, 174]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_2_2 COMPLETE ---
+
+--- Processing error_design_2_3 (design_2) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_2_3...

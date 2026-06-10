@@ -1,0 +1,11 @@
+Design: CORDIC
+Error line: 80
+
+Original code:
+y_1 <= y_i - x_i_shifted;
+
+Erroneous code:
+y_1 <= y_i + x_i_shifted;
+
+Error description:
+Arithmetic operator changed from subtraction to addition

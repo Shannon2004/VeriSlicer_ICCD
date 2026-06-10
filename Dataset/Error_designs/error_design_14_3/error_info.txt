@@ -1,0 +1,43 @@
+Design: posit_decoder
+Error line: 37
+
+Original code:
+DSR_left_N_S #(.N(N), .S(Bs)) ls (.a({xin[N-3:0],2'b0}),.b(k),.c(xin_tmp));
+
+Erroneous code:
+DSR_left_N_S #(.N(Bs), .S(N)) ls (.a({xin[N-3:0],2'b0}),.b(k),.c(xin_tmp));
+
+Error description:
+Swapped connections: .N(N) <-> .S(Bs)
+
+==================================================
+
+Design: posit_decoder
+Error line: 7
+
+Original code:
+function [31:0] log2;
+
+Erroneous code:
+function [32:0] log2;
+
+Error description:
+Bitwidth incremented by 1
+
+==================================================
+
+Design: posit_decoder
+Error line: 71
+
+Original code:
+      value = value-1;
+
+Erroneous code:
+      value = value+1;
+
+Error description:
+Arithmetic operator - changed to +
+
+==================================================
+
+

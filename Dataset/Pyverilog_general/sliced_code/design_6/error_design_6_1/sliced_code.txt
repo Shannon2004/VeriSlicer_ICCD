@@ -1,0 +1,740 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_6.v ---
+
+   3: module design_6(
+   4:         input clk,
+   5:         input rst,
+   6:         input [17:0] instruction_in,
+   7:         input [15:0] data_in,
+   8:         output [15:0] data_out,
+   9:         output [9:0] instruction_address,
+  10:         output [9:0] data_address,
+  11:         output data_R,
+  12:         output data_W,
+  13:         output done
+  14:     );
+...
+  16:     wire [5:0] opcode = instruction_in[17:12];
+...
+  18:     parameter [2:0] STATE_IDLE = 0;
+  19:     parameter [2:0] STATE_IF = 1;
+  20:     parameter [2:0] STATE_ID = 2;
+  21:     parameter [2:0] STATE_EX = 3;
+  22:     parameter [2:0] STATE_MEM = 4;
+  23:     parameter [2:0] STATE_WB = 5;
+  24:     parameter [2:0] STATE_HALT = 6;
+...
+  26:     reg [2:0] current_state;
+...
+  35:     assign data_out = data_out_reg;
+  36:     assign data_R = rdata_en;
+  37:     assign data_W = wdata_en;
+  38:     assign data_address = current_data_address;
+...
+ 126:     assign instruction_address = PC; 
+ 127:     assign done = current_state == STATE_HALT;
+...
+ 129:     always @(posedge clk)//state machine
+ 130:     begin
+ 131:         if (rst) 
+ 132:         begin
+ 133:             current_state <= STATE_IDLE;
+ 134:             PC <= 0;
+ 135:         end
+ 136:         else
+ 137:         begin
+ 138:             if (opcode == 63) current_state <= STATE_HALT;
+ 139:             else
+ 140:             if (current_state == STATE_IDLE)
+ 141:             begin
+ 142:                 current_state <= STATE_IF;
+ 143:             end
+ 144:             else if (current_state == STATE_IF)
+ 145:             begin
+...
+ 158:                 current_state <= STATE_ID;
+ 159:             end
+ 160:             else if (current_state == STATE_ID)
+ 161:             begin
+ 162:                 current_state <= STATE_ID;
+ 163:             end
+ 164:             else if (current_state == STATE_EX)
+ 165:             begin
+ 166:                 current_state <= STATE_MEM;
+ 167:             end
+ 168:             else if (current_state == STATE_MEM)
+ 169:             begin
+ 170:                 current_state <= STATE_WB;
+ 171:             end
+ 172:             else if (current_state == STATE_WB)
+ 173:             begin
+ 174:                 current_state <= STATE_IF;
+ 175:                 PC <= next_PC;
+ 176:             end
+ 177:         end
+ 178:     end    
+...
+ 193:     always @(posedge clk)//STATE_ID
+ 194:     begin
+ 195:         if (rst || current_state == STATE_IDLE || current_state == STATE_IF) 
+ 196:         begin
+ 197:             CMD_addition <= 0;
+ 198:             CMD_multiplication <= 0;
+ 199:             CMD_substruction <= 0;
+ 200:             CMD_mul_accumulation <= 0;
+ 201:             CMD_logic_shift_right <= 0;
+ 202:             CMD_logic_shift_left <= 0;
+ 203:             CMD_and <= 0;
+ 204:             CMD_or <= 0;
+ 205:             CMD_not <= 0;
+ 206:             CMD_load <= 0;
+ 207:             CMD_store <= 0;
+ 208:             CMD_set <= 0;
+ 209:             CMD_loopjump <= 0;
+ 210:             CMD_setloop <= 0;
+...
+ 212:             Hreg1<=0;
+ 213:             Hreg2<=0;
+ 214:             Hreg3<=0;
+ 215:             Him<=0;
+ 216:             Oreg1<=0;
+ 217:             Oreg2<=0;
+ 218:             Oreg3<=0;
+ 219:             Oim<=0;
+ 220:             Qreg1<=0;
+ 221:             Qreg2<=0;
+ 222:             Qreg3<=0;
+ 223:             Qim<=0;
+ 224:             im_reg <= 10'b0000000000;
+ 225:             R0 <= 0;
+ 226:             R1 <= 0;
+ 227:             R2 <= 0;
+ 228:             R3 <= 0;
+ 229:         end
+ 230:         else
+ 231:         begin
+ 232:             if (current_state == STATE_ID)
+ 233:             begin
+...
+ 238:                 CMD_addition <= (opcode<=5);
+ 239:                 CMD_substruction <= (opcode>=6)&&(opcode<=11);
+ 240:                 CMD_multiplication <= (opcode>=12)&&(opcode<=17);                
+ 241:                 CMD_mul_accumulation <= (opcode>=18)&&(opcode<=20);
+ 242:                 CMD_logic_shift_left <= (opcode>=21)&&(opcode<=23);
+ 243:                 CMD_logic_shift_right <= (opcode>=24)&&(opcode<=26);
+ 244:                 CMD_and <= (opcode>=27)&&(opcode<=29);
+ 245:                 CMD_or <= (opcode>=30)&&(opcode<=32);
+ 246:                 CMD_not <= (opcode>=33)&&(opcode<=35);
+ 247:                 CMD_loopjump <= opcode==36;
+ 248:                 CMD_setloop <= opcode==37;
+ 249:                 CMD_load <= (opcode>=38)&&(opcode<=40);
+ 250:                 CMD_store <= (opcode>=41)&&(opcode<=43);
+ 251:                 CMD_set <= (opcode>=44)&&(opcode<=46);     
+...
+ 255:                 Hreg1<=(opcode==3)||(opcode==9)||(opcode==15)||(opcode==21)||(opcode==24)||(opcode==33)||(opcode==38)||(opcode==41)||(opcode==44);
+ 256:                 Hreg2<=(opcode==0)||(opcode==6)||(opcode==12)||(opcode==27)||(opcode==30);
+ 257:                 Hreg3<=(opcode==18);
+ 258:                 Him<=(opcode==3)||(opcode==9)||(opcode==15)||(opcode==38)||(opcode==41)||(opcode==44);
+...
+ 260:                 Oreg1<=(opcode==4)||(opcode==10)||(opcode==16)||(opcode==22)||(opcode==25)||(opcode==34)||(opcode==39)||(opcode==42)||(opcode==45);
+ 261:                 Oreg2<=(opcode==1)||(opcode==7)||(opcode==13)||(opcode==28)||(opcode==31);
+ 262:                 Oreg3<=(opcode==19);
+ 263:                 Oim<=(opcode==4)||(opcode==10)||(opcode==16)||(opcode==39)||(opcode==42)||(opcode==45);
+...
+ 265:                 Qreg1<=(opcode==5)||(opcode==11)||(opcode==17)||(opcode==23)||(opcode==26)||(opcode==35)||(opcode==40)||(opcode==43)||(opcode==46);
+ 266:                 Qreg2<=(opcode==2)||(opcode==8)||(opcode==14)||(opcode==29)||(opcode==32);
+ 267:                 Qreg3<=(opcode==20);
+ 268:                 Qim<=(opcode==5)||(opcode==11)||(opcode==17)||(opcode==40)||(opcode==43)||(opcode==46);
+...
+ 270:                 im_reg <= instruction_in[9:0];
+ 271:                 R0 <= instruction_in[11:10];
+ 272:                 R1 <= instruction_in[5:4];
+ 273:                 R2 <= instruction_in[3:2];
+ 274:                 R3 <= instruction_in[1:0];
+...
+ 276:             end            
+ 277:         end
+ 278:     end    
+...
+ 280:     always @(posedge clk)//STATE_EX
+ 281:     begin
+ 282:         if (rst || current_state == STATE_IDLE || current_state == STATE_IF) 
+ 283:         begin
+ 284:             result_reg_add <= 0;
+ 285:             result_reg_sub <= 0;
+ 286:             result_reg_mul <= 0;
+ 287:             result_reg_mac <= 0;
+ 288:             result_reg_Lshift <= 0;
+ 289:             result_reg_Rshift <= 0;
+ 290:             result_reg_and <= 0;
+ 291:             result_reg_or <= 0;
+ 292:             result_reg_not <= 0;
+ 293:             result_reg_set <= 0;
+ 294:             current_data_address <= 0;
+ 295:             rdata_en <= 0;
+ 296:             wdata_en <= 0;
+ 297:             if (rst)
+ 298:             begin
+ 299:                 next_PC <= 0;
+ 300:             end
+ 301:         end
+...
+ 303:         else if (current_state == STATE_EX)
+ 304:         begin
+...
+ 306:             if (CMD_addition) // do addition
+ 307:             begin
+ 308:                 result_reg_add <= Add_output_Cout;
+ 309:                 if (Hreg2) 
+ 310:                 begin
+...
+ 312:                 end
+ 313:                 else if (Oreg2) 
+ 314:                 begin
+...
+ 316:                 end
+ 317:                 else if (Qreg2) 
+ 318:                 begin
+...
+ 320:                 end 
+ 321:                 else if (Him)
+ 322:                 begin
+...
+ 324:                 end
+ 325:                 else if (Oim)
+ 326:                 begin
+...
+ 328:                 end
+ 329:                 else if (Qim)
+ 330:                 begin
+...
+ 332:                 end
+ 333:             end 
+...
+ 335:             else if (CMD_substruction) // do substruction
+ 336:             begin
+ 337:                 result_reg_sub <= Add_output_Cout;
+ 338:                 if (Hreg2) 
+ 339:                 begin
+...
+ 341:                 end
+ 342:                 else if (Oreg2) 
+ 343:                 begin
+...
+ 345:                 end
+ 346:                 else if (Qreg2) 
+ 347:                 begin
+...
+ 349:                 end
+ 350:                 else if (Him)
+ 351:                 begin
+...
+ 353:                 end
+ 354:                 else if (Oim)
+ 355:                 begin
+...
+ 357:                 end
+ 358:                 else if (Qim)
+ 359:                 begin
+...
+ 361:                 end
+ 362:             end        
+...
+ 364:             else if (CMD_multiplication) // do multiplication
+ 365:             begin
+ 366:                 result_reg_mul<=Mul_output_Cout;
+ 367:                 if (Hreg2) 
+ 368:                 begin
+...
+ 370:                 end
+ 371:                 else if (Oreg2) 
+ 372:                 begin
+...
+ 374:                 end
+ 375:                 else if (Qreg2) 
+ 376:                 begin
+...
+ 378:                 end
+ 379:                 else if (Him)
+ 380:                 begin
+...
+ 382:                 end
+ 383:                 else if (Oim)
+ 384:                 begin
+...
+ 386:                 end
+ 387:                 else if (Qim)
+ 388:                 begin
+...
+ 390:                 end
+ 391:             end
+...
+ 393:             else if (CMD_mul_accumulation) // do mac
+ 394:             begin
+ 395:                 result_reg_mac <= Add_output_Cout;
+ 396:                 if (Hreg3) 
+ 397:                 begin
+...
+ 399:                 end
+ 400:                 else if (Oreg3) 
+ 401:                 begin
+...
+ 403:                 end
+ 404:                 else if (Qreg3) 
+ 405:                 begin
+...
+ 407:                 end
+ 408:             end
+...
+ 410:             else if (CMD_logic_shift_right) // do shift right
+ 411:             begin
+ 412:                 result_reg_Rshift <= shiftoutput;
+ 413:                 if (Hreg1) 
+ 414:                 begin
+...
+ 416:                 end
+ 417:                 else if (Oreg1) 
+ 418:                 begin
+...
+ 420:                 end
+ 421:                 else if (Qreg1) 
+ 422:                 begin
+...
+ 424:                 end
+ 425:             end
+...
+ 427:             else if (CMD_logic_shift_left) // do shift left
+ 428:             begin
+ 429:                 result_reg_Lshift <= shiftoutput;
+ 430:                 if (Hreg1) 
+ 431:                 begin
+...
+ 433:                 end
+ 434:                 else if (Oreg1) 
+ 435:                 begin
+...
+ 437:                 end
+ 438:                 else if (Qreg1) 
+ 439:                 begin
+...
+ 441:                 end
+ 442:             end
+...
+ 444:             else if (CMD_and) // do and
+ 445:             begin
+ 446:                 if (Hreg2) 
+ 447:                 begin
+ 448:                     result_reg_and <= H[R2] & H[R3];
+...
+ 450:                 end
+ 451:                 else if (Oreg2) 
+ 452:                 begin
+ 453:                     result_reg_and <= Oset[R2] & Oset[R3];
+...
+ 455:                 end
+ 456:                 else if (Qreg2) 
+ 457:                 begin
+ 458:                     result_reg_and <= Qset[R2] & Qset[R3];
+...
+ 460:                 end
+ 461:             end
+...
+ 463:             else if (CMD_or) // do or
+ 464:             begin
+ 465:                 if (Hreg2) 
+ 466:                 begin
+ 467:                     result_reg_or <= H[R2] | H[R3];
+...
+ 469:                 end
+ 470:                 else if (Oreg2) 
+ 471:                 begin
+ 472:                     result_reg_or <= Oset[R2] | Oset[R3];
+...
+ 474:                 end
+ 475:                 else if (Qreg2) 
+ 476:                 begin
+ 477:                     result_reg_or <= Qset[R2] | Qset[R3];
+...
+ 479:                 end
+ 480:             end
+...
+ 483:             else if (CMD_not) // do not
+ 484:             begin
+ 485:                 if (Hreg1) 
+ 486:                 begin
+ 487:                     result_reg_not <= ~H[R3];
+...
+ 489:                 end
+ 490:                 else if (Oreg1) 
+ 491:                 begin
+ 492:                     result_reg_not <= ~Oset[R3];
+...
+ 494:                 end
+ 495:                 else if (Qreg1) 
+ 496:                 begin
+ 497:                     result_reg_not <= ~Qset[R3];
+...
+ 499:                 end
+ 500:             end
+...
+ 502:             else if (CMD_set) // do set
+ 503:             begin
+ 504:                 if (Hreg1) 
+ 505:                 begin
+ 506:                     result_reg_set <= im_reg;
+...
+ 508:                 end
+ 509:                 else if (Oreg1) 
+ 510:                 begin
+ 511:                     result_reg_set[7:0] <= im_reg;
+ 512:                     result_reg_set[15:8] <= im_reg;
+...
+ 514:                 end
+ 515:                 else if (Qreg1) 
+ 516:                 begin
+ 517:                     result_reg_set[3:0] <= im_reg;
+ 518:                     result_reg_set[7:4] <= im_reg;
+ 519:                     result_reg_set[11:8] <= im_reg;
+ 520:                     result_reg_set[15:12] <= im_reg;
+...
+ 522:                 end
+ 523:             end
+...
+ 525:             else if (CMD_load) // do load
+ 526:             begin
+ 527:                 rdata_en <= 1;
+ 528:                 current_data_address <= im_reg;
+ 529:                 if (Hreg1) 
+ 530:                 begin
+...
+ 532:                 end
+ 533:                 else if (Oreg1) 
+ 534:                 begin
+...
+ 536:                 end
+ 537:                 else if (Qreg1) 
+ 538:                 begin
+...
+ 540:                 end 
+...
+ 542:             end
+...
+ 544:             else if (CMD_store) // do store
+ 545:             begin
+ 546:                 wdata_en <= 1;
+ 547:                 rdata_en <= 1;
+ 548:                 current_data_address <= im_reg;
+...
+ 550:                 if (Hreg1) 
+ 551:                 begin
+ 552:                     data_out_reg <= H[R0];
+...
+ 554:                 end
+ 555:                 else if (Oreg1) 
+ 556:                 begin
+ 557:                     data_out_reg <= Oset[R0];
+...
+ 559:                 end
+ 560:                 else if (Qreg1) 
+ 561:                 begin
+ 562:                     data_out_reg <= Qset[R0];
+...
+ 564:                 end            
+ 565:             end
+...
+ 567:             if (CMD_loopjump)
+ 568:             begin
+...
+ 570:                 if (LC != 0)
+ 571:                 begin
+ 572:                     next_PC <= im_reg;
+ 573:                     LC <= LC - 1;
+ 574:                 end
+ 575:                 else
+ 576:                 begin                    
+ 577:                     next_PC <= next_PC + 1;
+ 578:                 end
+ 579:             end
+ 580:             else 
+ 581:                 next_PC <= next_PC + 1;
+...
+ 583:             if (CMD_setloop)
+ 584:             begin
+...
+ 586:                 LC <= im_reg;
+ 587:             end        
+ 588:         end                    
+ 589:     end
+...
+ 592:     always @(posedge clk)//STATE_MEM
+ 593:     begin
+ 594:         if (rst || current_state == STATE_IDLE || current_state == STATE_IF) 
+ 595:         begin
+ 596:         end
+ 597:         else
+ 598:         begin
+ 599:             if (current_state == STATE_MEM)
+ 600:             begin
+...
+ 602:             end            
+ 603:         end
+ 604:     end   
+...
+ 606:     always @(posedge clk)//STATE_WB
+ 607:     begin
+ 608:         if (rst || current_state == STATE_IDLE || current_state == STATE_IF) 
+ 609:         begin
+ 610:         end
+...
+ 612:         else if (current_state == STATE_WB)
+ 613:         begin
+...
+ 615:             if (CMD_addition) // do addition
+ 616:             begin
+ 617:                 if (Hreg2) 
+ 618:                 begin
+ 619:                     H[R2] <= result_reg_add;
+ 620:                 end
+ 621:                 else if (Oreg2) 
+ 622:                 begin
+ 623:                     Oset[R2] <= result_reg_add;
+ 624:                 end
+ 625:                 else if (Qreg2) 
+ 626:                 begin
+ 627:                     Qset[R2] <= result_reg_add;
+ 628:                 end 
+ 629:                 else if (Him)
+ 630:                 begin
+ 631:                     H[R0] <= result_reg_add;
+ 632:                 end
+ 633:                 else if (Oim)
+ 634:                 begin
+ 635:                     Oset[R0] <= result_reg_add;
+ 636:                 end
+ 637:                 else if (Qim)
+ 638:                 begin
+ 639:                     Qset[R0] <= result_reg_add;
+ 640:                 end
+ 641:             end 
+...
+ 643:             else if (CMD_substruction) // do substruction
+ 644:             begin
+ 645:                 if (Hreg2) 
+ 646:                 begin
+ 647:                     H[R2] <= result_reg_sub;
+ 648:                 end
+ 649:                 else if (Oreg2) 
+ 650:                 begin
+ 651:                     Oset[R2] <= result_reg_sub;
+ 652:                 end
+ 653:                 else if (Qreg2) 
+ 654:                 begin
+ 655:                     Qset[R2] <= result_reg_sub;
+ 656:                 end
+ 657:                 else if (Him)
+ 658:                 begin
+ 659:                     H[R0] <= result_reg_sub;
+ 660:                 end
+ 661:                 else if (Oim)
+ 662:                 begin
+ 663:                     Oset[R0] <= result_reg_sub;
+ 664:                 end
+ 665:                 else if (Qim)
+ 666:                 begin
+ 667:                     Qset[R0] <= result_reg_sub;
+ 668:                 end
+ 669:             end
+ 670:         end
+...
+ 672:         else if (CMD_multiplication) // do multiplication
+ 673:         begin
+ 674:             if (Hreg2) 
+ 675:             begin
+ 676:                 H[R2] <= result_reg_mul;
+ 677:             end
+ 678:             else if (Oreg2) 
+ 679:             begin
+ 680:                 Oset[R2] <= result_reg_mul;
+ 681:             end
+ 682:             else if (Qreg2) 
+ 683:             begin
+ 684:                 Qset[R2] <= result_reg_mul;
+ 685:             end
+ 686:             else if (Him)
+ 687:             begin
+ 688:                 H[R0] <= result_reg_mul;
+ 689:             end
+ 690:             else if (Oim)
+ 691:             begin
+ 692:                 Oset[R0] <= result_reg_mul;
+ 693:             end
+ 694:             else if (Qim)
+ 695:             begin
+ 696:                 Qset[R0] <= result_reg_mul;
+ 697:             end
+ 698:         end
+...
+ 700:         else if (CMD_mul_accumulation) // do mac
+ 701:         begin
+ 702:             if (Hreg3) 
+ 703:             begin
+ 704:                 H[R1] <= result_reg_mac;
+ 705:             end
+ 706:             else if (Oreg3) 
+ 707:             begin
+ 708:                 Oset[R1] <= result_reg_mac;
+ 709:             end
+ 710:             else if (Qreg3) 
+ 711:             begin
+ 712:                 Qset[R1] <= result_reg_mac;
+ 713:             end
+ 714:         end
+...
+ 716:         else if (CMD_logic_shift_right) // do shift right
+ 717:         begin
+ 718:             if (Hreg1) 
+ 719:             begin
+ 720:                 H[R3] <= result_reg_Rshift;
+ 721:             end
+ 722:             else if (Oreg1) 
+ 723:             begin
+ 724:                 Oset[R3] <= result_reg_Rshift;
+ 725:             end
+ 726:             else if (Qreg1) 
+ 727:             begin
+ 728:                 Qset[R3] <= result_reg_Rshift;
+ 729:             end
+ 730:         end
+...
+ 732:         else if (CMD_logic_shift_left) // do shift left
+ 733:         begin
+ 734:             if (Hreg1) 
+ 735:             begin
+ 736:                 H[R3] <= result_reg_Lshift;
+ 737:             end
+ 738:             else if (Oreg1) 
+ 739:             begin
+ 740:                 Oset[R3] <= result_reg_Lshift;
+ 741:             end
+ 742:             else if (Qreg1) 
+ 743:             begin
+ 744:                 Qset[R3] <= result_reg_Lshift;
+ 745:             end
+ 746:         end
+...
+ 748:         else if (CMD_and) // do and
+ 749:         begin
+ 750:             if (Hreg2) 
+ 751:             begin
+ 752:                 H[R2] <= result_reg_and;
+ 753:             end
+ 754:             else if (Oreg2) 
+ 755:             begin
+ 756:                 Oset[R2] <= result_reg_and;
+ 757:             end
+ 758:             else if (Qreg2) 
+ 759:             begin
+ 760:                 Qset[R2] <= result_reg_and;
+ 761:             end
+ 762:         end
+...
+ 764:         else if (CMD_or) // do or
+ 765:         begin
+ 766:             if (Hreg2) 
+ 767:             begin
+ 768:                 H[R2] <= result_reg_or;
+ 769:             end
+ 770:             else if (Oreg2) 
+ 771:             begin
+ 772:                 Oset[R2] <= result_reg_or;
+ 773:             end
+ 774:             else if (Qreg2) 
+ 775:             begin
+ 776:                 Qset[R2] <= result_reg_or;
+ 777:             end
+ 778:         end
+...
+ 781:         else if (CMD_not) // do not
+ 782:         begin
+ 783:             if (Hreg1) 
+ 784:             begin
+ 785:                 H[R3] <= result_reg_not;
+ 786:             end
+ 787:             else if (Oreg1) 
+ 788:             begin
+ 789:                 Oset[R3] <= result_reg_not;
+ 790:             end
+ 791:             else if (Qreg1) 
+ 792:             begin
+ 793:                 Qset[R3] <= result_reg_not;
+ 794:             end
+ 795:         end
+...
+ 797:         else if (CMD_set) // do set
+ 798:         begin
+ 799:             if (Hreg1) 
+ 800:             begin
+ 801:                 H[R0] <= result_reg_set;
+ 802:             end
+ 803:             else if (Oreg1) 
+ 804:             begin
+ 805:                 Oset[R0] <= result_reg_set;
+ 806:             end
+ 807:             else if (Qreg1) 
+ 808:             begin
+ 809:                 Qset[R0] <= result_reg_set;
+ 810:             end
+ 811:         end
+ 812:         else if (CMD_load)
+ 813:         begin
+ 814:             if (Hreg1) 
+ 815:             begin
+ 816:                 H[R0] <= data_in;
+ 817:             end
+ 818:             else if (Oreg1) 
+ 819:             begin
+ 820:                 Oset[R0] <= data_in;
+ 821:             end
+ 822:             else if (Qreg1) 
+ 823:             begin
+ 824:                 Qset[R0] <= data_in;
+ 825:             end 
+ 826:         end
+...
+ 828:     end
+...
+ 830: endmodule
+...
+ 834: module SIMDadd(
+ 835:         input [15:0] A,
+ 836:         input [15:0] B,
+ 837:         input H,
+ 838:         input O,
+ 839:         input Q,
+ 840:         input sub,
+ 841:         output [15:0] Cout
+ 842:     );
+...
+ 852: endmodule
+...
+ 855: module SIMDmultiply(
+ 856:         input [15:0] mulinputa,
+ 857:         input [15:0] mulinputb,
+ 858:         input H,
+ 859:         input O,
+ 860:         input Q,
+ 861:         output [15:0] muloutput
+ 862:     );
+...
+ 924: endmodule
+...
+ 928: module SIMDshifter(
+ 929:         input [15:0] shiftinput,
+ 930:         input H,
+ 931:         input O,
+ 932:         input Q,
+ 933:         input left,
+ 934:         output [15:0] shiftoutput
+ 935:     );
+...
+ 947: endmodule

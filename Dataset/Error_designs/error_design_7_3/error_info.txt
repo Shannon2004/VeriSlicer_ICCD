@@ -1,0 +1,43 @@
+Design: bf16
+Error line: 270
+
+Original code:
+        end else if (mantissa_add[10:8] == 3'b001) begin
+
+Erroneous code:
+        end else if(!(mantissa_add[10:8] == 3'b001)) begin
+
+Error description:
+Flipped if condition
+
+==================================================
+
+Design: bf16
+Error line: 138
+
+Original code:
+    input  [15:0] b,
+
+Erroneous code:
+    input  [16:0] b,
+
+Error description:
+Bitwidth incremented by 1
+
+==================================================
+
+
+Design: bf16
+Error line: 356
+
+Original code:
+    assign b_zero = ~(|b);
+
+Erroneous code:
+    assign b_zero = ~(&b);
+
+Error description:
+Logical operator | changed to &
+
+==================================================
+

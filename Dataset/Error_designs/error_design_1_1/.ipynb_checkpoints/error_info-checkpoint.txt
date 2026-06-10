@@ -1,0 +1,11 @@
+Design: CORDIC
+Error line: 23
+
+Original code:
+for(j=0;j<i;j=j+1) Q = (Q >> 1) | (D[`XY_BITS] << `XY_BITS);
+
+Erroneous code:
+for(j=0;j<i;j=j+1) Q = (Q >> 1) & (D[`XY_BITS] << `XY_BITS);
+
+Error description:
+Bitwise OR changed to Bitwise AND

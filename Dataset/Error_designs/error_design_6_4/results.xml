@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1775400081" />
+    <testcase name="test_simd_processor" classname="test_design_6" file="/home/shannon/Downloads/design_6/testbenches/test_design_6.py" lineno="121" time="0.30434632301330566" sim_time_ns="23300.0" ratio_time="76557.52094951826">
+      <failure error_type="AssertionError" error_msg="Check failed for 'data_out'.&#10;assert False" />
+    </testcase>
+  </testsuite>
+</testsuites>

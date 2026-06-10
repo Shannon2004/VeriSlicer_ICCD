@@ -1,0 +1,6 @@
+
+=================================================================
+TEST FAILED AT 620.0 ns
+FAILING SIGNAL : digest_output
+ERROR DETAILS  : Expected 0xa9398ebe9f066fc12133409e876065fd802fbc7e, Got 0x7271bc3467af4b6bad4bcb3805eedb728ec33ead
+=================================================================

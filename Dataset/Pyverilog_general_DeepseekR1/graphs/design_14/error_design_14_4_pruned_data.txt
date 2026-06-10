@@ -1,0 +1,31 @@
+# Source File: ../Error_designs/error_design_14_4/design_14.v
+# Project Dir: error_design_14_4
+# Total Vertices: 11
+# Total Edges: 12
+
+=== VERTICES ===
+design_14.N
+design_14.posit_in
+design_14.rc
+design_14.xin
+design_14.xin_r
+design_14.xinst_k.N
+design_14.xinst_k.in
+design_14.xinst_k.l1.N
+design_14.xinst_k.l1.in
+design_14.xinst_k.l1.out
+design_14.xinst_k.out
+
+=== EDGES (Driver -> Target) ===
+design_14.N -> design_14.xinst_k.N
+design_14.xinst_k.l1.N -> design_14.xinst_k.l1.out
+design_14.xinst_k.l1.in -> design_14.xinst_k.l1.out
+design_14.xinst_k.l1.out -> design_14.xinst_k.out
+design_14.xin_r -> design_14.xinst_k.in
+design_14.rc -> design_14.xinst_k.in
+design_14.xinst_k.in -> design_14.xinst_k.l1.in
+design_14.xin -> design_14.xin_r
+design_14.rc -> design_14.xin_r
+design_14.posit_in -> design_14.xin
+design_14.xinst_k.N -> design_14.xinst_k.l1.N
+design_14.xin -> design_14.rc

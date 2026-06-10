@@ -1,0 +1,16 @@
+
+
+Design: id_stage
+Error line: 100
+
+Original code:
+    assign rd     = instr[11:7];
+
+Erroneous code:
+     assign rd     = instr[11:4];
+
+Error description:
+Incorrect port definition. Changed instr[11:7] to instr[11:4].
+
+==================================================
+

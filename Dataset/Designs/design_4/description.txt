@@ -1,0 +1,49 @@
+### MODULE SPECIFICATION: design_4 (IEEE-754 32-bit Floating Point ALU)
+
+## 1. ARCHITECTURAL INTENT
+* **Type:** IEEE-754 Single Precision (32-bit) Arithmetic/Logic Unit.
+* **Format:** [31] Sign bit, [30:23] 8-bit Exponent, [22:0] 23-bit Mantissa.
+* **Mechanism:** The top module acts as a MULTIPLEXER that routes operands to specific sub-modules based on the `Operation` code, and selects the correct result onto `ALU_Output`.
+
+## 2. PORT INTERFACE
+* **Inputs:**
+  * `a_operand[31:0]`, `b_operand[31:0]`: The two IEEE-754 operands.
+  * `Operation[3:0]`: Selects the arithmetic/logic operation.
+* **Outputs:**
+  * `ALU_Output[31:0]`: The computed result.
+  * `Exception`: Asserts when any operand has Exponent == 255 (NaN/Inf).
+  * `Overflow`, `Underflow`: Asserted by the Multiplication sub-module.
+
+## 3. OPCODE-TO-MODULE ROUTING TABLE (CRITICAL FOR DEBUGGING)
+The top module computes EACH operation's result independently into separate wires, then uses operation-gated tri-state assigns to drive `ALU_Output`:
+
+| Operation | Function   | Output Wire       | Assign Line | Sub-module Used          |
+|-----------|-----------|-------------------|-------------|--------------------------|
+| 4'd1      | FP_MUL    | Mul_Output        | ~75         | Multiplication           |
+| 4'd2      | FP_DIV    | Div_Output        | ~77         | Division                 |
+| 4'd3      | FP_SUB    | Add_Sub_Output    | ~79         | Addition_Subtraction     |
+| 4'd4      | **OR**    | **OR_Output**     | ~39, ~81    | Native bitwise (top mod) |
+| 4'd5      | **AND**   | **AND_Output**    | ~41, ~83    | Native bitwise (top mod) |
+| 4'd6      | **XOR**   | **XOR_Output**    | ~43, ~85    | Native bitwise (top mod) |
+| 4'd7      | LSL       | L_S_Output        | ~45, ~87    | Native shift (top mod)   |
+| 4'd8      | LSR       | R_S_Output        | ~47, ~89    | Native shift (top mod)   |
+| 4'd9      | FP_to_INT | Integer_Value     | ~91         | Floating_Point_to_Integer|
+| 4'd10     | FP_ADD    | Add_Sub_Output    | ~73         | Addition_Subtraction     |
+| 4'd11     | NOT       | Complement_output | ~51, ~93    | Native bitwise (top mod) |
+
+**Key insight:** Bitwise operations (AND, OR, XOR, NOT, shifts) are computed DIRECTLY in the top module as simple `assign` statements around lines 39-51. If the error symptom says "During AND" or "During OR", the bug is in one of these direct assign lines, NOT in the sub-modules.
+
+## 4. SUB-MODULE LINE RANGES
+* `design_4` (Top-level ALU): Lines 10-99
+* `Addition_Subtraction`: Lines 102-191
+* `Floating_Point_to_Integer`: Lines 195-356
+* `Division`: Lines 360-413
+* `Iteration` (used by Division): Lines 417-432
+* `Multiplication`: Lines 435-487
+* `priority_encoder` (used by Add/Sub): Lines 492-636
+
+## 5. BEHAVIORAL CONSTRAINTS & DEBUGGING CONTEXT
+* **Tri-state mux architecture:** All sub-module outputs use high-Z (32'dz) when their operation is not selected. The physical ALU_Output is the wired-OR of all these tri-state drivers. Only ONE driver should be active at any time based on `Operation`.
+* **Hidden Bit:** Mantissa hidden bit (1'b1) is dynamically appended when Exponent > 0.
+* **Exception detection:** `Exception = (&a_operand[30:23]) | (&b_operand[30:23])` — reduction AND checks if ALL exponent bits are 1 (i.e., Exp==255). Bug here would be ` & ` instead of ` | `.
+* **Overflow/Underflow in Multiplication:** These depend on `exponent[8:7]` bits after the exponent sum. Wrong operators here (& vs |, ! missing) directly corrupt these flags.

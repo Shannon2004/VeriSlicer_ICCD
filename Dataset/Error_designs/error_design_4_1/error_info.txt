@@ -1,0 +1,13 @@
+Design: FP IEEE754 ALU
+Error line: 41
+
+Original code:
+assign AND_Output = (Operation == 4'd5) ? a_operand & b_operand	: 32'dz;
+
+
+Erroneous code:
+assign AND_Output = (Operation == 4'd5) ? a_operand | b_operand	: 32'dz;
+
+
+Error description:
+Changed AND to OR

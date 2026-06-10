@@ -1,0 +1,6 @@
+
+=================================================================
+TEST FAILED AT 27.0 ns
+FAILING SIGNAL : o_Data_Valid
+ERROR DETAILS  : Bug Caught: DataValid asserted too early at latency 1.
+=================================================================

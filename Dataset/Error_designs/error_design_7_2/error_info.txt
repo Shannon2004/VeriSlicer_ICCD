@@ -1,0 +1,29 @@
+
+
+Design: bf16
+Error line: 173
+
+Original code:
+        if (a[14:0] > b[14:0]) begin
+
+Erroneous code:
+        if (a[14:0] < b[14:0]) begin
+
+Error description:
+Changed > to <
+
+==================================================
+
+Design: bf16
+Error line: 322
+
+Original code:
+      assign p[i] = a[i] | b[i];
+
+Erroneous code:
+      assign p[i] = a[i] & b[i];
+
+Error description:
+Changed operator from | to &
+==================================================
+

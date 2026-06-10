@@ -1,0 +1,15 @@
+
+Design: posit_encoder
+Error line: 17
+
+Original code:
+	value = value + 1;
+
+Erroneous code:
+	value = value - 1;
+
+Error description:
+Arithmetic operator changed from + to -
+==================================================
+
+

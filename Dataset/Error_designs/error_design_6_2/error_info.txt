@@ -1,0 +1,11 @@
+Design: SIMD Processor
+Error line: 548
+
+Original code:
+current_data_address <= im_reg;
+
+Erroneous code:
+current_data_address <= im_reg ^ 16'hFFFF;
+
+Error description:
+Address calculation modified

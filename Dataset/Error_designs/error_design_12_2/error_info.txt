@@ -1,0 +1,16 @@
+
+
+Design: mmu180
+Error line: 54
+
+Original code:
+            assign iosel_CBR_wr = ! (iosel_CBR & ! wr_n);
+
+Erroneous code:
+            assign iosel_CBR_wr = ! (iosel_CBR & wr_n);
+
+Error description:
+Flipped if condition
+
+==================================================
+

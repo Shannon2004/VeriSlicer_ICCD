@@ -1,0 +1,14 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_17.v ---
+
+   1: module design_17 (
+   2:     input  [7:0] A,
+   3:     input  [7:0] B,
+   4:     input        Cin,
+   5:     output [7:0] Sum,
+   6:     output       Cout
+   7: );
+...
+   9:     assign {Cout, Sum} = A + ~B + Cin;
+...
+  11: endmodule

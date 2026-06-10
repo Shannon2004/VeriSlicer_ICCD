@@ -1,0 +1,855 @@
+rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_1/design_1.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_1);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_1 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_1/design_1.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_1 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_1 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775625565
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_1.cordic_testbench (1/1)
+                                                            Cocotb translation of tb_cordic.v
+     0.00ns INFO     cocotb.design_1                    --- Starting CORDIC Simulation ---
+     0.00ns INFO     cocotb.design_1                    Configuration: MODE = ROTATE, ARCH = PIPELINE
+    37.00ns INFO     cocotb.design_1                    Angle:  0  sin = 0.607178  cos = 0.607178 errors ex=12872 ey=19896
+    37.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 37.0 ns
+                                                        FAILING SIGNAL : x_o
+                                                        ERROR DETAILS  : Expected x_o to be 32768, got 19896
+                                                        =================================================================
+    37.00ns INFO     cocotb.design_1                    Signal log file securely closed.
+    37.00ns WARNING  ..ordic_testbench.cordic_testbench Signal 'x_o' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 214, in cordic_testbench
+                                                            check_results(dut, check_idx, lx, ly, ltheta, MODE, file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 129, in check_results
+                                                            report_error(msg, "x_o", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 67, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'x_o' failed.
+                                                        assert False
+    37.00ns WARNING  cocotb.regression                  test_design_1.cordic_testbench failed
+    37.00ns INFO     cocotb.regression                  ****************************************************************************************
+                                                        ** TEST                            STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************
+                                                        ** test_design_1.cordic_testbench   FAIL          37.00           0.01       5355.79  **
+                                                        ****************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                   37.00           0.01       3316.22  **
+                                                        ****************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_1/design_1.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_2/design_1.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_1);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_1 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_2/design_1.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_1 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_1 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775625577
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_1.cordic_testbench (1/1)
+                                                            Cocotb translation of tb_cordic.v
+     0.00ns INFO     cocotb.design_1                    --- Starting CORDIC Simulation ---
+     0.00ns INFO     cocotb.design_1                    Configuration: MODE = ROTATE, ARCH = PIPELINE
+    37.00ns INFO     cocotb.design_1                    Angle:  0  sin = 1.436493  cos = 1.220306 errors ex=7219 ey=47071
+    37.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 37.0 ns
+                                                        FAILING SIGNAL : x_o
+                                                        ERROR DETAILS  : Expected x_o to be 32768, got 39987
+                                                        =================================================================
+    37.00ns INFO     cocotb.design_1                    Signal log file securely closed.
+    37.00ns WARNING  ..ordic_testbench.cordic_testbench Signal 'x_o' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 214, in cordic_testbench
+                                                            check_results(dut, check_idx, lx, ly, ltheta, MODE, file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 129, in check_results
+                                                            report_error(msg, "x_o", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 67, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'x_o' failed.
+                                                        assert False
+    37.00ns WARNING  cocotb.regression                  test_design_1.cordic_testbench failed
+    37.00ns INFO     cocotb.regression                  ****************************************************************************************
+                                                        ** TEST                            STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************
+                                                        ** test_design_1.cordic_testbench   FAIL          37.00           0.01       5450.97  **
+                                                        ****************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                   37.00           0.01       3360.67  **
+                                                        ****************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_2/design_1.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_3/design_1.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_1);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_1 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_3/design_1.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_1 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_1 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775625588
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_1.cordic_testbench (1/1)
+                                                            Cocotb translation of tb_cordic.v
+     0.00ns INFO     cocotb.design_1                    --- Starting CORDIC Simulation ---
+     0.00ns INFO     cocotb.design_1                    Configuration: MODE = ROTATE, ARCH = PIPELINE
+    37.00ns INFO     cocotb.design_1                    Angle:  0  sin = 0.984863  cos = -0.171326 errors ex=38382 ey=32272
+    37.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 37.0 ns
+                                                        FAILING SIGNAL : x_o
+                                                        ERROR DETAILS  : Expected x_o to be 32768, got -5614
+                                                        =================================================================
+    37.00ns INFO     cocotb.design_1                    Signal log file securely closed.
+    37.00ns WARNING  ..ordic_testbench.cordic_testbench Signal 'x_o' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 214, in cordic_testbench
+                                                            check_results(dut, check_idx, lx, ly, ltheta, MODE, file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 129, in check_results
+                                                            report_error(msg, "x_o", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 67, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'x_o' failed.
+                                                        assert False
+    37.00ns WARNING  cocotb.regression                  test_design_1.cordic_testbench failed
+    37.00ns INFO     cocotb.regression                  ****************************************************************************************
+                                                        ** TEST                            STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************
+                                                        ** test_design_1.cordic_testbench   FAIL          37.00           0.01       5839.01  **
+                                                        ****************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                   37.00           0.01       3539.82  **
+                                                        ****************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_3/design_1.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_4/design_1.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_1);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_1 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_4/design_1.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_1 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_1 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775625599
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_1.cordic_testbench (1/1)
+                                                            Cocotb translation of tb_cordic.v
+     0.00ns INFO     cocotb.design_1                    --- Starting CORDIC Simulation ---
+     0.00ns INFO     cocotb.design_1                    Configuration: MODE = ROTATE, ARCH = PIPELINE
+    37.00ns INFO     cocotb.design_1                    Angle:  0  sin = 0.607178  cos = 0.000000 errors ex=32768 ey=19896
+    37.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 37.0 ns
+                                                        FAILING SIGNAL : x_o
+                                                        ERROR DETAILS  : Expected x_o to be 32768, got 0
+                                                        =================================================================
+    37.00ns INFO     cocotb.design_1                    Signal log file securely closed.
+    37.00ns WARNING  ..ordic_testbench.cordic_testbench Signal 'x_o' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 214, in cordic_testbench
+                                                            check_results(dut, check_idx, lx, ly, ltheta, MODE, file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 129, in check_results
+                                                            report_error(msg, "x_o", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 67, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'x_o' failed.
+                                                        assert False
+    37.00ns WARNING  cocotb.regression                  test_design_1.cordic_testbench failed
+    37.00ns INFO     cocotb.regression                  ****************************************************************************************
+                                                        ** TEST                            STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************
+                                                        ** test_design_1.cordic_testbench   FAIL          37.00           0.01       5335.71  **
+                                                        ****************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                   37.00           0.01       3238.91  **
+                                                        ****************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_1_4/design_1.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_1/design_2.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_2);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_2 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_1/design_2.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_2 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_2 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775625610
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_2.sd_controller_robust_test (1/1)
+                                                            Comprehensive, self-checking testbench to catch FSM and timing bugs.
+     0.00ns INFO     cocotb.design_2                    Checking initial Idle state...
+    10.00ns INFO     cocotb.design_2                    Checking Write Phase & Hold...
+    17.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 17.0 ns
+                                                        FAILING SIGNAL : o_Write_Grant
+                                                        ERROR DETAILS  : Bug Caught: WriteGrant dropped prematurely while WriteReq was high.
+                                                        =================================================================
+    17.00ns INFO     cocotb.design_2                    Signal log file securely closed.
+    17.00ns WARNING  ..t_test.sd_controller_robust_test Signal 'o_Write_Grant' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_2/test_design_2.py", line 121, in sd_controller_robust_test
+                                                            report_error("Bug Caught: WriteGrant dropped prematurely while WriteReq was high.", "o_Write_Grant", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_2/test_design_2.py", line 27, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'o_Write_Grant' failed.
+                                                        assert False
+    17.00ns WARNING  cocotb.regression                  test_design_2.sd_controller_robust_test failed
+    17.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_design_2.sd_controller_robust_test   FAIL          17.00           0.00       5059.12  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                            17.00           0.01       2324.70  **
+                                                        *************************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_1/design_2.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+Cleared previous results log.
+
+==================================================
+Starting iteration for: error_design_1_1
+==================================================
+Generated Makefile.
+Running 'make clean'...
+Running 'make'...
+Running Code Mapper for error_design_1_1...
+Initializing Mapper Tool...
+Configuration -> Files: ['../Error_designs/error_design_1_1/design_1.v'], Top Module: design_1, Target Pin: design_1.x_o
+
+--- Running Pre-processor ---
+
+--- Running Mapper ---
+Analyzing source files...
+Tracing causal path for 'design_1.x_o'...
+
+Drawing Original Graph...
+Success: Graph plotted and saved to 'graphs/design_1/original_graph.png'
+Drawing Pruned Graph...
+Success: Graph plotted and saved to 'graphs/design_1/pruned_graph.png'
+Success: Pruned graph text data saved to 'graphs/design_1/error_design_1_1_pruned_data.txt'
+
+Done! Check the 'graphs/design_1/' folder.
+Cleaned up temporary sanitized files.
+Renamed original_graph.png to: graphs/design_1/error_design_1_1_original_graph.png
+Renamed pruned_graph.png to: graphs/design_1/error_design_1_1_pruned_graph.png
+Running VCD Trimmer for error_design_1_1...
+Calculating Dynamic Latency for error_design_1_1...
+[*] DFS Auto-Detected Target Pin: design_1.x_o
+[*] Dynamic Window Set to: 24 cycles (Graph Depth 19 + 5 buffer)
+Trimming VCD: ../Error_designs/error_design_1_1/design_1.vcd...
+Success! Trace saved to: trimmed_vcds/design_1/error_design_1_1_trimmed_trace.txt
+Running Code Slicer for error_design_1_1...
+Success! Sliced code saved to: sliced_code/design_1/error_design_1_1/sliced_code.txt
+Building LLM Prompt for error_design_1_1...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_1_prompt.json (11171 chars total)
+Sending to Local Qwen GPU for Evaluation...
+==================================================
+Iteration for error_design_1_1 COMPLETE.
+==================================================
+
+
+==================================================
+Starting iteration for: error_design_1_2
+==================================================
+Generated Makefile.
+Running 'make clean'...
+Running 'make'...
+Running Code Mapper for error_design_1_2...
+Initializing Mapper Tool...
+Configuration -> Files: ['../Error_designs/error_design_1_2/design_1.v'], Top Module: design_1, Target Pin: design_1.x_o
+
+--- Running Pre-processor ---
+
+--- Running Mapper ---
+Analyzing source files...
+Tracing causal path for 'design_1.x_o'...
+
+Drawing Original Graph...
+Success: Graph plotted and saved to 'graphs/design_1/original_graph.png'
+Drawing Pruned Graph...
+Success: Graph plotted and saved to 'graphs/design_1/pruned_graph.png'
+Success: Pruned graph text data saved to 'graphs/design_1/error_design_1_2_pruned_data.txt'
+
+Done! Check the 'graphs/design_1/' folder.
+Cleaned up temporary sanitized files.
+Renamed original_graph.png to: graphs/design_1/error_design_1_2_original_graph.png
+Renamed pruned_graph.png to: graphs/design_1/error_design_1_2_pruned_graph.png
+Running VCD Trimmer for error_design_1_2...
+Calculating Dynamic Latency for error_design_1_2...
+[*] DFS Auto-Detected Target Pin: design_1.x_o
+[*] Dynamic Window Set to: 24 cycles (Graph Depth 19 + 5 buffer)
+Trimming VCD: ../Error_designs/error_design_1_2/design_1.vcd...
+Success! Trace saved to: trimmed_vcds/design_1/error_design_1_2_trimmed_trace.txt
+Running Code Slicer for error_design_1_2...
+Success! Sliced code saved to: sliced_code/design_1/error_design_1_2/sliced_code.txt
+Building LLM Prompt for error_design_1_2...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_2_prompt.json (11171 chars total)
+Sending to Local Qwen GPU for Evaluation...
+==================================================
+Iteration for error_design_1_2 COMPLETE.
+==================================================
+
+
+==================================================
+Starting iteration for: error_design_1_3
+==================================================
+Generated Makefile.
+Running 'make clean'...
+Running 'make'...
+Running Code Mapper for error_design_1_3...
+Initializing Mapper Tool...
+Configuration -> Files: ['../Error_designs/error_design_1_3/design_1.v'], Top Module: design_1, Target Pin: design_1.x_o
+
+--- Running Pre-processor ---
+
+--- Running Mapper ---
+Analyzing source files...
+Tracing causal path for 'design_1.x_o'...
+
+Drawing Original Graph...
+Success: Graph plotted and saved to 'graphs/design_1/original_graph.png'
+Drawing Pruned Graph...
+Success: Graph plotted and saved to 'graphs/design_1/pruned_graph.png'
+Success: Pruned graph text data saved to 'graphs/design_1/error_design_1_3_pruned_data.txt'
+
+Done! Check the 'graphs/design_1/' folder.
+Cleaned up temporary sanitized files.
+Renamed original_graph.png to: graphs/design_1/error_design_1_3_original_graph.png
+Renamed pruned_graph.png to: graphs/design_1/error_design_1_3_pruned_graph.png
+Running VCD Trimmer for error_design_1_3...
+Calculating Dynamic Latency for error_design_1_3...
+[*] DFS Auto-Detected Target Pin: design_1.x_o
+[*] Dynamic Window Set to: 28 cycles (Graph Depth 23 + 5 buffer)
+Trimming VCD: ../Error_designs/error_design_1_3/design_1.vcd...
+Success! Trace saved to: trimmed_vcds/design_1/error_design_1_3_trimmed_trace.txt
+Running Code Slicer for error_design_1_3...
+Success! Sliced code saved to: sliced_code/design_1/error_design_1_3/sliced_code.txt
+Building LLM Prompt for error_design_1_3...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_3_prompt.json (11079 chars total)
+Sending to Local Qwen GPU for Evaluation...
+==================================================
+Iteration for error_design_1_3 COMPLETE.
+==================================================
+
+
+==================================================
+Starting iteration for: error_design_1_4
+==================================================
+Generated Makefile.
+Running 'make clean'...
+Running 'make'...
+Running Code Mapper for error_design_1_4...
+Initializing Mapper Tool...
+Configuration -> Files: ['../Error_designs/error_design_1_4/design_1.v'], Top Module: design_1, Target Pin: design_1.x_o
+
+--- Running Pre-processor ---
+
+--- Running Mapper ---
+Analyzing source files...
+Tracing causal path for 'design_1.x_o'...
+
+Drawing Original Graph...
+Success: Graph plotted and saved to 'graphs/design_1/original_graph.png'
+Drawing Pruned Graph...
+Success: Graph plotted and saved to 'graphs/design_1/pruned_graph.png'
+Success: Pruned graph text data saved to 'graphs/design_1/error_design_1_4_pruned_data.txt'
+
+Done! Check the 'graphs/design_1/' folder.
+Cleaned up temporary sanitized files.
+Renamed original_graph.png to: graphs/design_1/error_design_1_4_original_graph.png
+Renamed pruned_graph.png to: graphs/design_1/error_design_1_4_pruned_graph.png
+Running VCD Trimmer for error_design_1_4...
+Calculating Dynamic Latency for error_design_1_4...
+[*] DFS Auto-Detected Target Pin: design_1.x_o
+[*] Dynamic Window Set to: 15 cycles (Graph Depth 10 + 5 buffer)
+Trimming VCD: ../Error_designs/error_design_1_4/design_1.vcd...
+Success! Trace saved to: trimmed_vcds/design_1/error_design_1_4_trimmed_trace.txt
+Running Code Slicer for error_design_1_4...
+Success! Sliced code saved to: sliced_code/design_1/error_design_1_4/sliced_code.txt
+Building LLM Prompt for error_design_1_4...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_4_prompt.json (11065 chars total)
+Sending to Local Qwen GPU for Evaluation...
+==================================================
+Iteration for error_design_1_4 COMPLETE.
+==================================================
+
+
+==================================================
+Starting iteration for: error_design_2_1
+==================================================
+Generated Makefile.
+Running 'make clean'...
+Running 'make'...
+Running Code Mapper for error_design_2_1...
+Initializing Mapper Tool...
+Configuration -> Files: ['../Error_designs/error_design_2_1/design_2.v'], Top Module: design_2, Target Pin: design_2.o_Write_Grant
+
+--- Running Pre-processor ---
+
+--- Running Mapper ---
+Analyzing source files...
+Tracing causal path for 'design_2.o_Write_Grant'...
+
+Drawing Original Graph...
+Success: Graph plotted and saved to 'graphs/design_2/original_graph.png'
+Drawing Pruned Graph...
+Success: Graph plotted and saved to 'graphs/design_2/pruned_graph.png'rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_2/design_2.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_2);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_2 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_2/design_2.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_2 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_2 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775625617
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_2.sd_controller_robust_test (1/1)
+                                                            Comprehensive, self-checking testbench to catch FSM and timing bugs.
+     0.00ns INFO     cocotb.design_2                    Checking initial Idle state...
+    10.00ns INFO     cocotb.design_2                    Checking Write Phase & Hold...
+    17.00ns INFO     cocotb.design_2                    Checking Write-to-Read Turnaround (Precharge Timing)...
+    25.00ns INFO     cocotb.design_2                    Checking Data Valid Pipeline Latency...
+    27.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 27.0 ns
+                                                        FAILING SIGNAL : o_Data_Valid
+                                                        ERROR DETAILS  : Bug Caught: DataValid asserted too early at latency 1.
+                                                        =================================================================
+    27.00ns INFO     cocotb.design_2                    Signal log file securely closed.
+    27.00ns WARNING  ..t_test.sd_controller_robust_test Signal 'o_Data_Valid' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_2/test_design_2.py", line 164, in sd_controller_robust_test
+                                                            report_error(f"Bug Caught: DataValid asserted too early at latency {i}.", "o_Data_Valid", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_2/test_design_2.py", line 27, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'o_Data_Valid' failed.
+                                                        assert False
+    27.00ns WARNING  cocotb.regression                  test_design_2.sd_controller_robust_test failed
+    27.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_design_2.sd_controller_robust_test   FAIL          27.00           0.00       5577.26  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                            27.00           0.01       3010.75  **
+                                                        *************************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_2/design_2.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_3/design_2.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_2);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_2 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_3/design_2.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_2 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_2 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775625623
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_2.sd_controller_robust_test (1/1)
+                                                            Comprehensive, self-checking testbench to catch FSM and timing bugs.
+     0.00ns INFO     cocotb.design_2                    Checking initial Idle state...
+    10.00ns INFO     cocotb.design_2                    Checking Write Phase & Hold...
+    17.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 17.0 ns
+                                                        FAILING SIGNAL : o_Write_Grant
+                                                        ERROR DETAILS  : Bug Caught: WriteGrant dropped prematurely while WriteReq was high.
+                                                        =================================================================
+    17.00ns INFO     cocotb.design_2                    Signal log file securely closed.
+    17.00ns WARNING  ..t_test.sd_controller_robust_test Signal 'o_Write_Grant' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_2/test_design_2.py", line 121, in sd_controller_robust_test
+                                                            report_error("Bug Caught: WriteGrant dropped prematurely while WriteReq was high.", "o_Write_Grant", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_2/test_design_2.py", line 27, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'o_Write_Grant' failed.
+                                                        assert False
+    17.00ns WARNING  cocotb.regression                  test_design_2.sd_controller_robust_test failed
+    17.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_design_2.sd_controller_robust_test   FAIL          17.00           0.00       3843.01  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                            17.00           0.01       1989.04  **
+                                                        *************************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_3/design_2.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_4/design_2.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_2);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_2 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_4/design_2.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_2 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_2 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775625630
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_2.sd_controller_robust_test (1/1)
+                                                            Comprehensive, self-checking testbench to catch FSM and timing bugs.
+     0.00ns INFO     cocotb.design_2                    Checking initial Idle state...
+    10.00ns INFO     cocotb.design_2                    Checking Write Phase & Hold...
+    11.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 11.0 ns
+                                                        FAILING SIGNAL : o_Write_Grant
+                                                        ERROR DETAILS  : Bug Caught: WriteGrant did not assert immediately in Idle.
+                                                        =================================================================
+    11.00ns INFO     cocotb.design_2                    Signal log file securely closed.
+    11.00ns WARNING  ..t_test.sd_controller_robust_test Signal 'o_Write_Grant' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_2/test_design_2.py", line 114, in sd_controller_robust_test
+                                                            report_error("Bug Caught: WriteGrant did not assert immediately in Idle.", "o_Write_Grant", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_2/test_design_2.py", line 27, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'o_Write_Grant' failed.
+                                                        assert False
+    11.00ns WARNING  cocotb.regression                  test_design_2.sd_controller_robust_test failed
+    11.00ns INFO     cocotb.regression                  *************************************************************************************************
+                                                        ** TEST                                     STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        *************************************************************************************************
+                                                        ** test_design_2.sd_controller_robust_test   FAIL          11.00           0.00       3927.59  **
+                                                        *************************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                            11.00           0.01       1587.93  **
+                                                        *************************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_2_4/design_2.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_3_1/design_3.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_3);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_3 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_3_1/design_3.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_3 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_3 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775625636
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_3.test_sha1_randomized (1/1)
+     0.00ns INFO     cocotb.design_3                       -- Testbench for sha1 started --
+     4.00ns INFO     cocotb.design_3                    *** Starting 50 randomized dynamic test cases...
+     4.00ns INFO     cocotb.design_3                    --- TC 1 | Input Length: 16 bytes
+     4.00ns INFO     cocotb.design_3                        Raw Input (Hex): 89f5c53fc191259a66d816de74be8da0
+   216.00ns INFO     cocotb.design_3                        Output Hash    : 275af016275af01680934963594e6991fb37727c
+   216.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 216.0 ns
+                                                        FAILING SIGNAL : digest_output
+                                                        ERROR DETAILS  : Expected 0x275af016adbd251180934963594e6991fb37727c, Got 0x275af016275af01680934963594e6991fb37727c
+                                                        =================================================================
+   216.00ns INFO     cocotb.design_3                    Signal log file securely closed.
+   216.00ns WARNING  .._randomized.test_sha1_randomized Signal 'digest_output' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_3/test_design_3.py", line 199, in test_sha1_randomized
+                                                            report_error(msg, "digest_output", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_3/test_design_3.py", line 47, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'digest_output' failed.
+                                                        assert False
+   216.00ns WARNING  cocotb.regression                  test_design_3.test_sha1_randomized failed
+   216.00ns INFO     cocotb.regression                  ********************************************************************************************
+                                                        ** TEST                                STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ********************************************************************************************
+                                                        ** test_design_3.test_sha1_randomized   FAIL         216.00           0.03       7521.29  **
+                                                        ********************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                      216.00           0.03       6621.96  **
+                                                        ********************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general/../Error_designs/error_design_3_1/design_3.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general'
+
+Success: Pruned graph text data saved to 'graphs/design_2/error_design_2_1_pruned_data.txt'
+
+Done! Check the 'graphs/design_2/' folder.
+Cleaned up temporary sanitized files.
+Renamed original_graph.png to: graphs/design_2/error_design_2_1_original_graph.png
+Renamed pruned_graph.png to: graphs/design_2/error_design_2_1_pruned_graph.png
+Running VCD Trimmer for error_design_2_1...
+Calculating Dynamic Latency for error_design_2_1...
+[*] DFS Auto-Detected Target Pin: design_2.o_Write_Grant
+[*] Dynamic Window Set to: 14 cycles (Graph Depth 9 + 5 buffer)
+Trimming VCD: ../Error_designs/error_design_2_1/design_2.vcd...
+Success! Trace saved to: trimmed_vcds/design_2/error_design_2_1_trimmed_trace.txt
+Running Code Slicer for error_design_2_1...
+Success! Sliced code saved to: sliced_code/design_2/error_design_2_1/sliced_code.txt
+Building LLM Prompt for error_design_2_1...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_1_prompt.json (10884 chars total)
+Sending to Local Qwen GPU for Evaluation...
+==================================================
+Iteration for error_design_2_1 COMPLETE.
+==================================================
+
+
+==================================================
+Starting iteration for: error_design_2_2
+==================================================
+Generated Makefile.
+Running 'make clean'...
+Running 'make'...
+Running Code Mapper for error_design_2_2...
+Initializing Mapper Tool...
+Configuration -> Files: ['../Error_designs/error_design_2_2/design_2.v'], Top Module: design_2, Target Pin: design_2.o_Data_Valid
+
+--- Running Pre-processor ---
+
+--- Running Mapper ---
+Analyzing source files...
+Tracing causal path for 'design_2.o_Data_Valid'...
+
+Drawing Original Graph...
+Success: Graph plotted and saved to 'graphs/design_2/original_graph.png'
+Drawing Pruned Graph...
+Success: Graph plotted and saved to 'graphs/design_2/pruned_graph.png'
+Success: Pruned graph text data saved to 'graphs/design_2/error_design_2_2_pruned_data.txt'
+
+Done! Check the 'graphs/design_2/' folder.
+Cleaned up temporary sanitized files.
+Renamed original_graph.png to: graphs/design_2/error_design_2_2_original_graph.png
+Renamed pruned_graph.png to: graphs/design_2/error_design_2_2_pruned_graph.png
+Running VCD Trimmer for error_design_2_2...
+Calculating Dynamic Latency for error_design_2_2...
+[*] DFS Auto-Detected Target Pin: design_2.o_Data_Valid
+[*] Dynamic Window Set to: 14 cycles (Graph Depth 9 + 5 buffer)
+Trimming VCD: ../Error_designs/error_design_2_2/design_2.vcd...
+Success! Trace saved to: trimmed_vcds/design_2/error_design_2_2_trimmed_trace.txt
+Running Code Slicer for error_design_2_2...
+Success! Sliced code saved to: sliced_code/design_2/error_design_2_2/sliced_code.txt
+Building LLM Prompt for error_design_2_2...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_2_prompt.json (10810 chars total)
+Sending to Local Qwen GPU for Evaluation...
+==================================================
+Iteration for error_design_2_2 COMPLETE.
+==================================================
+
+
+==================================================
+Starting iteration for: error_design_2_3
+==================================================
+Generated Makefile.
+Running 'make clean'...
+Running 'make'...
+Running Code Mapper for error_design_2_3...
+Initializing Mapper Tool...
+Configuration -> Files: ['../Error_designs/error_design_2_3/design_2.v'], Top Module: design_2, Target Pin: design_2.o_Write_Grant
+
+--- Running Pre-processor ---
+
+--- Running Mapper ---
+Analyzing source files...
+Tracing causal path for 'design_2.o_Write_Grant'...
+
+Drawing Original Graph...
+Success: Graph plotted and saved to 'graphs/design_2/original_graph.png'
+Drawing Pruned Graph...
+Success: Graph plotted and saved to 'graphs/design_2/pruned_graph.png'
+Success: Pruned graph text data saved to 'graphs/design_2/error_design_2_3_pruned_data.txt'
+
+Done! Check the 'graphs/design_2/' folder.
+Cleaned up temporary sanitized files.
+Renamed original_graph.png to: graphs/design_2/error_design_2_3_original_graph.png
+Renamed pruned_graph.png to: graphs/design_2/error_design_2_3_pruned_graph.png
+Running VCD Trimmer for error_design_2_3...
+Calculating Dynamic Latency for error_design_2_3...
+[*] DFS Auto-Detected Target Pin: design_2.o_Write_Grant
+[*] Dynamic Window Set to: 14 cycles (Graph Depth 9 + 5 buffer)
+Trimming VCD: ../Error_designs/error_design_2_3/design_2.vcd...
+Success! Trace saved to: trimmed_vcds/design_2/error_design_2_3_trimmed_trace.txt
+Running Code Slicer for error_design_2_3...
+Success! Sliced code saved to: sliced_code/design_2/error_design_2_3/sliced_code.txt
+Building LLM Prompt for error_design_2_3...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_3_prompt.json (10937 chars total)
+Sending to Local Qwen GPU for Evaluation...
+==================================================
+Iteration for error_design_2_3 COMPLETE.
+==================================================
+
+
+==================================================
+Starting iteration for: error_design_2_4
+==================================================
+Generated Makefile.
+Running 'make clean'...
+Running 'make'...
+Running Code Mapper for error_design_2_4...
+Initializing Mapper Tool...
+Configuration -> Files: ['../Error_designs/error_design_2_4/design_2.v'], Top Module: design_2, Target Pin: design_2.o_Write_Grant
+
+--- Running Pre-processor ---
+
+--- Running Mapper ---
+Analyzing source files...
+Tracing causal path for 'design_2.o_Write_Grant'...
+
+Drawing Original Graph...
+Success: Graph plotted and saved to 'graphs/design_2/original_graph.png'
+Drawing Pruned Graph...
+Success: Graph plotted and saved to 'graphs/design_2/pruned_graph.png'
+Success: Pruned graph text data saved to 'graphs/design_2/error_design_2_4_pruned_data.txt'
+
+Done! Check the 'graphs/design_2/' folder.
+Cleaned up temporary sanitized files.
+Renamed original_graph.png to: graphs/design_2/error_design_2_4_original_graph.png
+Renamed pruned_graph.png to: graphs/design_2/error_design_2_4_pruned_graph.png
+Running VCD Trimmer for error_design_2_4...
+Calculating Dynamic Latency for error_design_2_4...
+[*] DFS Auto-Detected Target Pin: design_2.o_Write_Grant
+[*] Dynamic Window Set to: 14 cycles (Graph Depth 9 + 5 buffer)
+Trimming VCD: ../Error_designs/error_design_2_4/design_2.vcd...
+Success! Trace saved to: trimmed_vcds/design_2/error_design_2_4_trimmed_trace.txt
+Running Code Slicer for error_design_2_4...
+Success! Sliced code saved to: sliced_code/design_2/error_design_2_4/sliced_code.txt
+Building LLM Prompt for error_design_2_4...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_4_prompt.json (10683 chars total)
+Sending to Local Qwen GPU for Evaluation...
+==================================================
+Iteration for error_design_2_4 COMPLETE.
+==================================================
+
+
+==================================================
+Starting iteration for: error_design_3_1
+==================================================
+Generated Makefile.
+Running 'make clean'...
+Running 'make'...
+Running Code Mapper for error_design_3_1...
+Initializing Mapper Tool...
+Configuration -> Files: ['../Error_designs/error_design_3_1/design_3.v'], Top Module: design_3, Target Pin: design_3.digest_output
+
+--- Running Pre-processor ---
+
+--- Running Mapper ---
+Analyzing source files...
+
+Warning: Exact pin 'design_3.digest_output' not found in AST. Searching for alternatives...
+Auto-corrected target pin to: 'design_3.core_digest'
+Tracing causal path for 'design_3.core_digest'...
+
+Drawing Original Graph...
+Success: Graph plotted and saved to 'graphs/design_3/original_graph.png'
+Drawing Pruned Graph...
+Success: Graph plotted and saved to 'graphs/design_3/pruned_graph.png'
+Success: Pruned graph text data saved to 'graphs/design_3/error_design_3_1_pruned_data.txt'
+
+Done! Check the 'graphs/design_3/' folder.
+Cleaned up temporary sanitized files.
+Renamed original_graph.png to: graphs/design_3/error_design_3_1_original_graph.png
+Renamed pruned_graph.png to: graphs/design_3/error_design_3_1_pruned_graph.png
+Running VCD Trimmer for error_design_3_1...
+Calculating Dynamic Latency for error_design_3_1...
+[*] DFS Auto-Detected Target Pin: design_3.core_digest
+[*] Dynamic Window Set to: 45 cycles (Graph Depth 40 + 5 buffer)

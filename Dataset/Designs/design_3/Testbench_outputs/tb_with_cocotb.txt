@@ -1,0 +1,177 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/chirag/VeriSlicer/SHA-1'
+rm -f results.xml
+COCOTB_TEST_MODULES=test_sha1 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=sha1 TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/chirag/Mini_project2/inference-setup/inference-setup/sample-submission/IMT2020502/yes/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/chirag/Mini_project2/inference-setup/inference-setup/sample-submission/IMT2020502/yes/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (stable)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1773771852
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/chirag/Mini_project2/inference-setup/inference-setup/sample-submission/IMT2020502/yes/lib/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_sha1.test_sha1_randomized (1/1)
+     0.00ns INFO     cocotb.sha1                           -- Testbench for sha1 started --
+     4.00ns INFO     cocotb.sha1                        *** Starting 50 randomized dynamic test cases...
+     4.00ns INFO     cocotb.sha1                        --- TC 1 | Input Length: 7 bytes
+     4.00ns INFO     cocotb.sha1                            Raw Input (Hex): 579c10e41de631
+   216.00ns INFO     cocotb.sha1                            Output Hash    : 3b3fce869285a69d865211e403a3b4d42bc54606
+   216.00ns INFO     cocotb.sha1                        --- TC 2 | Input Length: 129 bytes
+   216.00ns INFO     cocotb.sha1                            Raw Input (Hex): 402dfc274a5d0c6368cd9698d54af4a70bf0df476c9b31c4a2e574342584bc2e82e377de6051f53482211988e465cece063853eab7db3171aec46f46302f55fde81888afc7e451e495d0cb224cff4dabab4202aeae5880c83800debc5121a82167cef366a12735b4c93208d7d6789a5d7381142c007fcdf09ba25edde3d5001337
+   832.00ns INFO     cocotb.sha1                            Output Hash    : 5077d5891d3312bbc04a9d70f6b905873686a689
+   832.00ns INFO     cocotb.sha1                        --- TC 3 | Input Length: 28 bytes
+   832.00ns INFO     cocotb.sha1                            Raw Input (Hex): 285156cbf5c2ecbd4a0989894620a757acd8d2ab5d422c36ecb7ec03
+  1044.00ns INFO     cocotb.sha1                            Output Hash    : b4a5c1c2d3b3f502e0687d87282f6e98923935bf
+  1044.00ns INFO     cocotb.sha1                        --- TC 4 | Input Length: 14 bytes
+  1044.00ns INFO     cocotb.sha1                            Raw Input (Hex): 0c5475410201441b4ab79c1138d2
+  1256.00ns INFO     cocotb.sha1                            Output Hash    : f18d9129a414f411a588b515a20aae8dd0e56ca9
+  1256.00ns INFO     cocotb.sha1                        --- TC 5 | Input Length: 7 bytes
+  1256.00ns INFO     cocotb.sha1                            Raw Input (Hex): 1110dc6ca42e68
+  1468.00ns INFO     cocotb.sha1                            Output Hash    : 33a4d993d2668da6aab8cb44e2e3230b3cad11cb
+  1468.00ns INFO     cocotb.sha1                        --- TC 6 | Input Length: 89 bytes
+  1468.00ns INFO     cocotb.sha1                            Raw Input (Hex): 224178a8608454859f1e5e24c03dbcfbf48bcfff990d718880f73582c458112e414f672da4c0407261734236ddefaee48594b5547f9de296f1cf2176632ae31c5d7987392f3a7c7c1fdaf447ade0632fd7dcdf271aa1f8dc90
+  1882.00ns INFO     cocotb.sha1                            Output Hash    : f060e4d17b584a79a303c7c827eebf62884e6578
+  1882.00ns INFO     cocotb.sha1                        --- TC 7 | Input Length: 91 bytes
+  1882.00ns INFO     cocotb.sha1                            Raw Input (Hex): 0eff273b64d5acd26e54d6befed9f24cd2d200f09fef39c0cd1d2133aa851865902f5ad52ea6465defb76a0f4231aa9c7e268da12e292a08e1aba284bb4dcfacf0724de5894ffaa8957dabe92910216507fbd985e6015aaeefc738
+  2296.00ns INFO     cocotb.sha1                            Output Hash    : f2d75a8260505064c764c98fb35632a4484c7489
+  2296.00ns INFO     cocotb.sha1                        --- TC 8 | Input Length: 80 bytes
+  2296.00ns INFO     cocotb.sha1                            Raw Input (Hex): facdef2b28c1cce37e242e4ad9e2e73dc379197ea86df44c91ec5d84dff4d28b55142379a4cc17ddff4075d7ba79a954872847f175f9c670bb79bb177a9c68cf45013d05699e5b775fc04c06763bab01
+  2710.00ns INFO     cocotb.sha1                            Output Hash    : 398ccc844357a1a3b903167f6d5fca9c82534f1e
+  2710.00ns INFO     cocotb.sha1                        --- TC 9 | Input Length: 58 bytes
+  2710.00ns INFO     cocotb.sha1                            Raw Input (Hex): d45557faeaeec2f8a75919a8f29ac2016cacb2e1b0c89159c767a5e58fec18080919a916df4cd980bd2c99d0b08889b945baa24bceb9de9093e5
+  3124.00ns INFO     cocotb.sha1                            Output Hash    : b6bcbd81c9d67657270877658ed98c43042999d5
+  3124.00ns INFO     cocotb.sha1                        --- TC 10 | Input Length: 129 bytes
+  3124.00ns INFO     cocotb.sha1                            Raw Input (Hex): eb8cb9ba078a6da3da1814a1d78a1fb4a0b0fe925c11bedac4b00b23bd0aedb968275a7bbffacb6849b8bcee51c976e99c8c3c52abfaef9723f96cee437ac60ab27e5d281fbb22ec32836658c244c9d31bb2b895d682003c2449b430e0134bfd2bba3dad110bac71f6e021cf72ffa7d4d49d1999a13d1b15f01d81c24019cc64ad
+  3740.00ns INFO     cocotb.sha1                            Output Hash    : 7eeca3dec9e03d638c0869db59ba2570a07d374c
+  3740.00ns INFO     cocotb.sha1                        --- TC 11 | Input Length: 69 bytes
+  3740.00ns INFO     cocotb.sha1                            Raw Input (Hex): ad8e80522ae909738a289c91a38559ced8c98e89b2cfb48e0b9ec04615b38f0ee8172345ae76c2444d406dfcdc4e52df6db42f724e885db22a8e8c950eed0246df634886f6
+  4154.00ns INFO     cocotb.sha1                            Output Hash    : d953d63ae33dbe1d588b3539b7f78e3811ff820e
+  4154.00ns INFO     cocotb.sha1                        --- TC 12 | Input Length: 58 bytes
+  4154.00ns INFO     cocotb.sha1                            Raw Input (Hex): 61e30b3f106d9f220ee87553a4b40c3f863eb451c2dbd644696e1d7d047ff9ebea7d52539137aaacd2ba3eac8e594b84d4794a7ae2b50c6f5815
+  4568.00ns INFO     cocotb.sha1                            Output Hash    : 7b980f429b7db2bbb60a685a8d2eb1870a651ffa
+  4568.00ns INFO     cocotb.sha1                        --- TC 13 | Input Length: 6 bytes
+  4568.00ns INFO     cocotb.sha1                            Raw Input (Hex): d5a6279ada1c
+  4780.00ns INFO     cocotb.sha1                            Output Hash    : ec6d4298a0beeef7c3211d6e86e4f0a50e81a8cd
+  4780.00ns INFO     cocotb.sha1                        --- TC 14 | Input Length: 25 bytes
+  4780.00ns INFO     cocotb.sha1                            Raw Input (Hex): a484e31be7c9a5d43966b8823b16591237df65eb67bb17846e
+  4992.00ns INFO     cocotb.sha1                            Output Hash    : e40481048297dc4fab8f45954d11ea32b70c29e5
+  4992.00ns INFO     cocotb.sha1                        --- TC 15 | Input Length: 127 bytes
+  4992.00ns INFO     cocotb.sha1                            Raw Input (Hex): 4d44b1a6c1ea532fb260e2d1657ed4f2cc6ed268a2896df6efd20d3ad44a13eb05d276e89268383bbb4baa7f5e862e9bca4b58128b2f37be245f50144ada59bd27559693ad219ee28e22777a20ddd180878eb0cf0c53cf887eed6401b453ccaa79fccd6449a1efa84790eff307bb946556dca518b31d8bf47f0a707fce6e5e
+  5608.00ns INFO     cocotb.sha1                            Output Hash    : c484dc8ad8aa98d4ece8a20bbf6daf96c387ca9c
+  5608.00ns INFO     cocotb.sha1                        --- TC 16 | Input Length: 125 bytes
+  5608.00ns INFO     cocotb.sha1                            Raw Input (Hex): e921c94dbc8ba9f321ec5ea3dceeb3608626ae37e7b2e8a3ba4a10b0d7a9cfe5d07c2aceca981603141eece3abb50d8c254d9b46358e1119ba45da7f42b0257f3c95b96d849d8c7be2f06d675cd1d1d6d999f2c505171ed0237954ce6b712eca5ab425abc02a6d5d29145972dcce7386d162cbb0b1504e0d71de29dd3f
+  6224.00ns INFO     cocotb.sha1                            Output Hash    : 5b7cbd0c74af91aaf140a6b4fabde07e5d069553
+  6224.00ns INFO     cocotb.sha1                        --- TC 17 | Input Length: 60 bytes
+  6224.00ns INFO     cocotb.sha1                            Raw Input (Hex): 20070f87412c692acf1743ba282377f2375dcae68509b55529b823bd008914cfed06dfaf86aaec065317f52ba69f1c52297e32d81da8350641261607
+  6638.00ns INFO     cocotb.sha1                            Output Hash    : 00b6624b1df8adf9c464e29b0a3577f9028a5629
+  6638.00ns INFO     cocotb.sha1                        --- TC 18 | Input Length: 8 bytes
+  6638.00ns INFO     cocotb.sha1                            Raw Input (Hex): 491717fee1b5df69
+  6850.00ns INFO     cocotb.sha1                            Output Hash    : b865271d935027e85a00f3f4f6936b3f5cb59e6f
+  6850.00ns INFO     cocotb.sha1                        --- TC 19 | Input Length: 44 bytes
+  6850.00ns INFO     cocotb.sha1                            Raw Input (Hex): 3046dff11f3c697c42a94ab1e8281473c67c91e7d344625a6e77647b2e110e1eb7a0abb25106b2bce28cb4df
+  7062.00ns INFO     cocotb.sha1                            Output Hash    : d5bead022f95d4a0dca2c69a24d19ade57d7a258
+  7062.00ns INFO     cocotb.sha1                        --- TC 20 | Input Length: 36 bytes
+  7062.00ns INFO     cocotb.sha1                            Raw Input (Hex): 8944add93e0dde0e35890866cd4b4a4387619d0a4651fb0b24141e68aa2c224a24470ca7
+  7274.00ns INFO     cocotb.sha1                            Output Hash    : eb786a183cd67f0cc116923b330fb8232b543c83
+  7274.00ns INFO     cocotb.sha1                        --- TC 21 | Input Length: 112 bytes
+  7274.00ns INFO     cocotb.sha1                            Raw Input (Hex): 1f475b06bd24062659aecf6a35b4acc3478f547fcc1b4bd15ff6026c6254555bb9a9713ec830af46babc68ee2d0abbfb19794c3bb0e8e6d4d141bcee11d58dac613db0a517a907c6c8a46e863fa06bf875b7549776d1903557637b1f5733757b895769e6b0cf4fedf05ead96e1e2eb36
+  7688.00ns INFO     cocotb.sha1                            Output Hash    : df8ce93e8851d2da133ce42995ccd3261fdfa873
+  7688.00ns INFO     cocotb.sha1                        --- TC 22 | Input Length: 16 bytes
+  7688.00ns INFO     cocotb.sha1                            Raw Input (Hex): e4ba40dd80101b30345c1779850d0871
+  7900.00ns INFO     cocotb.sha1                            Output Hash    : 843b753876a144bd65cafe21d9fd3f2b93c53e98
+  7900.00ns INFO     cocotb.sha1                        --- TC 23 | Input Length: 43 bytes
+  7900.00ns INFO     cocotb.sha1                            Raw Input (Hex): 9c05703b7492a6dd55d14b26126b43216c4dc90a379671ed2b90b7295a9f96caf54384f14c8bfabb797d5d
+  8112.00ns INFO     cocotb.sha1                            Output Hash    : a250237572c3f45463f5e52b6c751709647ced54
+  8112.00ns INFO     cocotb.sha1                        --- TC 24 | Input Length: 11 bytes
+  8112.00ns INFO     cocotb.sha1                            Raw Input (Hex): f3211d2e4abf202ef1c3b9
+  8324.00ns INFO     cocotb.sha1                            Output Hash    : 626c64c7b62e9f1b1c74cb88822dedcb8ac91f0d
+  8324.00ns INFO     cocotb.sha1                        --- TC 25 | Input Length: 78 bytes
+  8324.00ns INFO     cocotb.sha1                            Raw Input (Hex): a9bfa248973dceabee778c3307ebe4567574a6a5a1a3a1fed792892672510a2809179ff1b2589f17abd5a872dd5d2385cac158d6c0d59450eaa17353989d20be871626c433722178992093731483
+  8738.00ns INFO     cocotb.sha1                            Output Hash    : dc9f6e22127183a2bee9a959991fe889420ada84
+  8738.00ns INFO     cocotb.sha1                        --- TC 26 | Input Length: 60 bytes
+  8738.00ns INFO     cocotb.sha1                            Raw Input (Hex): 8675f31d4def245b70535b8be549fd024127b9485eb6ecb95a28e78fb581192cf5fe4427f8f4d91b3e9b3a9cae73ad0fcfa8dd33c22f139950da9197
+  9152.00ns INFO     cocotb.sha1                            Output Hash    : ab2e57df3f9716586a1491ee674347a43a0bf028
+  9152.00ns INFO     cocotb.sha1                        --- TC 27 | Input Length: 16 bytes
+  9152.00ns INFO     cocotb.sha1                            Raw Input (Hex): 13104dd5d516ccaee3f9cfa7040a1c39
+  9364.00ns INFO     cocotb.sha1                            Output Hash    : 06b137e62b05aac870e94c90540b1bcae90e643f
+  9364.00ns INFO     cocotb.sha1                        --- TC 28 | Input Length: 84 bytes
+  9364.00ns INFO     cocotb.sha1                            Raw Input (Hex): 2c3dab50f28c8f24651a98b2bab773a4fefd0360dab1803c649299b4573f1e0e0b00a4933f261f024ff1170bf37fe6089a4e4e6c2f73741913a2194f5f169c9c8edf441ac845251b23f08b1d6db819116afe8708
+  9778.00ns INFO     cocotb.sha1                            Output Hash    : 9c29caaf62c5b4e1520ed810b128699cefc566c1
+  9778.00ns INFO     cocotb.sha1                        --- TC 29 | Input Length: 15 bytes
+  9778.00ns INFO     cocotb.sha1                            Raw Input (Hex): d7d65bae3c91b91daff00b74063b5b
+  9990.00ns INFO     cocotb.sha1                            Output Hash    : 1d0a3a1673c1b411239d7a6be5068e29ff684358
+  9990.00ns INFO     cocotb.sha1                        --- TC 30 | Input Length: 129 bytes
+  9990.00ns INFO     cocotb.sha1                            Raw Input (Hex): 8378824f774e876f6dcf5497acf706d3eaeda694e737ab03ad363a0f28d3b6c8853f5c96a4a7a3c3545cf0eb48749fd0b18316502672421ee1003c69373ccfbdd79579af538231161a5bad9ce76bca5b13263ea7cb943f667de341f50b5c2f3f55ff724853e4e0884e975a7752345f48c109ba5b92afb11d975a9815852e1f155e
+ 10606.00ns INFO     cocotb.sha1                            Output Hash    : d04a82c7082be4acdb7e7033df5ddb9b41d15646
+ 10606.00ns INFO     cocotb.sha1                        --- TC 31 | Input Length: 29 bytes
+ 10606.00ns INFO     cocotb.sha1                            Raw Input (Hex): a7fda580121e14657c8cbb123a946c066a508944a02271cbc7c193e765
+ 10818.00ns INFO     cocotb.sha1                            Output Hash    : 0c6e29043f07427c69d37a3955665b004e25c706
+ 10818.00ns INFO     cocotb.sha1                        --- TC 32 | Input Length: 149 bytes
+ 10818.00ns INFO     cocotb.sha1                            Raw Input (Hex): 66936ace1ba6c046f7ad2e1639eed26ffb2354b17a64fe4e56ff992f4fb32d5b3e24a72f4b9c468feffdd5b0c9cc916c53043ace1c3f617512b22d1c52993becdf6d4c56a6cd5e6ad9b23bab737a7697cc365b75fe45927c87c378beb18aa2919438914184983e7b7b932dd6264ea497a62883e6c79a8a4315938e2807cb6b7097d335cf067847adf7212986b0bb1d8814ee4d07fd
+ 11434.00ns INFO     cocotb.sha1                            Output Hash    : 9200bd01df594f8b123c586aea7c586989c2bd5d
+ 11434.00ns INFO     cocotb.sha1                        --- TC 33 | Input Length: 113 bytes
+ 11434.00ns INFO     cocotb.sha1                            Raw Input (Hex): 496e9f588c5a313494be930df11e9d34c776cf3bbae4af1e52dac56b858fbc7065bddce7c30bcc8fb5721591427b9e7bc51a4ca7b19701e696f5d88d235abbb782a3a6a9261251890ff8db76d39c25505fc8fd9a07b4af325dc20e37c10a6db34001db6b22033526c9778f6bd70cfea820
+ 11848.00ns INFO     cocotb.sha1                            Output Hash    : 2a5dd9aa3a8ffe28f6c444b7e5dcf1644106e701
+ 11848.00ns INFO     cocotb.sha1                        --- TC 34 | Input Length: 55 bytes
+ 11848.00ns INFO     cocotb.sha1                            Raw Input (Hex): 1b2492b1cd9be974e231632d597c09db5be567ea20818e17ca16a596cf1102d1acd263f00d68b928e0a305cb6ee0a4df3eaeacdd6b8006
+ 12060.00ns INFO     cocotb.sha1                            Output Hash    : e9ef9f8be941056f18c352389c752739c4f398dc
+ 12060.00ns INFO     cocotb.sha1                        --- TC 35 | Input Length: 24 bytes
+ 12060.00ns INFO     cocotb.sha1                            Raw Input (Hex): aab3624fbd3dae026c2ed72587c9e6ee32820605341c9a4e
+ 12272.00ns INFO     cocotb.sha1                            Output Hash    : 1f5f7aa163e512b15b68807b3b4e743c73cfaf00
+ 12272.00ns INFO     cocotb.sha1                        --- TC 36 | Input Length: 20 bytes
+ 12272.00ns INFO     cocotb.sha1                            Raw Input (Hex): e0e6b03cb069370757d0f988ae820fa90278ecb6
+ 12484.00ns INFO     cocotb.sha1                            Output Hash    : c4270a2f8370a56b96a1ed3e7228450b5e13c408
+ 12484.00ns INFO     cocotb.sha1                        --- TC 37 | Input Length: 133 bytes
+ 12484.00ns INFO     cocotb.sha1                            Raw Input (Hex): 20b9f17deed9fe9943f7e954b21bffccf8e3fd6469b9f6eaecfb7faf9b7c3a2f83af15ed0002cdebbb6ab0d20d60afc8647ae7e02f564cdd2a6c0caf695dd6671fc41b6ee20447742226c1f219e7e11f81a847ec4ddcb26fd6395b8682cf911acbeecdeba09a15b9fe51c135a2793f41519f6890677e2383d67f9f3ef731a108fde13c78f1
+ 13100.00ns INFO     cocotb.sha1                            Output Hash    : 602ae31c77e212ada494357c94217c079d0b9f2c
+ 13100.00ns INFO     cocotb.sha1                        --- TC 38 | Input Length: 17 bytes
+ 13100.00ns INFO     cocotb.sha1                            Raw Input (Hex): 9ec993090b1ceaacadc04068044255f524
+ 13312.00ns INFO     cocotb.sha1                            Output Hash    : 37b132018149bf8cdc861ed845ec33b22a0c5862
+ 13312.00ns INFO     cocotb.sha1                        --- TC 39 | Input Length: 17 bytes
+ 13312.00ns INFO     cocotb.sha1                            Raw Input (Hex): b922a98388c7074b4741227c1961bd0ba1
+ 13524.00ns INFO     cocotb.sha1                            Output Hash    : c97e61f42aeafc9b04b653d59765294ec4ffd871
+ 13524.00ns INFO     cocotb.sha1                        --- TC 40 | Input Length: 129 bytes
+ 13524.00ns INFO     cocotb.sha1                            Raw Input (Hex): ce6ea83dbb4e3c7e48e3168c0c97922e378e05cce5881ce24972c0fb9a608741482e7cabdcf8598e34746de6b920463b60f12fca582fe7902359ced2839382e62c82396633240cf4e99106795d543463be7f901f3721241691cfdc5cd0d346029d0394f7331405687f6de1464ede03c8069a2e1ba5fc1d26b64199f4158a0368d9
+ 14140.00ns INFO     cocotb.sha1                            Output Hash    : 0eb741c73978195241f096478f7df157c8056dae
+ 14140.00ns INFO     cocotb.sha1                        --- TC 41 | Input Length: 96 bytes
+ 14140.00ns INFO     cocotb.sha1                            Raw Input (Hex): aae76afff4a2ebe807d4afb4f736c5397a95e1e12e32204a7b0983cc01333c5061bbaa72dba332daa7d0185218ec8bf3860be1234ff35ed1980f2d4bf4dd5920df622e6e6028eb2736ba0dd60758f26a207f9b45dabb2f326488bf36ec8076af
+ 14554.00ns INFO     cocotb.sha1                            Output Hash    : e72854b6293bc0c94e949092a4d3facf99a88fa6
+ 14554.00ns INFO     cocotb.sha1                        --- TC 42 | Input Length: 34 bytes
+ 14554.00ns INFO     cocotb.sha1                            Raw Input (Hex): 6a18b5d8f4ddfbff52023175a4edeeacbee4c794382da713248348a58a96916fde10
+ 14766.00ns INFO     cocotb.sha1                            Output Hash    : a0e4bb9878304426359a176e74cb32c99d161329
+ 14766.00ns INFO     cocotb.sha1                        --- TC 43 | Input Length: 118 bytes
+ 14766.00ns INFO     cocotb.sha1                            Raw Input (Hex): ff377d78847fece6fff1bfe36a468c040d7e5d2574effa167d60359b1d6171e3f4332898d513c1ea0ce734b32d4eadaab7c8383c11a60670bac7f1090fd0dea3a973b7508a3dc9ff1b8c70203e0b8aff0806c7a2459c4b4da211e7afade104d7dd0be8a114a0b5caf2e07280dffc2194bba9e2fe89bc
+ 15180.00ns INFO     cocotb.sha1                            Output Hash    : 1ff0f654afee5bde7baeab2b49c87417ec387a14
+ 15180.00ns INFO     cocotb.sha1                        --- TC 44 | Input Length: 73 bytes
+ 15180.00ns INFO     cocotb.sha1                            Raw Input (Hex): 8c6df4be8092b7aa7a1508a3afb9ec3d92ea413fccdef7d3673c6b2a515c72cf8d0e012246d4ecad185b3823325e66f41c4e5e1aaaaf73150eeae9aa46cb729ecc520d0ab4299ea465
+ 15594.00ns INFO     cocotb.sha1                            Output Hash    : ae346f91ce6a7cf166a90fed1f10fe77877faa42
+ 15594.00ns INFO     cocotb.sha1                        --- TC 45 | Input Length: 62 bytes
+ 15594.00ns INFO     cocotb.sha1                            Raw Input (Hex): fc1bf7bfe688a3378703d714518dda64aca627323bb24402c10f07a89cce40fefad037170f66a91319b335b446828e37a715cff9243f5f1b63e34272b74e
+ 16008.00ns INFO     cocotb.sha1                            Output Hash    : fd2f0b23bca0626a51b0387a67477c9385705c78
+ 16008.00ns INFO     cocotb.sha1                        --- TC 46 | Input Length: 63 bytes
+ 16008.00ns INFO     cocotb.sha1                            Raw Input (Hex): 6d970701165240912ed5e9dd6ef8233dbc09b9be1dc87e7657c259a3d19397abc0babf1f1f9a4de8abc3575bb98fde9070edb29dc2f7c32451f66fea021d8d
+ 16422.00ns INFO     cocotb.sha1                            Output Hash    : 2fc70019688e6733dddf8288737e0b8513722eb3
+ 16422.00ns INFO     cocotb.sha1                        --- TC 47 | Input Length: 43 bytes
+ 16422.00ns INFO     cocotb.sha1                            Raw Input (Hex): 2b62c232d53f084051aa1a7e8bcb5852ef7d0c49efb04418f6e9274049b047b54764e4b7c60bf4054cdecb
+ 16634.00ns INFO     cocotb.sha1                            Output Hash    : 7a9440cb6da9966e50719f5ff069a64eb64f5af8
+ 16634.00ns INFO     cocotb.sha1                        --- TC 48 | Input Length: 15 bytes
+ 16634.00ns INFO     cocotb.sha1                            Raw Input (Hex): e77385a594d34161f04a60892c0b72
+ 16846.00ns INFO     cocotb.sha1                            Output Hash    : 677a2c326547612623ce415bb26e9a432d99f5b5
+ 16846.00ns INFO     cocotb.sha1                        --- TC 49 | Input Length: 15 bytes
+ 16846.00ns INFO     cocotb.sha1                            Raw Input (Hex): 255f1142f05ec14a87c4b025c8c25a
+ 17058.00ns INFO     cocotb.sha1                            Output Hash    : 6af5c19fcbcc5f9190d929469faba0207471c851
+ 17058.00ns INFO     cocotb.sha1                        --- TC 50 | Input Length: 99 bytes
+ 17058.00ns INFO     cocotb.sha1                            Raw Input (Hex): eb4492780e020fb5bf829a067cd5b56e722ca8cccd4ceb85a74a8bd2d7436fe0a03235060f45a6ed5d800841b1327478234066f474bcbf95a00f6f0513027a112ba3eec5a7bf6f4338751a984ee968f6355c0ca7f4598c8391c6ca25310dcd6130ac38
+ 17472.00ns INFO     cocotb.sha1                            Output Hash    : d9fc146fb08117fc14931a9943a63cbd98264e8c
+ 17472.00ns INFO     cocotb.sha1                        *** All 50 dynamic test cases completed and matched Python's hashlib!
+ 17472.00ns INFO     cocotb.regression                  test_sha1.test_sha1_randomized passed
+ 17472.00ns INFO     cocotb.regression                  ****************************************************************************************
+                                                        ** TEST                            STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************
+                                                        ** test_sha1.test_sha1_randomized   PASS       17472.00           0.80      21899.41  **
+                                                        ****************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0                17472.00           0.80      21880.05  **
+                                                        ****************************************************************************************
+make[1]: Leaving directory '/home/chirag/VeriSlicer/SHA-1'

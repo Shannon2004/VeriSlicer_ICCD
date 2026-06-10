@@ -1,0 +1,16 @@
+
+
+Design: hdc_controller
+Error line: 225
+
+Original code:
+       SC_done                    <= (class_vector_pointer < (chunk_size*number_class - 2))? 0 : 1;
+
+Erroneous code:
+       SC_done                    <= (class_vector_pointer < (chunk_size*number_class + 2))? 0 : 1;
+
+Error description:
+Arithmetic error changed - to +
+
+==================================================
+

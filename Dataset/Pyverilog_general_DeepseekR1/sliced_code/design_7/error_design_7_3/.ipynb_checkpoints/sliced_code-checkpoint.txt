@@ -1,0 +1,317 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_7.v ---
+
+  19: module design_7
+  20: (
+  21: 	input                    clk, 
+  22: 	input                    rst_n,        // asynchronous reset
+  23: 	input					 enable,
+  24: 	input 					 valid,
+  25: 	input 					 read,   // read:1 == read behave  ;  read:0 == write behave
+  26: 	input                    mode,   // 1:fp16,0:int8
+  27: 	input					 cfg,
+  28: 	input             [15:0] in_a, 
+  29: 	input             [15:0] in_b, 
+  30: 	output            [15:0] mac_out,
+  31: 	output					 error
+  32: );
+...
+  34: 	reg [15:0] a_reg, b_reg, c_reg;
+...
+  37: 	wire [15:0] a,b,c,mac_out_tmp;
+...
+  40: 	assign a         = a_reg;
+  41: 	assign b         = b_reg;
+  42: 	assign c         = c_reg;
+...
+  44: 	assign mac_out   = (read && enable && ~valid) ? mac_out_tmp : 16'b0 ; // read out mac_out with condition
+...
+  49: 	always @ ( posedge clk or negedge rst_n ) begin
+  50: 		if ( ! rst_n ) begin
+  51: 			a_reg    <= 16'b0 ;
+  52: 			b_reg    <= 16'b0 ;
+  53: 			c_reg    <= 16'b0;
+  54: 			mode_reg <= 1'b0;
+  55: 		end else if(enable) begin
+...
+  57: 			if (valid) begin 
+  58: 				a_reg   <= in_a ;
+  59: 				b_reg   <= in_b ;
+  60: 				c_reg   <= mac_out_tmp;
+  61: 			end
+  62: 			else if (read) begin // reset data after read operation
+  63: 				c_reg <= 16'b0;
+  64: 				a_reg <= 16'b0;
+  65: 				b_reg <= 16'b0;
+  66: 			end
+...
+  68: 		end else if (cfg) begin
+  69: 			mode_reg <= mode;
+  70: 		end 
+  71: 	end 
+...
+  73: 	mac_unit u_mac (
+  74: 	`ifdef PIPLINE
+  75: 		 .clk     (clk        ),
+  76: 		 .rst_n   (rst_n      ),
+  77: 	`endif
+  78: 		 .in_a    (a          ),
+  79: 		 .in_b    (b          ),
+  80: 		 .in_c    (c          ),
+  81: 		 .mode    (float_int  ),
+  82: 		 .mac_out (mac_out_tmp),
+  83: 		 .error	  (error      )
+  84: 	);
+...
+  86: endmodule	
+...
+  88: module mac_unit
+  89: (
+  90: `ifdef PIPLINE
+  91: 	input            clk,
+  92: 	input            rst_n,
+  93: `endif
+  94: 	input     [15:0] in_a, // multiplier input1
+  95: 	input     [15:0] in_b, // multiplier input2
+  96: 	input     [15:0] in_c, // adder input2 ; adder input1 = in_a*in_b
+  97: 	input 	     	 mode,
+  98: 	output    [15:0] mac_out,
+  99: 	output 		     error
+ 100: );
+...
+ 104: 	int_fp_add add(
+ 105: 	`ifdef PIPLINE
+ 106: 		.clk   (clk    ),
+ 107: 		.rst_n (rst_n  ),
+ 108: 	`endif 
+ 109: 		.mode  ( mode  ) ,
+ 110: 		.a     (mul_out) ,
+ 111: 		.b     ( in_c  ) ,
+ 112: 		.c     (mac_out)
+ 113: 	);
+...
+ 116: 	int_fp_mul mul(
+ 117: 	`ifdef PIPLINE
+ 118: 		.clk   (clk    ),
+ 119: 		.rst_n (rst_n  ),
+ 120: 	`endif 
+ 121: 		.mode  ( mode  ) ,
+ 122: 		.a     ( in_a  ) ,
+ 123: 		.b     ( in_b  ) ,
+ 124: 		.c     (mul_out),
+ 125: 		.error (error  )
+ 126: 	);
+...
+ 128: endmodule	
+...
+ 131: module int_fp_add (
+ 132: `ifdef PIPLINE
+ 133:     input         clk,
+ 134:     input         rst_n,
+ 135: `endif
+ 136:     input         mode,
+ 137:     input  [15:0] a,
+ 138:     input  [16:0] b,
+ 139:     output [15:0] c
+ 140:     );
+...
+ 143:     wire if_sub,a_sign, b_sign, c_sign,c1;
+...
+ 161:     assign a_sign        = a[15];
+ 162:     assign b_sign        = b[15];
+...
+ 165:     assign higher_a      = (mode == 1'b0) ? a[15:11] : 5'b0;
+ 166:     assign higher_b      = (mode == 1'b0) ? b[15:11] : 5'b0;
+ 167:     assign adder_input_1 = (mode==1'b0) ? a[10:0] :{1'b1,bigger[9:0]};
+ 168:     assign adder_input_2 = (mode==1'b0) ? b[10:0] : (if_sub ? ~aligned_small + 1'b1 : aligned_small);
+ 169:     assign c             = (mode == 1'b0) ? {higher_add,adder_output} : result;
+...
+ 172:     always @(*) begin
+ 173:         if (a[14:0] > b[14:0]) begin
+ 174:             bigger = a[14:0];
+ 175:             smaller = b[14:0];
+ 176:             a_larger_b = 1'b1;
+ 177:         end else begin 
+ 178:             bigger = b[14:0];
+ 179:             smaller = a[14:0];
+ 180:             a_larger_b = 1'b0;
+ 181:         end 
+ 182:     end
+...
+ 209:     cla_nbit #(.n(11)) u2(adder_input_1,adder_input_2,1'b0,adder_output,c1);
+...
+ 212:     cla_nbit #(.n(5)) u3(higher_a,higher_b,c1,higher_add,c2);
+...
+ 215:     add_normalizer u4(c_sign,bigger[14:10],adder_output_tmp,result,c1,if_sub);
+...
+ 217:     add_normalizer u4(c_sign,bigger[14:10],adder_output,result,c1,if_sub);
+...
+ 220: endmodule
+...
+ 223: module alignment (
+ 224: 	input  [14:0] bigger, 
+ 225: 	input  [14:0] smaller,
+ 226: 	output [10:0] aligned_small
+ 227: 	);
+...
+ 229: 	wire c1;
+...
+ 236: 	cla_nbit #(.n(5)) u1(bigger_exponent,~smaller_exponent+1'b1,1'b0,shift_bits,c1);
+...
+ 238: endmodule
+...
+ 241: module add_normalizer (
+ 242:     input             sign,
+ 243:     input      [ 4:0] exponent,
+ 244:     input      [10:0] mantissa_add,
+ 245:     output reg [15:0] result,
+ 246:     input             if_carray,
+ 247:     input             if_sub
+ 248:     );
+...
+ 255:     wire c1;
+...
+ 293:     cla_nbit #(.n(5)) u1(exponent,~number_of_zero_lead+1'b1,1'b0,shift_left_exp,c1);
+...
+ 296: endmodule
+...
+ 299: module cla_nbit #(
+ 300:     parameter n = 4
+ 301: ) (
+ 302:   input   [n-1:0] a,
+ 303:   input   [n-1:0] b,
+ 304:   input           ci,
+ 305:   output  [n-1:0] s,
+ 306:   output          co
+ 307:   );
+...
+ 309:   wire [n-1:0] g;
+ 310:   wire [n-1:0] p;
+ 311:   wire [  n:0] c;
+...
+ 313:   assign c[0] = ci;
+ 314:   assign co   = c[n];
+...
+ 318:   generate
+ 319:     for (i = 0; i < n; i = i + 1) begin : addbit
+ 320:       assign s[i] = a[i] ^ b[i] ^ c[i];
+ 321:       assign g[i] = a[i] & b[i];
+ 322:       assign p[i] = a[i] | b[i];
+ 323:       assign c[i + 1] = g[i] | (p[i] & c[i]);
+ 324:     end
+ 325:   endgenerate
+...
+ 327: endmodule
+...
+ 330: module int_fp_mul (
+ 331: `ifdef PIPLINE
+ 332:     input         clk,
+ 333:     input         rst_n,
+ 334: `endif
+ 335:     input         mode,
+ 336:     input  [15:0] a,
+ 337:     input  [15:0] b,
+ 338:     output [15:0] c,
+ 339:     output        error // valid in fp16 mode 
+ 340:     );
+...
+ 344:     wire [4:0] sum_exponent, biased_sum_exponent;
+...
+ 350:     wire c1,c2,underflow,overflow;
+...
+ 352:     assign overflow = (c1 && c2 && ~biased_sum_exponent[4]) ? 1'b1 :1'b0;
+ 353:     assign underflow = (~c1 && ~c2 && biased_sum_exponent[4]) ? 1'b1:1'b0;
+...
+ 355:     assign a_zero = ~(|a);
+ 356:     assign b_zero = ~(&b);
+ 357:     assign c_sign = a[15] ^ b[15];
+ 358:     assign multiplier_input1 = mode ? {5'b0,1'b1,a[9:0]} : ((a[7]==1'b0) ? {9'b0,a[6:0]} : {9'b0,~a[6:0]+1'b1});
+ 359:     assign multiplier_input2 = mode ? {5'b0,1'b1,b[9:0]} : ((b[7]==1'b0) ? {9'b0,b[6:0]} : {9'b0,~b[6:0]+1'b1});
+...
+ 361:     assign c = mode ? ((a_zero | b_zero) ? 16'b0 : c_tmp) : ((a[7]^b[7] == 1'b0) ? multiplier_output[15:0] : {1'b1,~multiplier_output[14:0]+1'b1});
+...
+ 363:     assign c_tmp = (~error) ? {c_sign,normalized_out} : (underflow ? {c_sign,15'b0000_0000_0000_000} : {c_sign,5'b1111_1,10'b0000_0000_00});
+...
+ 365:     assign error = overflow | underflow; 
+...
+ 390:     cla_nbit #(.n(5)) u2(a[14:10],b[14:10],1'b0,sum_exponent,c1); // add exponent
+ 391:     cla_nbit #(.n(5)) u3(sum_exponent, 5'b10001,1'b0,biased_sum_exponent,c2); // minus bias
+ 392:     mul_normalizer u4(biased_sum_exponent,mantissa_prod,normalized_out);
+...
+ 394: endmodule
+...
+ 396: module mul_normalizer (
+ 397: 	input  [ 4:0] exponent,
+ 398: 	input  [21:0] mantissa_prod,
+ 399: 	output [14:0] result
+ 400: );
+...
+ 411: endmodule
+...
+ 414: module mul16x16(
+ 415: `ifdef PIPLINE
+ 416:     input clk,
+ 417:     input rst_n,
+ 418: `endif
+ 419:     input  [15:0] a,
+ 420:     input  [15:0] b,
+ 421:     output [31:0] c);
+...
+ 445:     mul8x8 u1(a[15:8],b[15:8],tmp1[63:48]);
+ 446:     mul8x8 u2(a[7:0] ,b[15:8],tmp1[47:32]);
+ 447:     mul8x8 u3(a[15:8],b[ 7:0],tmp1[31:16]);
+ 448:     mul8x8 u4(a[7:0] ,b[ 7:0],tmp1[15:0]);
+...
+ 452:     cla_nbit #(.n(24)) u7(result1            ,result2            ,co2  ,c[31:8] ,co3);
+...
+ 454:     assign c[7:0] = tmp2[7:0];
+...
+ 456: endmodule
+...
+ 459: module mul8x8(
+ 460: 	input  [ 7:0] a,
+ 461: 	input  [ 7:0] b,
+ 462: 	output [15:0] c
+ 463: );
+...
+ 470: 	mul4x4 u1(a[7:4],b[7:4],tmp1[31:24]);
+ 471: 	mul4x4 u2(a[3:0],b[7:4],tmp1[23:16]);
+ 472: 	mul4x4 u3(a[7:4],b[3:0],tmp1[15:8]);
+ 473: 	mul4x4 u4(a[3:0],b[3:0],tmp1[7:0]);
+...
+ 477: 	cla_nbit #(.n(12)) u7(result1			 ,result2			 ,co2  ,c[15:4] ,co3);
+...
+ 479: 	assign c[3:0] = tmp1[3:0];
+...
+ 481: endmodule
+...
+ 484: module mul4x4(
+ 485: 	input  [3:0] a,
+ 486: 	input  [3:0] b,
+ 487: 	output [7:0] c
+ 488: 	);
+...
+ 495: 	mul2x2 u1(a[3:2],b[3:2],tmp1[15:12]);
+ 496: 	mul2x2 u2(a[1:0],b[3:2],tmp1[11:8]);
+ 497: 	mul2x2 u3(a[3:2],b[1:0],tmp1[7:4]);
+ 498: 	mul2x2 u4(a[1:0],b[1:0],tmp1[3:0]);
+...
+ 502: 	cla_nbit #(.n(6)) u7(result1		   ,result2			 ,co2 	,c[7:2] 	,co3);
+...
+ 504: 	assign c[1:0] = tmp1[1:0];
+...
+ 506: endmodule
+...
+ 509: module mul2x2(
+ 510: 	input  [1:0] a,
+ 511: 	input  [1:0] b,
+ 512: 	output [3:0] c
+ 513: 	);
+...
+ 517: 	assign tmp[0] = a[0] & b[0];
+ 518: 	assign tmp[1] = (a[1]&b[0]) ^ (a[0]&b[1]);
+ 519: 	assign tmp[2] = (a[0]&b[1]) & (a[1]&b[0]) ^ (a[1]&b[1]);
+ 520: 	assign tmp[3] = (a[0]&b[1]) & (a[1]&b[0]) & (a[1]&b[1]);
+ 521: 	assign c 	  = {tmp[3],tmp[2],tmp[1],tmp[0]};
+...
+ 523: endmodule

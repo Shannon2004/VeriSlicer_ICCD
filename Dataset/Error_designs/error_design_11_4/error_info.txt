@@ -1,0 +1,18 @@
+
+
+==================================================
+
+Design: hdc_controller
+Error line: 173
+
+Original code:
+        if (reset)
+
+Erroneous code:
+        if(!(reset))
+
+Error description:
+Flipped if condition
+
+==================================================
+

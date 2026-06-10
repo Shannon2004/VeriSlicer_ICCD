@@ -1,0 +1,33 @@
+# Source File: ../Error_designs/error_design_6_1/design_6.v
+# Project Dir: error_design_6_1
+# Total Vertices: 12
+# Total Edges: 13
+
+=== VERTICES ===
+design_6.STATE_EX
+design_6.STATE_HALT
+design_6.STATE_ID
+design_6.STATE_IDLE
+design_6.STATE_IF
+design_6.STATE_MEM
+design_6.STATE_WB
+design_6.current_state
+design_6.done
+design_6.instruction_in
+design_6.opcode
+design_6.rst
+
+=== EDGES (Driver -> Target) ===
+design_6.instruction_in -> design_6.opcode
+design_6.current_state -> design_6.done
+design_6.STATE_HALT -> design_6.done
+design_6.STATE_WB -> design_6.current_state
+design_6.STATE_HALT -> design_6.current_state
+design_6.STATE_IDLE -> design_6.current_state
+design_6.opcode -> design_6.current_state
+design_6.current_state -> design_6.current_state
+design_6.STATE_EX -> design_6.current_state
+design_6.rst -> design_6.current_state
+design_6.STATE_MEM -> design_6.current_state
+design_6.STATE_ID -> design_6.current_state
+design_6.STATE_IF -> design_6.current_state

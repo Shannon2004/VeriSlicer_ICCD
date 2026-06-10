@@ -1,0 +1,55 @@
+rm -rf __pycache__ sim_build results.xml iverilog_dump.v
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general_DeepseekR1'
+echo '' > iverilog_dump.v
+echo 'module iverilog_dump();' >> iverilog_dump.v
+echo 'initial begin' >> iverilog_dump.v
+echo '    $dumpfile("/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general_DeepseekR1/../Error_designs/error_design_1_1/design_1.vcd");' >> iverilog_dump.v
+echo '    $dumpvars(0, design_1);' >> iverilog_dump.v
+echo 'end' >> iverilog_dump.v
+echo 'endmodule' >> iverilog_dump.v
+mkdir -p sim_build
+/bin/iverilog -o sim_build/sim.vvp -s design_1 -g2012 -s iverilog_dump -f sim_build/cmds.f  /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general_DeepseekR1/../Error_designs/error_design_1_1/design_1.v iverilog_dump.v
+rm -f results.xml
+COCOTB_TEST_MODULES=test_design_1 COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=design_1 TOPLEVEL_LANG=verilog \
+         /bin/vvp -M /home/shannon/Verislicer_stable/lib/python3.12/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.12.4 interpreter at /home/shannon/Verislicer_stable/bin/python3.12
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 12.0 (stable)
+     0.00ns INFO     cocotb                             Seeding Python random module with 1775857457
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/shannon/Verislicer_stable/lib64/python3.12/site-packages/cocotb
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_design_1.cordic_testbench (1/1)
+                                                            Cocotb translation of tb_cordic.v
+     0.00ns INFO     cocotb.design_1                    --- Starting CORDIC Simulation ---
+     0.00ns INFO     cocotb.design_1                    Configuration: MODE = ROTATE, ARCH = PIPELINE
+    37.00ns INFO     cocotb.design_1                    Angle:  0  sin = 0.607178  cos = 0.607178 errors ex=12872 ey=19896
+    37.00ns ERROR    test                               
+                                                        =================================================================
+                                                        TEST FAILED AT 37.0 ns
+                                                        FAILING SIGNAL : x_o
+                                                        ERROR DETAILS  : Expected x_o to be 32768, got 19896
+                                                        =================================================================
+    37.00ns INFO     cocotb.design_1                    Signal log file securely closed.
+    37.00ns WARNING  ..ordic_testbench.cordic_testbench Signal 'x_o' failed.
+                                                        assert False
+                                                        Traceback (most recent call last):
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 214, in cordic_testbench
+                                                            check_results(dut, check_idx, lx, ly, ltheta, MODE, file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 129, in check_results
+                                                            report_error(msg, "x_o", file_path)
+                                                          File "/home/shannon/VeriSlicer/Dataset/Testbenches/design_1/test_design_1.py", line 67, in report_error
+                                                            assert False, f"Signal '{signal_name}' failed."
+                                                        AssertionError: Signal 'x_o' failed.
+                                                        assert False
+    37.00ns WARNING  cocotb.regression                  test_design_1.cordic_testbench failed
+    37.00ns INFO     cocotb.regression                  ****************************************************************************************
+                                                        ** TEST                            STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        ****************************************************************************************
+                                                        ** test_design_1.cordic_testbench   FAIL          37.00           0.01       5653.52  **
+                                                        ****************************************************************************************
+                                                        ** TESTS=1 PASS=0 FAIL=1 SKIP=0                   37.00           0.01       3485.52  **
+                                                        ****************************************************************************************
+VCD info: dumpfile /home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general_DeepseekR1/../Error_designs/error_design_1_1/design_1.vcd opened for output.
+make[1]: Leaving directory '/home/shannon/VeriSlicer_temp/Dataset/Pyverilog_general_DeepseekR1'

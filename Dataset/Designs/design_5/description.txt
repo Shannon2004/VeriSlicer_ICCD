@@ -1,0 +1,42 @@
+MODULE SPECIFICATION: design_5 (Systolic Array)
+1. ARCHITECTURAL INTENT
+
+    Type: 4x4 Systolic Array (Matrix Multiplication).
+
+    Intended Scheme: 2D Mesh of Processing Elements (PEs) with an Output-Stationary dataflow.
+
+    Mechanism: Computes matrix multiplication by streaming data through a 16-block grid. Data flows sequentially from West-to-East and North-to-South. Each internal block acts as a Multiply-Accumulate (MAC) unit that multiplies intersecting inputs, adds them to its local running total, and forwards the inputs to adjacent neighbors on the next clock cycle.
+
+2. PORT INTERFACE
+
+    Global: * clk: System Clock.
+
+        rst: Active-high asynchronous reset. Clears all internal accumulators, forwarding registers, and the completion counter.
+
+    Inputs: * inp_west0, 4, 8, 12 (32-bit): Data streaming into the left-most edge of the grid.
+
+        inp_north0, 1, 2, 3 (32-bit): Data streaming into the top-most edge of the grid.
+
+    Outputs: * result0 to result15 (64-bit): The final accumulated MAC results stationed inside each of the 16 PEs.
+
+        done (1-bit): A flag that asserts high to signal that the matrix multiplication pipeline has finished computing.
+
+3. CRITICAL INTERNAL STATE (Registers & Wires)
+
+    count (Completion Timer): A 4-bit state register that tracks the pipeline latency. It increments every clock cycle and triggers the done signal when it reaches 9.
+
+    outp_southX / outp_eastX (Grid Interconnects): Internal 32-bit wires bridging the PEs. outp_south carries data downwards, and outp_east carries data rightwards.
+
+    Sub-module (block): * multi: A 64-bit combinational wire calculating inp_north * inp_west.
+
+        result: The 64-bit state register storing the running accumulation (result + multi).
+
+        outp_east / outp_south (Pipeline Registers): Synchronous registers that delay the input data by exactly one clock cycle before passing it to the next block, ensuring the systolic wave propagates correctly.
+
+4. BEHAVIORAL CONSTRAINTS & DEBUGGING CONTEXT
+
+    Strict Topology Routing: Because this is a hardcoded 4x4 grid, the most common structural bugs are miswired interconnects (e.g., accidentally connecting outp_east5 into P7's west input instead of outp_east6). If an LLM is debugging an erroneous resultX, it must carefully trace the port mapping in the parent module.
+
+    Hardcoded Pipeline Latency: The done signal is strictly hardcoded to assert when count == 9. If the testbench relies on this signal but feeds data requiring a different latency (due to padding or larger matrix dimensions), the outputs will be read prematurely or too late.
+
+    Output Stationary Rule: The result register inside each block does not propagate. Only the raw input data moves across the grid.

@@ -1,0 +1,16 @@
+Design: posit_mult
+Error line: 104
+
+Original code:
+	done_m = start0_m;
+
+Erroneous code:
+	done_m = 1'b1;
+
+Error description:
+stuck at 1 fault
+
+==================================================
+
+
+

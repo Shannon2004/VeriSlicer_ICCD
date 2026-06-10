@@ -1,0 +1,45 @@
+Design: posit_mult
+Error line: 142
+
+Original code:
+DSR_left_N_S #(.N(N), .S(Bs)) ls (.a({xin[N-3:0],2'b0}),.b(k),.c(xin_tmp));
+
+Erroneous code:
+DSR_left_N_S #(.N(Bs), .S(N)) ls (.a({xin[N-3:0],2'b0}),.b(k),.c(xin_tmp));
+
+Error description:
+Swapped connections: .N(N) <-> .S(Bs)
+
+==================================================
+
+
+
+Design: posit_mult
+Error line: 298
+
+Original code:
+    input reg [31:0] value;
+
+Erroneous code:
+    input reg [32:0] value;
+
+Error description:
+Bitwidth incremented by 1
+
+==================================================
+
+
+Design: posit_mult
+Error line: 319
+
+Original code:
+    input reg [31:0] value;
+
+Erroneous code:
+    input reg [32:0] value;
+
+Error description:
+Bitwidth incremented by 1
+
+==================================================
+

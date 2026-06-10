@@ -1,0 +1,214 @@
+$date
+	Sat May 30 10:28:59 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module design_2 $end
+$var wire 1 ! clk $end
+$var wire 20 " i_Read_Address [19:0] $end
+$var wire 1 # i_Read_Request $end
+$var wire 20 $ i_Write_Address [19:0] $end
+$var wire 16 % i_Write_Data [15:0] $end
+$var wire 1 & i_Write_Request $end
+$var wire 1 ' o_Clk_Enable $end
+$var wire 1 ( o_Read_Grant $end
+$var wire 1 ) o_Write_Grant $end
+$var wire 1 * w_Read_Now $end
+$var wire 1 + w_Write_Now $end
+$var wire 1 , w_Write_Select $end
+$var wire 1 - w_Same_Row_And_Bank $end
+$var wire 1 . w_Read_Cycle $end
+$var wire 20 / w_Address [19:0] $end
+$var wire 1 0 o_Write_Enable $end
+$var wire 1 1 o_Row_Address_Strobe $end
+$var wire 1 2 o_Data_Valid $end
+$var wire 1 3 o_Column_Address_Strobe $end
+$var wire 20 4 io_DQ_Lines [19:0] $end
+$var parameter 32 5 ADDRESS_SIZE $end
+$var parameter 3 6 CMD_ACTIVE $end
+$var parameter 3 7 CMD_LOADMODE $end
+$var parameter 3 8 CMD_NOP $end
+$var parameter 3 9 CMD_PRECHARGE $end
+$var parameter 3 : CMD_READ $end
+$var parameter 3 ; CMD_REFRESH $end
+$var parameter 3 < CMD_WRITE $end
+$var parameter 32 = DATA_SIZE $end
+$var parameter 32 > TOTAL_READ_LATENCY $end
+$var reg 11 ? o_Address_10 [10:0] $end
+$var reg 1 @ o_Bank_Address $end
+$var reg 2 A o_Data_Mask [1:0] $end
+$var reg 16 B o_Read_Data [15:0] $end
+$var reg 20 C r_Address [19:0] $end
+$var reg 3 D r_Cmd [2:0] $end
+$var reg 1 E r_DQ_Lines $end
+$var reg 4 F r_Read_Data_Valid_Pipe [3:0] $end
+$var reg 1 G r_Read_Select $end
+$var reg 2 H r_State [1:0] $end
+$var reg 16 I r_Write_Data_1 [15:0] $end
+$var reg 16 J r_Write_Data_2 [15:0] $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b100 >
+b10000 =
+b100 <
+b1 ;
+b101 :
+b10 9
+b111 8
+b0 7
+b11 6
+b10100 5
+$end
+#0
+$dumpvars
+b0 J
+b0 I
+b0 H
+0G
+b0 F
+0E
+b111 D
+b0 C
+bx B
+bx A
+x@
+bx ?
+b0zzzzzzzzzzzzzzzz 4
+13
+02
+11
+10
+b0 /
+0.
+1-
+1,
+0+
+0*
+0)
+0(
+1'
+0&
+b0 %
+b0 $
+0#
+b0 "
+0!
+$end
+#1000
+b11 A
+b0 ?
+0@
+bz B
+1!
+#2000
+0!
+#3000
+1!
+#4000
+0!
+#5000
+1!
+#6000
+0!
+#7000
+1!
+#8000
+0!
+#9000
+1!
+#10000
+0!
+#11000
+1)
+b1 /
+1+
+b1100 %
+b1 $
+1&
+1!
+#12000
+0!
+#13000
+1)
+01
+b1 C
+b1 H
+b11 D
+b1100 I
+1!
+#14000
+0!
+#15000
+b1100 4
+11
+03
+00
+b1100 J
+1E
+b0 A
+b1 ?
+b100 D
+1!
+#16000
+0!
+#17000
+b1100 B
+1!
+#18000
+0!
+#19000
+0)
+0+
+b1 "
+0&
+1*
+1#
+1!
+#20000
+0!
+#21000
+b10 H
+1!
+#22000
+0!
+#23000
+1(
+b0zzzzzzzzzzzzzzzz 4
+1.
+01
+13
+0E
+b0 H
+b11 A
+b10000000000 ?
+b10 D
+1!
+#24000
+0!
+#25000
+1(
+0,
+10
+1G
+b1 H
+b0 ?
+b11 D
+bz B
+1!
+#26000
+0!
+#27000
+12
+11
+03
+b1 F
+b0 A
+b1 ?
+b101 D
+1!

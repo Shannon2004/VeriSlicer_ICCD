@@ -1,0 +1,9 @@
+Design: Systolic Array
+Error line: 38
+Original code:
+block P7 (outp_south3, outp_east6, clk, rst, outp_south7, outp_east7, result7);
+
+Erroneous code:
+block P7 (outp_south3, outp_east5, clk, rst, outp_south7, outp_east7, result7);
+        
+Input changed

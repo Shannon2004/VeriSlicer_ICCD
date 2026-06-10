@@ -1,0 +1,48 @@
+MODULE SPECIFICATION: posit_add (Posit Addition Unit)
+
+1. ARCHITECTURAL INTENT
+Type: Posit Arithmetic Unit — Addition/Subtraction
+Numerical Format: Posit representation with configurable size:
+  - N = total bit width (default: 12)
+  - es = exponent size (default: 2)
+  - Bs = log₂(N), used for regime encoding
+Operation: out = in1 ± in2 (sign-dependent)
+Execution Model: Combinational datapath controlled by start; done mirrors start
+Key Features: Full Posit decode → alignment → addition/subtraction → normalization → rounding → encode; handles sign, regime, exponent, mantissa; rounding (RNE); zero and infinity detection
+
+2. PORT INTERFACE
+Global: clk : System clock (for synchronization/debug)
+Control Inputs: start : triggers computation
+Data Inputs: in1_svm [N-1:0] : Posit operand A; in2_svm [N-1:0] : Posit operand B
+Outputs: out [N-1:0] : Result; inf : indicates infinity; zero : indicates zero; done : operation completion signal (mirrors start)
+Intermediate Output: add_m [N:0] : internal mantissa sum/difference
+
+3. CRITICAL INTERNAL STATE (Registers & Wires)
+Sign Handling: s1 = in1[N-1]; s2 = in2[N-1]; op = XOR/negation of signs for add/sub selection
+Special Case Detection: zero_tmp1 = |in1[N-2:0]; zero_tmp2 = |in2[N-2:0]; zero1 = ~(in1[N-1]|zero_tmp1); zero2 = ~(in2[N-1]|zero_tmp2); inf1 = in1[N-1] & (~zero_tmp1); inf2 = in2[N-1] & (~zero_tmp2)
+Derived Outputs: inf = inf1 | inf2; zero = zero1 & zero2
+Input Alignment: Determines larger operand in magnitude (in1_gt_in2); sets leading sign (ls), leading regime (lr), leading exponent (le), leading mantissa (lm); smaller operand is similarly assigned
+Regime/Exponent Differences: Absolute regime calculation (abs_regime); exponent difference via sub_N; shift amount = exp_diff
+
+4. INTERNAL MODULES
+4.1 data_extract_v1 (Posit Decoder): Extracts regime, exponent, mantissa, and regime check (rc)
+4.2 DSR_right_N_S: Right shifts smaller mantissa to align with larger operand
+4.3 add_sub_N: Adds or subtracts aligned mantissas based on sign (op)
+4.4 LOD_N / LOD: Leading-One Detector to normalize mantissa after addition/subtraction
+4.5 DSR_left_N_S: Left shift normalized mantissa to proper position
+4.6 Exponent-Regime Adjustment: Computes final exponent and regime (sub_N, add_1, reg_exp_op)
+4.7 Rounding (RNE): Computes Guard (G), Round (R), Sticky (S), and applies ulp addition to mantissa
+4.8 Output Formation: Applies final sign (ls) and handles special cases (zero, infinity)
+
+5. BEHAVIORAL CONSTRAINTS & DEBUGGING CONTEXT
+Control Flow: start = 1 initiates computation; done mirrors start
+Special Case Handling: Zero → output zero; Infinity (NaR) → propagated
+Normalization: Mantissa normalized after addition/subtraction; exponent/regime adjusted accordingly
+Rounding: Round-to-Nearest-Even (RNE) using Guard, Round, Sticky bits
+Data Hazards: Purely combinational; inputs must be stable during computation
+Timing Considerations: Critical path includes mantissa alignment, addition/subtraction, LOD, normalization, rounding
+
+6. DESIGN LIMITATIONS & EXTENSIBILITY
+Limitations: No pipeline support; fixed N=12, es=2; combinational only; resource-intensive (barrel shifters, adders)
+Missing Features: No configurable rounding modes beyond RNE; no fused operations; posit-only; no exception flags (overflow/underflow)
+Future Enhancements: Parameterize N/es; add pipeline stages; add valid/ready handshake; implement extended rounding modes; optimize shifters and LOD logic

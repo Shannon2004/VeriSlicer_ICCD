@@ -1,0 +1,1 @@
+{"error_id": "error_design_5_2", "design_name": "design_5", "actual_line": 87, "predicted_line": null, "predicted_lines": [], "is_correct": false, "topk_correct": false, "hit_rank": null, "top_k": 5, "llm_root_cause": "", "llm_fixed_code": ""}

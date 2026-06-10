@@ -1,0 +1,119 @@
+rm -f results.xml
+"make" -f Makefile results.xml
+make[1]: Entering directory '/home/chirag/VeriSlicer/CORDIC'
+rm -f results.xml
+COCOTB_TEST_MODULES=test_cordic COCOTB_TESTCASE= COCOTB_TEST_FILTER= COCOTB_TOPLEVEL=cordic TOPLEVEL_LANG=verilog \
+         /usr/bin/vvp -M /home/chirag/Mini_project2/inference-setup/inference-setup/sample-submission/IMT2020502/yes/lib/python3.13/site-packages/cocotb/libs -m libcocotbvpi_icarus   sim_build/sim.vvp   
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:93   in _embed_init_python              Using Python 3.13.0rc1 interpreter at /home/chirag/Mini_project2/inference-setup/inference-setup/sample-submission/IMT2020502/yes/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:79   in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 11.0 (stable)
+     0.00ns WARNING  gpi                                vpi_iterate returned NULL for type vpiInstance for object NULL
+     0.00ns INFO     cocotb                             Seeding Python random module with 1773765837
+     0.00ns INFO     cocotb                             Initialized cocotb v2.0.1 from /home/chirag/Mini_project2/inference-setup/inference-setup/sample-submission/IMT2020502/yes/lib/python3.13/site-packages/cocotb
+     0.00ns INFO     cocotb.regression                  pytest not found, install it to enable better AssertionError messages
+     0.00ns INFO     cocotb                             Running tests
+     0.00ns INFO     cocotb.regression                  running test_cordic.cordic_testbench (1/1)
+                                                            Cocotb translation of tb_cordic.v
+     0.00ns INFO     cocotb.cordic                      --- Starting CORDIC Simulation ---
+     0.00ns INFO     cocotb.cordic                      Configuration: MODE = ROTATE, ARCH = PIPELINE
+    37.00ns INFO     cocotb.cordic                      Angle:  0  sin = 0.000061  cos = 0.999908
+    39.00ns INFO     cocotb.cordic                      Angle:  1  sin = 0.017517  cos = 0.999664
+    41.00ns INFO     cocotb.cordic                      Angle:  2  sin = 0.034973  cos = 0.999237
+    43.00ns INFO     cocotb.cordic                      Angle:  3  sin = 0.052307  cos = 0.998474
+    45.00ns INFO     cocotb.cordic                      Angle:  4  sin = 0.069824  cos = 0.997467
+    47.00ns INFO     cocotb.cordic                      Angle:  5  sin = 0.087189  cos = 0.996063
+    49.00ns INFO     cocotb.cordic                      Angle:  6  sin = 0.104523  cos = 0.994415
+    51.00ns INFO     cocotb.cordic                      Angle:  7  sin = 0.121857  cos = 0.992493
+    53.00ns INFO     cocotb.cordic                      Angle:  8  sin = 0.139160  cos = 0.990143
+    55.00ns INFO     cocotb.cordic                      Angle:  9  sin = 0.156372  cos = 0.987610
+    57.00ns INFO     cocotb.cordic                      Angle: 10  sin = 0.173645  cos = 0.984680
+    59.00ns INFO     cocotb.cordic                      Angle: 11  sin = 0.190765  cos = 0.981537
+    61.00ns INFO     cocotb.cordic                      Angle: 12  sin = 0.207977  cos = 0.977966
+    63.00ns INFO     cocotb.cordic                      Angle: 13  sin = 0.224854  cos = 0.974243
+    65.00ns INFO     cocotb.cordic                      Angle: 14  sin = 0.241913  cos = 0.970154
+    67.00ns INFO     cocotb.cordic                      Angle: 15  sin = 0.258728  cos = 0.965912
+    69.00ns INFO     cocotb.cordic                      Angle: 16  sin = 0.275696  cos = 0.961090
+    71.00ns INFO     cocotb.cordic                      Angle: 17  sin = 0.292206  cos = 0.956268
+    73.00ns INFO     cocotb.cordic                      Angle: 18  sin = 0.308868  cos = 0.951050
+    75.00ns INFO     cocotb.cordic                      Angle: 19  sin = 0.325684  cos = 0.945343
+    77.00ns INFO     cocotb.cordic                      Angle: 20  sin = 0.342102  cos = 0.939484
+    79.00ns INFO     cocotb.cordic                      Angle: 21  sin = 0.358490  cos = 0.933380
+    81.00ns INFO     cocotb.cordic                      Angle: 22  sin = 0.374725  cos = 0.927032
+    83.00ns INFO     cocotb.cordic                      Angle: 23  sin = 0.390594  cos = 0.920471
+    85.00ns INFO     cocotb.cordic                      Angle: 24  sin = 0.406647  cos = 0.913513
+    87.00ns INFO     cocotb.cordic                      Angle: 25  sin = 0.422577  cos = 0.906311
+    89.00ns INFO     cocotb.cordic                      Angle: 26  sin = 0.438385  cos = 0.898682
+    91.00ns INFO     cocotb.cordic                      Angle: 27  sin = 0.453979  cos = 0.890900
+    93.00ns INFO     cocotb.cordic                      Angle: 28  sin = 0.469482  cos = 0.882843
+    95.00ns INFO     cocotb.cordic                      Angle: 29  sin = 0.484802  cos = 0.874512
+    97.00ns INFO     cocotb.cordic                      Angle: 30  sin = 0.499969  cos = 0.865997
+    99.00ns INFO     cocotb.cordic                      Angle: 31  sin = 0.514984  cos = 0.857086
+   101.00ns INFO     cocotb.cordic                      Angle: 32  sin = 0.529907  cos = 0.847992
+   103.00ns INFO     cocotb.cordic                      Angle: 33  sin = 0.544708  cos = 0.838409
+   105.00ns INFO     cocotb.cordic                      Angle: 34  sin = 0.559082  cos = 0.828918
+   107.00ns INFO     cocotb.cordic                      Angle: 35  sin = 0.573547  cos = 0.819061
+   109.00ns INFO     cocotb.cordic                      Angle: 36  sin = 0.587646  cos = 0.808960
+   111.00ns INFO     cocotb.cordic                      Angle: 37  sin = 0.601776  cos = 0.798492
+   113.00ns INFO     cocotb.cordic                      Angle: 38  sin = 0.615601  cos = 0.787933
+   115.00ns INFO     cocotb.cordic                      Angle: 39  sin = 0.629242  cos = 0.777039
+   117.00ns INFO     cocotb.cordic                      Angle: 40  sin = 0.642731  cos = 0.765991
+   119.00ns INFO     cocotb.cordic                      Angle: 41  sin = 0.655914  cos = 0.754639
+   121.00ns INFO     cocotb.cordic                      Angle: 42  sin = 0.669067  cos = 0.743042
+   123.00ns INFO     cocotb.cordic                      Angle: 43  sin = 0.681824  cos = 0.731323
+   125.00ns INFO     cocotb.cordic                      Angle: 44  sin = 0.694519  cos = 0.719299
+   127.00ns INFO     cocotb.cordic                      Angle: 45  sin = 0.707001  cos = 0.707031
+   129.00ns INFO     cocotb.cordic                      Angle: 46  sin = 0.719299  cos = 0.694519
+   131.00ns INFO     cocotb.cordic                      Angle: 47  sin = 0.731323  cos = 0.681824
+   133.00ns INFO     cocotb.cordic                      Angle: 48  sin = 0.743042  cos = 0.669067
+   135.00ns INFO     cocotb.cordic                      Angle: 49  sin = 0.754639  cos = 0.655914
+   137.00ns INFO     cocotb.cordic                      Angle: 50  sin = 0.765991  cos = 0.642731
+   139.00ns INFO     cocotb.cordic                      Angle: 51  sin = 0.777100  cos = 0.629120
+   141.00ns INFO     cocotb.cordic                      Angle: 52  sin = 0.787994  cos = 0.615540
+   143.00ns INFO     cocotb.cordic                      Angle: 53  sin = 0.798553  cos = 0.601654
+   145.00ns INFO     cocotb.cordic                      Angle: 54  sin = 0.809021  cos = 0.587585
+   147.00ns INFO     cocotb.cordic                      Angle: 55  sin = 0.819122  cos = 0.573425
+   149.00ns INFO     cocotb.cordic                      Angle: 56  sin = 0.828979  cos = 0.559021
+   151.00ns INFO     cocotb.cordic                      Angle: 57  sin = 0.838531  cos = 0.544525
+   153.00ns INFO     cocotb.cordic                      Angle: 58  sin = 0.848053  cos = 0.529724
+   155.00ns INFO     cocotb.cordic                      Angle: 59  sin = 0.857147  cos = 0.514923
+   157.00ns INFO     cocotb.cordic                      Angle: 60  sin = 0.866028  cos = 0.499847
+   159.00ns INFO     cocotb.cordic                      Angle: 61  sin = 0.874512  cos = 0.484741
+   161.00ns INFO     cocotb.cordic                      Angle: 62  sin = 0.882965  cos = 0.469299
+   163.00ns INFO     cocotb.cordic                      Angle: 63  sin = 0.890900  cos = 0.453918
+   165.00ns INFO     cocotb.cordic                      Angle: 64  sin = 0.898743  cos = 0.438263
+   167.00ns INFO     cocotb.cordic                      Angle: 65  sin = 0.906311  cos = 0.422577
+   169.00ns INFO     cocotb.cordic                      Angle: 66  sin = 0.913513  cos = 0.406647
+   171.00ns INFO     cocotb.cordic                      Angle: 67  sin = 0.920471  cos = 0.390594
+   173.00ns INFO     cocotb.cordic                      Angle: 68  sin = 0.927032  cos = 0.374664
+   175.00ns INFO     cocotb.cordic                      Angle: 69  sin = 0.933441  cos = 0.358368
+   177.00ns INFO     cocotb.cordic                      Angle: 70  sin = 0.939484  cos = 0.342041
+   179.00ns INFO     cocotb.cordic                      Angle: 71  sin = 0.945404  cos = 0.325500
+   181.00ns INFO     cocotb.cordic                      Angle: 72  sin = 0.951050  cos = 0.308868
+   183.00ns INFO     cocotb.cordic                      Angle: 73  sin = 0.956268  cos = 0.292206
+   185.00ns INFO     cocotb.cordic                      Angle: 74  sin = 0.961090  cos = 0.275696
+   187.00ns INFO     cocotb.cordic                      Angle: 75  sin = 0.965912  cos = 0.258728
+   189.00ns INFO     cocotb.cordic                      Angle: 76  sin = 0.970154  cos = 0.241913
+   191.00ns INFO     cocotb.cordic                      Angle: 77  sin = 0.974243  cos = 0.224854
+   193.00ns INFO     cocotb.cordic                      Angle: 78  sin = 0.977966  cos = 0.207977
+   195.00ns INFO     cocotb.cordic                      Angle: 79  sin = 0.981598  cos = 0.190582
+   197.00ns INFO     cocotb.cordic                      Angle: 80  sin = 0.984680  cos = 0.173584
+   199.00ns INFO     cocotb.cordic                      Angle: 81  sin = 0.987610  cos = 0.156250
+   201.00ns INFO     cocotb.cordic                      Angle: 82  sin = 0.990143  cos = 0.139099
+   203.00ns INFO     cocotb.cordic                      Angle: 83  sin = 0.992554  cos = 0.121613
+   205.00ns INFO     cocotb.cordic                      Angle: 84  sin = 0.994415  cos = 0.104462
+   207.00ns INFO     cocotb.cordic                      Angle: 85  sin = 0.996063  cos = 0.087067
+   209.00ns INFO     cocotb.cordic                      Angle: 86  sin = 0.997467  cos = 0.069702
+   211.00ns INFO     cocotb.cordic                      Angle: 87  sin = 0.998474  cos = 0.052246
+   213.00ns INFO     cocotb.cordic                      Angle: 88  sin = 0.999237  cos = 0.034790
+   215.00ns INFO     cocotb.cordic                      Angle: 89  sin = 0.999664  cos = 0.017517
+   217.00ns INFO     cocotb.cordic                      Angle: 90  sin = 0.999908  cos = 0.000061
+   227.00ns INFO     cocotb.cordic                      Simulation Complete. All checks passed.
+   227.00ns INFO     cocotb.regression                  test_cordic.cordic_testbench passed
+   227.00ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** test_cordic.cordic_testbench   PASS         227.00           0.02      11548.11  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0                227.00           0.02      11016.19  **
+                                                        **************************************************************************************
+make[1]: Leaving directory '/home/chirag/VeriSlicer/CORDIC'

@@ -1,0 +1,61 @@
+MODULE SPECIFICATION: posit_encoder (Posit Final Encoder Stage)
+
+1. ARCHITECTURAL INTENT
+Type: Posit Arithmetic Utility — Encoder / Rounding & Packing Stage
+Numerical Format: Posit representation
+  - N = total bit width (default: 16)
+  - es = exponent size (default: 2)
+  - Bs = log₂(N), used for regime encoding (default: 4)
+Operation: Packs the normalized regime, exponent, and mantissa fields into the final Posit output
+Execution Model: Combinational logic
+Key Features:  
+  - Includes regime bits in exponent-mantissa packing  
+  - Rounding to nearest even (RNE)  
+  - Two’s complement for negative results  
+
+2. PORT INTERFACE
+Inputs:
+  - le_o [es+Bs+2:0] : intermediate regime-exponent sum (8 bits)  
+  - e_o_m [es-1:0] : exponent bits (2 bits)  
+  - DSR_left_out [2*(N-es):0] : normalized mantissa (29 bits)  
+  - r_o_m [Bs:0] : regime bits (4 bits)  
+  - ls : sign bit of the output  
+  - inf_final : infinity flag  
+  - zero_final : zero flag  
+  - start0_m : start signal  
+Outputs:
+  - out_m [N-1:0] : final 16-bit Posit output  
+  - done_m : done flag  
+
+3. INTERNAL MODULES & LOGIC
+3.1 Exponent-Mantissa Packing:  
+  - tmp_o_m = {padding, le_o[sign_bit], e_o_m, high mantissa bits, low mantissa bits, sticky bit}  
+
+3.2 Regime Integration:  
+  - tmp1_o_m = DSR_right_N_S({tmp_o_m, {N{1'b0}}}, r_o_m); shifts packed output by regime length  
+
+3.3 Rounding (RNE):  
+  - L, G, R, St = guard, round, sticky signals extracted from tmp1_o_m  
+  - ulp_m = ((G & (R | St)) | (L & G & ~(R | St)))  
+  - tmp1_o_rnd_ulp_m = add_N(tmp1_o_m[MSBs], rnd_ulp_m)  
+
+3.4 Conditional Output Selection:  
+  - tmp1_o_rnd_m = select rounded value based on regime vs mantissa size  
+  - tmp1_oN_m = apply sign (ls ? two’s complement : pass-through)  
+
+3.5 Final Output Assignment:  
+  - out_m = {inf_final | zero_final | ~DSR_left_out[MSB] ? {inf_final,{N-1{0}}} : {ls, tmp1_oN_m[N-1:1]}}  
+  - done_m = start0_m  
+
+4. INTERNAL MODULES
+4.1 DSR_right_N_S : Variable right shifter for final regime placement  
+4.2 add_N, add_N_in : N-bit adder modules used for rounding  
+
+5. BEHAVIORAL CONSTRAINTS
+Combinational: Fully combinational logic; inputs must be stable  
+Range: Supports 16-bit Posit format, es=2, regime width=4  
+Corner Cases: Properly handles infinity, zero, and signed outputs  
+
+6. DESIGN LIMITATIONS & EXTENSIBILITY
+Limitations: Fixed N=16; combinational only; no pipelining  
+Future Enhancements: Parameterize N/es; integrate pipelining; extend rounding options  

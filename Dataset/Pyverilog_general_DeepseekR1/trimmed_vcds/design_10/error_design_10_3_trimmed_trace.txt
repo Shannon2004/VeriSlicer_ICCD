@@ -1,0 +1,19 @@
+--- TRACE HISTORY (2 CYCLES BEFORE CRASH) ---
+Hardware Type: Sequential
+
+Cycle -2 (Time: 0 ns)
+  design_10.instr = 10011
+  design_10.pc = 1
+  design_10.pc_inst.reset = 1
+  design_10.pc_next = 101
+  design_10.pc_plus4 = 101
+  design_10.reset = x
+----------------------------------------
+Cycle -1 (Time: 10000 ns)
+  design_10.instr = 10011
+  design_10.pc = 1
+  design_10.pc_inst.reset = 0
+  design_10.pc_next = 101
+  design_10.pc_plus4 = 101
+  design_10.reset = x
+----------------------------------------

@@ -1,0 +1,66 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_10.v ---
+
+   1: module design_10(
+   2:     input         clk,
+   3:     input         reset,
+   4:     output [31:0] pc,
+   5:     output [31:0] instr
+   6: );
+...
+   8:     wire [31:0] pc_next;
+   9:     wire [31:0] pc_plus4;
+...
+  14:     pc pc_inst (
+  15:         .clk     (clk),
+  16:         .reset   (reset),
+  17:         .pc_next (pc_next),
+  18:         .pc      (pc)
+  19:     );
+...
+  24:     pc_adder pc_adder_inst (
+  25:         .pc       (pc),
+  26:         .pc_plus4 (pc_plus4)
+  27:     );
+...
+  32:     instr_mem instr_mem_inst (
+  33:         .addr  (pc),
+  34:         .instr (instr)
+  35:     );
+...
+  41:     assign pc_next = pc_plus4;
+...
+  43: endmodule
+...
+  46: module pc(
+  47:     input         clk,
+  48:     input         reset,
+  49:     input  [31:0] pc_next,
+  50:     output reg [31:0] pc
+...
+  52:     );
+  53:         always @(posedge clk) begin
+  54:         if (reset)
+  55:             pc <= 32'b0;
+  56:         else
+  57:             pc = pc_next;
+  58:     end
+...
+  60: endmodule
+...
+  63: module pc_adder(
+  64: input [31:0] pc,
+  65:     output [31:0] pc_plus4
+  66:  );
+  67:   assign pc_plus4 = pc + 32'd4;
+...
+  69: endmodule
+...
+  72: module instr_mem (
+  73:     input  [31:0] addr,
+  74:     output [31:0] instr
+  75: );
+...
+  90:     assign instr = mem[addr[9:2]];
+...
+  92: endmodule

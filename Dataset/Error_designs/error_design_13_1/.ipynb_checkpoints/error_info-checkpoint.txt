@@ -1,0 +1,17 @@
+
+
+
+Design: posit_add
+Error line: 45
+
+Original code:
+	wire inf1 = in1[N-1] & (~zero_tmp1);
+
+Erroneous code:
+	wire inf1 = in1[N-1] | (~zero_tmp1);
+
+Error description:
+Changed & to |
+
+==================================================
+

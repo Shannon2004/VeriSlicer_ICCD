@@ -1,0 +1,58 @@
+
+
+Design: posit_decoder
+Error line: 86
+
+Original code:
+    if (N == 2)
+
+Erroneous code:
+    if(!(N == 2))
+
+Error description:
+Flipped if condition
+
+==================================================
+
+Design: posit_decoder
+Error line: 88
+
+Original code:
+	assign vld = |in;
+
+Erroneous code:
+	assign vld = &in;
+
+Error description:
+Logical operator | changed to &
+
+==================================================
+
+Design: posit_decoder
+Error line: 51
+
+Original code:
+      for (log2=0; value>0; log2=log2+1)
+
+Erroneous code:
+      for(log2=0; value>1; log2=log2+1)
+
+Error description:
+Modified loop upper bound
+
+==================================================
+
+Design: posit_decoder
+Error line: 72
+
+Original code:
+      for (log2=0; value>0; log2=log2+1)
+
+Erroneous code:
+      for(log2=0; value>1; log2=log2+1)
+
+Error description:
+Modified loop upper bound
+
+==================================================
+

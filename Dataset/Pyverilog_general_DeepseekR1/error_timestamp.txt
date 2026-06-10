@@ -1,0 +1,6 @@
+
+======================================================================
+TEST FAILED AT 181.0 ns
+FAILING SIGNAL : out_m
+ERROR DETAILS  : Output did not change when sign bit changed
+======================================================================

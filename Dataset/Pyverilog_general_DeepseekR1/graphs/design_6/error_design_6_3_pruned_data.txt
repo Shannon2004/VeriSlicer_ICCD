@@ -1,0 +1,84 @@
+# Source File: ../Error_designs/error_design_6_3/design_6.v
+# Project Dir: error_design_6_3
+# Total Vertices: 18
+# Total Edges: 58
+
+=== VERTICES ===
+design_6.CMD_loopjump
+design_6.CMD_setloop
+design_6.LC
+design_6.PC
+design_6.STATE_EX
+design_6.STATE_HALT
+design_6.STATE_ID
+design_6.STATE_IDLE
+design_6.STATE_IF
+design_6.STATE_MEM
+design_6.STATE_WB
+design_6.current_state
+design_6.im_reg
+design_6.instruction_address
+design_6.instruction_in
+design_6.next_PC
+design_6.opcode
+design_6.rst
+
+=== EDGES (Driver -> Target) ===
+design_6.STATE_IDLE -> design_6.CMD_loopjump
+design_6.opcode -> design_6.CMD_loopjump
+design_6.current_state -> design_6.CMD_loopjump
+design_6.rst -> design_6.CMD_loopjump
+design_6.STATE_ID -> design_6.CMD_loopjump
+design_6.STATE_IF -> design_6.CMD_loopjump
+design_6.PC -> design_6.instruction_address
+design_6.instruction_in -> design_6.opcode
+design_6.STATE_WB -> design_6.PC
+design_6.STATE_IDLE -> design_6.PC
+design_6.opcode -> design_6.PC
+design_6.current_state -> design_6.PC
+design_6.STATE_EX -> design_6.PC
+design_6.rst -> design_6.PC
+design_6.STATE_MEM -> design_6.PC
+design_6.next_PC -> design_6.PC
+design_6.STATE_ID -> design_6.PC
+design_6.STATE_IF -> design_6.PC
+design_6.STATE_IDLE -> design_6.im_reg
+design_6.instruction_in -> design_6.im_reg
+design_6.current_state -> design_6.im_reg
+design_6.rst -> design_6.im_reg
+design_6.STATE_ID -> design_6.im_reg
+design_6.STATE_IF -> design_6.im_reg
+design_6.STATE_WB -> design_6.current_state
+design_6.STATE_HALT -> design_6.current_state
+design_6.STATE_IDLE -> design_6.current_state
+design_6.opcode -> design_6.current_state
+design_6.current_state -> design_6.current_state
+design_6.STATE_EX -> design_6.current_state
+design_6.rst -> design_6.current_state
+design_6.STATE_MEM -> design_6.current_state
+design_6.STATE_ID -> design_6.current_state
+design_6.STATE_IF -> design_6.current_state
+design_6.STATE_IDLE -> design_6.CMD_setloop
+design_6.opcode -> design_6.CMD_setloop
+design_6.current_state -> design_6.CMD_setloop
+design_6.rst -> design_6.CMD_setloop
+design_6.STATE_ID -> design_6.CMD_setloop
+design_6.STATE_IF -> design_6.CMD_setloop
+design_6.CMD_loopjump -> design_6.next_PC
+design_6.STATE_IDLE -> design_6.next_PC
+design_6.im_reg -> design_6.next_PC
+design_6.current_state -> design_6.next_PC
+design_6.STATE_EX -> design_6.next_PC
+design_6.rst -> design_6.next_PC
+design_6.next_PC -> design_6.next_PC
+design_6.LC -> design_6.next_PC
+design_6.STATE_IF -> design_6.next_PC
+design_6.CMD_loopjump -> design_6.LC
+design_6.STATE_IDLE -> design_6.LC
+design_6.im_reg -> design_6.LC
+design_6.current_state -> design_6.LC
+design_6.CMD_setloop -> design_6.LC
+design_6.STATE_EX -> design_6.LC
+design_6.rst -> design_6.LC
+design_6.LC -> design_6.LC
+design_6.STATE_IF -> design_6.LC

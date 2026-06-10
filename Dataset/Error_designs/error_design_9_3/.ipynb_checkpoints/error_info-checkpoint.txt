@@ -1,0 +1,16 @@
+
+
+Design: ex_stage
+Error line: 147
+
+Original code:
+                    assign zero = (result == 32'b0);
+
+Erroneous code:
+                    assign zero = (result == 32'b1);
+
+Error description:
+Interchanged concatenation order
+
+==================================================
+

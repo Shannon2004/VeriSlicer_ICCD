@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1775399419" />
+    <testcase name="test_simd_processor" classname="test_design_6" file="/home/shannon/Downloads/design_6/testbenches/test_design_6.py" lineno="121" time="0.5329761505126953" sim_time_ns="50060.0" ratio_time="93925.4035135435">
+      <failure error_type="AssertionError" error_msg="Check failed for 'done'.&#10;assert False" />
+    </testcase>
+  </testsuite>
+</testsuites>

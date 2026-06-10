@@ -1,0 +1,15 @@
+Design: design_10
+Error line: 57
+
+Original code:
+            pc <= pc_next;
+
+Erroneous code:
+            pc = pc_next;
+
+Error description:
+Non-blocking <= changed to blocking =
+
+==================================================
+
+

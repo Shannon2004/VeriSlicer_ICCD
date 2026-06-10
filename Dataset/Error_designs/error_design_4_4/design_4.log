@@ -1,0 +1,11 @@
+[0.0 ns] clk=1 | rst=1 | req3=0 | req2=0 | req1=0 | req0=0 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[10.0 ns] clk=0 | rst=1 | req3=0 | req2=0 | req1=0 | req0=0 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[20.0 ns] clk=1 | rst=1 | req3=0 | req2=0 | req1=0 | req0=0 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[30.0 ns] clk=0 | rst=1 | req3=0 | req2=0 | req1=0 | req0=0 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[40.0 ns] clk=1 | rst=1 | req3=0 | req2=0 | req1=0 | req0=0 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[50.0 ns] clk=0 | rst=0 | req3=0 | req2=0 | req1=0 | req0=0 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[60.0 ns] clk=1 | rst=0 | req3=0 | req2=0 | req1=0 | req0=0 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[70.0 ns] clk=0 | rst=0 | req3=0 | req2=0 | req1=0 | req0=0 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[80.0 ns] clk=1 | rst=0 | req3=0 | req2=0 | req1=0 | req0=0 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[90.0 ns] clk=0 | rst=0 | req3=1 | req2=0 | req1=1 | req0=1 | gnt3=0 | gnt2=0 | gnt1=0 | gnt0=0
+[100.0 ns] clk=1 | rst=0 | req3=1 | req2=0 | req1=1 | req0=1 | gnt3=1 | gnt2=0 | gnt1=1 | gnt0=0

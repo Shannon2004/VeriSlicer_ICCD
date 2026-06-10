@@ -1,0 +1,14 @@
+Design: posit_encoder
+Error line: 105
+
+Original code:
+output [N:0] c;
+
+Erroneous code:
+output [N-1:0] c;
+
+Error description:
+Changed bitwidth
+
+==================================================
+

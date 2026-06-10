@@ -1,0 +1,142 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_9.v ---
+
+   1: module design_9 (
+   2:     input clk,  // REQUIRED by testbench
+   3:     input reset,
+   4:     input  [31:0] ex_rd1,
+   5:     input  [31:0] ex_rd2,
+   6:     input  [31:0] ex_imm,
+   7:     input  [6:0]  ex_opcode,
+   8:     input  [2:0]  ex_funct3,
+   9:     input  [6:0]  ex_funct7,
+...
+  11:     output [31:0] alu_result_out,
+  12:     output        zero_out
+  13: );
+...
+  16: wire [31:0] alu_result;
+...
+  22:     ex_stage uut (
+  23:         .ex_rd1(ex_rd1),
+  24:         .ex_rd2(ex_rd2),
+  25:         .ex_imm(ex_imm),
+  26:         .ex_opcode(ex_opcode),
+  27:         .ex_funct3(ex_funct3),
+  28:         .ex_funct7(ex_funct7),
+  29:         .alu_result(alu_result),
+  30:         .zero(zero)
+  31:     );
+...
+  33: always @(posedge clk or posedge reset) begin
+  34:     if (reset) begin
+  35:         alu_result_r <= 32'b0;
+  36:         zero_r <= 1'b0;
+  37:     end else begin
+  38:         alu_result_r <= alu_result;
+  39:         zero_r <= zero;
+  40:     end
+  41: end
+...
+  43: assign alu_result_out = alu_result_r;
+  44: assign zero_out = zero_r;
+...
+  46: endmodule
+...
+  48: module ex_stage(
+  49:     input  [31:0] ex_rd1,
+  50:     input  [31:0] ex_rd2,
+  51:     input  [31:0] ex_imm,
+  52:     input  [6:0]  ex_opcode,
+  53:     input  [2:0]  ex_funct3,
+  54:     input  [6:0]  ex_funct7,
+...
+  56:     output [31:0] alu_result,
+  57:     output        zero
+...
+  59:     );
+  60:       wire [31:0] alu_b;
+  61:     wire [3:0]  alu_ctrl;
+...
+  64:     assign alu_b = (ex_opcode == 7'b0010011) ? ex_imm : ex_rd2;
+...
+  67:     alu_ctrl alu_ctrl_inst (
+  68:         .opcode   (ex_opcode),
+  69:         .funct3   (ex_funct3),
+  70:         .funct7   (ex_funct7),
+  71:         .alu_ctrl (alu_ctrl)
+  72:     );
+...
+  75:     alu alu_inst (
+  76:         .a        (ex_rd1),
+  77:         .b        (alu_b),
+  78:         .alu_ctrl (alu_ctrl),
+  79:         .result   (alu_result),
+  80:         .zero     (zero)
+  81:     );
+  82: endmodule
+...
+  84: module alu_ctrl(
+  85:     input  [6:0] opcode,
+  86:     input  [2:0] funct3,
+  87:     input  [6:0] funct7,
+  88:     output reg [3:0] alu_ctrl
+...
+  90:     );
+  91:      always @(*) begin
+  92:         case (opcode)
+...
+  95:             7'b0110011: begin
+  96:                 case ({funct7, funct3})
+  97:                     10'b0000000_000: alu_ctrl = 4'b0000; // ADD
+  98:                     10'b0100000_000: alu_ctrl = 4'b0001; // SUB
+  99:                     10'b0000000_111: alu_ctrl = 4'b0010; // AND
+ 100:                     10'b0000000_110: alu_ctrl = 4'b0011; // OR
+ 101:                     10'b0000000_100: alu_ctrl = 4'b0100; // XOR
+ 102:                     10'b0000000_010: alu_ctrl = 4'b0101; // SLT
+ 103:                     default:          alu_ctrl = 4'b0000;
+ 104:                 endcase
+ 105:             end
+...
+ 108:             7'b0010011: begin
+ 109:                 case (funct3)
+ 110:                     3'b000: alu_ctrl = 4'b0000; // ADDI
+ 111:                     3'b111: alu_ctrl = 4'b0010; // ANDI
+ 112:                     3'b110: alu_ctrl <= 4'b0011; // ORI
+ 113:                     3'b100: alu_ctrl = 4'b0100; // XORI
+ 114:                     default: alu_ctrl = 4'b0000;
+ 115:                 endcase
+ 116:             end
+...
+ 118:             default:
+ 119:                 alu_ctrl = 4'b0000;
+ 120:         endcase
+ 121:     end
+...
+ 123: endmodule
+...
+ 125: module alu (
+ 126:     input  [31:0] a,
+ 127:     input  [31:0] b,
+ 128:     input  [3:0]  alu_ctrl,
+ 129:     output reg [31:0] result,
+ 130:     output        zero
+ 131: );
+...
+ 133:     always @(*) begin
+ 134:         case (alu_ctrl)
+ 135:             4'b0000: result = a + b;                     // ADD
+ 136:             4'b0001: result = a - b;                     // SUB
+ 137:             4'b0010: result = a * b;                     // AND
+ 138:             4'b0011: result = a | b;                     // OR
+ 139:             4'b0100: result = a ^ b;                     // XOR
+ 140:             4'b0101: result = ($signed(a) < $signed(b)); // SLT
+ 141:             4'b0110: result = a << b[4:0];               // SLL
+ 142:             4'b0111: result = a >> b[4:0];               // SRL
+ 143:             default: result = 32'b0;
+ 144:         endcase
+ 145:     end
+...
+ 147:     assign zero = (result == 32'b0);
+...
+ 149: endmodule

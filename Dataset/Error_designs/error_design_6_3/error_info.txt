@@ -1,0 +1,11 @@
+Design: SIMD Processor
+Error line: 577
+
+Original code:
+next_PC <= next_PC+1;
+
+Erroneous code:
+next_PC <= 10'd500;
+
+Error description:
+Wrong PC calculation

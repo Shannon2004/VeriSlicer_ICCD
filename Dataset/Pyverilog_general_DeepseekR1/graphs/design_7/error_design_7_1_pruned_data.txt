@@ -1,0 +1,104 @@
+# Source File: ../Error_designs/error_design_7_1/design_7.v
+# Project Dir: error_design_7_1
+# Total Vertices: 39
+# Total Edges: 57
+
+=== VERTICES ===
+design_7.a
+design_7.a_reg
+design_7.b
+design_7.b_reg
+design_7.enable
+design_7.error
+design_7.in_a
+design_7.in_b
+design_7.read
+design_7.rst_n
+design_7.u_mac.error
+design_7.u_mac.in_a
+design_7.u_mac.in_b
+design_7.u_mac.mul.a
+design_7.u_mac.mul.b
+design_7.u_mac.mul.biased_sum_exponent
+design_7.u_mac.mul.c1
+design_7.u_mac.mul.c2
+design_7.u_mac.mul.error
+design_7.u_mac.mul.overflow
+design_7.u_mac.mul.sum_exponent
+design_7.u_mac.mul.u2.a
+design_7.u_mac.mul.u2.b
+design_7.u_mac.mul.u2.c
+design_7.u_mac.mul.u2.ci
+design_7.u_mac.mul.u2.co
+design_7.u_mac.mul.u2.g
+design_7.u_mac.mul.u2.p
+design_7.u_mac.mul.u2.s
+design_7.u_mac.mul.u3.a
+design_7.u_mac.mul.u3.b
+design_7.u_mac.mul.u3.c
+design_7.u_mac.mul.u3.ci
+design_7.u_mac.mul.u3.co
+design_7.u_mac.mul.u3.g
+design_7.u_mac.mul.u3.p
+design_7.u_mac.mul.u3.s
+design_7.u_mac.mul.underflow
+design_7.valid
+
+=== EDGES (Driver -> Target) ===
+design_7.u_mac.mul.u2.c -> design_7.u_mac.mul.u2.co
+design_7.u_mac.mul.sum_exponent -> design_7.u_mac.mul.u3.a
+design_7.u_mac.mul.a -> design_7.u_mac.mul.u2.a
+design_7.read -> design_7.a_reg
+design_7.valid -> design_7.a_reg
+design_7.rst_n -> design_7.a_reg
+design_7.enable -> design_7.a_reg
+design_7.in_a -> design_7.a_reg
+design_7.u_mac.mul.biased_sum_exponent -> design_7.u_mac.mul.underflow
+design_7.u_mac.mul.c1 -> design_7.u_mac.mul.underflow
+design_7.u_mac.mul.c2 -> design_7.u_mac.mul.underflow
+design_7.u_mac.mul.underflow -> design_7.u_mac.mul.error
+design_7.u_mac.mul.overflow -> design_7.u_mac.mul.error
+design_7.u_mac.in_a -> design_7.u_mac.mul.a
+design_7.u_mac.mul.u3.c -> design_7.u_mac.mul.u3.co
+design_7.u_mac.mul.u2.co -> design_7.u_mac.mul.c1
+design_7.u_mac.mul.u2.s -> design_7.u_mac.mul.sum_exponent
+design_7.u_mac.mul.error -> design_7.u_mac.error
+design_7.u_mac.mul.u3.a -> design_7.u_mac.mul.u3.p
+design_7.u_mac.mul.u3.b -> design_7.u_mac.mul.u3.p
+design_7.u_mac.mul.u2.b -> design_7.u_mac.mul.u2.g
+design_7.u_mac.mul.u2.a -> design_7.u_mac.mul.u2.g
+design_7.a_reg -> design_7.a
+design_7.u_mac.mul.u3.s -> design_7.u_mac.mul.biased_sum_exponent
+design_7.u_mac.mul.u3.c -> design_7.u_mac.mul.u3.c
+design_7.u_mac.mul.u3.ci -> design_7.u_mac.mul.u3.c
+design_7.u_mac.mul.u3.g -> design_7.u_mac.mul.u3.c
+design_7.u_mac.mul.u3.p -> design_7.u_mac.mul.u3.c
+design_7.u_mac.mul.u3.co -> design_7.u_mac.mul.c2
+design_7.b_reg -> design_7.b
+design_7.read -> design_7.b_reg
+design_7.valid -> design_7.b_reg
+design_7.rst_n -> design_7.b_reg
+design_7.in_b -> design_7.b_reg
+design_7.enable -> design_7.b_reg
+design_7.u_mac.mul.u3.a -> design_7.u_mac.mul.u3.g
+design_7.u_mac.mul.u3.b -> design_7.u_mac.mul.u3.g
+design_7.u_mac.mul.u2.b -> design_7.u_mac.mul.u2.p
+design_7.u_mac.mul.u2.a -> design_7.u_mac.mul.u2.p
+design_7.u_mac.mul.biased_sum_exponent -> design_7.u_mac.mul.overflow
+design_7.u_mac.mul.c1 -> design_7.u_mac.mul.overflow
+design_7.u_mac.mul.c2 -> design_7.u_mac.mul.overflow
+design_7.u_mac.mul.u2.c -> design_7.u_mac.mul.u2.s
+design_7.u_mac.mul.u2.b -> design_7.u_mac.mul.u2.s
+design_7.u_mac.mul.u2.a -> design_7.u_mac.mul.u2.s
+design_7.u_mac.mul.u2.g -> design_7.u_mac.mul.u2.c
+design_7.u_mac.mul.u2.p -> design_7.u_mac.mul.u2.c
+design_7.u_mac.mul.u2.ci -> design_7.u_mac.mul.u2.c
+design_7.u_mac.mul.u2.c -> design_7.u_mac.mul.u2.c
+design_7.u_mac.in_b -> design_7.u_mac.mul.b
+design_7.u_mac.error -> design_7.error
+design_7.u_mac.mul.u3.a -> design_7.u_mac.mul.u3.s
+design_7.u_mac.mul.u3.b -> design_7.u_mac.mul.u3.s
+design_7.u_mac.mul.u3.c -> design_7.u_mac.mul.u3.s
+design_7.b -> design_7.u_mac.in_b
+design_7.a -> design_7.u_mac.in_a
+design_7.u_mac.mul.b -> design_7.u_mac.mul.u2.b

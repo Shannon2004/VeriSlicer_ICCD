@@ -1,0 +1,48 @@
+MODULE SPECIFICATION: posit_mult (Posit Multiplication Unit)
+
+1. ARCHITECTURAL INTENT
+Type: Posit Arithmetic Unit — Multiplication (Non-accumulative)
+Numerical Format: Posit representation with configurable size:
+  - N = total bit width (default: 12)
+  - es = exponent size (default: 2)
+  - Bs = log₂(N), used for regime encoding
+Operation: out = in1 × in2
+Execution Model: Pure combinational datapath; triggered via start_m; produces result in one logical cycle
+Key Features: Full Posit decode → compute → encode; handles sign, regime, exponent, mantissa; rounding (RNE); zero and infinity detection
+
+2. PORT INTERFACE
+Global: clk : System clock (used for synchronization/debug)
+Control Inputs: start_m : starts multiplication
+Data Inputs: in1_m_kernel [N-1:0] : Posit operand A; in2_m_kernel [N-1:0] : Posit operand B
+Outputs: out_m [N-1:0] : Result; inf_m : indicates infinity; zero_m : indicates zero; done_m : operation completion signal (mirrors start_m)
+
+3. CRITICAL INTERNAL STATE (Registers & Wires)
+Input Mapping: in1_m, in2_m : assigned from kernel inputs
+Sign Handling: s1_m, s2_m : sign bits; mult_s_m = XOR of signs
+Special Case Detection: zero_tmp1_m, zero_tmp2_m : non-zero checks; inf1_m, inf2_m : infinity detection; zero1_m, zero2_m : zero detection
+Derived Outputs: inf_m = inf1_m | inf2_m; zero_m = zero1_m & zero2_m
+Intermediate Components: mant1_m, mant2_m : mantissas; e1_m, e2_m : exponents; regime1_m, regime2_m : regimes
+Internal Expanded Mantissa: m1_m, m2_m : include hidden bit
+
+4. INTERNAL MODULES
+4.1 data_extract_v1 (Posit Decoder): Extracts regime, exponent, mantissa, and rc; uses LOD_N to compute regime length; aligns exponent/mantissa
+4.2 Mantissa Multiplication: mult_m = m1 × m2; detects overflow (mult_m_ovf_m); normalizes mantissa (shift if needed)
+4.3 Exponent + Regime Computation: converts regime to signed r1_m, r2_m; sums with exponents and overflow using add_N_Cin
+4.4 reg_exp_op (Exponent-Regime Split): splits combined exponent into regime (r_o_m) and exponent (e_o_m); handles sign and two’s complement conversion
+4.5 Packing & Alignment: combines regime, exponent, mantissa, and GRS bits; uses DSR_right_N_S for shifting
+4.6 Rounding (RNE): computes ulp = G*(R+S) + L*G*~(R+S); adds ulp using add_N; final rounding applied
+4.7 Final Output Formation: applies sign; selects between infinity, zero, or normalized posit for out_m
+4.8 Supporting Modules: Arithmetic: add_N, sub_N, add_N_Cin, add_sub_N, add_1; Bit Manipulation: DSR_left_N_S, DSR_right_N_S; Detection: LOD, LOD_N; Conversion: conv_2c
+
+5. BEHAVIORAL CONSTRAINTS & DEBUGGING CONTEXT
+Control Flow: start_m = 1 initiates computation; done_m mirrors start_m; no handshake protocol
+Special Case Handling: Zero → output zero; Infinity (NaR) → propagated to output
+Normalization Behavior: Mantissa normalized after multiplication; regime adjusted
+Rounding: Round-to-Nearest-Even (RNE) using Guard, Round, Sticky bits
+Data Hazards: Purely combinational; stable inputs required
+Timing Considerations: Critical path includes mantissa multiplication, exponent addition, regime encoding, rounding
+
+6. DESIGN LIMITATIONS & EXTENSIBILITY
+Limitations: No pipeline support; fixed N=12, es=2; simplified special case handling; resource intensive (large barrel shifters, wide multipliers)
+Missing Features: No fused operations (MAC); no configurable rounding modes; posit-specific only; no subnormal/gradual underflow
+Future Enhancements: Add pipeline stages; extend to Posit MAC; parameterize N and es; add valid/ready handshake; support exception flags (overflow/underflow); optimize barrel shifters and multiplier hierarchy

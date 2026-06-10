@@ -1,0 +1,117 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_8.v ---
+
+   1: module design_8(
+   2:     input         clk,
+   3:     input         reset,
+...
+   5:     input  [31:0] if_pc,
+   6:     input  [31:0] if_instr,
+...
+   8:     input         wb_reg_write,
+   9:     input  [4:0]  wb_rd,
+  10:     input  [31:0] wb_wd,
+...
+  12:     output [31:0] id_pc,
+  13:     output [31:0] id_rd1,
+  14:     output [31:0] id_rd2,
+  15:     output [31:0] id_imm,
+  16:     output [4:0]  id_rs1,
+  17:     output [4:0]  id_rs2,
+  18:     output [4:0]  id_rd,
+  19:     output [6:0]  id_opcode,
+  20:     output [2:0]  id_funct3,
+  21:     output [6:0]  id_funct7
+  22: );
+...
+  27:     if_id if_id_inst (
+  28:         .clk      (clk),
+  29:         .reset    (reset),
+  30:         .pc_in    (if_pc),
+  31:         .instr_in (if_instr),
+  32:         .pc_out   (id_pc),
+  33:         .instr_out(instr)
+  34:     );
+...
+  37:     instr_decoder decoder (
+  38:         .instr  (instr),
+  39:         .opcode (id_opcode),
+  40:         .rd     (id_rd),
+  41:         .funct3 (id_funct3),
+  42:         .rs1    (id_rs1),
+  43:         .rs2    (id_rs2),
+  44:         .funct7 (id_funct7)
+  45:     );
+...
+  48:     regfile regfile_inst (
+  49:         .clk       (clk),
+  50:         .reset     (reset),   // ✅ FIX
+  51:         .reg_write (wb_reg_write),
+  52:         .rs1       (id_rs1),
+  53:         .rs2       (id_rs2),
+  54:         .rd        (wb_rd),
+  55:         .wd        (wb_wd),
+  56:         .rd1       (id_rd1),
+  57:         .rd2       (id_rd2)
+  58:     );
+...
+  61:     imm_gen imm_gen_inst (
+  62:         .instr (instr),
+  63:         .imm   (id_imm)
+  64:     );
+...
+  66: endmodule
+...
+  68: module if_id(
+  69:     input         clk,
+  70:     input         reset,
+  71:     input  [31:0] pc_in,
+  72:     input  [31:0] instr_in,
+  73:     output reg [31:0] pc_out,
+  74:     output reg [31:0] instr_out
+  75: );
+...
+  77:     always @(posedge clk) begin
+  78:         if (!reset) begin
+  79:             pc_out    <= 32'b0;
+  80:             instr_out <= 32'b0;
+  81:         end else begin
+  82:             pc_out    <= pc_in;
+  83:             instr_out <= instr_in;
+  84:         end
+  85:     end
+...
+  87: endmodule
+...
+  89: module instr_decoder(
+  90:     input  [31:0] instr,
+  91:     output [6:0]  opcode,
+  92:     output [4:0]  rd,
+  93:     output [2:0]  funct3,
+  94:     output [4:0]  rs1,
+  95:     output [4:0]  rs2,
+  96:     output [6:0]  funct7
+  97: );
+...
+ 106: endmodule
+...
+ 109: module regfile (
+ 110:     input         clk,
+ 111:     input         reset,          // ✅ ADDED
+ 112:     input         reg_write,
+ 113:     input  [4:0]  rs1,
+ 114:     input  [4:0]  rs2,
+ 115:     input  [4:0]  rd,
+ 116:     input  [31:0] wd,
+ 117:     output [31:0] rd1,
+ 118:     output [31:0] rd2
+ 119: );
+...
+ 138: endmodule
+...
+ 141: module imm_gen(
+ 142:     input  [31:0] instr,
+ 143:     output reg [31:0] imm
+ 144: );
+...
+ 189: endmodule

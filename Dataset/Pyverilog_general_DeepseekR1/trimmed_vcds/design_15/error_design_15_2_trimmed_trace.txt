@@ -1,0 +1,107 @@
+--- TRACE HISTORY (4 STATE CHANGES BEFORE CRASH) ---
+Hardware Type: Combinational
+
+Event -4 (Time: 1000 ns)
+  design_15.Bs = 100
+  design_15.DSR_left_out = 0
+  design_15.G_m = 0
+  design_15.L_m = 0
+  design_15.N = 10000
+  design_15.R_m = 0
+  design_15.St_m = 0
+  design_15.done_m = 1
+  design_15.e_o_m = 0
+  design_15.es = 10
+  design_15.inf_final = 1
+  design_15.le_o = 0
+  design_15.ls = 0
+  design_15.out_m = 1000000000000000
+  design_15.r_o_m = 0
+  design_15.rnd_ulp_m = 0
+  design_15.start0_m = 1
+  design_15.tmp1_oN_m = 0
+  design_15.tmp1_o_m = 111111111111111100000000000000000000000000000000000
+  design_15.tmp1_o_rnd_m = 0
+  design_15.tmp1_o_rnd_ulp_m = 0
+  design_15.tmp_o_m = 11111111111111110000000000000000000
+  design_15.ulp_m = 0
+  design_15.zero_final = 0
+----------------------------------------
+Event -3 (Time: 2000 ns)
+  design_15.Bs = 100
+  design_15.DSR_left_out = 111111111111111111111
+  design_15.G_m = 1
+  design_15.L_m = 1
+  design_15.N = 10000
+  design_15.R_m = 1
+  design_15.St_m = 1
+  design_15.done_m = 1
+  design_15.e_o_m = 10
+  design_15.es = 10
+  design_15.inf_final = 0
+  design_15.le_o = 101
+  design_15.ls = 0
+  design_15.out_m = 0
+  design_15.r_o_m = 10
+  design_15.rnd_ulp_m = 1
+  design_15.start0_m = 1
+  design_15.tmp1_oN_m = 100000001000000
+  design_15.tmp1_o_m = x1111111111111101000000001111111110000000000000000
+  design_15.tmp1_o_rnd_m = 100000001000000
+  design_15.tmp1_o_rnd_ulp_m = 100000001000000
+  design_15.tmp_o_m = 11111111111111110100000000111111111
+  design_15.ulp_m = 1
+  design_15.zero_final = 0
+----------------------------------------
+Event -2 (Time: 3000 ns)
+  design_15.Bs = 100
+  design_15.DSR_left_out = 111111111111111111111
+  design_15.G_m = 1
+  design_15.L_m = 1
+  design_15.N = 10000
+  design_15.R_m = 1
+  design_15.St_m = 1
+  design_15.done_m = 1
+  design_15.e_o_m = 10
+  design_15.es = 10
+  design_15.inf_final = 0
+  design_15.le_o = 101
+  design_15.ls = 1
+  design_15.out_m = 0
+  design_15.r_o_m = 10
+  design_15.rnd_ulp_m = 1
+  design_15.start0_m = 1
+  design_15.tmp1_oN_m = 1011111111000000
+  design_15.tmp1_o_m = x1111111111111101000000001111111110000000000000000
+  design_15.tmp1_o_rnd_m = 100000001000000
+  design_15.tmp1_o_rnd_ulp_m = 100000001000000
+  design_15.tmp_o_m = 11111111111111110100000000111111111
+  design_15.ulp_m = 1
+  design_15.zero_final = 0
+----------------------------------------
+Event -1 (Time: 4000 ns)
+  design_15.Bs = 100
+  design_15.DSR_left_out = 111111111111111111111
+  design_15.G_m = 1
+  design_15.L_m = 1
+  design_15.N = 10000
+  design_15.R_m = 1
+  design_15.St_m = 1
+  design_15.done_m = 1
+  design_15.e_o_m = 10
+  design_15.es = 10
+  design_15.inf_final = 0
+  design_15.le_o = 101
+  design_15.ls = 1
+  design_15.out_m = 0
+  design_15.r_o_m = 10
+  design_15.rnd_ulp_m = 1
+  design_15.start0_m = 1
+  design_15.tmp1_oN_m = 1011111111000000
+  design_15.tmp1_o_m = x1111111111111101000000001111111110000000000000000
+  design_15.tmp1_o_rnd_m = 100000001000000
+  design_15.tmp1_o_rnd_ulp_m = 100000001000000
+  design_15.tmp_o_m = 11111111111111110100000000111111111
+  design_15.ulp_m = 1
+  design_15.zero_final = 0
+----------------------------------------

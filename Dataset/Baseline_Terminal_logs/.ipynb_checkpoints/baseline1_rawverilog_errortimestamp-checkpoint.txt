@@ -1,0 +1,519 @@
+============================================================
+🚀 STARTING BASELINE 1 (VANILLA) EVALUATION PIPELINE
+Found 42 error directories to process.
+============================================================
+
+[*] Cleared previous results file: gemmini_results_baseline1/master_results.jsonl
+--- Processing error_design_1_1 (design_1) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_1_1...
+[Baseline 1] Ground Truth    : Line 23
+[Baseline 1] Top-1 Predicted : Line 79
+[Baseline 1] Top-5 List     : [79, 83, 23, 50, 51]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 3)
+--- error_design_1_1 COMPLETE ---
+
+--- Processing error_design_1_2 (design_1) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_1_2...
+[Baseline 1] Ground Truth    : Line 80
+[Baseline 1] Top-1 Predicted : Line 79
+[Baseline 1] Top-5 List     : [79, 83, 80, 84, 23]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 3)
+--- error_design_1_2 COMPLETE ---
+
+--- Processing error_design_1_3 (design_1) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_1_3...
+[Baseline 1] Ground Truth    : Line 90
+[Baseline 1] Top-1 Predicted : Line 90
+[Baseline 1] Top-5 List     : [90, 88, 89, 79, 80]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_1_3 COMPLETE ---
+
+--- Processing error_design_1_4 (design_1) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_1_4...
+[Baseline 1] Ground Truth    : Line 51
+[Baseline 1] Top-1 Predicted : Line 51
+[Baseline 1] Top-5 List     : [51, 79, 80, 83, 84]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_1_4 COMPLETE ---
+
+--- Processing error_design_2_1 (design_2) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_2_1...
+[Baseline 1] Ground Truth    : Line 105
+[Baseline 1] Top-1 Predicted : Line 146
+[Baseline 1] Top-5 List     : [146, 117, 97, 98, 139]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The logic failed at the failing timestamp because the condition for setting r_State to 2'h1 in the case statement for 2'h1 is incorrect. It should only check if w_Same_Row_And_Bank is true when i_Write_Request is high and r_Read_Select is low, but it currently checks if (r_Read_Select ? i_Read_Request : i_Write_Request) & w_Same_Row_And_Bank is true.
+--- error_design_2_1 COMPLETE ---
+
+--- Processing error_design_2_2 (design_2) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_2_2...
+[Baseline 1] Ground Truth    : Line 173
+[Baseline 1] Top-1 Predicted : Line 169
+[Baseline 1] Top-5 List     : [169, 173, 170, 172, 168]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_2_2 COMPLETE ---
+
+--- Processing error_design_2_3 (design_2) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_2_3...
+[Baseline 1] Ground Truth    : Line 127
+[Baseline 1] Top-1 Predicted : Line 117
+[Baseline 1] Top-5 List     : [117, 146, 147, 148, 149]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The logic failed at the failing timestamp because the o_Write_Grant signal is not being held high when a write request is still active and the same row and bank are being accessed. This is due to an incorrect condition in the assign statement for o_Write_Grant.
+--- error_design_2_3 COMPLETE ---
+
+--- Processing error_design_2_4 (design_2) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_2_4...
+[Baseline 1] Ground Truth    : Line 97
+[Baseline 1] Top-1 Predicted : Line 97
+[Baseline 1] Top-5 List     : [97, 116, 117, 129, 140]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_2_4 COMPLETE ---
+
+--- Processing error_design_3_1 (design_3) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_3_1...
+[Baseline 1] Ground Truth    : Line 297
+[Baseline 1] Top-1 Predicted : Line 114
+[Baseline 1] Top-5 List     : [114, 407, 406, 408, 409]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The bug is caused by incorrect implementation of the SHA-1 algorithm in the w_mem_update_logic block. Specifically, the line where w_new is calculated is incorrect.
+--- error_design_3_1 COMPLETE ---
+
+--- Processing error_design_3_2 (design_3) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_3_2...
+[Baseline 1] Ground Truth    : Line 334
+[Baseline 1] Top-1 Predicted : Line 114
+[Baseline 1] Top-5 List     : [114, 406, 407, 408, 409]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The bug is caused by an incorrect implementation of the SHA-1 algorithm in the w_mem_update_logic block. Specifically, the calculation of w_new and t is incorrect.
+--- error_design_3_2 COMPLETE ---
+
+--- Processing error_design_3_3 (design_3) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_3_3...
+[Baseline 1] Ground Truth    : Line 487
+[Baseline 1] Top-1 Predicted : Line 114
+[Baseline 1] Top-5 List     : [114, 137, 406, 407, 408]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The bug is in the calculation of w_new and t. The rotation operation on a_reg is incorrect.
+--- error_design_3_3 COMPLETE ---
+
+--- Processing error_design_3_4 (design_3) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_3_4...
+[Baseline 1] Ground Truth    : Line 619
+[Baseline 1] Top-1 Predicted : Line 114
+[Baseline 1] Top-5 List     : [114, 137, 406, 407, 408]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The bug is caused by an incorrect implementation of the SHA-1 algorithm in the w_mem_update_logic block. Specifically, the calculation of w_new is incorrect.
+--- error_design_3_4 COMPLETE ---
+
+--- Processing error_design_4_1 (design_4) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_4_1...
+[Baseline 1] Ground Truth    : Line 41
+[Baseline 1] Top-1 Predicted : Line 41
+[Baseline 1] Top-5 List     : [41, 140, 141, 42, 43]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_4_1 COMPLETE ---
+
+--- Processing error_design_4_2 (design_4) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_4_2...
+[Baseline 1] Ground Truth    : Line 452
+[Baseline 1] Top-1 Predicted : Line 137
+[Baseline 1] Top-5 List     : [137, 382, 453, 138, 383]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The logic failed at the failing timestamp because the exception flag was not set correctly when either one of the exponents is 255 in the Addition_Subtraction and Division modules.
+--- error_design_4_2 COMPLETE ---
+
+--- Processing error_design_4_3 (design_4) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_4_3...
+[Baseline 1] Ground Truth    : Line 478
+[Baseline 1] Top-1 Predicted : Line 479
+[Baseline 1] Top-5 List     : [479, 482, 483, 484, 485]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The bug is in the Multiplication module where the Underflow condition is incorrectly assigned. The current implementation sets Underflow to 1 when Overflow is true and zero is false, which is incorrect. It should be set based on the sum of exponents being less than 127.
+--- error_design_4_3 COMPLETE ---
+
+--- Processing error_design_4_4 (design_4) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_4_4...
+[Baseline 1] Ground Truth    : Line 482
+[Baseline 1] Top-1 Predicted : Line 479
+[Baseline 1] Top-5 List     : [479, 482, 483, 484, 485]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_4_4 COMPLETE ---
+
+--- Processing error_design_5_1 (design_5) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_5_1...
+[Baseline 1] Ground Truth    : Line 82
+[Baseline 1] Top-1 Predicted : Line 82
+[Baseline 1] Top-5 List     : [82, 87, 83, 84, 81]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_5_1 COMPLETE ---
+
+--- Processing error_design_5_2 (design_5) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_5_2...
+[Baseline 1] Ground Truth    : Line 87
+[Baseline 1] Top-1 Predicted : Line 87
+[Baseline 1] Top-5 List     : [87, 82, 83, 84, 85]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_5_2 COMPLETE ---
+
+--- Processing error_design_5_3 (design_5) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_5_3...
+[Baseline 1] Ground Truth    : Line 49
+[Baseline 1] Top-1 Predicted : Line 54
+[Baseline 1] Top-5 List     : [54, 55, 56, 57, 58]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The logic failed at the failing timestamp because the condition for asserting the 'done' signal is incorrect. The count should be compared to a value that represents the total number of blocks or operations required to complete the task, but in this case, it's set to 9 which might not be the correct value.
+--- error_design_5_3 COMPLETE ---
+
+--- Processing error_design_5_4 (design_5) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_5_4...
+[Baseline 1] Ground Truth    : Line 38
+[Baseline 1] Top-1 Predicted : Line 38
+[Baseline 1] Top-5 List     : [38, 87, 84, 83, 82]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_5_4 COMPLETE ---
+
+--- Processing error_design_6_1 (design_6) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_6_1...
+[Baseline 1] Ground Truth    : Line 162
+[Baseline 1] Top-1 Predicted : Line 161
+[Baseline 1] Top-5 List     : [161, 162, 138, 139, 140]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_6_1 COMPLETE ---
+
+--- Processing error_design_6_2 (design_6) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_6_2...
+[Baseline 1] Ground Truth    : Line 548
+[Baseline 1] Top-1 Predicted : Line 275
+[Baseline 1] Top-5 List     : [275, 234, 238, 239, 240]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The issue lies in the way the instruction is being decoded and executed. The current implementation does not correctly handle the case when the opcode is between 18 and 20 (inclusive), which corresponds to the CMD_mul_accumulation operation.
+--- error_design_6_2 COMPLETE ---
+
+--- Processing error_design_6_3 (design_6) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_6_3...
+[Baseline 1] Ground Truth    : Line 577
+[Baseline 1] Top-1 Predicted : Line 572
+[Baseline 1] Top-5 List     : [572, 577, 576, 575, 574]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_6_3 COMPLETE ---
+
+--- Processing error_design_6_4 (design_6) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_6_4...
+[Baseline 1] Ground Truth    : Line 527
+[Baseline 1] Top-1 Predicted : Line 275
+[Baseline 1] Top-5 List     : [275, 232, 234, 238, 239]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The issue lies in the fact that the current_instruction and current_opcode are not being updated correctly in the STATE_ID state. This causes the incorrect values to be used for CMD_addition, CMD_substruction, etc., which ultimately leads to the wrong result being stored in data_out.
+--- error_design_6_4 COMPLETE ---
+
+--- Processing error_design_8_1 (design_8) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_8_1...
+[Baseline 1] Ground Truth    : Line 100
+[Baseline 1] Top-1 Predicted : Line 101
+[Baseline 1] Top-5 List     : [101, 40, 100, 99, 102]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 3)
+--- error_design_8_1 COMPLETE ---
+
+--- Processing error_design_8_2 (design_8) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_8_2...
+[Baseline 1] Ground Truth    : Line 78
+[Baseline 1] Top-1 Predicted : Line 82
+[Baseline 1] Top-5 List     : [82, 81, 80, 79, 78]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 5)
+--- error_design_8_2 COMPLETE ---
+
+--- Processing error_design_8_3 (design_8) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_8_3...
+[Baseline 1] Ground Truth    : Line 133
+[Baseline 1] Top-1 Predicted : Line 133
+[Baseline 1] Top-5 List     : [133, 134, 130, 129, 127]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_8_3 COMPLETE ---
+
+--- Processing error_design_8_4 (design_8) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_8_4...
+[Baseline 1] Ground Truth    : Line 78
+[Baseline 1] Top-1 Predicted : Line 79
+[Baseline 1] Top-5 List     : [79, 82, 81, 80, 78]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 5)
+--- error_design_8_4 COMPLETE ---
+
+--- Processing error_design_9_1 (design_9) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_9_1...
+[Baseline 1] Ground Truth    : Line 135
+[Baseline 1] Top-1 Predicted : Line 135
+[Baseline 1] Top-5 List     : [135, 134, 136, 137, 138]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_9_1 COMPLETE ---
+
+--- Processing error_design_9_2 (design_9) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_9_2...
+[Baseline 1] Ground Truth    : Line 135
+[Baseline 1] Top-1 Predicted : Line 136
+[Baseline 1] Top-5 List     : [136, 135, 134, 133, 132]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_9_2 COMPLETE ---
+
+--- Processing error_design_9_3 (design_9) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_9_3...
+[Baseline 1] Ground Truth    : Line 147
+[Baseline 1] Top-1 Predicted : Line 147
+[Baseline 1] Top-5 List     : [147, 134, 135, 136, 148]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_9_3 COMPLETE ---
+
+--- Processing error_design_9_4 (design_9) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_9_4...
+[Baseline 1] Ground Truth    : Line 137
+[Baseline 1] Top-1 Predicted : Line 138
+[Baseline 1] Top-5 List     : [138, 137, 136, 135, 112]
+[Baseline 1] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_9_4 COMPLETE ---
+
+--- Processing error_design_10_1 (design_10) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_10_1...
+[Baseline 1] Ground Truth    : Line 57
+[Baseline 1] Top-1 Predicted : Line 57
+[Baseline 1] Top-5 List     : [57, 41, 67, 55, 54]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_10_1 COMPLETE ---
+
+--- Processing error_design_10_2 (design_10) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_10_2...
+[Baseline 1] Ground Truth    : Line 67
+[Baseline 1] Top-1 Predicted : Line 67
+[Baseline 1] Top-5 List     : [67, 41, 57, 55, 90]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_10_2 COMPLETE ---
+
+--- Processing error_design_10_3 (design_10) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_10_3...
+[Baseline 1] Ground Truth    : Line 55
+[Baseline 1] Top-1 Predicted : Line 55
+[Baseline 1] Top-5 List     : [55, 57, 54, 53, 56]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_10_3 COMPLETE ---
+
+--- Processing error_design_10_4 (design_10) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_10_4...
+[Baseline 1] Ground Truth    : Line 67
+[Baseline 1] Top-1 Predicted : Line 67
+[Baseline 1] Top-5 List     : [67, 41, 57, 55, 54]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_10_4 COMPLETE ---
+
+--- Processing error_design_11_1 (design_11) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_11_1...
+[Baseline 1] Ground Truth    : Line 225
+[Baseline 1] Top-1 Predicted : Line 225
+[Baseline 1] Top-5 List     : [225, 226, 223, 222, 221]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_11_1 COMPLETE ---
+
+--- Processing error_design_11_2 (design_11) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_11_2...
+[Baseline 1] Ground Truth    : Line 147
+[Baseline 1] Top-1 Predicted : Line 225
+[Baseline 1] Top-5 List     : [225, 226, 227, 228, 191]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The logic failed at the failing timestamp because the condition for setting SC_done to 1 was not met due to an incorrect comparison in the line where class_vector_pointer is checked against (chunk_size*number_class - 2).
+--- error_design_11_2 COMPLETE ---
+
+--- Processing error_design_11_3 (design_11) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_11_3...
+[Baseline 1] Ground Truth    : Line 191
+[Baseline 1] Top-1 Predicted : Line 99
+[Baseline 1] Top-5 List     : [99, 100, 116, 130, 147]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The logic failed at the failing timestamp because of an incorrect calculation in the level_index assignment, which is used to select 100 bits of level vectors from BRAM.
+--- error_design_11_3 COMPLETE ---
+
+--- Processing error_design_11_4 (design_11) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_11_4...
+[Baseline 1] Ground Truth    : Line 173
+[Baseline 1] Top-1 Predicted : Line 99
+[Baseline 1] Top-5 List     : [99, 100, 116, 130, 147]
+[Baseline 1] ❌ FAILED (not in top-5)
+[Baseline 1] Reason given: The logic failed at the failing timestamp because of an incorrect calculation in the level_index assignment, which is used to select 100 bits of level vectors from BRAM.
+--- error_design_11_4 COMPLETE ---
+
+--- Processing error_design_17_1 (design_17) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_17_1...
+[Baseline 1] Ground Truth    : Line 9
+[Baseline 1] Top-1 Predicted : Line 9
+[Baseline 1] Top-5 List     : [9, 2, 3, 4, 8]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_17_1 COMPLETE ---
+
+--- Processing error_design_17_2 (design_17) ---
+[*] Building Baseline 1 Prompt (Raw Code + Error Symptom)...
+[*] Sending to Gemini for Evaluation...
+
+[Baseline 1] Analyzing error_design_17_2...
+[Baseline 1] Ground Truth    : Line 9
+[Baseline 1] Top-1 Predicted : Line 9
+[Baseline 1] Top-5 List     : [9, 1, 5, 6, 8]
+[Baseline 1] ✅ TOP-1 SUCCESS
+--- error_design_17_2 COMPLETE ---
+
+============================================================
+✅ BASELINE 1 PIPELINE FULLY COMPLETE.
+Your ablation data is safely logged in: gemmini_results_baseline1/master_results.jsonl
+============================================================
+
+All designs processed! Calculating final metrics...
+
+══════════════════════════════════════════════════
+ 📊 FINAL VERISLICER ACCURACY REPORT
+══════════════════════════════════════════════════
+ Total Errors Evaluated : 42
+ Total Exact Matches    : 17
+ OVERALL TOP-1 ACCURACY : 40.48%
+--------------------------------------------------
+ Breakdown by Design:
+  * design_1   :  50.00%  (2/4)
+  * design_10  : 100.00%  (4/4)
+  * design_11  :  25.00%  (1/4)
+  * design_17  : 100.00%  (2/2)
+  * design_2   :  25.00%  (1/4)
+  * design_3   :   0.00%  (0/4)
+  * design_4   :  25.00%  (1/4)
+  * design_5   :  75.00%  (3/4)
+  * design_6   :   0.00%  (0/4)
+  * design_8   :  25.00%  (1/4)
+  * design_9   :  50.00%  (2/4)
+══════════════════════════════════════════════════
+
+
+=============================================
+        FAULT LOCALISATION ACCURACY
+=============================================
+  Total designs evaluated : 42
+  Top-1 correct           :  17  (40.5%)
+  Top-5 correct           :  28  (66.7%)
+=============================================
+

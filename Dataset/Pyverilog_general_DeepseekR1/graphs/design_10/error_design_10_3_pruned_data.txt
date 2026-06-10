@@ -1,0 +1,11 @@
+# Source File: ../Error_designs/error_design_10_3/design_10.v
+# Project Dir: error_design_10_3
+# Total Vertices: 2
+# Total Edges: 1
+
+=== VERTICES ===
+design_10.pc_inst.reset
+design_10.reset
+
+=== EDGES (Driver -> Target) ===
+design_10.reset -> design_10.pc_inst.reset

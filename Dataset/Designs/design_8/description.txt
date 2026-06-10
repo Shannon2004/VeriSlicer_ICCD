@@ -1,0 +1,158 @@
+MODULE SPECIFICATION: id_stage (Instruction Decode Stage)
+
+1. ARCHITECTURAL INTENT
+
+    Type: Instruction Decode (ID) Stage of a pipelined RISC-V processor.
+
+    Active Configuration: This design implements a standard decode stage with an IF/ID pipeline register, instruction field extraction, register file access, and immediate generation. It also includes a write-back feedback path for register updates.
+
+    Mechanism: The module receives the fetched instruction and PC from the IF stage, stores them in a pipeline register, decodes instruction fields, reads operands from the register file, and generates the appropriate immediate value based on instruction type.
+
+    Execution Model:
+        - One instruction is decoded per clock cycle.
+        - Register reads are combinational.
+        - Register writes occur synchronously from the WB stage.
+        - Immediate values are generated combinationally.
+
+
+2. PORT INTERFACE
+
+    Global:
+        clk   : System clock (rising-edge triggered).
+        reset : Active-high synchronous reset.
+
+    Inputs:
+        if_pc        [31:0] : Program Counter from IF stage.
+        if_instr     [31:0] : Instruction from IF stage.
+
+        wb_reg_write        : Write enable from Write-Back stage.
+        wb_rd        [4:0]  : Destination register index (WB stage).
+        wb_wd        [31:0] : Data to be written back into register file.
+
+    Outputs:
+        id_pc        [31:0] : Latched PC value.
+        id_rd1       [31:0] : Register file read data 1.
+        id_rd2       [31:0] : Register file read data 2.
+        id_imm       [31:0] : Generated immediate value.
+        id_rs1       [4:0]  : Source register 1 index.
+        id_rs2       [4:0]  : Source register 2 index.
+        id_rd        [4:0]  : Destination register index.
+        id_opcode    [6:0]  : Instruction opcode.
+        id_funct3    [2:0]  : Function field (funct3).
+        id_funct7    [6:0]  : Function field (funct7).
+
+
+3. CRITICAL INTERNAL STATE (Registers & Wires)
+
+    instr (Wire):
+        Internal instruction signal after IF/ID pipeline register.
+
+    pc_out, instr_out (Registers in IF/ID):
+        Pipeline registers holding PC and instruction between IF and ID stages.
+
+    regs (Register File Array):
+        A 32 x 32-bit register file storing general-purpose registers.
+
+    imm (Register in imm_gen):
+        Holds the generated immediate value.
+
+
+4. INTERNAL MODULES
+
+    if_id (Pipeline Register):
+        A synchronous register block separating IF and ID stages.
+        Behavior:
+            if (reset):
+                pc_out    <= 0
+                instr_out <= 0
+            else:
+                pc_out    <= pc_in
+                instr_out <= instr_in
+
+        Purpose:
+            Ensures proper pipeline timing and stage isolation.
+
+    instr_decoder (Decoder):
+        Extracts instruction fields using fixed bit slicing:
+            opcode = instr[6:0]
+            rd     = instr[11:7]
+            funct3 = instr[14:12]
+            rs1    = instr[19:15]
+            rs2    = instr[24:20]
+            funct7 = instr[31:25]
+
+        Purpose:
+            Provides control-relevant fields to downstream stages.
+
+    regfile (Register File):
+        - 32 registers, each 32 bits wide.
+        - Two read ports (combinational).
+        - One write port (synchronous).
+
+        Read Behavior:
+            rd1 = (rs1 == 0) ? 0 : regs[rs1]
+            rd2 = (rs2 == 0) ? 0 : regs[rs2]
+
+        Write Behavior:
+            On rising clock edge:
+                if (reg_write && rd != 0)
+                    regs[rd] <= wd
+
+        Special Constraint:
+            Register x0 is hardwired to zero.
+
+    imm_gen (Immediate Generator):
+        Generates sign-extended immediates based on opcode.
+
+        Supported Formats:
+            I-type:
+                imm = sign_extend(instr[31:20])
+
+            S-type:
+                imm = sign_extend({instr[31:25], instr[11:7]})
+
+            B-type:
+                imm = sign_extend({instr[31], instr[7], instr[30:25], instr[11:8], 0})
+
+            U-type:
+                imm = {instr[31:12], 12'b0}
+
+            J-type:
+                imm = sign_extend({instr[31], instr[19:12], instr[20], instr[30:21], 0})
+
+        Default:
+            imm = 0
+
+
+5. BEHAVIORAL CONSTRAINTS
+
+    Pipeline Latency:
+        The IF/ID register introduces a 1-cycle delay.
+        Outputs of ID stage correspond to inputs from the previous clock cycle.
+
+    Register File Timing:
+        - Reads are combinational (instantaneous with respect to rs1/rs2).
+        - Writes occur on clock edge.
+        - Read-after-write hazard may occur if not handled in later stages.
+
+    x0 Register Constraint:
+        Register 0 always reads as 0.
+        Writes to register 0 are ignored.
+
+    Immediate Generation Sensitivity:
+        imm_gen is purely combinational.
+        Any incorrect opcode decoding will produce invalid immediates.
+
+    Reset Behavior:
+        On reset:
+            - Pipeline register outputs are cleared to 0.
+            - No explicit reset for register file (contents undefined unless initialized externally).
+
+    Hazard Awareness:
+        No hazard detection or forwarding logic is present.
+        Data hazards must be handled in later pipeline stages or external control logic.
+
+    Instruction Dependency:
+        Correct decoding assumes valid RISC-V instruction encoding.
+        Invalid instructions will propagate undefined control/data signals.
+

@@ -1,0 +1,11 @@
+Design: SDRAM
+Error line: 105
+
+Original code:
+assign w_Write_Select = ~r_Read_Select;
+
+Erroneous code:
+assign w_Write_Select = r_Read_Select;
+
+Error description:
+Logic modified

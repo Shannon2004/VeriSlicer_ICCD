@@ -1,0 +1,16 @@
+
+
+Design: mmu180
+Error line: 163
+
+Original code:
+    else if (wr_n)
+
+Erroneous code:
+    else if(!(wr_n))
+
+Error description:
+Flipped if condition
+
+==================================================
+

@@ -1,0 +1,11 @@
+Design: CORDIC
+Error line: 90
+
+Original code:
+assign z_o = z_1;
+
+Erroneous code:
+assign z_o = y_1;
+
+Error description:
+Logic modified

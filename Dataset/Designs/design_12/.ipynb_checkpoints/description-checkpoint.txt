@@ -1,0 +1,203 @@
+MODULE SPECIFICATION: mmu180 (Memory Management Unit – Z180-like)
+
+1. ARCHITECTURAL INTENT
+
+    Type: Memory Management Unit (MMU) for banked memory addressing.
+
+    Active Configuration:
+        - Designed to emulate Z180-style MMU behavior
+        - Supports eZ80-like processor with 24-bit address input
+        - Provides dynamic memory bank switching using programmable registers
+
+    Mechanism:
+        The MMU translates CPU addresses into physical memory addresses by:
+            1. Monitoring I/O writes to configuration registers (CBR, BBR, CBAR)
+            2. Comparing address ranges using CBAR thresholds
+            3. Selecting appropriate memory bank (Common or Banked)
+            4. Generating modified high-order address bits
+
+    Execution Model:
+        - Operates combinationally for address translation
+        - Uses I/O-mapped registers for configuration
+        - Supports dynamic runtime remapping
+
+
+2. PORT INTERFACE
+
+    Inputs:
+        reset_n        : Active-low reset
+        en             : MMU enable
+        iorq_n         : I/O request (active-low)
+        mreq_n         : Memory request (active-low)
+        rd_n           : Read signal (active-low)
+        wr_n           : Write signal (active-low)
+        phi            : Clock phase signal
+        addr_in [23:0] : CPU address bus
+
+    Outputs:
+        dq [7:0]       : Data bus (tri-state output)
+        addr_out [19:12]: Translated memory address (upper bits)
+        cbar_hinyb     : Debug signal (CBR region match)
+        cbar_lonyb     : Debug signal (BBR region match)
+
+
+3. CRITICAL INTERNAL STATE (Registers & Wires)
+
+    cpu_data_buf (Register):
+        Temporary buffer for data read from MMU registers.
+
+    iolatched_oup_CBR (Register):
+        Common Bank Register (CBR) value.
+
+    iolatched_oup_BBR (Register):
+        Bank Base Register (BBR) value.
+
+    iolatched_oup_CBAR (Register):
+        Common/Bank Address Register (CBAR), defines memory regions.
+
+    cbar_hinyb_gteq (Wire):
+        Indicates if address falls in Common Area 1.
+
+    cbar_lonyb_gteq (Wire):
+        Indicates if address falls in Bank Area.
+
+    bbr_cbr_mux (Wire):
+        Selects between CBR and BBR based on address region.
+
+    hiaddr_1meg (Wire):
+        Computed high address for banked memory mapping.
+
+
+4. I/O REGISTER INTERFACE
+
+    Registers are memory-mapped via I/O addresses:
+
+        CBR  (0x0038): Common Bank Register
+        BBR  (0x0039): Bank Base Register
+        CBAR (0x003A): Common/Bank Address Register
+
+    Access Conditions:
+        - Selected when:
+            addr_in[15:0] matches register address
+            iorq_n = 0
+            phi = 0
+
+    Read Behavior:
+        - dq outputs register value when rd_n = 0
+
+    Write Behavior:
+        - Registers updated on write cycle via ioport modules
+
+
+5. INTERNAL MODULES
+
+    ioport_a16_d8_wo:
+        - 8-bit write-only register with latch
+        - Updates on rising edge of wr_n
+        - Reset initializes to default value
+
+    ioport_CBR:
+        Stores base address for Common memory region
+
+    ioport_BBR:
+        Stores base address for Banked memory region
+
+    ioport_CBAR:
+        Defines memory partition:
+            - Upper nibble → Common region threshold
+            - Lower nibble → Bank region threshold
+
+    ioport_a16_dx_wo:
+        Parameterized version of I/O register (unused here but reusable)
+
+
+6. ADDRESS TRANSLATION LOGIC
+
+    Region Detection:
+
+        Common Region:
+            addr_in[15:12] >= CBAR[7:4]
+
+        Bank Region:
+            addr_in[15:12] >= CBAR[3:0]
+
+    Validity Check:
+        CBAR is valid if:
+            CBAR[7:4] >= CBAR[3:0]
+
+    Bank Selection:
+
+        if (Common Region) → use CBR
+        else if (Bank Region) → use BBR
+        else → no translation
+
+    Address Computation:
+
+        hiaddr_1meg = selected_bank + addr_in[15:12]
+
+    Final Output:
+
+        addr_out =
+            if (addr_in[23:16] != 0)
+                → direct mapping (no MMU)
+            else if (en && mreq_n == 0 && region_match)
+                → translated address (hiaddr_1meg)
+            else
+                → original address bits addr_in[19:12]
+
+
+7. BEHAVIORAL CONSTRAINTS & DEBUGGING CONTEXT
+
+    Address Translation Scope:
+        Only applies when upper address byte is zero:
+            addr_in[23:16] == 0
+
+    Enable Control:
+        MMU active only when:
+            en = 1 AND mreq_n = 0
+
+    I/O Timing Sensitivity:
+        - I/O selection depends on phi signal
+        - Incorrect phase alignment may cause missed register updates
+
+    Tri-State Data Bus:
+        dq is driven only during valid read cycles
+        Otherwise remains high impedance (Z)
+
+    Register Initialization:
+        - CBR, BBR default to 0
+        - CBAR default = 0xF0
+
+    CBAR Constraint:
+        For valid operation:
+            CBAR[7:4] ≥ CBAR[3:0]
+        Otherwise mapping logic may behave incorrectly
+
+    Debug Signals:
+        cbar_hinyb and cbar_lonyb expose internal comparison results
+
+
+8. DESIGN LIMITATIONS & EXTENSIBILITY
+
+    Limited Address Range:
+        Only modifies upper 8 bits of 20-bit memory space
+
+    No Protection Mechanism:
+        Does not enforce access permissions or protection levels
+
+    Static Mapping Granularity:
+        Mapping resolution limited to 4KB blocks (based on addr[15:12])
+
+    No Paging:
+        Supports bank switching but not full virtual memory paging
+
+    Timing Dependency:
+        Relies on external timing signals (phi, iorq_n)
+
+    Future Enhancements:
+        - Add full 24-bit address translation
+        - Implement memory protection (read/write permissions)
+        - Support dynamic page tables
+        - Add interrupt-safe register updates
+        - Improve timing independence from phi signal
+

@@ -1,0 +1,16 @@
+# Source File: ../Error_designs/error_design_4_4/design_4.v
+# Project Dir: error_design_4_4
+# Total Vertices: 4
+# Total Edges: 4
+
+=== VERTICES ===
+design_4.Complement_output
+design_4.Operation
+design_4.Underflow
+design_4.a_operand
+
+=== EDGES (Driver -> Target) ===
+design_4.Operation -> design_4.Underflow
+design_4.Complement_output -> design_4.Underflow
+design_4.a_operand -> design_4.Complement_output
+design_4.Operation -> design_4.Complement_output

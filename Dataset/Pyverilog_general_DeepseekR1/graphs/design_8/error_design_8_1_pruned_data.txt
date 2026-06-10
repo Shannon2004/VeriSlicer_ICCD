@@ -1,0 +1,25 @@
+# Source File: ../Error_designs/error_design_8_1/design_8.v
+# Project Dir: error_design_8_1
+# Total Vertices: 9
+# Total Edges: 8
+
+=== VERTICES ===
+design_8.decoder.instr
+design_8.decoder.rd
+design_8.id_rd
+design_8.if_id_inst.instr_in
+design_8.if_id_inst.instr_out
+design_8.if_id_inst.reset
+design_8.if_instr
+design_8.instr
+design_8.reset
+
+=== EDGES (Driver -> Target) ===
+design_8.if_id_inst.instr_in -> design_8.if_id_inst.instr_out
+design_8.if_id_inst.reset -> design_8.if_id_inst.instr_out
+design_8.if_id_inst.instr_out -> design_8.instr
+design_8.if_instr -> design_8.if_id_inst.instr_in
+design_8.decoder.rd -> design_8.id_rd
+design_8.reset -> design_8.if_id_inst.reset
+design_8.instr -> design_8.decoder.instr
+design_8.decoder.instr -> design_8.decoder.rd

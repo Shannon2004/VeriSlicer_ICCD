@@ -1,0 +1,44 @@
+Design: mmu180
+Error line: 148
+
+Original code:
+    else if (wr_n)
+
+Erroneous code:
+    else if(!(wr_n))
+
+Error description:
+Flipped if condition
+
+==================================================
+
+Design: mmu180
+Error line: 16
+
+Original code:
+output  [19:12]  addr_out; // memory address bus
+
+Erroneous code:
+output  [20:12]  addr_out; // memory address bus
+
+Error description:
+Bitwidth incremented by 1
+
+==================================================
+
+
+
+Design: mmu180
+Error line: 56
+
+Original code:
+assign iosel_CBAR_wr = ! (iosel_CBAR & ! wr_n);
+
+Erroneous code:
+assign iosel_CBAR_wr = ! (iosel_CBAR | ! wr_n);
+
+Error description:
+Logical operator & changed to |
+
+==================================================
+

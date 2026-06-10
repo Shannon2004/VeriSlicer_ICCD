@@ -1,0 +1,236 @@
+MODULE SPECIFICATION: hdc_controller (Hyperdimensional Computing Controller)
+
+1. ARCHITECTURAL INTENT
+
+    Type: Finite State Machine (FSM)-based Controller for Hyperdimensional Computing (HDC) pipeline.
+
+    Active Configuration:
+        - Multi-stage control unit orchestrating:
+            Encoding → Accumulation → Binarization → Similarity Check → Classification
+        - Parameterized for flexibility in dimensions, features, and classes.
+
+    Mechanism:
+        The controller sequences operations required for HDC inference:
+            1. Generates level indices from input values
+            2. Controls encoding of feature vectors
+            3. Accumulates hypervectors
+            4. Triggers binarization
+            5. Performs similarity comparison with class vectors
+            6. Outputs predicted class
+
+    Execution Model:
+        - Two interacting FSMs:
+            • Main FSM (Encoding & Accumulation)
+            • Similarity FSM (Classification phase)
+        - Operates sequentially across multiple clock cycles
+
+
+2. PARAMETER CONFIGURATION
+
+    number_of_dimensions = 10   : Number of levels
+    D                    = 600  : Hypervector dimension
+    chunk_size           = D/100: Data processed in chunks
+    number_features      = 784  : Total input features
+    number_class         = 10   : Number of classes
+
+
+3. PORT INTERFACE
+
+    Inputs:
+        clk                   : System clock
+        reset                 : Active-high reset
+        from_decoder_start    : Start signal for HDC processing
+        value        [31:0]   : Input feature value
+        number_of_levels [3:0]: Quantization levels
+        capture_cv_pointer[3:0]: Captured class index (from comparator)
+
+    Outputs:
+        level_index     [9:0] : Pointer to level hypervectors
+        feature_vector_pointer [12:0]: Pointer to feature memory
+        x_data_pointer  [9:0] : Feature index tracker
+        class_vector_pointer [6:0]: Pointer for class vectors
+        hv_pointer      [3:0] : Hypervector chunk index
+
+        encode_enable         : Enables encoding operation
+        binarize_enable       : Enables binarization
+        accumulate_enable     : Enables accumulation
+        similarity_check_enable: Enables similarity computation
+        class_predictor_enable: Enables prediction logic
+
+        SC_done               : Indicates similarity computation completion
+        predicted_class [3:0] : Final predicted class
+
+
+4. CRITICAL INTERNAL STATE (Registers & Wires)
+
+    state (4-bit FSM):
+        Controls encoding and accumulation phases.
+
+    similarity_state (2-bit FSM):
+        Controls similarity checking and classification.
+
+    level_index (Register):
+        Stores computed level vector pointer.
+
+    temp_level_index (Wire):
+        Computed as:
+            value * (number_of_levels - 1)
+
+    count, count2 (Registers):
+        Loop counters for chunk processing.
+
+    similarity_fsm_enable (Register):
+        Triggers transition to similarity phase.
+
+    mode-independent pointers:
+        - feature_vector_pointer
+        - x_data_pointer
+        - class_vector_pointer
+        - hv_pointer
+
+
+5. MAIN FSM (ENCODING & ACCUMULATION)
+
+    States:
+
+    initial_state (0000):
+        Waits for start signal.
+        Resets all pointers and control signals.
+
+    index_generator (0001):
+        Computes level_index from input value:
+            level_index = temp_level_index[35:32] * number_of_dimensions
+
+    encode_enable_state (0010):
+        Starts encoding.
+        Increments level_index and feature pointer.
+
+    processing_state (0011):
+        Iterative encoding across chunk:
+            - Increment pointers
+            - Maintain encode_enable
+            - Transition when chunk complete
+
+    increment_x_pointer_state (0100):
+        Enables accumulation.
+        Resets level_index for next feature.
+
+    post_accumulation (0101):
+        Continues encoding or moves to binarization when all features processed.
+
+    binarization_start (0110):
+        Triggers binarization phase.
+
+    wait_similarity_done (0111):
+        Waits for similarity FSM completion.
+
+
+6. SIMILARITY FSM (CLASSIFICATION PHASE)
+
+    States:
+
+    00 (Idle):
+        Waits for similarity_fsm_enable.
+        Initializes class pointer and outputs predicted class.
+
+    01 (Similarity Compute):
+        - Enables similarity check
+        - Iterates over hypervector chunks
+        - Updates hv_pointer and class_vector_pointer
+
+    10 (Class Transition):
+        - Resets hv_pointer
+        - Moves to next class vector
+
+    11 (Final Comparison):
+        - Continues similarity checks across classes
+        - Sets SC_done when all classes processed
+
+
+7. DATA FLOW & CONTROL LOGIC
+
+    Level Index Generation:
+        temp_level_index = value × (number_of_levels - 1)
+        level_index derived from MSBs for BRAM access
+
+    Encoding Phase:
+        Controlled by encode_enable
+        Iterates through feature chunks
+
+    Accumulation:
+        Controlled by accumulate_enable
+        Combines encoded hypervectors
+
+    Binarization:
+        Converts accumulated hypervector into binary form
+
+    Similarity Check:
+        Compares generated hypervector with stored class vectors
+
+    Classification:
+        predicted_class updated based on similarity results
+
+
+8. BEHAVIORAL CONSTRAINTS & DEBUGGING CONTEXT
+
+    Multi-Cycle Operation:
+        Entire pipeline spans multiple clock cycles across FSM states.
+
+    Chunk-Based Processing:
+        Data processed in blocks of size = chunk_size
+        Incorrect chunk_size causes pointer misalignment.
+
+    Pointer Boundaries:
+        feature_vector_pointer:
+            Max = number_features * chunk_size - 1
+
+        class_vector_pointer:
+            Max = chunk_size * number_class - 1
+
+    Reset Behavior:
+        All pointers and control signals cleared on reset.
+
+    FSM Synchronization:
+        Main FSM and similarity FSM operate independently but synchronized via:
+            similarity_fsm_enable and SC_done
+
+    Output Validity:
+        predicted_class valid only when SC_done = 1
+
+    Overflow Risk:
+        temp_level_index is 36-bit → truncation to MSBs used
+        Incorrect scaling may cause incorrect level selection
+
+    Hazard Sensitivity:
+        Incorrect sequencing of enable signals may:
+            - Skip accumulation
+            - Corrupt hypervector
+            - Produce wrong classification
+
+
+9. DESIGN LIMITATIONS & EXTENSIBILITY
+
+    Fixed Architecture:
+        Assumes:
+            - Fixed chunk size (D/100)
+            - Fixed feature and class counts
+
+    No Parallelism:
+        Sequential FSM limits throughput
+
+    No Error Handling:
+        No detection for invalid inputs or overflow conditions
+
+    Limited Scalability:
+        Increasing D or features increases latency linearly
+
+    Control Complexity:
+        Tight coupling between FSM states and counters
+
+    Future Enhancements:
+        - Introduce parallel encoding units
+        - Add pipeline stages for throughput improvement
+        - Implement dynamic scaling of chunk size
+        - Add error detection and recovery
+        - Optimize similarity computation with parallel comparators
+

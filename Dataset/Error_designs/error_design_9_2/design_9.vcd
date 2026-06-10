@@ -1,0 +1,117 @@
+$date
+	Sat May 30 10:33:26 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module design_9 $end
+$var wire 32 ! alu_result_out [31:0] $end
+$var wire 1 " clk $end
+$var wire 3 # ex_funct3 [2:0] $end
+$var wire 7 $ ex_funct7 [6:0] $end
+$var wire 32 % ex_imm [31:0] $end
+$var wire 7 & ex_opcode [6:0] $end
+$var wire 32 ' ex_rd1 [31:0] $end
+$var wire 32 ( ex_rd2 [31:0] $end
+$var wire 1 ) reset $end
+$var wire 1 * zero_out $end
+$var wire 1 + zero $end
+$var wire 32 , alu_result [31:0] $end
+$var reg 32 - alu_result_r [31:0] $end
+$var reg 1 . zero_r $end
+$scope module uut $end
+$var wire 3 / ex_funct3 [2:0] $end
+$var wire 7 0 ex_funct7 [6:0] $end
+$var wire 32 1 ex_imm [31:0] $end
+$var wire 7 2 ex_opcode [6:0] $end
+$var wire 32 3 ex_rd1 [31:0] $end
+$var wire 32 4 ex_rd2 [31:0] $end
+$var wire 1 + zero $end
+$var wire 32 5 alu_result [31:0] $end
+$var wire 4 6 alu_ctrl [3:0] $end
+$var wire 32 7 alu_b [31:0] $end
+$scope module alu_ctrl_inst $end
+$var wire 3 8 funct3 [2:0] $end
+$var wire 7 9 funct7 [6:0] $end
+$var wire 7 : opcode [6:0] $end
+$var reg 4 ; alu_ctrl [3:0] $end
+$upscope $end
+$scope module alu_inst $end
+$var wire 32 < a [31:0] $end
+$var wire 4 = alu_ctrl [3:0] $end
+$var wire 32 > b [31:0] $end
+$var wire 1 + zero $end
+$var reg 32 ? result [31:0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx ?
+bz >
+b0 =
+bz <
+b0 ;
+bz :
+bz 9
+bz 8
+bz 7
+b0 6
+bx 5
+bz 4
+bz 3
+bz 2
+bz 1
+bz 0
+bz /
+0.
+b0 -
+bx ,
+x+
+0*
+0)
+bz (
+bz '
+bz &
+bz %
+bz $
+bz #
+1"
+b0 !
+$end
+#5000
+0+
+b11101111101001110110101111100111 ,
+b11101111101001110110101111100111 5
+b11101111101001110110101111100111 ?
+b10101001010000000001111110010010 7
+b10101001010000000001111110010010 >
+b0 $
+b0 0
+b0 9
+b0 #
+b0 /
+b0 8
+b110011 &
+b110011 2
+b110011 :
+b0 %
+b0 1
+b10101001010000000001111110010010 (
+b10101001010000000001111110010010 4
+b10011000111001111000101101111001 '
+b10011000111001111000101101111001 3
+b10011000111001111000101101111001 <
+0"
+#10000
+b11101111101001110110101111100111 !
+b11101111101001110110101111100111 -
+1"
+#11000

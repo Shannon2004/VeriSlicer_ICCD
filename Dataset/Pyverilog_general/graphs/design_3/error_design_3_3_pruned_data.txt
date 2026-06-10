@@ -1,0 +1,782 @@
+# Source File: ../Error_designs/error_design_3_3/design_3.v
+# Project Dir: error_design_3_3
+# Total Vertices: 265
+# Total Edges: 509
+
+=== VERTICES ===
+design_3.ADDR_BLOCK0
+design_3.ADDR_BLOCK15
+design_3.ADDR_CTRL
+design_3._rn202_init_new
+design_3._rn203_next_new
+design_3._rn204_block_we
+design_3._rn207_block_we
+design_3._rn208_init_new
+design_3._rn209_next_new
+design_3.address
+design_3.block_reg
+design_3.block_we
+design_3.core.CTRL_DONE
+design_3.core.CTRL_IDLE
+design_3.core.CTRL_ROUNDS
+design_3.core.H0_0
+design_3.core.H0_1
+design_3.core.H0_2
+design_3.core.H0_3
+design_3.core.H0_4
+design_3.core.H0_new
+design_3.core.H0_reg
+design_3.core.H1_new
+design_3.core.H1_reg
+design_3.core.H2_new
+design_3.core.H2_reg
+design_3.core.H3_new
+design_3.core.H3_reg
+design_3.core.H4_new
+design_3.core.H4_reg
+design_3.core.H_we
+design_3.core.SHA1_ROUNDS
+design_3.core._rn110_a_new
+design_3.core._rn111_b_new
+design_3.core._rn112_c_new
+design_3.core._rn113_d_new
+design_3.core._rn114_e_new
+design_3.core._rn115_a_e_we
+design_3.core._rn116_a_new
+design_3.core._rn117_b_new
+design_3.core._rn118_c_new
+design_3.core._rn119_d_new
+design_3.core._rn120_e_new
+design_3.core._rn121_a_e_we
+design_3.core._rn132_a_new
+design_3.core._rn133_b_new
+design_3.core._rn134_c_new
+design_3.core._rn135_d_new
+design_3.core._rn136_e_new
+design_3.core._rn137_a_e_we
+design_3.core._rn138_round_ctr_new
+design_3.core._rn139_round_ctr_we
+design_3.core._rn140_round_ctr_new
+design_3.core._rn141_round_ctr_we
+design_3.core._rn142_round_ctr_new
+design_3.core._rn143_round_ctr_we
+design_3.core._rn144_digest_init
+design_3.core._rn145_digest_update
+design_3.core._rn146_state_init
+design_3.core._rn147_state_update
+design_3.core._rn148_first_block
+design_3.core._rn150_w_init
+design_3.core._rn151_w_next
+design_3.core._rn152_round_ctr_inc
+design_3.core._rn153_round_ctr_rst
+design_3.core._rn154_digest_valid_new
+design_3.core._rn155_digest_valid_we
+design_3.core._rn156_sha1_ctrl_new
+design_3.core._rn157_sha1_ctrl_we
+design_3.core._rn159_digest_init
+design_3.core._rn160_w_init
+design_3.core._rn161_state_init
+design_3.core._rn162_first_block
+design_3.core._rn163_round_ctr_rst
+design_3.core._rn164_digest_valid_new
+design_3.core._rn165_digest_valid_we
+design_3.core._rn166_sha1_ctrl_new
+design_3.core._rn167_sha1_ctrl_we
+design_3.core._rn168_w_init
+design_3.core._rn169_state_init
+design_3.core._rn170_round_ctr_rst
+design_3.core._rn171_digest_valid_new
+design_3.core._rn172_digest_valid_we
+design_3.core._rn173_sha1_ctrl_new
+design_3.core._rn174_sha1_ctrl_we
+design_3.core._rn175_state_update
+design_3.core._rn176_round_ctr_inc
+design_3.core._rn177_w_next
+design_3.core._rn178_sha1_ctrl_new
+design_3.core._rn179_sha1_ctrl_we
+design_3.core._rn180_digest_update
+design_3.core._rn181_digest_valid_new
+design_3.core._rn182_digest_valid_we
+design_3.core._rn183_sha1_ctrl_new
+design_3.core._rn184_sha1_ctrl_we
+design_3.core._rn82_H0_new
+design_3.core._rn83_H1_new
+design_3.core._rn84_H2_new
+design_3.core._rn85_H3_new
+design_3.core._rn86_H4_new
+design_3.core._rn87_H_we
+design_3.core._rn88_H0_new
+design_3.core._rn89_H1_new
+design_3.core._rn90_H2_new
+design_3.core._rn91_H3_new
+design_3.core._rn92_H4_new
+design_3.core._rn93_H_we
+design_3.core._rn94_H0_new
+design_3.core._rn95_H1_new
+design_3.core._rn96_H2_new
+design_3.core._rn97_H3_new
+design_3.core._rn98_H4_new
+design_3.core._rn99_H_we
+design_3.core.a_e_we
+design_3.core.a_new
+design_3.core.a_reg
+design_3.core.b_new
+design_3.core.b_reg
+design_3.core.block
+design_3.core.c_new
+design_3.core.c_reg
+design_3.core.d_new
+design_3.core.d_reg
+design_3.core.digest
+design_3.core.digest_init
+design_3.core.digest_update
+design_3.core.digest_valid
+design_3.core.digest_valid_new
+design_3.core.digest_valid_reg
+design_3.core.digest_valid_we
+design_3.core.e_new
+design_3.core.e_reg
+design_3.core.first_block
+design_3.core.init
+design_3.core.md_always6.state_logic._rn101_f
+design_3.core.md_always6.state_logic._rn102_k
+design_3.core.md_always6.state_logic._rn122_k
+design_3.core.md_always6.state_logic._rn123_f
+design_3.core.md_always6.state_logic._rn124_k
+design_3.core.md_always6.state_logic._rn125_f
+design_3.core.md_always6.state_logic._rn126_k
+design_3.core.md_always6.state_logic._rn127_f
+design_3.core.md_always6.state_logic._rn128_k
+design_3.core.md_always6.state_logic._rn129_f
+design_3.core.md_always6.state_logic._rn130_a5
+design_3.core.md_always6.state_logic._rn131_t
+design_3.core.next
+design_3.core.reset_n
+design_3.core.round_ctr_inc
+design_3.core.round_ctr_new
+design_3.core.round_ctr_reg
+design_3.core.round_ctr_rst
+design_3.core.round_ctr_we
+design_3.core.sha1_ctrl_new
+design_3.core.sha1_ctrl_reg
+design_3.core.sha1_ctrl_we
+design_3.core.state_init
+design_3.core.state_update
+design_3.core.w
+design_3.core.w_init
+design_3.core.w_mem_inst._rn17_w_tmp
+design_3.core.w_mem_inst._rn18_w_tmp
+design_3.core.w_mem_inst._rn19_w_mem00_new
+design_3.core.w_mem_inst._rn20_w_mem01_new
+design_3.core.w_mem_inst._rn21_w_mem02_new
+design_3.core.w_mem_inst._rn22_w_mem03_new
+design_3.core.w_mem_inst._rn23_w_mem04_new
+design_3.core.w_mem_inst._rn24_w_mem05_new
+design_3.core.w_mem_inst._rn25_w_mem06_new
+design_3.core.w_mem_inst._rn26_w_mem07_new
+design_3.core.w_mem_inst._rn27_w_mem08_new
+design_3.core.w_mem_inst._rn28_w_mem09_new
+design_3.core.w_mem_inst._rn29_w_mem10_new
+design_3.core.w_mem_inst._rn30_w_mem11_new
+design_3.core.w_mem_inst._rn31_w_mem12_new
+design_3.core.w_mem_inst._rn32_w_mem13_new
+design_3.core.w_mem_inst._rn33_w_mem14_new
+design_3.core.w_mem_inst._rn34_w_mem15_new
+design_3.core.w_mem_inst._rn35_w_mem_we
+design_3.core.w_mem_inst._rn41_w_new
+design_3.core.w_mem_inst._rn42_w_mem00_new
+design_3.core.w_mem_inst._rn43_w_mem01_new
+design_3.core.w_mem_inst._rn44_w_mem02_new
+design_3.core.w_mem_inst._rn45_w_mem03_new
+design_3.core.w_mem_inst._rn46_w_mem04_new
+design_3.core.w_mem_inst._rn47_w_mem05_new
+design_3.core.w_mem_inst._rn48_w_mem06_new
+design_3.core.w_mem_inst._rn49_w_mem07_new
+design_3.core.w_mem_inst._rn50_w_mem08_new
+design_3.core.w_mem_inst._rn51_w_mem09_new
+design_3.core.w_mem_inst._rn52_w_mem10_new
+design_3.core.w_mem_inst._rn53_w_mem11_new
+design_3.core.w_mem_inst._rn54_w_mem12_new
+design_3.core.w_mem_inst._rn55_w_mem13_new
+design_3.core.w_mem_inst._rn56_w_mem14_new
+design_3.core.w_mem_inst._rn57_w_mem15_new
+design_3.core.w_mem_inst._rn58_w_mem_we
+design_3.core.w_mem_inst._rn59_w_mem00_new
+design_3.core.w_mem_inst._rn60_w_mem01_new
+design_3.core.w_mem_inst._rn61_w_mem02_new
+design_3.core.w_mem_inst._rn62_w_mem03_new
+design_3.core.w_mem_inst._rn63_w_mem04_new
+design_3.core.w_mem_inst._rn64_w_mem05_new
+design_3.core.w_mem_inst._rn65_w_mem06_new
+design_3.core.w_mem_inst._rn66_w_mem07_new
+design_3.core.w_mem_inst._rn67_w_mem08_new
+design_3.core.w_mem_inst._rn68_w_mem09_new
+design_3.core.w_mem_inst._rn69_w_mem10_new
+design_3.core.w_mem_inst._rn70_w_mem11_new
+design_3.core.w_mem_inst._rn71_w_mem12_new
+design_3.core.w_mem_inst._rn72_w_mem13_new
+design_3.core.w_mem_inst._rn73_w_mem14_new
+design_3.core.w_mem_inst._rn74_w_mem15_new
+design_3.core.w_mem_inst._rn75_w_mem_we
+design_3.core.w_mem_inst._rn76_w_ctr_new
+design_3.core.w_mem_inst._rn77_w_ctr_we
+design_3.core.w_mem_inst._rn78_w_ctr_new
+design_3.core.w_mem_inst._rn79_w_ctr_we
+design_3.core.w_mem_inst._rn80_w_ctr_new
+design_3.core.w_mem_inst._rn81_w_ctr_we
+design_3.core.w_mem_inst.block
+design_3.core.w_mem_inst.init
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn36_w_0
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn37_w_2
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn38_w_8
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn39_w_13
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn40_w_16
+design_3.core.w_mem_inst.next
+design_3.core.w_mem_inst.reset_n
+design_3.core.w_mem_inst.w
+design_3.core.w_mem_inst.w_ctr_new
+design_3.core.w_mem_inst.w_ctr_reg
+design_3.core.w_mem_inst.w_ctr_we
+design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem00_new
+design_3.core.w_mem_inst.w_mem01_new
+design_3.core.w_mem_inst.w_mem02_new
+design_3.core.w_mem_inst.w_mem03_new
+design_3.core.w_mem_inst.w_mem04_new
+design_3.core.w_mem_inst.w_mem05_new
+design_3.core.w_mem_inst.w_mem06_new
+design_3.core.w_mem_inst.w_mem07_new
+design_3.core.w_mem_inst.w_mem08_new
+design_3.core.w_mem_inst.w_mem09_new
+design_3.core.w_mem_inst.w_mem10_new
+design_3.core.w_mem_inst.w_mem11_new
+design_3.core.w_mem_inst.w_mem12_new
+design_3.core.w_mem_inst.w_mem13_new
+design_3.core.w_mem_inst.w_mem14_new
+design_3.core.w_mem_inst.w_mem15_new
+design_3.core.w_mem_inst.w_mem_we
+design_3.core.w_mem_inst.w_new
+design_3.core.w_mem_inst.w_tmp
+design_3.core.w_next
+design_3.core_block
+design_3.core_digest
+design_3.core_digest_valid
+design_3.cs
+design_3.init_new
+design_3.init_reg
+design_3.next_new
+design_3.next_reg
+design_3.reset_n
+design_3.we
+design_3.write_data
+
+=== EDGES (Driver -> Target) ===
+design_3.core.init -> design_3.core.digest_init
+design_3.core.sha1_ctrl_reg -> design_3.core.digest_init
+design_3.core._rn159_digest_init -> design_3.core.digest_init
+design_3.core._rn144_digest_init -> design_3.core.digest_init
+design_3.core.CTRL_IDLE -> design_3.core.digest_init
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem03_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem03_new
+design_3.core.w_mem_inst._rn22_w_mem03_new -> design_3.core.w_mem_inst.w_mem03_new
+design_3.core.w_mem_inst._rn45_w_mem03_new -> design_3.core.w_mem_inst.w_mem03_new
+design_3.core.w_mem_inst._rn62_w_mem03_new -> design_3.core.w_mem_inst.w_mem03_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem03_new
+design_3.core.H0_4 -> design_3.core._rn92_H4_new
+design_3.core.H1_reg -> design_3.core._rn117_b_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst._rn80_w_ctr_new
+design_3.core.CTRL_IDLE -> design_3.core._rn183_sha1_ctrl_new
+design_3.core.sha1_ctrl_reg -> design_3.core.state_update
+design_3.core.CTRL_ROUNDS -> design_3.core.state_update
+design_3.core._rn147_state_update -> design_3.core.state_update
+design_3.core.CTRL_IDLE -> design_3.core.state_update
+design_3.core._rn175_state_update -> design_3.core.state_update
+design_3.core.w_mem_inst.w_tmp -> design_3.core.w_mem_inst.w
+design_3.core.w_mem_inst._rn18_w_tmp -> design_3.core.w_mem_inst.w_tmp
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_tmp
+design_3.core.w_mem_inst._rn17_w_tmp -> design_3.core.w_mem_inst.w_tmp
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem04_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem04_new
+design_3.core.w_mem_inst._rn23_w_mem04_new -> design_3.core.w_mem_inst.w_mem04_new
+design_3.core.w_mem_inst._rn46_w_mem04_new -> design_3.core.w_mem_inst.w_mem04_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem04_new
+design_3.core.w_mem_inst._rn63_w_mem04_new -> design_3.core.w_mem_inst.w_mem04_new
+design_3.core.w_mem_inst._rn72_w_mem13_new -> design_3.core.w_mem_inst.w_mem13_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem13_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem13_new
+design_3.core.w_mem_inst._rn55_w_mem13_new -> design_3.core.w_mem_inst.w_mem13_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem13_new
+design_3.core.w_mem_inst._rn32_w_mem13_new -> design_3.core.w_mem_inst.w_mem13_new
+design_3.core._rn120_e_new -> design_3.core.e_new
+design_3.core._rn136_e_new -> design_3.core.e_new
+design_3.core._rn114_e_new -> design_3.core.e_new
+design_3.core.state_init -> design_3.core.e_new
+design_3.core.state_update -> design_3.core.e_new
+design_3.core.first_block -> design_3.core.e_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn62_w_mem03_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn39_w_13
+design_3.core._rn166_sha1_ctrl_new -> design_3.core.sha1_ctrl_new
+design_3.core._rn156_sha1_ctrl_new -> design_3.core.sha1_ctrl_new
+design_3.core.SHA1_ROUNDS -> design_3.core.sha1_ctrl_new
+design_3.core.init -> design_3.core.sha1_ctrl_new
+design_3.core.sha1_ctrl_reg -> design_3.core.sha1_ctrl_new
+design_3.core.CTRL_ROUNDS -> design_3.core.sha1_ctrl_new
+design_3.core.CTRL_DONE -> design_3.core.sha1_ctrl_new
+design_3.core._rn183_sha1_ctrl_new -> design_3.core.sha1_ctrl_new
+design_3.core.CTRL_IDLE -> design_3.core.sha1_ctrl_new
+design_3.core._rn178_sha1_ctrl_new -> design_3.core.sha1_ctrl_new
+design_3.core.next -> design_3.core.sha1_ctrl_new
+design_3.core._rn173_sha1_ctrl_new -> design_3.core.sha1_ctrl_new
+design_3.core.round_ctr_reg -> design_3.core.sha1_ctrl_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn71_w_mem12_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn73_w_mem14_new
+design_3.core.H3_reg -> design_3.core._rn97_H3_new
+design_3.core.d_reg -> design_3.core._rn97_H3_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn17_w_tmp
+design_3.core.H0_0 -> design_3.core._rn110_a_new
+design_3.core_digest_valid -> design_3.init_reg
+design_3.reset_n -> design_3.init_reg
+design_3.init_new -> design_3.init_reg
+design_3.block_we -> design_3.init_reg
+design_3.core.CTRL_ROUNDS -> design_3.core._rn173_sha1_ctrl_new
+design_3.core.H0_1 -> design_3.core._rn89_H1_new
+design_3.core._rn115_a_e_we -> design_3.core.a_e_we
+design_3.core._rn137_a_e_we -> design_3.core.a_e_we
+design_3.core.state_init -> design_3.core.a_e_we
+design_3.core.state_update -> design_3.core.a_e_we
+design_3.core.first_block -> design_3.core.a_e_we
+design_3.core._rn121_a_e_we -> design_3.core.a_e_we
+design_3.core._rn132_a_new -> design_3.core.a_new
+design_3.core.state_init -> design_3.core.a_new
+design_3.core.state_update -> design_3.core.a_new
+design_3.core._rn116_a_new -> design_3.core.a_new
+design_3.core.first_block -> design_3.core.a_new
+design_3.core._rn110_a_new -> design_3.core.a_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem01_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem01_new
+design_3.core.w_mem_inst._rn20_w_mem01_new -> design_3.core.w_mem_inst.w_mem01_new
+design_3.core.w_mem_inst._rn43_w_mem01_new -> design_3.core.w_mem_inst.w_mem01_new
+design_3.core.w_mem_inst._rn60_w_mem01_new -> design_3.core.w_mem_inst.w_mem01_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem01_new
+design_3.core.digest_init -> design_3.core.H4_new
+design_3.core._rn92_H4_new -> design_3.core.H4_new
+design_3.core._rn86_H4_new -> design_3.core.H4_new
+design_3.core._rn98_H4_new -> design_3.core.H4_new
+design_3.core.digest_update -> design_3.core.H4_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem10_new
+design_3.core.w_mem_inst._rn29_w_mem10_new -> design_3.core.w_mem_inst.w_mem10_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem10_new
+design_3.core.w_mem_inst._rn52_w_mem10_new -> design_3.core.w_mem_inst.w_mem10_new
+design_3.core.w_mem_inst._rn69_w_mem10_new -> design_3.core.w_mem_inst.w_mem10_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem10_new
+design_3.init_reg -> design_3.core.init
+design_3.core.digest_valid_we -> design_3.core.digest_valid_reg
+design_3.core.reset_n -> design_3.core.digest_valid_reg
+design_3.core.digest_valid_new -> design_3.core.digest_valid_reg
+design_3.core.c_reg -> design_3.core.md_always6.state_logic._rn125_f
+design_3.core.b_reg -> design_3.core.md_always6.state_logic._rn125_f
+design_3.core.d_reg -> design_3.core.md_always6.state_logic._rn125_f
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn70_w_mem11_new
+design_3.core.reset_n -> design_3.core.w_mem_inst.reset_n
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn38_w_8
+design_3.core.digest -> design_3.core_digest
+design_3.core.H2_new -> design_3.core.H2_reg
+design_3.core.reset_n -> design_3.core.H2_reg
+design_3.core.H_we -> design_3.core.H2_reg
+design_3.core.reset_n -> design_3.core.H1_reg
+design_3.core.H1_new -> design_3.core.H1_reg
+design_3.core.H_we -> design_3.core.H1_reg
+design_3.core.H3_reg -> design_3.core._rn119_d_new
+design_3.cs -> design_3.next_new
+design_3.ADDR_CTRL -> design_3.next_new
+design_3.address -> design_3.next_new
+design_3._rn209_next_new -> design_3.next_new
+design_3.we -> design_3.next_new
+design_3._rn203_next_new -> design_3.next_new
+design_3.core.digest_valid -> design_3.core_digest_valid
+design_3.core.w_mem_inst.w_mem08_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem01_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem05_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem_we -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem03_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem10_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem11_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem14_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem15_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.reset_n -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem07_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem04_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem13_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem02_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem06_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem00_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem12_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.w_mem_inst.w_mem09_new -> design_3.core.w_mem_inst.w_mem
+design_3.core.H0_2 -> design_3.core._rn112_c_new
+design_3.core.w_next -> design_3.core.w_mem_inst.next
+design_3.core.digest_init -> design_3.core.H2_new
+design_3.core._rn96_H2_new -> design_3.core.H2_new
+design_3.core._rn90_H2_new -> design_3.core.H2_new
+design_3.core._rn84_H2_new -> design_3.core.H2_new
+design_3.core.digest_update -> design_3.core.H2_new
+design_3.core.H0_new -> design_3.core.H0_reg
+design_3.core.reset_n -> design_3.core.H0_reg
+design_3.core.H_we -> design_3.core.H0_reg
+design_3.core.reset_n -> design_3.core.H4_reg
+design_3.core.H4_new -> design_3.core.H4_reg
+design_3.core.H_we -> design_3.core.H4_reg
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn47_w_mem05_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn64_w_mem05_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn49_w_mem07_new
+design_3.cs -> design_3.block_we
+design_3.ADDR_BLOCK0 -> design_3.block_we
+design_3.address -> design_3.block_we
+design_3.ADDR_BLOCK15 -> design_3.block_we
+design_3.we -> design_3.block_we
+design_3._rn204_block_we -> design_3.block_we
+design_3._rn207_block_we -> design_3.block_we
+design_3.core.digest_valid_reg -> design_3.core.digest_valid
+design_3.core.H0_reg -> design_3.core._rn116_a_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn46_w_mem04_new
+design_3.core.block -> design_3.core.w_mem_inst.block
+design_3.next_reg -> design_3.core.next
+design_3.core.round_ctr_reg -> design_3.core._rn142_round_ctr_new
+design_3.core.round_ctr_inc -> design_3.core.round_ctr_new
+design_3.core._rn140_round_ctr_new -> design_3.core.round_ctr_new
+design_3.core._rn138_round_ctr_new -> design_3.core.round_ctr_new
+design_3.core.round_ctr_rst -> design_3.core.round_ctr_new
+design_3.core._rn142_round_ctr_new -> design_3.core.round_ctr_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem12_new
+design_3.core.w_mem_inst._rn71_w_mem12_new -> design_3.core.w_mem_inst.w_mem12_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem12_new
+design_3.core.w_mem_inst._rn54_w_mem12_new -> design_3.core.w_mem_inst.w_mem12_new
+design_3.core.w_mem_inst._rn31_w_mem12_new -> design_3.core.w_mem_inst.w_mem12_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem12_new
+design_3.core.c_reg -> design_3.core._rn96_H2_new
+design_3.core.H2_reg -> design_3.core._rn96_H2_new
+design_3.core.init -> design_3.core.first_block
+design_3.core._rn162_first_block -> design_3.core.first_block
+design_3.core.sha1_ctrl_reg -> design_3.core.first_block
+design_3.core._rn148_first_block -> design_3.core.first_block
+design_3.core.CTRL_IDLE -> design_3.core.first_block
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn44_w_mem02_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn69_w_mem10_new
+design_3.core.init -> design_3.core.w_init
+design_3.core.sha1_ctrl_reg -> design_3.core.w_init
+design_3.core._rn168_w_init -> design_3.core.w_init
+design_3.core._rn160_w_init -> design_3.core.w_init
+design_3.core._rn150_w_init -> design_3.core.w_init
+design_3.core.CTRL_IDLE -> design_3.core.w_init
+design_3.core.next -> design_3.core.w_init
+design_3.core.CTRL_DONE -> design_3.core._rn178_sha1_ctrl_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn65_w_mem06_new
+design_3.core.c_reg -> design_3.core.md_always6.state_logic._rn129_f
+design_3.core.b_reg -> design_3.core.md_always6.state_logic._rn129_f
+design_3.core.d_reg -> design_3.core.md_always6.state_logic._rn129_f
+design_3.core.H3_reg -> design_3.core.digest
+design_3.core.H0_reg -> design_3.core.digest
+design_3.core.H4_reg -> design_3.core.digest
+design_3.core.H2_reg -> design_3.core.digest
+design_3.core.H1_reg -> design_3.core.digest
+design_3.core.H0_4 -> design_3.core._rn114_e_new
+design_3.core.c_reg -> design_3.core._rn135_d_new
+design_3.core.d_reg -> design_3.core._rn136_e_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem14_new
+design_3.core.w_mem_inst._rn33_w_mem14_new -> design_3.core.w_mem_inst.w_mem14_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem14_new
+design_3.core.w_mem_inst._rn73_w_mem14_new -> design_3.core.w_mem_inst.w_mem14_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem14_new
+design_3.core.w_mem_inst._rn56_w_mem14_new -> design_3.core.w_mem_inst.w_mem14_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn54_w_mem12_new
+design_3.core_digest_valid -> design_3.next_reg
+design_3.next_new -> design_3.next_reg
+design_3.reset_n -> design_3.next_reg
+design_3.block_we -> design_3.next_reg
+design_3.write_data -> design_3._rn209_next_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_ctr_we
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_ctr_we
+design_3.core.w_mem_inst._rn81_w_ctr_we -> design_3.core.w_mem_inst.w_ctr_we
+design_3.core.w_mem_inst._rn77_w_ctr_we -> design_3.core.w_mem_inst.w_ctr_we
+design_3.core.w_mem_inst._rn79_w_ctr_we -> design_3.core.w_mem_inst.w_ctr_we
+design_3.core.b_reg -> design_3.core._rn95_H1_new
+design_3.core.H1_reg -> design_3.core._rn95_H1_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem07_new
+design_3.core.w_mem_inst._rn26_w_mem07_new -> design_3.core.w_mem_inst.w_mem07_new
+design_3.core.w_mem_inst._rn49_w_mem07_new -> design_3.core.w_mem_inst.w_mem07_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem07_new
+design_3.core.w_mem_inst._rn66_w_mem07_new -> design_3.core.w_mem_inst.w_mem07_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem07_new
+design_3.core.w_mem_inst._rn41_w_new -> design_3.core.w_mem_inst._rn74_w_mem15_new
+design_3.core.e_reg -> design_3.core._rn98_H4_new
+design_3.core.H4_reg -> design_3.core._rn98_H4_new
+design_3.core_block -> design_3.core.block
+design_3.core._rn117_b_new -> design_3.core.b_new
+design_3.core.state_init -> design_3.core.b_new
+design_3.core.state_update -> design_3.core.b_new
+design_3.core.first_block -> design_3.core.b_new
+design_3.core._rn111_b_new -> design_3.core.b_new
+design_3.core._rn133_b_new -> design_3.core.b_new
+design_3.core.a_reg -> design_3.core._rn133_b_new
+design_3.core.a_reg -> design_3.core.md_always6.state_logic._rn130_a5
+design_3.core.reset_n -> design_3.core.round_ctr_reg
+design_3.core.round_ctr_we -> design_3.core.round_ctr_reg
+design_3.core.round_ctr_new -> design_3.core.round_ctr_reg
+design_3.core.w_mem_inst.w_new -> design_3.core.w_mem_inst._rn18_w_tmp
+design_3.write_data -> design_3._rn208_init_new
+design_3.core._rn180_digest_update -> design_3.core.digest_update
+design_3.core.sha1_ctrl_reg -> design_3.core.digest_update
+design_3.core.CTRL_ROUNDS -> design_3.core.digest_update
+design_3.core._rn145_digest_update -> design_3.core.digest_update
+design_3.core.CTRL_IDLE -> design_3.core.digest_update
+design_3.core.CTRL_DONE -> design_3.core.digest_update
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem08_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem08_new
+design_3.core.w_mem_inst._rn27_w_mem08_new -> design_3.core.w_mem_inst.w_mem08_new
+design_3.core.w_mem_inst._rn50_w_mem08_new -> design_3.core.w_mem_inst.w_mem08_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem08_new
+design_3.core.w_mem_inst._rn67_w_mem08_new -> design_3.core.w_mem_inst.w_mem08_new
+design_3.core.b_new -> design_3.core.b_reg
+design_3.core.reset_n -> design_3.core.b_reg
+design_3.core.a_e_we -> design_3.core.b_reg
+design_3.core._rn157_sha1_ctrl_we -> design_3.core.sha1_ctrl_we
+design_3.core.SHA1_ROUNDS -> design_3.core.sha1_ctrl_we
+design_3.core.init -> design_3.core.sha1_ctrl_we
+design_3.core._rn167_sha1_ctrl_we -> design_3.core.sha1_ctrl_we
+design_3.core._rn184_sha1_ctrl_we -> design_3.core.sha1_ctrl_we
+design_3.core.sha1_ctrl_reg -> design_3.core.sha1_ctrl_we
+design_3.core._rn174_sha1_ctrl_we -> design_3.core.sha1_ctrl_we
+design_3.core.CTRL_ROUNDS -> design_3.core.sha1_ctrl_we
+design_3.core._rn179_sha1_ctrl_we -> design_3.core.sha1_ctrl_we
+design_3.core.CTRL_IDLE -> design_3.core.sha1_ctrl_we
+design_3.core.CTRL_DONE -> design_3.core.sha1_ctrl_we
+design_3.core.next -> design_3.core.sha1_ctrl_we
+design_3.core.round_ctr_reg -> design_3.core.sha1_ctrl_we
+design_3.core.H4_reg -> design_3.core._rn120_e_new
+design_3.core.w_mem_inst._rn41_w_new -> design_3.core.w_mem_inst.w_new
+design_3.core.H0_3 -> design_3.core._rn113_d_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn50_w_mem08_new
+design_3.core.round_ctr_inc -> design_3.core.round_ctr_we
+design_3.core._rn139_round_ctr_we -> design_3.core.round_ctr_we
+design_3.core._rn141_round_ctr_we -> design_3.core.round_ctr_we
+design_3.core.round_ctr_rst -> design_3.core.round_ctr_we
+design_3.core._rn143_round_ctr_we -> design_3.core.round_ctr_we
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn51_w_mem09_new
+design_3.core.c_reg -> design_3.core.md_always6.state_logic._rn127_f
+design_3.core.b_reg -> design_3.core.md_always6.state_logic._rn127_f
+design_3.core.d_reg -> design_3.core.md_always6.state_logic._rn127_f
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn63_w_mem04_new
+design_3.core.reset_n -> design_3.core.c_reg
+design_3.core.a_e_we -> design_3.core.c_reg
+design_3.core.c_new -> design_3.core.c_reg
+design_3.core._rn155_digest_valid_we -> design_3.core.digest_valid_we
+design_3.core._rn182_digest_valid_we -> design_3.core.digest_valid_we
+design_3.core.init -> design_3.core.digest_valid_we
+design_3.core.sha1_ctrl_reg -> design_3.core.digest_valid_we
+design_3.core.CTRL_ROUNDS -> design_3.core.digest_valid_we
+design_3.core.CTRL_IDLE -> design_3.core.digest_valid_we
+design_3.core._rn172_digest_valid_we -> design_3.core.digest_valid_we
+design_3.core.CTRL_DONE -> design_3.core.digest_valid_we
+design_3.core.next -> design_3.core.digest_valid_we
+design_3.core._rn165_digest_valid_we -> design_3.core.digest_valid_we
+design_3.core.w_mem_inst._rn53_w_mem11_new -> design_3.core.w_mem_inst.w_mem11_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem11_new
+design_3.core.w_mem_inst._rn70_w_mem11_new -> design_3.core.w_mem_inst.w_mem11_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem11_new
+design_3.core.w_mem_inst._rn30_w_mem11_new -> design_3.core.w_mem_inst.w_mem11_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem11_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem_we
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem_we
+design_3.core.w_mem_inst._rn75_w_mem_we -> design_3.core.w_mem_inst.w_mem_we
+design_3.core.w_mem_inst._rn58_w_mem_we -> design_3.core.w_mem_inst.w_mem_we
+design_3.core.w_mem_inst._rn35_w_mem_we -> design_3.core.w_mem_inst.w_mem_we
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem_we
+design_3.core.H3_new -> design_3.core.H3_reg
+design_3.core.reset_n -> design_3.core.H3_reg
+design_3.core.H_we -> design_3.core.H3_reg
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn61_w_mem02_new
+design_3.core.H0_reg -> design_3.core._rn94_H0_new
+design_3.core.a_reg -> design_3.core._rn94_H0_new
+design_3.core.c_reg -> design_3.core.md_always6.state_logic._rn123_f
+design_3.core.b_reg -> design_3.core.md_always6.state_logic._rn123_f
+design_3.core.d_reg -> design_3.core.md_always6.state_logic._rn123_f
+design_3.core.state_init -> design_3.core.c_new
+design_3.core.state_update -> design_3.core.c_new
+design_3.core.first_block -> design_3.core.c_new
+design_3.core._rn134_c_new -> design_3.core.c_new
+design_3.core._rn112_c_new -> design_3.core.c_new
+design_3.core._rn118_c_new -> design_3.core.c_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem02_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem02_new
+design_3.core.w_mem_inst._rn61_w_mem02_new -> design_3.core.w_mem_inst.w_mem02_new
+design_3.core.w_mem_inst._rn21_w_mem02_new -> design_3.core.w_mem_inst.w_mem02_new
+design_3.core.w_mem_inst._rn44_w_mem02_new -> design_3.core.w_mem_inst.w_mem02_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem02_new
+design_3.core.H2_reg -> design_3.core._rn118_c_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem09_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem09_new
+design_3.core.w_mem_inst._rn28_w_mem09_new -> design_3.core.w_mem_inst.w_mem09_new
+design_3.core.w_mem_inst._rn68_w_mem09_new -> design_3.core.w_mem_inst.w_mem09_new
+design_3.core.w_mem_inst._rn51_w_mem09_new -> design_3.core.w_mem_inst.w_mem09_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem09_new
+design_3.core.init -> design_3.core.digest_valid_new
+design_3.core.sha1_ctrl_reg -> design_3.core.digest_valid_new
+design_3.core._rn154_digest_valid_new -> design_3.core.digest_valid_new
+design_3.core.CTRL_ROUNDS -> design_3.core.digest_valid_new
+design_3.core._rn164_digest_valid_new -> design_3.core.digest_valid_new
+design_3.core._rn171_digest_valid_new -> design_3.core.digest_valid_new
+design_3.core.CTRL_IDLE -> design_3.core.digest_valid_new
+design_3.core.CTRL_DONE -> design_3.core.digest_valid_new
+design_3.core.next -> design_3.core.digest_valid_new
+design_3.core._rn181_digest_valid_new -> design_3.core.digest_valid_new
+design_3.core.sha1_ctrl_reg -> design_3.core.w_next
+design_3.core._rn151_w_next -> design_3.core.w_next
+design_3.core.CTRL_ROUNDS -> design_3.core.w_next
+design_3.core._rn177_w_next -> design_3.core.w_next
+design_3.core.CTRL_IDLE -> design_3.core.w_next
+design_3.core.digest_init -> design_3.core.H_we
+design_3.core._rn87_H_we -> design_3.core.H_we
+design_3.core._rn93_H_we -> design_3.core.H_we
+design_3.core._rn99_H_we -> design_3.core.H_we
+design_3.core.digest_update -> design_3.core.H_we
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn36_w_0 -> design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn40_w_16
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn39_w_13 -> design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn40_w_16
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn38_w_8 -> design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn40_w_16
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn37_w_2 -> design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn40_w_16
+design_3.cs -> design_3.init_new
+design_3.ADDR_CTRL -> design_3.init_new
+design_3.address -> design_3.init_new
+design_3._rn208_init_new -> design_3.init_new
+design_3._rn202_init_new -> design_3.init_new
+design_3.we -> design_3.init_new
+design_3.core.sha1_ctrl_reg -> design_3.core.round_ctr_inc
+design_3.core.CTRL_ROUNDS -> design_3.core.round_ctr_inc
+design_3.core._rn152_round_ctr_inc -> design_3.core.round_ctr_inc
+design_3.core.CTRL_IDLE -> design_3.core.round_ctr_inc
+design_3.core._rn176_round_ctr_inc -> design_3.core.round_ctr_inc
+design_3.core.w_mem_inst.w -> design_3.core.w
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn68_w_mem09_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem06_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem06_new
+design_3.core.w_mem_inst._rn48_w_mem06_new -> design_3.core.w_mem_inst.w_mem06_new
+design_3.core.w_mem_inst._rn25_w_mem06_new -> design_3.core.w_mem_inst.w_mem06_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem06_new
+design_3.core.w_mem_inst._rn65_w_mem06_new -> design_3.core.w_mem_inst.w_mem06_new
+design_3.core.H0_3 -> design_3.core._rn91_H3_new
+design_3.core.CTRL_ROUNDS -> design_3.core._rn166_sha1_ctrl_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn37_w_2
+design_3.reset_n -> design_3.block_reg
+design_3.write_data -> design_3.block_reg
+design_3.block_we -> design_3.block_reg
+design_3.core.d_new -> design_3.core.d_reg
+design_3.core.reset_n -> design_3.core.d_reg
+design_3.core.a_e_we -> design_3.core.d_reg
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem15_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem15_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem15_new
+design_3.core.w_mem_inst._rn34_w_mem15_new -> design_3.core.w_mem_inst.w_mem15_new
+design_3.core.w_mem_inst._rn74_w_mem15_new -> design_3.core.w_mem_inst.w_mem15_new
+design_3.core.w_mem_inst._rn57_w_mem15_new -> design_3.core.w_mem_inst.w_mem15_new
+design_3.core.CTRL_IDLE -> design_3.core.sha1_ctrl_reg
+design_3.core.reset_n -> design_3.core.sha1_ctrl_reg
+design_3.core.sha1_ctrl_we -> design_3.core.sha1_ctrl_reg
+design_3.core.sha1_ctrl_new -> design_3.core.sha1_ctrl_reg
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn45_w_mem03_new
+design_3.reset_n -> design_3.core.reset_n
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn60_w_mem01_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn52_w_mem10_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem00_new
+design_3.core.w_mem_inst._rn42_w_mem00_new -> design_3.core.w_mem_inst.w_mem00_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem00_new
+design_3.core.w_mem_inst._rn19_w_mem00_new -> design_3.core.w_mem_inst.w_mem00_new
+design_3.core.w_mem_inst._rn59_w_mem00_new -> design_3.core.w_mem_inst.w_mem00_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem00_new
+design_3.core.w_mem_inst.w_ctr_new -> design_3.core.w_mem_inst.w_ctr_reg
+design_3.core.w_mem_inst.w_ctr_we -> design_3.core.w_mem_inst.w_ctr_reg
+design_3.core.w_mem_inst.reset_n -> design_3.core.w_mem_inst.w_ctr_reg
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn66_w_mem07_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn53_w_mem11_new
+design_3.block_reg -> design_3.core_block
+design_3.core.digest_init -> design_3.core.H0_new
+design_3.core._rn88_H0_new -> design_3.core.H0_new
+design_3.core._rn94_H0_new -> design_3.core.H0_new
+design_3.core.digest_update -> design_3.core.H0_new
+design_3.core._rn82_H0_new -> design_3.core.H0_new
+design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn40_w_16 -> design_3.core.w_mem_inst._rn41_w_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst.md_always2.w_mem_update_logic._rn36_w_0
+design_3.core.H0_2 -> design_3.core._rn90_H2_new
+design_3.core.md_always6.state_logic._rn131_t -> design_3.core._rn132_a_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn55_w_mem13_new
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn72_w_mem13_new
+design_3.core.CTRL_IDLE -> design_3.core._rn156_sha1_ctrl_new
+design_3.core.H0_1 -> design_3.core._rn111_b_new
+design_3.core.e_reg -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn126_k -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn129_f -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn124_k -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn125_f -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.w -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn123_f -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn102_k -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn101_f -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn122_k -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn128_k -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn127_f -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.md_always6.state_logic._rn130_a5 -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.round_ctr_reg -> design_3.core.md_always6.state_logic._rn131_t
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_mem05_new
+design_3.core.w_mem_inst._rn24_w_mem05_new -> design_3.core.w_mem_inst.w_mem05_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_mem05_new
+design_3.core.w_mem_inst._rn47_w_mem05_new -> design_3.core.w_mem_inst.w_mem05_new
+design_3.core.w_mem_inst._rn64_w_mem05_new -> design_3.core.w_mem_inst.w_mem05_new
+design_3.core.w_mem_inst.w_ctr_reg -> design_3.core.w_mem_inst.w_mem05_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn48_w_mem06_new
+design_3.core.w_mem_inst._rn78_w_ctr_new -> design_3.core.w_mem_inst.w_ctr_new
+design_3.core.w_mem_inst.next -> design_3.core.w_mem_inst.w_ctr_new
+design_3.core.w_mem_inst.init -> design_3.core.w_mem_inst.w_ctr_new
+design_3.core.w_mem_inst._rn80_w_ctr_new -> design_3.core.w_mem_inst.w_ctr_new
+design_3.core.w_mem_inst._rn76_w_ctr_new -> design_3.core.w_mem_inst.w_ctr_new
+design_3.core._rn113_d_new -> design_3.core.d_new
+design_3.core._rn119_d_new -> design_3.core.d_new
+design_3.core.state_init -> design_3.core.d_new
+design_3.core.state_update -> design_3.core.d_new
+design_3.core.first_block -> design_3.core.d_new
+design_3.core._rn135_d_new -> design_3.core.d_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn57_w_mem15_new
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn56_w_mem14_new
+design_3.core.reset_n -> design_3.core.e_reg
+design_3.core.a_e_we -> design_3.core.e_reg
+design_3.core.e_new -> design_3.core.e_reg
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn42_w_mem00_new
+design_3.core.H0_0 -> design_3.core._rn88_H0_new
+design_3.core.w_init -> design_3.core.w_mem_inst.init
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn59_w_mem00_new
+design_3.core.digest_init -> design_3.core.H3_new
+design_3.core._rn85_H3_new -> design_3.core.H3_new
+design_3.core._rn97_H3_new -> design_3.core.H3_new
+design_3.core.digest_update -> design_3.core.H3_new
+design_3.core._rn91_H3_new -> design_3.core.H3_new
+design_3.core.digest_init -> design_3.core.H1_new
+design_3.core._rn89_H1_new -> design_3.core.H1_new
+design_3.core._rn95_H1_new -> design_3.core.H1_new
+design_3.core.digest_update -> design_3.core.H1_new
+design_3.core._rn83_H1_new -> design_3.core.H1_new
+design_3.core._rn169_state_init -> design_3.core.state_init
+design_3.core.init -> design_3.core.state_init
+design_3.core.sha1_ctrl_reg -> design_3.core.state_init
+design_3.core._rn146_state_init -> design_3.core.state_init
+design_3.core.CTRL_IDLE -> design_3.core.state_init
+design_3.core._rn161_state_init -> design_3.core.state_init
+design_3.core.next -> design_3.core.state_init
+design_3.core.w_mem_inst.block -> design_3.core.w_mem_inst._rn43_w_mem01_new
+design_3.core.b_reg -> design_3.core._rn134_c_new
+design_3.core._rn170_round_ctr_rst -> design_3.core.round_ctr_rst
+design_3.core.init -> design_3.core.round_ctr_rst
+design_3.core.sha1_ctrl_reg -> design_3.core.round_ctr_rst
+design_3.core._rn153_round_ctr_rst -> design_3.core.round_ctr_rst
+design_3.core._rn163_round_ctr_rst -> design_3.core.round_ctr_rst
+design_3.core.CTRL_IDLE -> design_3.core.round_ctr_rst
+design_3.core.next -> design_3.core.round_ctr_rst
+design_3.core.w_mem_inst.w_mem -> design_3.core.w_mem_inst._rn67_w_mem08_new
+design_3.core.a_new -> design_3.core.a_reg
+design_3.core.reset_n -> design_3.core.a_reg
+design_3.core.a_e_we -> design_3.core.a_reg

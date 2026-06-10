@@ -1,0 +1,6 @@
+
+======================================================================
+TEST FAILED AT 11.0 ns
+FAILING SIGNAL : pc_after_reset
+ERROR DETAILS  : Expected pc_after_reset=0x0, got 0x1
+======================================================================

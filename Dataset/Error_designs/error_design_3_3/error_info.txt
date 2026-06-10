@@ -1,0 +1,11 @@
+Design: SHA1
+Error line: 487
+
+Original code:
+if (round_ctr_reg == SHA1_ROUNDS)
+
+Erroneous code:
+if (round_ctr_reg == (SHA1_ROUNDS - 1))
+
+Error description:
+Logic modified

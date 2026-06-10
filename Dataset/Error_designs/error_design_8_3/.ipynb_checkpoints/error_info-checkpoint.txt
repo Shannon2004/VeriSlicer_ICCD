@@ -1,0 +1,14 @@
+Design: id_stage
+Error line: 133
+
+Original code:
+        end else if (reg_write && (rd != 0)) begin
+
+Erroneous code:
+        end else if (!reg_write && (rd != 0)) begin
+
+Error description:
+Flipped if condition
+
+==================================================
+

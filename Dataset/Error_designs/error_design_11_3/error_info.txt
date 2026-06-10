@@ -1,0 +1,31 @@
+Design: hdc_controller
+Error line: 191
+
+Original code:
+                if (similarity_fsm_enable)
+
+Erroneous code:
+                if(!(similarity_fsm_enable))
+
+Error description:
+Flipped if condition
+
+==================================================
+
+
+Design: hdc_controller
+Error line: 59
+
+Original code:
+    wire  [35:0]temp_level_index;
+
+Erroneous code:
+    wire  [36:0]temp_level_index;
+
+Error description:
+Bitwidth incremented by 1
+
+==================================================
+
+
+

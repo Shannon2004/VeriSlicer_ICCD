@@ -1,0 +1,16 @@
+
+
+Design: id_stage
+Error line: 78
+
+Original code:
+        if (reset) begin
+
+Erroneous code:
+        if(!reset) begin
+
+Error description:
+Flipped if condition
+
+==================================================
+

@@ -1,0 +1,6 @@
+
+=================================================================
+TEST FAILED AT 50060.0 ns
+FAILING SIGNAL : done
+ERROR DETAILS  : Simulation timed out. 'done' signal never asserted.
+=================================================================

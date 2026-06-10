@@ -1,0 +1,163 @@
+MODULE SPECIFICATION: ex_stage (Execution Stage)
+
+1. ARCHITECTURAL INTENT
+
+    Type: Execution (EX) Stage of a RISC-V processor pipeline.
+
+    Active Configuration: This design implements a combinational execution unit consisting of an ALU control decoder and an Arithmetic Logic Unit (ALU). It supports a subset of R-type and I-type arithmetic/logic instructions.
+
+    Mechanism: The module selects the second ALU operand (register or immediate), decodes the instruction into a control signal, and performs the corresponding arithmetic or logical operation using the ALU.
+
+    Execution Model:
+        - Fully combinational (no internal pipeline registers).
+        - Produces result within the same cycle.
+        - Supports basic arithmetic, logical, comparison, and shift operations.
+
+
+2. PORT INTERFACE
+
+    Inputs:
+        ex_rd1     [31:0] : First operand from register file.
+        ex_rd2     [31:0] : Second operand from register file.
+        ex_imm     [31:0] : Immediate value from ID stage.
+        ex_opcode  [6:0]  : Instruction opcode.
+        ex_funct3  [2:0]  : Function field (funct3).
+        ex_funct7  [6:0]  : Function field (funct7).
+
+    Outputs:
+        alu_result [31:0] : Result of ALU operation.
+        zero              : Zero flag (1 if result == 0).
+
+
+3. CRITICAL INTERNAL STATE (Registers & Wires)
+
+    alu_b (Wire):
+        Second operand to ALU.
+        Selected based on instruction type:
+            - I-type → immediate (ex_imm)
+            - Otherwise → register value (ex_rd2)
+
+    alu_ctrl (Wire):
+        4-bit control signal determining ALU operation.
+
+    result (Register in ALU):
+        Stores the computed ALU result.
+
+    zero (Wire):
+        Indicates whether the ALU result is zero.
+
+
+4. INTERNAL MODULES
+
+    Operand Selection Logic:
+        Determines second operand:
+            alu_b = (opcode == 7'b0010011) ? ex_imm : ex_rd2
+
+        Purpose:
+            Enables immediate-based operations (I-type instructions).
+
+    alu_ctrl (ALU Control Unit):
+        Generates ALU control signals based on opcode, funct3, and funct7.
+
+        Supported Decoding:
+
+            R-type (opcode = 0110011):
+                ADD  → 0000
+                SUB  → 0001
+                AND  → 0010
+                OR   → 0011
+                XOR  → 0100
+                SLT  → 0101
+
+            I-type (opcode = 0010011):
+                ADDI → 0000
+                ANDI → 0010
+                ORI  → 0011
+                XORI → 0100
+
+            Default:
+                alu_ctrl = 0000 (ADD fallback)
+
+        Purpose:
+            Translates instruction encoding into executable ALU operations.
+
+    alu (Arithmetic Logic Unit):
+        Performs operations based on alu_ctrl:
+
+            0000 → a + b        (ADD)
+            0001 → a - b        (SUB)
+            0010 → a & b        (AND)
+            0011 → a | b        (OR)
+            0100 → a ^ b        (XOR)
+            0101 → signed(a<b)  (SLT)
+            0110 → a << b[4:0]  (SLL)
+            0111 → a >> b[4:0]  (SRL)
+
+        Zero Flag:
+            zero = (result == 0)
+
+        Purpose:
+            Core computational unit of the processor.
+
+
+5. BEHAVIORAL CONSTRAINTS & DEBUGGING CONTEXT
+
+    Combinational Nature:
+        Entire EX stage is combinational.
+        Output changes immediately with input changes (no clock dependency).
+
+    Operand Selection Limitation:
+        Immediate is used only for opcode 0010011.
+        Other instruction types requiring immediates (e.g., load/store) are not handled.
+
+    ALU Control Coverage:
+        Only a subset of RISC-V instructions is supported.
+        Unsupported instructions default to ADD operation.
+
+    Signed Comparison:
+        SLT uses signed comparison:
+            ($signed(a) < $signed(b))
+
+    Shift Operations:
+        Shift amount limited to lower 5 bits of operand b:
+            b[4:0]
+
+    Zero Flag Behavior:
+        Zero flag is purely combinational.
+        Any incorrect ALU result directly affects branch decisions in later stages.
+
+    Missing Pipeline Register:
+        No EX/MEM pipeline register is present.
+        Outputs directly feed the next stage, which may cause timing or hazard issues.
+
+    Hazard Sensitivity:
+        No forwarding or hazard resolution logic exists.
+        Incorrect operands may be used if dependencies are not handled externally.
+
+
+6. DESIGN LIMITATIONS & EXTENSIBILITY
+
+    Limited Instruction Support:
+        Does not support:
+            - Load/store address calculations
+            - Branch comparisons beyond zero flag
+            - Multiply/divide operations
+
+    No Branch Logic:
+        Zero flag is generated but not used internally.
+        Branch decision logic must be implemented in another module.
+
+    Immediate Handling Restriction:
+        Only supports I-type immediate usage.
+        Other formats (S, B, U, J) are ignored in operand selection.
+
+    No Pipeline Isolation:
+        Absence of EX/MEM register reduces modularity in pipelined designs.
+
+    Future Enhancements:
+        - Add support for load/store address computation
+        - Extend ALU control for full RISC-V ISA
+        - Introduce EX/MEM pipeline register
+        - Add forwarding unit for hazard resolution
+        - Integrate branch decision logic using zero flag
+

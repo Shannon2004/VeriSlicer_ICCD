@@ -1,0 +1,19 @@
+Design: SIMD Processor
+Error line: 162
+
+Original code:
+
+else if (current_state == STATE_ID)
+begin
+    current_state <= STATE_EX;
+end
+
+Erroneous code:
+
+else if (current_state == STATE_ID)
+begin
+    current_state <= STATE_ID;
+end
+
+Error description:
+Modified state machine state from STATE_EX to STATE_ID

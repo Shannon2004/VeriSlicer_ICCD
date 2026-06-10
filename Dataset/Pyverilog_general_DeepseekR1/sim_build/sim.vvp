@@ -1,0 +1,62 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib64/ivl/system.vpi";
+:vpi_module "/usr/lib64/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib64/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib64/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib64/ivl/va_math.vpi";
+:vpi_module "/usr/lib64/ivl/v2009.vpi";
+S_0x55c79166b6e0 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x55c79166b890 .scope module, "design_17" "design_17" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 8 "A";
+    .port_info 1 /INPUT 8 "B";
+    .port_info 2 /INPUT 1 "Cin";
+    .port_info 3 /OUTPUT 8 "Sum";
+    .port_info 4 /OUTPUT 1 "Cout";
+L_0x55c7916592b0 .functor NOT 9, L_0x55c79167e450, C4<000000000>, C4<000000000>, C4<000000000>;
+o0x7fdc1b2dd018 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+v0x55c7916316b0_0 .net "A", 7 0, o0x7fdc1b2dd018;  0 drivers
+o0x7fdc1b2dd048 .functor BUFZ 8, C4<zzzzzzzz>; HiZ drive
+v0x55c79167d5a0_0 .net "B", 7 0, o0x7fdc1b2dd048;  0 drivers
+o0x7fdc1b2dd078 .functor BUFZ 1, C4<z>; HiZ drive
+v0x55c79167d680_0 .net "Cin", 0 0, o0x7fdc1b2dd078;  0 drivers
+v0x55c79167d720_0 .net "Cout", 0 0, L_0x55c79167e190;  1 drivers
+v0x55c79167d7e0_0 .net "Sum", 7 0, L_0x55c79167e230;  1 drivers
+L_0x7fdc1b294060 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x55c79167d910_0 .net *"_ivl_10", 0 0, L_0x7fdc1b294060;  1 drivers
+v0x55c79167d9f0_0 .net *"_ivl_11", 8 0, L_0x55c7916592b0;  1 drivers
+v0x55c79167dad0_0 .net *"_ivl_13", 8 0, L_0x55c79167e620;  1 drivers
+v0x55c79167dbb0_0 .net *"_ivl_15", 8 0, L_0x55c79167e760;  1 drivers
+L_0x7fdc1b2940a8 .functor BUFT 1, C4<00000000>, C4<0>, C4<0>, C4<0>;
+v0x55c79167dc90_0 .net *"_ivl_18", 7 0, L_0x7fdc1b2940a8;  1 drivers
+v0x55c79167dd70_0 .net *"_ivl_19", 8 0, L_0x55c79167e8c0;  1 drivers
+v0x55c79167de50_0 .net *"_ivl_3", 8 0, L_0x55c79167e300;  1 drivers
+L_0x7fdc1b294018 .functor BUFT 1, C4<0>, C4<0>, C4<0>, C4<0>;
+v0x55c79167df30_0 .net *"_ivl_6", 0 0, L_0x7fdc1b294018;  1 drivers
+v0x55c79167e010_0 .net *"_ivl_7", 8 0, L_0x55c79167e450;  1 drivers
+L_0x55c79167e190 .part L_0x55c79167e8c0, 8, 1;
+L_0x55c79167e230 .part L_0x55c79167e8c0, 0, 8;
+L_0x55c79167e300 .concat [ 8 1 0 0], o0x7fdc1b2dd018, L_0x7fdc1b294018;
+L_0x55c79167e450 .concat [ 8 1 0 0], o0x7fdc1b2dd048, L_0x7fdc1b294060;
+L_0x55c79167e620 .arith/sum 9, L_0x55c79167e300, L_0x55c7916592b0;
+L_0x55c79167e760 .concat [ 1 8 0 0], o0x7fdc1b2dd078, L_0x7fdc1b2940a8;
+L_0x55c79167e8c0 .arith/sum 9, L_0x55c79167e620, L_0x55c79167e760;
+S_0x55c791631500 .scope module, "iverilog_dump" "iverilog_dump" 4 2;
+ .timescale -9 -12;
+    .scope S_0x55c791631500;
+T_0 ;
+    %vpi_call/w 4 4 "$dumpfile", "/home/shannon/VeriSlicer_test/Dataset/Pyverilog_general_DeepseekR1/../Error_designs/error_design_17_2/design_17.vcd" {0 0 0};
+    %vpi_call/w 4 5 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x55c79166b890 {0 0 0};
+    %end;
+    .thread T_0;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/home/shannon/VeriSlicer_test/Dataset/Pyverilog_general_DeepseekR1/../Error_designs/error_design_17_2/design_17.v";
+    "iverilog_dump.v";

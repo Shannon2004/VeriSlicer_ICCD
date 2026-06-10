@@ -1,0 +1,161 @@
+MODULE SPECIFICATION: bf16 (BF16 / INT8 Multiply-Accumulate Unit)
+
+1. ARCHITECTURAL INTENT
+
+    Type: Multiply-Accumulate (MAC) Unit supporting dual modes:
+          - BF16/FP16-like floating-point mode
+          - INT8 fixed-point mode
+
+    Active Configuration: Non-pipelined MAC (default), with optional pipeline stages enabled via `PIPLINE` macro.
+
+    Mechanism: The design performs iterative MAC operations:
+            MAC = (A × B) + C
+        where:
+            - A and B are inputs
+            - C is the accumulated result stored internally
+
+    Execution Model:
+        - Controlled by enable, valid, read, and cfg signals
+        - Supports streaming accumulation followed by explicit readout
+        - Internal state registers store operands and accumulated result
+
+
+2. PORT INTERFACE
+
+    Global:
+        clk     : System clock
+        rst_n   : Active-low asynchronous reset
+
+    Control Inputs:
+        enable  : Enables MAC operation
+        valid   : Indicates valid input data for accumulation
+        read    : Read mode trigger (outputs result and clears accumulator)
+        cfg     : Configuration enable for mode selection
+        mode    : Operation mode
+                  1 → Floating-point (BF16-like)
+                  0 → INT8 mode
+
+    Data Inputs:
+        in_a [15:0] : Operand A
+        in_b [15:0] : Operand B
+
+    Outputs:
+        mac_out [15:0] : MAC result (valid only during read condition)
+        error          : Indicates overflow/underflow (floating-point mode)
+
+
+3. CRITICAL INTERNAL STATE (Registers & Wires)
+
+    a_reg, b_reg (Registers):
+        Store input operands during valid cycles.
+
+    c_reg (Register):
+        Accumulator register storing intermediate MAC result.
+
+    mode_reg (Register):
+        Latched mode configuration (float or integer).
+
+    mac_out_tmp (Wire):
+        Output of MAC computation before gating.
+
+    float_int (Wire):
+        Internal mode signal derived from mode_reg.
+
+    Output Gating:
+        mac_out = mac_out_tmp only when:
+            (read && enable && ~valid)
+        Otherwise output is zero.
+
+
+4. INTERNAL MODULES
+
+    mac_unit:
+        Core computational block performing:
+            (in_a × in_b) + in_c
+
+        Structure:
+            - Multiplier (int_fp_mul)
+            - Adder (int_fp_add)
+
+    int_fp_mul (Multiplier):
+        Performs multiplication in two modes:
+
+        Floating-point mode:
+            - Extracts sign, exponent, mantissa
+            - Computes:
+                exponent_sum = exp_a + exp_b - bias
+                mantissa multiplication
+            - Handles:
+                overflow, underflow
+            - Outputs normalized FP result
+
+        INT8 mode:
+            - Treats inputs as signed 8-bit values
+            - Performs integer multiplication
+            - Outputs 16-bit signed result
+
+    int_fp_add (Adder):
+        Performs addition in two modes:
+
+        Floating-point mode:
+            - Aligns mantissas based on exponent difference
+            - Adds/subtracts mantissas
+            - Normalizes result
+
+        INT8 mode:
+            - Performs segmented addition:
+                lower 11-bit + upper 5-bit addition
+
+    alignment:
+        Aligns smaller mantissa with larger exponent via right shift.
+
+    add_normalizer:
+        Normalizes floating-point addition result:
+            - Detects leading zeros
+            - Adjusts exponent accordingly
+
+    mul_normalizer:
+        Normalizes multiplication result:
+            - Adjusts exponent if MSB overflow occurs
+            - Extracts final mantissa
+
+    cla_nbit:
+        Generic carry-lookahead adder used throughout design.
+
+    mul16x16 → mul8x8 → mul4x4 → mul2x2:
+        Hierarchical multiplier implementation:
+            - Breaks multiplication into smaller blocks
+            - Combines partial products using CLA adders
+
+
+5. BEHAVIORAL CONSTRAINTS
+
+    Control Flow Dependency:
+        - valid = 1 → load inputs and accumulate
+        - read  = 1 → output result and reset accumulator
+        - cfg   = 1 → update mode register (only when enable = 0)
+
+    Accumulation Behavior:
+        c_reg feeds back into MAC:
+            c_next = (A × B) + c_prev
+
+    Output Timing:
+        mac_out is only valid when:
+            read && enable && ~valid
+        Otherwise always zero.
+
+    Reset Behavior:
+        On rst_n = 0:
+            - All registers cleared to zero
+            - Mode reset to INT8 (default 0)
+
+    INT8 Mode Behavior:
+        - Uses partial signed arithmetic
+        - Upper/lower bits handled separately
+
+    Pipeline Configuration:
+        If `PIPLINE` defined:
+            - Registers inserted in multiplier and adder paths
+            - Increases latency but improves timing
+
+

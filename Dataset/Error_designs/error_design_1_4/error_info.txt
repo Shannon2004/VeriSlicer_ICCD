@@ -1,0 +1,11 @@
+Design: CORDIC
+Error line: 51
+
+Original code:
+signed_shifter y_shifter(iteration,y_i,y_i_shifted);
+
+Erroneous code:
+signed_shifter y_shifter(iteration,x_i,y_i_shifted);
+
+Error description:
+Logic modified

@@ -1,0 +1,783 @@
+# Source File: ../Error_designs/error_design_6_4/design_6.v
+# Project Dir: error_design_6_4
+# Total Vertices: 121
+# Total Edges: 654
+
+=== VERTICES ===
+design_6.Add.A
+design_6.Add.B
+design_6.Add.B_real
+design_6.Add.C0
+design_6.Add.C1
+design_6.Add.C2
+design_6.Add.C3
+design_6.Add.Cout
+design_6.Add.H
+design_6.Add.O
+design_6.Add.Q
+design_6.Add.sub
+design_6.Add_output_Cout
+design_6.CMD_addition
+design_6.CMD_and
+design_6.CMD_load
+design_6.CMD_logic_shift_left
+design_6.CMD_logic_shift_right
+design_6.CMD_mul_accumulation
+design_6.CMD_multiplication
+design_6.CMD_not
+design_6.CMD_or
+design_6.CMD_set
+design_6.CMD_store
+design_6.CMD_substruction
+design_6.H
+design_6.Him
+design_6.Hreg1
+design_6.Hreg2
+design_6.Hreg3
+design_6.MAC_input_A
+design_6.MAC_input_B
+design_6.Mul.H
+design_6.Mul.O
+design_6.Mul.a0
+design_6.Mul.a1
+design_6.Mul.a10
+design_6.Mul.a11
+design_6.Mul.a12
+design_6.Mul.a13
+design_6.Mul.a14
+design_6.Mul.a15
+design_6.Mul.a2
+design_6.Mul.a3
+design_6.Mul.a4
+design_6.Mul.a5
+design_6.Mul.a6
+design_6.Mul.a7
+design_6.Mul.a8
+design_6.Mul.a9
+design_6.Mul.mulinputa
+design_6.Mul.mulinputb
+design_6.Mul.muloutput
+design_6.Mul.sel0
+design_6.Mul.sel1
+design_6.Mul.sel2
+design_6.Mul.sel3
+design_6.Mul.tmp0
+design_6.Mul.tmp00
+design_6.Mul.tmp000
+design_6.Mul.tmp1
+design_6.Mul.tmp11
+design_6.Mul.tmp1h
+design_6.Mul.tmp1o
+design_6.Mul.tmp1q
+design_6.Mul.tmp2
+design_6.Mul.tmp2h
+design_6.Mul.tmp2o
+design_6.Mul.tmp2q
+design_6.Mul.tmp3
+design_6.Mul.tmp3h
+design_6.Mul.tmp3o
+design_6.Mul.tmp3q
+design_6.Mul_output_Cout
+design_6.Oim
+design_6.Oreg1
+design_6.Oreg2
+design_6.Oreg3
+design_6.Oset
+design_6.Qim
+design_6.Qreg1
+design_6.Qreg2
+design_6.Qreg3
+design_6.Qset
+design_6.STATE_EX
+design_6.STATE_HALT
+design_6.STATE_ID
+design_6.STATE_IDLE
+design_6.STATE_IF
+design_6.STATE_MEM
+design_6.STATE_WB
+design_6.comp_input_A
+design_6.comp_input_B
+design_6.current_state
+design_6.data_in
+design_6.data_out
+design_6.data_out_reg
+design_6.im_reg
+design_6.instruction_in
+design_6.opcode
+design_6.result_reg_Lshift
+design_6.result_reg_Rshift
+design_6.result_reg_add
+design_6.result_reg_and
+design_6.result_reg_mac
+design_6.result_reg_mul
+design_6.result_reg_not
+design_6.result_reg_or
+design_6.result_reg_set
+design_6.result_reg_sub
+design_6.rst
+design_6.shift.H
+design_6.shift.O
+design_6.shift.left
+design_6.shift.left_shift
+design_6.shift.right_shift
+design_6.shift.shiftinput
+design_6.shift.shiftoutput
+design_6.shift.shiftoutput_tmp
+design_6.shiftinput
+design_6.shiftoutput
+
+=== EDGES (Driver -> Target) ===
+design_6.Mul.sel1 -> design_6.Mul.a6
+design_6.Mul.mulinputb -> design_6.Mul.a6
+design_6.Mul.mulinputa -> design_6.Mul.a6
+design_6.Mul.a1 -> design_6.Mul.tmp0
+design_6.Mul.a2 -> design_6.Mul.tmp0
+design_6.Mul.a0 -> design_6.Mul.tmp0
+design_6.Mul.a3 -> design_6.Mul.tmp0
+design_6.rst -> design_6.CMD_store
+design_6.opcode -> design_6.CMD_store
+design_6.current_state -> design_6.CMD_store
+design_6.STATE_IF -> design_6.CMD_store
+design_6.STATE_IDLE -> design_6.CMD_store
+design_6.STATE_ID -> design_6.CMD_store
+design_6.Add.B_real -> design_6.Add.C0
+design_6.Add.A -> design_6.Add.C0
+design_6.Add.sub -> design_6.Add.C0
+design_6.rst -> design_6.result_reg_mac
+design_6.CMD_multiplication -> design_6.result_reg_mac
+design_6.Qreg3 -> design_6.result_reg_mac
+design_6.STATE_EX -> design_6.result_reg_mac
+design_6.current_state -> design_6.result_reg_mac
+design_6.STATE_IF -> design_6.result_reg_mac
+design_6.Hreg3 -> design_6.result_reg_mac
+design_6.STATE_IDLE -> design_6.result_reg_mac
+design_6.CMD_addition -> design_6.result_reg_mac
+design_6.Add_output_Cout -> design_6.result_reg_mac
+design_6.Oreg3 -> design_6.result_reg_mac
+design_6.CMD_substruction -> design_6.result_reg_mac
+design_6.CMD_mul_accumulation -> design_6.result_reg_mac
+design_6.rst -> design_6.im_reg
+design_6.instruction_in -> design_6.im_reg
+design_6.current_state -> design_6.im_reg
+design_6.STATE_IF -> design_6.im_reg
+design_6.STATE_IDLE -> design_6.im_reg
+design_6.STATE_ID -> design_6.im_reg
+design_6.Mul.sel3 -> design_6.Mul.a13
+design_6.Mul.mulinputb -> design_6.Mul.a13
+design_6.Mul.mulinputa -> design_6.Mul.a13
+design_6.Qset -> design_6.MAC_input_A
+design_6.H -> design_6.MAC_input_A
+design_6.Hreg3 -> design_6.MAC_input_A
+design_6.Oset -> design_6.MAC_input_A
+design_6.Oreg3 -> design_6.MAC_input_A
+design_6.Oreg1 -> design_6.shift.O
+design_6.Mul.tmp3 -> design_6.Mul.tmp3q
+design_6.rst -> design_6.result_reg_sub
+design_6.Qim -> design_6.result_reg_sub
+design_6.Qreg2 -> design_6.result_reg_sub
+design_6.Hreg2 -> design_6.result_reg_sub
+design_6.Him -> design_6.result_reg_sub
+design_6.STATE_EX -> design_6.result_reg_sub
+design_6.current_state -> design_6.result_reg_sub
+design_6.STATE_IF -> design_6.result_reg_sub
+design_6.STATE_IDLE -> design_6.result_reg_sub
+design_6.CMD_addition -> design_6.result_reg_sub
+design_6.Oreg2 -> design_6.result_reg_sub
+design_6.Add_output_Cout -> design_6.result_reg_sub
+design_6.Oim -> design_6.result_reg_sub
+design_6.CMD_substruction -> design_6.result_reg_sub
+design_6.Mul.tmp2o -> design_6.Mul.muloutput
+design_6.Mul.tmp2q -> design_6.Mul.muloutput
+design_6.Mul.H -> design_6.Mul.muloutput
+design_6.Mul.tmp3h -> design_6.Mul.muloutput
+design_6.Mul.tmp0 -> design_6.Mul.muloutput
+design_6.Mul.tmp2h -> design_6.Mul.muloutput
+design_6.Mul.tmp3q -> design_6.Mul.muloutput
+design_6.Mul.tmp3o -> design_6.Mul.muloutput
+design_6.Mul.tmp1h -> design_6.Mul.muloutput
+design_6.Mul.O -> design_6.Mul.muloutput
+design_6.Mul.tmp1q -> design_6.Mul.muloutput
+design_6.Mul.tmp1o -> design_6.Mul.muloutput
+design_6.instruction_in -> design_6.opcode
+design_6.rst -> design_6.Hreg2
+design_6.opcode -> design_6.Hreg2
+design_6.current_state -> design_6.Hreg2
+design_6.STATE_IF -> design_6.Hreg2
+design_6.STATE_IDLE -> design_6.Hreg2
+design_6.STATE_ID -> design_6.Hreg2
+design_6.rst -> design_6.CMD_or
+design_6.opcode -> design_6.CMD_or
+design_6.current_state -> design_6.CMD_or
+design_6.STATE_IF -> design_6.CMD_or
+design_6.STATE_IDLE -> design_6.CMD_or
+design_6.STATE_ID -> design_6.CMD_or
+design_6.rst -> design_6.CMD_load
+design_6.opcode -> design_6.CMD_load
+design_6.current_state -> design_6.CMD_load
+design_6.STATE_IF -> design_6.CMD_load
+design_6.STATE_IDLE -> design_6.CMD_load
+design_6.STATE_ID -> design_6.CMD_load
+design_6.Mul.sel1 -> design_6.Mul.a7
+design_6.Mul.mulinputb -> design_6.Mul.a7
+design_6.Mul.mulinputa -> design_6.Mul.a7
+design_6.Mul.sel2 -> design_6.Mul.a11
+design_6.Mul.mulinputb -> design_6.Mul.a11
+design_6.Mul.mulinputa -> design_6.Mul.a11
+design_6.Mul.a7 -> design_6.Mul.tmp1
+design_6.Mul.a6 -> design_6.Mul.tmp1
+design_6.Mul.a4 -> design_6.Mul.tmp1
+design_6.Mul.a5 -> design_6.Mul.tmp1
+design_6.rst -> design_6.CMD_set
+design_6.opcode -> design_6.CMD_set
+design_6.current_state -> design_6.CMD_set
+design_6.STATE_IF -> design_6.CMD_set
+design_6.STATE_IDLE -> design_6.CMD_set
+design_6.STATE_ID -> design_6.CMD_set
+design_6.rst -> design_6.Him
+design_6.opcode -> design_6.Him
+design_6.current_state -> design_6.Him
+design_6.STATE_IF -> design_6.Him
+design_6.STATE_IDLE -> design_6.Him
+design_6.STATE_ID -> design_6.Him
+design_6.Mul.mulinputb -> design_6.Mul.a2
+design_6.Mul.mulinputa -> design_6.Mul.a2
+design_6.Mul.sel0 -> design_6.Mul.a2
+design_6.data_out_reg -> design_6.data_out
+design_6.rst -> design_6.Oreg2
+design_6.opcode -> design_6.Oreg2
+design_6.current_state -> design_6.Oreg2
+design_6.STATE_IF -> design_6.Oreg2
+design_6.STATE_IDLE -> design_6.Oreg2
+design_6.STATE_ID -> design_6.Oreg2
+design_6.rst -> design_6.Oreg3
+design_6.opcode -> design_6.Oreg3
+design_6.current_state -> design_6.Oreg3
+design_6.STATE_IF -> design_6.Oreg3
+design_6.STATE_IDLE -> design_6.Oreg3
+design_6.STATE_ID -> design_6.Oreg3
+design_6.Add.C1 -> design_6.Add.Cout
+design_6.Add.C3 -> design_6.Add.Cout
+design_6.Add.C2 -> design_6.Add.Cout
+design_6.Add.C0 -> design_6.Add.Cout
+design_6.Add.B_real -> design_6.Add.C3
+design_6.Add.O -> design_6.Add.C3
+design_6.Add.H -> design_6.Add.C3
+design_6.Add.sub -> design_6.Add.C3
+design_6.Add.C2 -> design_6.Add.C3
+design_6.Add.A -> design_6.Add.C3
+design_6.Add.Q -> design_6.Add.C3
+design_6.rst -> design_6.Oreg1
+design_6.opcode -> design_6.Oreg1
+design_6.current_state -> design_6.Oreg1
+design_6.STATE_IF -> design_6.Oreg1
+design_6.STATE_IDLE -> design_6.Oreg1
+design_6.STATE_ID -> design_6.Oreg1
+design_6.Mul.tmp000 -> design_6.Mul.tmp2h
+design_6.Mul.sel1 -> design_6.Mul.a5
+design_6.Mul.mulinputb -> design_6.Mul.a5
+design_6.Mul.mulinputa -> design_6.Mul.a5
+design_6.MAC_input_B -> design_6.Add.B
+design_6.CMD_mul_accumulation -> design_6.Add.B
+design_6.comp_input_B -> design_6.Add.B
+design_6.Mul.tmp2 -> design_6.Mul.tmp2q
+design_6.Add.B -> design_6.Add.B_real
+design_6.Add.sub -> design_6.Add.B_real
+design_6.Hreg1 -> design_6.shift.H
+design_6.Mul.tmp3 -> design_6.Mul.tmp11
+design_6.Mul.tmp2 -> design_6.Mul.tmp11
+design_6.Mul.mulinputb -> design_6.Mul.a3
+design_6.Mul.mulinputa -> design_6.Mul.a3
+design_6.Mul.sel0 -> design_6.Mul.a3
+design_6.Oreg1 -> design_6.Oset
+design_6.current_state -> design_6.Oset
+design_6.STATE_IF -> design_6.Oset
+design_6.result_reg_mac -> design_6.Oset
+design_6.Oim -> design_6.Oset
+design_6.result_reg_Lshift -> design_6.Oset
+design_6.CMD_mul_accumulation -> design_6.Oset
+design_6.result_reg_and -> design_6.Oset
+design_6.CMD_and -> design_6.Oset
+design_6.result_reg_set -> design_6.Oset
+design_6.result_reg_mul -> design_6.Oset
+design_6.Hreg1 -> design_6.Oset
+design_6.result_reg_sub -> design_6.Oset
+design_6.CMD_logic_shift_right -> design_6.Oset
+design_6.CMD_multiplication -> design_6.Oset
+design_6.CMD_logic_shift_left -> design_6.Oset
+design_6.Hreg2 -> design_6.Oset
+design_6.result_reg_Rshift -> design_6.Oset
+design_6.result_reg_or -> design_6.Oset
+design_6.result_reg_add -> design_6.Oset
+design_6.CMD_or -> design_6.Oset
+design_6.CMD_addition -> design_6.Oset
+design_6.data_in -> design_6.Oset
+design_6.CMD_not -> design_6.Oset
+design_6.CMD_load -> design_6.Oset
+design_6.CMD_substruction -> design_6.Oset
+design_6.rst -> design_6.Oset
+design_6.STATE_WB -> design_6.Oset
+design_6.Qreg2 -> design_6.Oset
+design_6.CMD_set -> design_6.Oset
+design_6.Him -> design_6.Oset
+design_6.Hreg3 -> design_6.Oset
+design_6.result_reg_not -> design_6.Oset
+design_6.STATE_IDLE -> design_6.Oset
+design_6.Oreg2 -> design_6.Oset
+design_6.Oreg3 -> design_6.Oset
+design_6.shift.O -> design_6.shift.shiftoutput
+design_6.shift.left -> design_6.shift.shiftoutput
+design_6.shift.shiftoutput_tmp -> design_6.shift.shiftoutput
+design_6.shift.H -> design_6.shift.shiftoutput
+design_6.rst -> design_6.CMD_logic_shift_right
+design_6.opcode -> design_6.CMD_logic_shift_right
+design_6.current_state -> design_6.CMD_logic_shift_right
+design_6.STATE_IF -> design_6.CMD_logic_shift_right
+design_6.STATE_IDLE -> design_6.CMD_logic_shift_right
+design_6.STATE_ID -> design_6.CMD_logic_shift_right
+design_6.rst -> design_6.CMD_logic_shift_left
+design_6.opcode -> design_6.CMD_logic_shift_left
+design_6.current_state -> design_6.CMD_logic_shift_left
+design_6.STATE_IF -> design_6.CMD_logic_shift_left
+design_6.STATE_IDLE -> design_6.CMD_logic_shift_left
+design_6.STATE_ID -> design_6.CMD_logic_shift_left
+design_6.Mul.tmp000 -> design_6.Mul.tmp1h
+design_6.shiftinput -> design_6.shift.shiftinput
+design_6.im_reg -> design_6.comp_input_B
+design_6.Qset -> design_6.comp_input_B
+design_6.Oreg1 -> design_6.comp_input_B
+design_6.Hreg2 -> design_6.comp_input_B
+design_6.H -> design_6.comp_input_B
+design_6.Hreg3 -> design_6.comp_input_B
+design_6.Qreg1 -> design_6.comp_input_B
+design_6.Oset -> design_6.comp_input_B
+design_6.Oreg2 -> design_6.comp_input_B
+design_6.Oreg3 -> design_6.comp_input_B
+design_6.Hreg1 -> design_6.comp_input_B
+design_6.rst -> design_6.Qim
+design_6.opcode -> design_6.Qim
+design_6.current_state -> design_6.Qim
+design_6.STATE_IF -> design_6.Qim
+design_6.STATE_IDLE -> design_6.Qim
+design_6.STATE_ID -> design_6.Qim
+design_6.Oreg1 -> design_6.result_reg_not
+design_6.current_state -> design_6.result_reg_not
+design_6.STATE_IF -> design_6.result_reg_not
+design_6.CMD_mul_accumulation -> design_6.result_reg_not
+design_6.CMD_and -> design_6.result_reg_not
+design_6.Qset -> design_6.result_reg_not
+design_6.H -> design_6.result_reg_not
+design_6.STATE_EX -> design_6.result_reg_not
+design_6.Oset -> design_6.result_reg_not
+design_6.Hreg1 -> design_6.result_reg_not
+design_6.CMD_logic_shift_right -> design_6.result_reg_not
+design_6.CMD_multiplication -> design_6.result_reg_not
+design_6.CMD_logic_shift_left -> design_6.result_reg_not
+design_6.CMD_or -> design_6.result_reg_not
+design_6.CMD_addition -> design_6.result_reg_not
+design_6.CMD_not -> design_6.result_reg_not
+design_6.CMD_substruction -> design_6.result_reg_not
+design_6.rst -> design_6.result_reg_not
+design_6.STATE_IDLE -> design_6.result_reg_not
+design_6.Qreg1 -> design_6.result_reg_not
+design_6.Mul.tmp11 -> design_6.Mul.tmp3o
+design_6.comp_input_B -> design_6.Mul.mulinputb
+design_6.Qreg2 -> design_6.Add.Q
+design_6.Qreg3 -> design_6.Add.Q
+design_6.Qreg1 -> design_6.Add.Q
+design_6.Oreg2 -> design_6.Add.O
+design_6.Oreg1 -> design_6.Add.O
+design_6.Oreg3 -> design_6.Add.O
+design_6.comp_input_A -> design_6.Mul.mulinputa
+design_6.Mul.sel3 -> design_6.Mul.a12
+design_6.Mul.mulinputb -> design_6.Mul.a12
+design_6.Mul.mulinputa -> design_6.Mul.a12
+design_6.rst -> design_6.result_reg_Lshift
+design_6.CMD_logic_shift_right -> design_6.result_reg_Lshift
+design_6.Hreg1 -> design_6.result_reg_Lshift
+design_6.CMD_multiplication -> design_6.result_reg_Lshift
+design_6.CMD_logic_shift_left -> design_6.result_reg_Lshift
+design_6.Oreg1 -> design_6.result_reg_Lshift
+design_6.STATE_EX -> design_6.result_reg_Lshift
+design_6.current_state -> design_6.result_reg_Lshift
+design_6.STATE_IF -> design_6.result_reg_Lshift
+design_6.STATE_IDLE -> design_6.result_reg_Lshift
+design_6.CMD_addition -> design_6.result_reg_Lshift
+design_6.Qreg1 -> design_6.result_reg_Lshift
+design_6.shiftoutput -> design_6.result_reg_Lshift
+design_6.CMD_substruction -> design_6.result_reg_Lshift
+design_6.CMD_mul_accumulation -> design_6.result_reg_Lshift
+design_6.rst -> design_6.CMD_mul_accumulation
+design_6.opcode -> design_6.CMD_mul_accumulation
+design_6.current_state -> design_6.CMD_mul_accumulation
+design_6.STATE_IF -> design_6.CMD_mul_accumulation
+design_6.STATE_IDLE -> design_6.CMD_mul_accumulation
+design_6.STATE_ID -> design_6.CMD_mul_accumulation
+design_6.Mul.muloutput -> design_6.Mul_output_Cout
+design_6.Mul.tmp0 -> design_6.Mul.tmp00
+design_6.Mul.tmp1 -> design_6.Mul.tmp00
+design_6.Oreg1 -> design_6.result_reg_set
+design_6.current_state -> design_6.result_reg_set
+design_6.STATE_IF -> design_6.result_reg_set
+design_6.CMD_mul_accumulation -> design_6.result_reg_set
+design_6.im_reg -> design_6.result_reg_set
+design_6.CMD_and -> design_6.result_reg_set
+design_6.STATE_EX -> design_6.result_reg_set
+design_6.Hreg1 -> design_6.result_reg_set
+design_6.CMD_logic_shift_right -> design_6.result_reg_set
+design_6.CMD_multiplication -> design_6.result_reg_set
+design_6.CMD_logic_shift_left -> design_6.result_reg_set
+design_6.CMD_or -> design_6.result_reg_set
+design_6.CMD_addition -> design_6.result_reg_set
+design_6.CMD_not -> design_6.result_reg_set
+design_6.CMD_substruction -> design_6.result_reg_set
+design_6.rst -> design_6.result_reg_set
+design_6.CMD_set -> design_6.result_reg_set
+design_6.STATE_IDLE -> design_6.result_reg_set
+design_6.Qreg1 -> design_6.result_reg_set
+design_6.Mul.sel2 -> design_6.Mul.a9
+design_6.Mul.mulinputb -> design_6.Mul.a9
+design_6.Mul.mulinputa -> design_6.Mul.a9
+design_6.rst -> design_6.Qreg3
+design_6.opcode -> design_6.Qreg3
+design_6.current_state -> design_6.Qreg3
+design_6.STATE_IF -> design_6.Qreg3
+design_6.STATE_IDLE -> design_6.Qreg3
+design_6.STATE_ID -> design_6.Qreg3
+design_6.current_state -> design_6.H
+design_6.STATE_IF -> design_6.H
+design_6.result_reg_mac -> design_6.H
+design_6.result_reg_Lshift -> design_6.H
+design_6.CMD_mul_accumulation -> design_6.H
+design_6.result_reg_and -> design_6.H
+design_6.CMD_and -> design_6.H
+design_6.result_reg_set -> design_6.H
+design_6.result_reg_mul -> design_6.H
+design_6.Hreg1 -> design_6.H
+design_6.result_reg_sub -> design_6.H
+design_6.CMD_logic_shift_right -> design_6.H
+design_6.CMD_multiplication -> design_6.H
+design_6.CMD_logic_shift_left -> design_6.H
+design_6.Hreg2 -> design_6.H
+design_6.result_reg_Rshift -> design_6.H
+design_6.result_reg_or -> design_6.H
+design_6.result_reg_add -> design_6.H
+design_6.CMD_or -> design_6.H
+design_6.CMD_addition -> design_6.H
+design_6.data_in -> design_6.H
+design_6.CMD_not -> design_6.H
+design_6.CMD_load -> design_6.H
+design_6.CMD_substruction -> design_6.H
+design_6.rst -> design_6.H
+design_6.STATE_WB -> design_6.H
+design_6.Qreg2 -> design_6.H
+design_6.CMD_set -> design_6.H
+design_6.Him -> design_6.H
+design_6.Hreg3 -> design_6.H
+design_6.result_reg_not -> design_6.H
+design_6.STATE_IDLE -> design_6.H
+design_6.Oreg2 -> design_6.H
+design_6.Mul.mulinputb -> design_6.Mul.a1
+design_6.Mul.mulinputa -> design_6.Mul.a1
+design_6.Mul.sel0 -> design_6.Mul.a1
+design_6.Add.Cout -> design_6.Add_output_Cout
+design_6.Add.B_real -> design_6.Add.C2
+design_6.Add.O -> design_6.Add.C2
+design_6.Add.H -> design_6.Add.C2
+design_6.Add.C1 -> design_6.Add.C2
+design_6.Add.sub -> design_6.Add.C2
+design_6.Add.A -> design_6.Add.C2
+design_6.Add.Q -> design_6.Add.C2
+design_6.rst -> design_6.Hreg1
+design_6.opcode -> design_6.Hreg1
+design_6.current_state -> design_6.Hreg1
+design_6.STATE_IF -> design_6.Hreg1
+design_6.STATE_IDLE -> design_6.Hreg1
+design_6.STATE_ID -> design_6.Hreg1
+design_6.Mul.sel3 -> design_6.Mul.a15
+design_6.Mul.mulinputb -> design_6.Mul.a15
+design_6.Mul.mulinputa -> design_6.Mul.a15
+design_6.Add.B_real -> design_6.Add.C1
+design_6.Add.O -> design_6.Add.C1
+design_6.Add.H -> design_6.Add.C1
+design_6.Add.sub -> design_6.Add.C1
+design_6.Add.C0 -> design_6.Add.C1
+design_6.Add.A -> design_6.Add.C1
+design_6.Add.Q -> design_6.Add.C1
+design_6.rst -> design_6.result_reg_Rshift
+design_6.CMD_logic_shift_right -> design_6.result_reg_Rshift
+design_6.Hreg1 -> design_6.result_reg_Rshift
+design_6.CMD_multiplication -> design_6.result_reg_Rshift
+design_6.Oreg1 -> design_6.result_reg_Rshift
+design_6.STATE_EX -> design_6.result_reg_Rshift
+design_6.current_state -> design_6.result_reg_Rshift
+design_6.STATE_IF -> design_6.result_reg_Rshift
+design_6.STATE_IDLE -> design_6.result_reg_Rshift
+design_6.CMD_addition -> design_6.result_reg_Rshift
+design_6.Qreg1 -> design_6.result_reg_Rshift
+design_6.shiftoutput -> design_6.result_reg_Rshift
+design_6.CMD_substruction -> design_6.result_reg_Rshift
+design_6.CMD_mul_accumulation -> design_6.result_reg_Rshift
+design_6.rst -> design_6.result_reg_add
+design_6.Qim -> design_6.result_reg_add
+design_6.Qreg2 -> design_6.result_reg_add
+design_6.Hreg2 -> design_6.result_reg_add
+design_6.Him -> design_6.result_reg_add
+design_6.STATE_EX -> design_6.result_reg_add
+design_6.current_state -> design_6.result_reg_add
+design_6.STATE_IF -> design_6.result_reg_add
+design_6.STATE_IDLE -> design_6.result_reg_add
+design_6.CMD_addition -> design_6.result_reg_add
+design_6.Oreg2 -> design_6.result_reg_add
+design_6.Add_output_Cout -> design_6.result_reg_add
+design_6.Oim -> design_6.result_reg_add
+design_6.rst -> design_6.CMD_addition
+design_6.opcode -> design_6.CMD_addition
+design_6.current_state -> design_6.CMD_addition
+design_6.STATE_IF -> design_6.CMD_addition
+design_6.STATE_IDLE -> design_6.CMD_addition
+design_6.STATE_ID -> design_6.CMD_addition
+design_6.Mul.tmp1 -> design_6.Mul.tmp1q
+design_6.Mul.sel3 -> design_6.Mul.a14
+design_6.Mul.mulinputb -> design_6.Mul.a14
+design_6.Mul.mulinputa -> design_6.Mul.a14
+design_6.Mul.tmp00 -> design_6.Mul.tmp1o
+design_6.rst -> design_6.CMD_substruction
+design_6.opcode -> design_6.CMD_substruction
+design_6.current_state -> design_6.CMD_substruction
+design_6.STATE_IF -> design_6.CMD_substruction
+design_6.STATE_IDLE -> design_6.CMD_substruction
+design_6.STATE_ID -> design_6.CMD_substruction
+design_6.Mul.sel2 -> design_6.Mul.a10
+design_6.Mul.mulinputb -> design_6.Mul.a10
+design_6.Mul.mulinputa -> design_6.Mul.a10
+design_6.Mul.tmp000 -> design_6.Mul.tmp3h
+design_6.rst -> design_6.Hreg3
+design_6.opcode -> design_6.Hreg3
+design_6.current_state -> design_6.Hreg3
+design_6.STATE_IF -> design_6.Hreg3
+design_6.STATE_IDLE -> design_6.Hreg3
+design_6.STATE_ID -> design_6.Hreg3
+design_6.CMD_substruction -> design_6.Add.sub
+design_6.Oreg1 -> design_6.data_out_reg
+design_6.current_state -> design_6.data_out_reg
+design_6.CMD_store -> design_6.data_out_reg
+design_6.STATE_IF -> design_6.data_out_reg
+design_6.CMD_mul_accumulation -> design_6.data_out_reg
+design_6.CMD_and -> design_6.data_out_reg
+design_6.Qset -> design_6.data_out_reg
+design_6.H -> design_6.data_out_reg
+design_6.STATE_EX -> design_6.data_out_reg
+design_6.Oset -> design_6.data_out_reg
+design_6.Hreg1 -> design_6.data_out_reg
+design_6.CMD_logic_shift_right -> design_6.data_out_reg
+design_6.CMD_multiplication -> design_6.data_out_reg
+design_6.CMD_logic_shift_left -> design_6.data_out_reg
+design_6.CMD_or -> design_6.data_out_reg
+design_6.CMD_addition -> design_6.data_out_reg
+design_6.CMD_not -> design_6.data_out_reg
+design_6.CMD_load -> design_6.data_out_reg
+design_6.CMD_substruction -> design_6.data_out_reg
+design_6.rst -> design_6.data_out_reg
+design_6.CMD_set -> design_6.data_out_reg
+design_6.STATE_IDLE -> design_6.data_out_reg
+design_6.Qreg1 -> design_6.data_out_reg
+design_6.Mul.O -> design_6.Mul.sel3
+design_6.Mul.H -> design_6.Mul.sel3
+design_6.shift.left_shift -> design_6.shift.shiftoutput_tmp
+design_6.shift.left -> design_6.shift.shiftoutput_tmp
+design_6.shift.right_shift -> design_6.shift.shiftoutput_tmp
+design_6.Hreg2 -> design_6.Add.H
+design_6.Hreg1 -> design_6.Add.H
+design_6.Hreg3 -> design_6.Add.H
+design_6.Mul.sel1 -> design_6.Mul.a4
+design_6.Mul.mulinputb -> design_6.Mul.a4
+design_6.Mul.mulinputa -> design_6.Mul.a4
+design_6.rst -> design_6.current_state
+design_6.STATE_WB -> design_6.current_state
+design_6.opcode -> design_6.current_state
+design_6.current_state -> design_6.current_state
+design_6.STATE_EX -> design_6.current_state
+design_6.STATE_IF -> design_6.current_state
+design_6.STATE_HALT -> design_6.current_state
+design_6.STATE_IDLE -> design_6.current_state
+design_6.STATE_ID -> design_6.current_state
+design_6.STATE_MEM -> design_6.current_state
+design_6.shift.shiftinput -> design_6.shift.left_shift
+design_6.Oreg2 -> design_6.Mul.O
+design_6.Oreg1 -> design_6.Mul.O
+design_6.Oreg3 -> design_6.Mul.O
+design_6.Mul.O -> design_6.Mul.sel1
+design_6.Mul.H -> design_6.Mul.sel1
+design_6.rst -> design_6.Oim
+design_6.opcode -> design_6.Oim
+design_6.current_state -> design_6.Oim
+design_6.STATE_IF -> design_6.Oim
+design_6.STATE_IDLE -> design_6.Oim
+design_6.STATE_ID -> design_6.Oim
+design_6.shift.shiftoutput -> design_6.shiftoutput
+design_6.Qset -> design_6.comp_input_A
+design_6.Oreg1 -> design_6.comp_input_A
+design_6.Hreg2 -> design_6.comp_input_A
+design_6.H -> design_6.comp_input_A
+design_6.Hreg3 -> design_6.comp_input_A
+design_6.Qreg1 -> design_6.comp_input_A
+design_6.Oset -> design_6.comp_input_A
+design_6.Oreg2 -> design_6.comp_input_A
+design_6.Oreg3 -> design_6.comp_input_A
+design_6.Hreg1 -> design_6.comp_input_A
+design_6.Mul.tmp11 -> design_6.Mul.tmp2o
+design_6.Mul.O -> design_6.Mul.sel2
+design_6.Mul.H -> design_6.Mul.sel2
+design_6.rst -> design_6.result_reg_and
+design_6.CMD_logic_shift_right -> design_6.result_reg_and
+design_6.CMD_and -> design_6.result_reg_and
+design_6.Qset -> design_6.result_reg_and
+design_6.CMD_multiplication -> design_6.result_reg_and
+design_6.CMD_logic_shift_left -> design_6.result_reg_and
+design_6.Hreg2 -> design_6.result_reg_and
+design_6.H -> design_6.result_reg_and
+design_6.Qreg2 -> design_6.result_reg_and
+design_6.STATE_EX -> design_6.result_reg_and
+design_6.current_state -> design_6.result_reg_and
+design_6.STATE_IF -> design_6.result_reg_and
+design_6.STATE_IDLE -> design_6.result_reg_and
+design_6.CMD_addition -> design_6.result_reg_and
+design_6.Oset -> design_6.result_reg_and
+design_6.Oreg2 -> design_6.result_reg_and
+design_6.CMD_substruction -> design_6.result_reg_and
+design_6.CMD_mul_accumulation -> design_6.result_reg_and
+design_6.rst -> design_6.CMD_and
+design_6.opcode -> design_6.CMD_and
+design_6.current_state -> design_6.CMD_and
+design_6.STATE_IF -> design_6.CMD_and
+design_6.STATE_IDLE -> design_6.CMD_and
+design_6.STATE_ID -> design_6.CMD_and
+design_6.Oreg1 -> design_6.Qset
+design_6.current_state -> design_6.Qset
+design_6.STATE_IF -> design_6.Qset
+design_6.result_reg_mac -> design_6.Qset
+design_6.Oim -> design_6.Qset
+design_6.result_reg_Lshift -> design_6.Qset
+design_6.CMD_mul_accumulation -> design_6.Qset
+design_6.result_reg_and -> design_6.Qset
+design_6.CMD_and -> design_6.Qset
+design_6.result_reg_set -> design_6.Qset
+design_6.result_reg_mul -> design_6.Qset
+design_6.Qreg3 -> design_6.Qset
+design_6.Hreg1 -> design_6.Qset
+design_6.result_reg_sub -> design_6.Qset
+design_6.CMD_logic_shift_right -> design_6.Qset
+design_6.CMD_multiplication -> design_6.Qset
+design_6.CMD_logic_shift_left -> design_6.Qset
+design_6.Hreg2 -> design_6.Qset
+design_6.result_reg_Rshift -> design_6.Qset
+design_6.result_reg_or -> design_6.Qset
+design_6.result_reg_add -> design_6.Qset
+design_6.CMD_or -> design_6.Qset
+design_6.CMD_addition -> design_6.Qset
+design_6.data_in -> design_6.Qset
+design_6.CMD_not -> design_6.Qset
+design_6.CMD_load -> design_6.Qset
+design_6.CMD_substruction -> design_6.Qset
+design_6.rst -> design_6.Qset
+design_6.Qim -> design_6.Qset
+design_6.STATE_WB -> design_6.Qset
+design_6.Qreg2 -> design_6.Qset
+design_6.CMD_set -> design_6.Qset
+design_6.Him -> design_6.Qset
+design_6.Hreg3 -> design_6.Qset
+design_6.result_reg_not -> design_6.Qset
+design_6.STATE_IDLE -> design_6.Qset
+design_6.Qreg1 -> design_6.Qset
+design_6.Oreg2 -> design_6.Qset
+design_6.Oreg3 -> design_6.Qset
+design_6.rst -> design_6.result_reg_mul
+design_6.Mul_output_Cout -> design_6.result_reg_mul
+design_6.Qim -> design_6.result_reg_mul
+design_6.CMD_multiplication -> design_6.result_reg_mul
+design_6.Qreg2 -> design_6.result_reg_mul
+design_6.Hreg2 -> design_6.result_reg_mul
+design_6.Him -> design_6.result_reg_mul
+design_6.STATE_EX -> design_6.result_reg_mul
+design_6.current_state -> design_6.result_reg_mul
+design_6.STATE_IF -> design_6.result_reg_mul
+design_6.STATE_IDLE -> design_6.result_reg_mul
+design_6.CMD_addition -> design_6.result_reg_mul
+design_6.Oreg2 -> design_6.result_reg_mul
+design_6.Oim -> design_6.result_reg_mul
+design_6.CMD_substruction -> design_6.result_reg_mul
+design_6.Mul.a11 -> design_6.Mul.tmp2
+design_6.Mul.a8 -> design_6.Mul.tmp2
+design_6.Mul.a10 -> design_6.Mul.tmp2
+design_6.Mul.a9 -> design_6.Mul.tmp2
+design_6.shift.shiftinput -> design_6.shift.right_shift
+design_6.Mul.O -> design_6.Mul.sel0
+design_6.Mul.H -> design_6.Mul.sel0
+design_6.Mul.mulinputb -> design_6.Mul.a0
+design_6.Mul.mulinputa -> design_6.Mul.a0
+design_6.Mul.sel0 -> design_6.Mul.a0
+design_6.comp_input_A -> design_6.Add.A
+design_6.CMD_mul_accumulation -> design_6.Add.A
+design_6.MAC_input_A -> design_6.Add.A
+design_6.Mul.sel2 -> design_6.Mul.a8
+design_6.Mul.mulinputb -> design_6.Mul.a8
+design_6.Mul.mulinputa -> design_6.Mul.a8
+design_6.Hreg2 -> design_6.Mul.H
+design_6.Hreg1 -> design_6.Mul.H
+design_6.Hreg3 -> design_6.Mul.H
+design_6.rst -> design_6.CMD_multiplication
+design_6.opcode -> design_6.CMD_multiplication
+design_6.current_state -> design_6.CMD_multiplication
+design_6.STATE_IF -> design_6.CMD_multiplication
+design_6.STATE_IDLE -> design_6.CMD_multiplication
+design_6.STATE_ID -> design_6.CMD_multiplication
+design_6.current_state -> design_6.result_reg_or
+design_6.STATE_IF -> design_6.result_reg_or
+design_6.CMD_mul_accumulation -> design_6.result_reg_or
+design_6.CMD_and -> design_6.result_reg_or
+design_6.Qset -> design_6.result_reg_or
+design_6.H -> design_6.result_reg_or
+design_6.STATE_EX -> design_6.result_reg_or
+design_6.Oset -> design_6.result_reg_or
+design_6.CMD_logic_shift_right -> design_6.result_reg_or
+design_6.CMD_multiplication -> design_6.result_reg_or
+design_6.CMD_logic_shift_left -> design_6.result_reg_or
+design_6.Hreg2 -> design_6.result_reg_or
+design_6.CMD_or -> design_6.result_reg_or
+design_6.CMD_addition -> design_6.result_reg_or
+design_6.CMD_substruction -> design_6.result_reg_or
+design_6.rst -> design_6.result_reg_or
+design_6.Qreg2 -> design_6.result_reg_or
+design_6.STATE_IDLE -> design_6.result_reg_or
+design_6.Oreg2 -> design_6.result_reg_or
+design_6.CMD_logic_shift_left -> design_6.shift.left
+design_6.Mul.tmp00 -> design_6.Mul.tmp000
+design_6.Mul.tmp11 -> design_6.Mul.tmp000
+design_6.rst -> design_6.CMD_not
+design_6.opcode -> design_6.CMD_not
+design_6.current_state -> design_6.CMD_not
+design_6.STATE_IF -> design_6.CMD_not
+design_6.STATE_IDLE -> design_6.CMD_not
+design_6.STATE_ID -> design_6.CMD_not
+design_6.Qset -> design_6.shiftinput
+design_6.Oreg1 -> design_6.shiftinput
+design_6.H -> design_6.shiftinput
+design_6.Oset -> design_6.shiftinput
+design_6.Hreg1 -> design_6.shiftinput
+design_6.Mul_output_Cout -> design_6.MAC_input_B
+design_6.Mul.a14 -> design_6.Mul.tmp3
+design_6.Mul.a12 -> design_6.Mul.tmp3
+design_6.Mul.a13 -> design_6.Mul.tmp3
+design_6.Mul.a15 -> design_6.Mul.tmp3
+design_6.rst -> design_6.Qreg2
+design_6.opcode -> design_6.Qreg2
+design_6.current_state -> design_6.Qreg2
+design_6.STATE_IF -> design_6.Qreg2
+design_6.STATE_IDLE -> design_6.Qreg2
+design_6.STATE_ID -> design_6.Qreg2
+design_6.rst -> design_6.Qreg1
+design_6.opcode -> design_6.Qreg1
+design_6.current_state -> design_6.Qreg1
+design_6.STATE_IF -> design_6.Qreg1
+design_6.STATE_IDLE -> design_6.Qreg1
+design_6.STATE_ID -> design_6.Qreg1

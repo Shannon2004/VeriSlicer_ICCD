@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1774261030" />
+    <testcase name="test_sha1_randomized" classname="test_design_3" file="/home/chirag/VeriSlicer/VeriSlicer_v6/Testbenches/design_3/test_design_3.py" lineno="139" time="4.156096696853638" sim_time_ns="18482.0" ratio_time="4446.9610184940475" />
+  </testsuite>
+</testsuites>

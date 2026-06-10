@@ -1,0 +1,31 @@
+
+Design: bf16
+Error line: 55
+
+Original code:
+		end else if(enable) begin
+
+Erroneous code:
+		end else if(!(enable)) begin
+
+Error description:
+Flipped if condition
+
+==================================================
+
+
+
+Design: bf16
+Error line: 319
+
+Original code:
+    for (i = 0; i < n; i = i + 1) begin : addbit
+
+Erroneous code:
+    for(i = 0; i < n; i = i + 1) begin : addbit
+
+Error description:
+Modified loop upper bound
+
+==================================================
+

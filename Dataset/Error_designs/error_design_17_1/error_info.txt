@@ -1,0 +1,11 @@
+Design: 8 bit adder
+Error line: 9
+
+Original code:
+assign {Cout, Sum} = A + B + Cin;
+
+Erroneous code:
+assign {Cout, Sum} = A + B - Cin;
+
+Error description:
+Arithmetic operator + changed to -.

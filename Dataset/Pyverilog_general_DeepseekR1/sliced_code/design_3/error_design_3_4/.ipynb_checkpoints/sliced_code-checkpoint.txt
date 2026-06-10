@@ -1,0 +1,586 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_3.v ---
+
+   3: module sha1_w_mem(
+   4:                   input wire           clk,
+   5:                   input wire           reset_n,
+...
+   7:                   input wire [511 : 0] block,
+...
+   9:                   input wire           init,
+  10:                   input wire           next,
+...
+  12:                   output wire [31 : 0] w
+  13:                  );
+  14:   reg [31 : 0] w_mem [0 : 15];
+  15:   reg [31 : 0] w_mem00_new;
+  16:   reg [31 : 0] w_mem01_new;
+      ... [12 similar lines omitted for brevity] ...
+...
+  29:   reg [31 : 0] w_mem14_new;
+  30:   reg [31 : 0] w_mem15_new;
+  31:   reg          w_mem_we;
+...
+  33:   reg [6 : 0] w_ctr_reg;
+  34:   reg [6 : 0] w_ctr_new;
+  35:   reg         w_ctr_we;
+  36:   reg [31 : 0] w_tmp;
+  37:   reg [31 : 0] w_new;
+  38:   assign w = w_tmp;
+  39:   always @ (posedge clk or negedge reset_n)
+  40:     begin : reg_update
+  41:       integer i;
+...
+  43:       if (!reset_n)
+  44:         begin
+  45:           for (i = 0 ; i < 16 ; i = i + 1)
+  46:             w_mem[i] <= 32'h0;
+...
+  48:           w_ctr_reg <= 7'h0;
+  49:         end
+  50:       else
+  51:         begin
+  52:           if (w_mem_we)
+  53:             begin
+  54:               w_mem[00] <= w_mem00_new;
+  55:               w_mem[01] <= w_mem01_new;
+      ... [12 similar lines omitted for brevity] ...
+...
+  68:               w_mem[14] <= w_mem14_new;
+  69:               w_mem[15] <= w_mem15_new;
+  70:             end
+...
+  72:           if (w_ctr_we)
+  73:             w_ctr_reg <= w_ctr_new;
+  74:         end
+  75:     end
+  76:   always @*
+  77:     begin : select_w
+  78:       if (w_ctr_reg < 16)
+  79:         w_tmp = w_mem[w_ctr_reg[3 : 0]];
+  80:       else
+  81:         w_tmp = w_new;
+  82:     end
+  83:   always @*
+  84:     begin : w_mem_update_logic
+  85:       reg [31 : 0] w_0;
+  86:       reg [31 : 0] w_2;
+  87:       reg [31 : 0] w_8;
+  88:       reg [31 : 0] w_13;
+  89:       reg [31 : 0] w_16;
+...
+  91:       w_mem00_new = 32'h0;
+  92:       w_mem01_new = 32'h0;
+      ... [12 similar lines omitted for brevity] ...
+...
+ 105:       w_mem14_new = 32'h0;
+ 106:       w_mem15_new = 32'h0;
+ 107:       w_mem_we    = 1'h0;
+...
+ 109:       w_0   = w_mem[0];
+ 110:       w_2   = w_mem[2];
+ 111:       w_8   = w_mem[8];
+ 112:       w_13  = w_mem[13];
+ 113:       w_16  = w_13 ^ w_8 ^ w_2 ^ w_0;
+ 114:       w_new = {w_16[30 : 0], w_16[31]};
+...
+ 116:       if (init)
+ 117:         begin
+ 118:           w_mem00_new = block[511 : 480];
+ 119:           w_mem01_new = block[479 : 448];
+      ... [8 similar lines omitted for brevity] ...
+...
+ 128:           w_mem10_new = block[191 : 160];
+ 129:           w_mem11_new = block[159 : 128];
+ 130:           w_mem12_new = block[127 :  96];
+ 131:           w_mem13_new = block[95  :  64];
+ 132:           w_mem14_new = block[63  :  32];
+ 133:           w_mem15_new = block[31  :   0];
+ 134:           w_mem_we    = 1'h1;
+ 135:         end
+...
+ 137:       if (next && (w_ctr_reg > 15))
+ 138:         begin
+ 139:           w_mem00_new = w_mem[01];
+ 140:           w_mem01_new = w_mem[02];
+      ... [11 similar lines omitted for brevity] ...
+...
+ 152:           w_mem13_new = w_mem[14];
+ 153:           w_mem14_new = w_mem[15];
+ 154:           w_mem15_new = w_new;
+ 155:           w_mem_we    = 1'h1;
+ 156:         end
+ 157:     end
+ 158:   always @*
+ 159:     begin : w_ctr
+ 160:       w_ctr_new = 7'h0;
+ 161:       w_ctr_we  = 1'h0;
+...
+ 163:       if (init)
+ 164:         begin
+ 165:           w_ctr_new = 7'h0;
+ 166:           w_ctr_we  = 1'h1;
+ 167:         end
+...
+ 169:       if (next)
+ 170:         begin
+ 171:           w_ctr_new = w_ctr_reg + 7'h01;
+ 172:           w_ctr_we  = 1'h1;
+ 173:         end
+ 174:     end
+ 175: endmodule
+...
+ 179: module sha1_core(
+ 180:                  input wire            clk,
+ 181:                  input wire            reset_n,
+...
+ 183:                  input wire            init,
+ 184:                  input wire            next,
+...
+ 186:                  input wire [511 : 0]  block,
+...
+ 188:                  output wire           ready,
+...
+ 190:                  output wire [159 : 0] digest,
+ 191:                  output wire           digest_valid
+ 192:                 );
+ 193:   parameter H0_0 = 32'h67452301;
+ 194:   parameter H0_1 = 32'hefcdab89;
+ 195:   parameter H0_2 = 32'h98badcfe;
+ 196:   parameter H0_3 = 32'h10325476;
+ 197:   parameter H0_4 = 32'hc3d2e1f0;
+...
+ 199:   parameter SHA1_ROUNDS = 79;
+...
+ 201:   parameter CTRL_IDLE   = 0;
+ 202:   parameter CTRL_ROUNDS = 1;
+ 203:   parameter CTRL_DONE   = 2;
+ 204:   reg [31 : 0] a_reg;
+ 205:   reg [31 : 0] a_new;
+ 206:   reg [31 : 0] b_reg;
+ 207:   reg [31 : 0] b_new;
+ 208:   reg [31 : 0] c_reg;
+ 209:   reg [31 : 0] c_new;
+ 210:   reg [31 : 0] d_reg;
+ 211:   reg [31 : 0] d_new;
+ 212:   reg [31 : 0] e_reg;
+ 213:   reg [31 : 0] e_new;
+ 214:   reg          a_e_we;
+...
+ 216:   reg [31 : 0] H0_reg;
+ 217:   reg [31 : 0] H0_new;
+      ... [3 similar blocks omitted] ...
+...
+ 224:   reg [31 : 0] H4_reg;
+ 225:   reg [31 : 0] H4_new;
+ 226:   reg          H_we;
+...
+ 228:   reg [6 : 0] round_ctr_reg;
+ 229:   reg [6 : 0] round_ctr_new;
+ 230:   reg         round_ctr_we;
+ 231:   reg         round_ctr_inc;
+ 232:   reg         round_ctr_rst;
+...
+ 234:   reg digest_valid_reg;
+ 235:   reg digest_valid_new;
+ 236:   reg digest_valid_we;
+...
+ 238:   reg [1 : 0] sha1_ctrl_reg;
+ 239:   reg [1 : 0] sha1_ctrl_new;
+ 240:   reg         sha1_ctrl_we;
+ 241:   reg           digest_init;
+ 242:   reg           digest_update;
+ 243:   reg           state_init;
+ 244:   reg           state_update;
+ 245:   reg           first_block;
+...
+ 247:   reg           w_init;
+ 248:   reg           w_next;
+ 249:   wire [31 : 0] w;
+...
+ 251:   sha1_w_mem w_mem_inst(
+ 252:                         .clk(clk),
+ 253:                         .reset_n(reset_n),
+...
+ 255:                         .block(block),
+...
+ 257:                         .init(w_init),
+ 258:                         .next(w_next),
+...
+ 260:                         .w(w)
+ 261:                        );
+...
+ 263:   assign digest       = {H0_reg, H1_reg, H2_reg, H3_reg, H4_reg};
+ 264:   assign digest_valid = digest_valid_reg;
+ 265:   always @ (posedge clk or negedge reset_n)
+ 266:     begin : reg_update
+ 267:       if (!reset_n)
+ 268:         begin
+ 269:           a_reg            <= 32'h0;
+ 270:           b_reg            <= 32'h0;
+ 271:           c_reg            <= 32'h0;
+ 272:           d_reg            <= 32'h0;
+ 273:           e_reg            <= 32'h0;
+ 274:           H0_reg           <= 32'h0;
+ 275:           H1_reg           <= 32'h0;
+ 276:           H2_reg           <= 32'h0;
+ 277:           H3_reg           <= 32'h0;
+ 278:           H4_reg           <= 32'h0;
+ 279:           digest_valid_reg <= 1'h0;
+ 280:           round_ctr_reg    <= 7'h0;
+ 281:           sha1_ctrl_reg    <= CTRL_IDLE;
+ 282:         end
+ 283:       else
+ 284:         begin
+ 285:           if (a_e_we)
+ 286:             begin
+ 287:               a_reg <= a_new;
+ 288:               b_reg <= b_new;
+ 289:               c_reg <= c_new;
+ 290:               d_reg <= d_new;
+ 291:               e_reg <= e_new;
+ 292:             end
+...
+ 294:           if (H_we)
+ 295:             begin
+ 296:               H0_reg <= H0_new;
+ 297:               H1_reg <= H1_new;
+ 298:               H2_reg <= H2_new;
+ 299:               H3_reg <= H3_new;
+ 300:               H4_reg <= H4_new;
+ 301:             end
+...
+ 303:           if (round_ctr_we)
+ 304:             round_ctr_reg <= round_ctr_new;
+...
+ 306:           if (digest_valid_we)
+ 307:             digest_valid_reg <= digest_valid_new;
+...
+ 309:           if (sha1_ctrl_we)
+ 310:             sha1_ctrl_reg <= sha1_ctrl_new;
+ 311:         end
+ 312:     end
+ 313:   always @*
+ 314:     begin : digest_logic
+ 315:       H0_new = 32'h0;
+ 316:       H1_new = 32'h0;
+ 317:       H2_new = 32'h0;
+ 318:       H3_new = 32'h0;
+ 319:       H4_new = 32'h0;
+ 320:       H_we = 0;
+...
+ 322:       if (digest_init)
+ 323:         begin
+ 324:           H0_new = H0_0;
+ 325:           H1_new = H0_1;
+ 326:           H2_new = H0_2;
+ 327:           H3_new = H0_3;
+ 328:           H4_new = H0_4;
+ 329:           H_we = 1;
+ 330:         end
+...
+ 332:       if (digest_update)
+ 333:         begin
+ 334:           H0_new = H0_reg + a_reg;
+ 335:           H1_new = H1_reg + b_reg;
+ 336:           H2_new = H2_reg + c_reg;
+ 337:           H3_new = H3_reg + d_reg;
+ 338:           H4_new = H4_reg + e_reg;
+ 339:           H_we = 1;
+ 340:         end
+ 341:     end
+ 342:   always @*
+ 343:     begin : state_logic
+ 344:       reg [31 : 0] a5;
+ 345:       reg [31 : 0] f;
+ 346:       reg [31 : 0] k;
+ 347:       reg [31 : 0] t;
+...
+ 349:       a5     = 32'h0;
+ 350:       f      = 32'h0;
+ 351:       k      = 32'h0;
+ 352:       t      = 32'h0;
+ 353:       a_new  = 32'h0;
+ 354:       b_new  = 32'h0;
+ 355:       c_new  = 32'h0;
+ 356:       d_new  = 32'h0;
+ 357:       e_new  = 32'h0;
+ 358:       a_e_we = 1'h0;
+...
+ 360:       if (state_init)
+ 361:         begin
+ 362:           if (first_block)
+ 363:             begin
+ 364:               a_new  = H0_0;
+ 365:               b_new  = H0_1;
+ 366:               c_new  = H0_2;
+ 367:               d_new  = H0_3;
+ 368:               e_new  = H0_4;
+ 369:               a_e_we = 1;
+ 370:             end
+ 371:           else
+ 372:             begin
+ 373:               a_new  = H0_reg;
+ 374:               b_new  = H1_reg;
+ 375:               c_new  = H2_reg;
+ 376:               d_new  = H3_reg;
+ 377:               e_new  = H4_reg;
+ 378:               a_e_we = 1;
+ 379:             end
+ 380:         end
+...
+ 382:       if (state_update)
+ 383:         begin
+ 384:           if (round_ctr_reg <= 19)
+ 385:             begin
+ 386:               k = 32'h5a827999;
+ 387:               f =  ((b_reg & c_reg) ^ (~b_reg & d_reg));
+ 388:             end
+ 389:           else if ((round_ctr_reg >= 20) && (round_ctr_reg <= 39))
+ 390:             begin
+ 391:               k = 32'h6ed9eba1;
+ 392:               f = b_reg ^ c_reg ^ d_reg;
+ 393:             end
+ 394:           else if ((round_ctr_reg >= 40) && (round_ctr_reg <= 59))
+ 395:             begin
+ 396:               k = 32'h8f1bbcdc;
+ 397:               f = ((b_reg | c_reg) ^ (b_reg | d_reg) ^ (c_reg | d_reg));
+ 398:             end
+ 399:           else if (round_ctr_reg >= 60)
+ 400:             begin
+ 401:               k = 32'hca62c1d6;
+ 402:               f = b_reg ^ c_reg ^ d_reg;
+ 403:             end
+...
+ 405:           a5 = {a_reg[26 : 0], a_reg[31 : 27]};
+ 406:           t = a5 + e_reg + f + k + w;
+...
+ 408:           a_new  = t;
+ 409:           b_new  = a_reg;
+ 410:           c_new  = {b_reg[1 : 0], b_reg[31 : 2]};
+ 411:           d_new  = c_reg;
+ 412:           e_new  = d_reg;
+ 413:           a_e_we = 1;
+ 414:         end
+ 415:     end
+ 416:   always @*
+ 417:     begin : round_ctr
+ 418:       round_ctr_new = 7'h0;
+ 419:       round_ctr_we  = 1'h0;
+...
+ 421:       if (round_ctr_rst)
+ 422:         begin
+ 423:           round_ctr_new = 7'h0;
+ 424:           round_ctr_we  = 1'h1;
+ 425:         end
+...
+ 427:       if (round_ctr_inc)
+ 428:         begin
+ 429:           round_ctr_new = round_ctr_reg + 1'h1;
+ 430:           round_ctr_we  = 1;
+ 431:         end
+ 432:     end
+ 433:   always @*
+ 434:     begin : sha1_ctrl_fsm
+ 435:       digest_init      = 1'h0;
+ 436:       digest_update    = 1'h0;
+ 437:       state_init       = 1'h0;
+ 438:       state_update     = 1'h0;
+ 439:       first_block      = 1'h0;
+ 440:       ready_flag       = 1'h0;
+ 441:       w_init           = 1'h0;
+ 442:       w_next           = 1'h0;
+ 443:       round_ctr_inc    = 1'h0;
+ 444:       round_ctr_rst    = 1'h0;
+ 445:       digest_valid_new = 1'h0;
+ 446:       digest_valid_we  = 1'h0;
+ 447:       sha1_ctrl_new    = CTRL_IDLE;
+ 448:       sha1_ctrl_we     = 1'h0;
+...
+ 450:       case (sha1_ctrl_reg)
+ 451:         CTRL_IDLE:
+ 452:           begin
+ 453:             ready_flag = 1;
+...
+ 455:             if (init)
+ 456:               begin
+ 457:                 digest_init      = 1'h1;
+ 458:                 w_init           = 1'h1;
+ 459:                 state_init       = 1'h1;
+ 460:                 first_block      = 1'h1;
+ 461:                 round_ctr_rst    = 1'h1;
+ 462:                 digest_valid_new = 1'h0;
+ 463:                 digest_valid_we  = 1'h1;
+ 464:                 sha1_ctrl_new    = CTRL_ROUNDS;
+ 465:                 sha1_ctrl_we     = 1'h1;
+ 466:               end
+...
+ 468:             if (next)
+ 469:               begin
+ 470:                 w_init           = 1'h1;
+ 471:                 state_init       = 1'h1;
+ 472:                 round_ctr_rst    = 1'h1;
+ 473:                 digest_valid_new = 1'h0;
+ 474:                 digest_valid_we  = 1'h1;
+ 475:                 sha1_ctrl_new    = CTRL_ROUNDS;
+ 476:                 sha1_ctrl_we     = 1'h1;
+ 477:               end
+ 478:           end
+...
+ 481:         CTRL_ROUNDS:
+ 482:           begin
+ 483:             state_update  = 1'h1;
+ 484:             round_ctr_inc = 1'h1;
+ 485:             w_next        = 1'h1;
+...
+ 487:             if (round_ctr_reg == SHA1_ROUNDS)
+ 488:               begin
+ 489:                 sha1_ctrl_new = CTRL_DONE;
+ 490:                 sha1_ctrl_we  = 1'h1;
+ 491:               end
+ 492:           end
+...
+ 495:         CTRL_DONE:
+ 496:           begin
+ 497:             digest_update    = 1'h1;
+ 498:             digest_valid_new = 1'h1;
+ 499:             digest_valid_we  = 1'h1;
+ 500:             sha1_ctrl_new    = CTRL_IDLE;
+ 501:             sha1_ctrl_we     = 1'h1;
+ 502:           end
+ 503:       endcase
+ 504:     end
+ 505: endmodule
+...
+ 508: module design_3(
+ 509:             input wire           clk,
+ 510:             input wire           reset_n,
+ 511:             input wire           cs,
+ 512:             input wire           we,
+ 513:             input wire  [7 : 0]  address,
+ 514:             input wire  [31 : 0] write_data,
+ 515:             output wire [31 : 0] read_data,
+ 516:             output wire          error
+ 517:            );
+...
+ 522:   localparam ADDR_CTRL        = 8'h08;
+...
+ 530:   localparam ADDR_BLOCK0    = 8'h10;
+ 531:   localparam ADDR_BLOCK15   = 8'h1f;
+...
+ 540:   reg init_reg;
+ 541:   reg init_new;
+ 542:   reg next_reg;
+ 543:   reg next_new;
+...
+ 545:   reg [31 : 0] block_reg [0 : 15];
+ 546:   reg          block_we;
+...
+ 548:   reg digest_valid_reg;
+...
+ 551:   wire [511 : 0] core_block;
+ 552:   wire [159 : 0] core_digest;
+ 553:   wire           core_digest_valid;
+...
+ 557:   assign core_block = {block_reg[00], block_reg[01], block_reg[02], block_reg[03],
+ 558:                        block_reg[04], block_reg[05], block_reg[06], block_reg[07],
+ 559:                        block_reg[08], block_reg[09], block_reg[10], block_reg[11],
+ 560:                        block_reg[12], block_reg[13], block_reg[14], block_reg[15]};
+...
+ 564:   sha1_core core(
+ 565:                  .clk(clk),
+ 566:                  .reset_n(reset_n),
+...
+ 568:                  .init(init_reg),
+ 569:                  .next(next_reg),
+...
+ 571:                  .block(core_block),
+...
+ 573:                  .ready(core_ready),
+...
+ 575:                  .digest(core_digest),
+ 576:                  .digest_valid(core_digest_valid)
+ 577:                 );
+ 578:   always @ (posedge clk or negedge reset_n)
+ 579:     begin : reg_update
+ 580:       integer i;
+...
+ 582:       if (!reset_n)
+ 583:         begin
+ 584:           init_reg         <= 1'h0;
+ 585:           next_reg         <= 1'h0;
+ 586:           ready_reg        <= 1'h0;
+ 587:           digest_reg       <= 160'h0;
+ 588:           digest_valid_reg <= 1'h0;
+...
+ 590:           for (i = 0 ; i < 16 ; i = i + 1)
+ 591:             block_reg[i] <= 32'h0;
+ 592:         end
+ 593:       else
+ 594:         begin
+ 595:           ready_reg        <= core_ready;
+ 596:           digest_valid_reg <= core_digest_valid;
+ 597:           init_reg         <= init_new;
+ 598:           next_reg         <= next_new;
+...
+ 600:           if (block_we)
+ 601:             block_reg[address[3 : 0]] <= write_data;
+...
+ 603:           if (core_digest_valid)
+ 604:             digest_reg <= core_digest;
+ 605:         end
+ 606:     end
+ 607:   always @*
+ 608:     begin : api
+ 609:       init_new      = 1'h0;
+ 610:       next_new      = 1'h0;
+ 611:       block_we      = 1'h0;
+ 612:       tmp_read_data = 32'h0;
+ 613:       tmp_error     = 1'h0;
+...
+ 615:       if (cs)
+ 616:         begin
+ 617:           if (we)
+ 618:             begin
+ 619:               if ((address >= ADDR_BLOCK0) && (address < ADDR_BLOCK15))
+ 620:                 block_we = 1'h1;
+...
+ 622:               if (address == ADDR_CTRL)
+ 623:                 begin
+ 624:                   init_new = write_data[CTRL_INIT_BIT];
+ 625:                   next_new = write_data[CTRL_NEXT_BIT];
+ 626:                 end
+ 627:             end
+ 628:           else
+ 629:             begin
+ 630:               if ((address >= ADDR_BLOCK0) && (address <= ADDR_BLOCK15))
+ 631:                 tmp_read_data = block_reg[address[3 : 0]];
+...
+ 633:               if ((address >= ADDR_DIGEST0) && (address <= ADDR_DIGEST4))
+ 634:                 tmp_read_data = digest_reg[(4 - (address - ADDR_DIGEST0)) * 32 +: 32];
+...
+ 636:               case (address)
+ 637:                 ADDR_NAME0:
+ 638:                   tmp_read_data = CORE_NAME0;
+...
+ 640:                 ADDR_NAME1:
+ 641:                   tmp_read_data = CORE_NAME1;
+...
+ 643:                 ADDR_VERSION:
+ 644:                   tmp_read_data = CORE_VERSION;
+...
+ 646:                 ADDR_CTRL:
+ 647:                   tmp_read_data = {30'h0, next_reg, init_reg};
+...
+ 649:                 ADDR_STATUS:
+ 650:                   tmp_read_data = {30'h0, digest_valid_reg, ready_reg};
+...
+ 652:                 default:
+ 653:                   begin
+ 654:                     tmp_error = 1'h1;
+ 655:                   end
+ 656:               endcase
+ 657:             end
+ 658:         end
+ 659:     end
+ 660: endmodule

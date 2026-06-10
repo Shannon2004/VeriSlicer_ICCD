@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1775460361" />
+    <testcase name="test_ieee_alu" classname="test_design_4" file="/home/shannon/Downloads/design_4/ALU/testbenches/test_design_4.py" lineno="90" time="0.08000540733337402" sim_time_ns="501.0" ratio_time="6262.076735793448">
+      <failure error_type="AssertionError" error_msg="Check failed for 'Exception'.&#10;assert False" />
+    </testcase>
+  </testsuite>
+</testsuites>

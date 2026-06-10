@@ -1,0 +1,6 @@
+
+=================================================================
+TEST FAILED AT 51.0 ns
+FAILING SIGNAL : ALU_Output
+ERROR DETAILS  : During AND, Expected Data=0x21000306, Got 0xfde9b7ee
+=================================================================

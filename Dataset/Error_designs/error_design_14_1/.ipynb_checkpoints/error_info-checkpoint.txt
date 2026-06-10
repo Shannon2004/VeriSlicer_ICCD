@@ -1,0 +1,17 @@
+
+
+
+Design: posit_decoder
+Error line: 95
+
+Original code:
+   assign tmp[i] = b[i] ? tmp[i-1] << 2**i : tmp[i-1];
+
+Erroneous code:
+    assign tmp[i] = b[i] ? tmp[i-1] << 2 : tmp[i-1];
+
+Error description:
+removed **i
+
+==================================================
+

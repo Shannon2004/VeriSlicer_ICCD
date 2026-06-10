@@ -1,0 +1,15 @@
+# Source File: ../Error_designs/error_design_5_3/design_5.v
+# Project Dir: error_design_5_3
+# Total Vertices: 3
+# Total Edges: 4
+
+=== VERTICES ===
+design_5.count
+design_5.done
+design_5.rst
+
+=== EDGES (Driver -> Target) ===
+design_5.rst -> design_5.done
+design_5.count -> design_5.done
+design_5.rst -> design_5.count
+design_5.count -> design_5.count

@@ -1,0 +1,467 @@
+============================================================
+🚀 STARTING BASELINE 2 (TRACE ONLY) EVALUATION PIPELINE
+Found 42 error directories to process.
+============================================================
+
+[*] Cleared previous results file: local_results_baseline3/master_results.jsonl
+--- Processing error_design_1_1 (design_1) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_1_prompt.json (5133 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_1_1...
+[Baseline 2] Ground Truth    : Line 23
+[Baseline 2] Top-1 Predicted : Line 79
+[Baseline 2] Top-5 List     : [79, 80, 83, 84, 23]
+[Baseline 2] ✅ TOP-5 SUCCESS (hit at rank 5)
+--- error_design_1_1 COMPLETE ---
+
+--- Processing error_design_1_2 (design_1) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_2_prompt.json (5133 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_1_2...
+[Baseline 2] Ground Truth    : Line 80
+[Baseline 2] Top-1 Predicted : Line 79
+[Baseline 2] Top-5 List     : [79, 83, 80, 84, 81]
+[Baseline 2] ✅ TOP-5 SUCCESS (hit at rank 3)
+--- error_design_1_2 COMPLETE ---
+
+--- Processing error_design_1_3 (design_1) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_3_prompt.json (5133 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_1_3...
+[Baseline 2] Ground Truth    : Line 90
+[Baseline 2] Top-1 Predicted : Line 90
+[Baseline 2] Top-5 List     : [90, 79, 80, 81, 88]
+[Baseline 2] ✅ TOP-1 SUCCESS
+--- error_design_1_3 COMPLETE ---
+
+--- Processing error_design_1_4 (design_1) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_4_prompt.json (5129 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_1_4...
+[Baseline 2] Ground Truth    : Line 51
+[Baseline 2] Top-1 Predicted : Line 79
+[Baseline 2] Top-5 List     : [79, 80, 83, 84, 23]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic failed at the failing timestamp because of incorrect implementation of the rotation logic in the rotator module. The x_1 and y_1 values are being updated incorrectly based on the z_i value.
+--- error_design_1_4 COMPLETE ---
+
+--- Processing error_design_2_1 (design_2) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_1_prompt.json (6055 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_2_1...
+[Baseline 2] Ground Truth    : Line 105
+[Baseline 2] Top-1 Predicted : Line 146
+[Baseline 2] Top-5 List     : [146, 117, 145, 140, 129]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic failed at the failing timestamp because the condition for setting o_Write_Grant was incorrect. The signal w_Same_Row_And_Bank was not being evaluated correctly due to a missing check for r_State==2'h1 in the assign statement for o_Write_Grant.
+--- error_design_2_1 COMPLETE ---
+
+--- Processing error_design_2_2 (design_2) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_2_prompt.json (6041 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_2_2...
+[Baseline 2] Ground Truth    : Line 173
+[Baseline 2] Top-1 Predicted : Line 173
+[Baseline 2] Top-5 List     : [173, 168, 169, 170, 171]
+[Baseline 2] ✅ TOP-1 SUCCESS
+--- error_design_2_2 COMPLETE ---
+
+--- Processing error_design_2_3 (design_2) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_3_prompt.json (6055 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_2_3...
+[Baseline 2] Ground Truth    : Line 127
+[Baseline 2] Top-1 Predicted : Line 116
+[Baseline 2] Top-5 List     : [116, 117, 146, 147, 148]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic failed at the failing timestamp because of an incorrect assignment in the o_Write_Grant signal. The condition (r_State==2'h1 & w_Write_Select & i_Write_Request & w_Same_Row_And_Bank) is not sufficient to guarantee that the write grant will be held until the write operation is complete.
+--- error_design_2_3 COMPLETE ---
+
+--- Processing error_design_2_4 (design_2) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_4_prompt.json (6046 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_2_4...
+[Baseline 2] Ground Truth    : Line 97
+[Baseline 2] Top-1 Predicted : Line 97
+[Baseline 2] Top-5 List     : [97, 116, 120, 140, 146]
+[Baseline 2] ✅ TOP-1 SUCCESS
+--- error_design_2_4 COMPLETE ---
+
+--- Processing error_design_3_1 (design_3) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_3/error_design_3_1_prompt.json (5658 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_3_1...
+[Baseline 2] Ground Truth    : Line 297
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_3_1 COMPLETE ---
+
+--- Processing error_design_3_2 (design_3) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_3/error_design_3_2_prompt.json (5658 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_3_2...
+[Baseline 2] Ground Truth    : Line 334
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_3_2 COMPLETE ---
+
+--- Processing error_design_3_3 (design_3) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_3/error_design_3_3_prompt.json (5658 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_3_3...
+[Baseline 2] Ground Truth    : Line 487
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_3_3 COMPLETE ---
+
+--- Processing error_design_3_4 (design_3) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_3/error_design_3_4_prompt.json (5658 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_3_4...
+[Baseline 2] Ground Truth    : Line 619
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_3_4 COMPLETE ---
+
+--- Processing error_design_4_1 (design_4) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_4/error_design_4_1_prompt.json (5661 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_4_1...
+[Baseline 2] Ground Truth    : Line 41
+[Baseline 2] Top-1 Predicted : Line 41
+[Baseline 2] Top-5 List     : [41, 42, 43, 44, 45]
+[Baseline 2] ✅ TOP-1 SUCCESS
+--- error_design_4_1 COMPLETE ---
+
+--- Processing error_design_4_2 (design_4) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_4/error_design_4_2_prompt.json (5659 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_4_2...
+[Baseline 2] Ground Truth    : Line 452
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_4_2 COMPLETE ---
+
+--- Processing error_design_4_3 (design_4) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_4/error_design_4_3_prompt.json (5657 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_4_3...
+[Baseline 2] Ground Truth    : Line 478
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_4_3 COMPLETE ---
+
+--- Processing error_design_4_4 (design_4) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_4/error_design_4_4_prompt.json (5648 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_4_4...
+[Baseline 2] Ground Truth    : Line 482
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_4_4 COMPLETE ---
+
+--- Processing error_design_5_1 (design_5) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_5/error_design_5_1_prompt.json (4931 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_5_1...
+[Baseline 2] Ground Truth    : Line 82
+[Baseline 2] Top-1 Predicted : Line 23
+[Baseline 2] Top-5 List     : [23, 82, 81, 80, 79]
+[Baseline 2] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_5_1 COMPLETE ---
+
+--- Processing error_design_5_2 (design_5) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_5/error_design_5_2_prompt.json (4914 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_5_2...
+[Baseline 2] Ground Truth    : Line 87
+[Baseline 2] Top-1 Predicted : Line 23
+[Baseline 2] Top-5 List     : [23, 48, 75, 82, 87]
+[Baseline 2] ✅ TOP-5 SUCCESS (hit at rank 5)
+--- error_design_5_2 COMPLETE ---
+
+--- Processing error_design_5_3 (design_5) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_5/error_design_5_3_prompt.json (4891 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_5_3...
+[Baseline 2] Ground Truth    : Line 49
+[Baseline 2] Top-1 Predicted : Line 48
+[Baseline 2] Top-5 List     : [48, 54, 58, 23, 75]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic failed at the failing timestamp because the 'done' signal was never asserted due to an incorrect condition in the always block of the design_5 module. The count variable is not being reset correctly when it reaches 9.
+--- error_design_5_3 COMPLETE ---
+
+--- Processing error_design_5_4 (design_5) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_5/error_design_5_4_prompt.json (4914 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_5_4...
+[Baseline 2] Ground Truth    : Line 38
+[Baseline 2] Top-1 Predicted : Line 37
+[Baseline 2] Top-5 List     : [37, 38, 39, 40, 41]
+[Baseline 2] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_5_4 COMPLETE ---
+
+--- Processing error_design_6_1 (design_6) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_6/error_design_6_1_prompt.json (6419 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_6_1...
+[Baseline 2] Ground Truth    : Line 162
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_6_1 COMPLETE ---
+
+--- Processing error_design_6_2 (design_6) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_6/error_design_6_2_prompt.json (6410 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_6_2...
+[Baseline 2] Ground Truth    : Line 548
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_6_2 COMPLETE ---
+
+--- Processing error_design_6_3 (design_6) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_6/error_design_6_3_prompt.json (6427 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_6_3...
+[Baseline 2] Ground Truth    : Line 577
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_6_3 COMPLETE ---
+
+--- Processing error_design_6_4 (design_6) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_6/error_design_6_4_prompt.json (6410 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_6_4...
+[Baseline 2] Ground Truth    : Line 527
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_6_4 COMPLETE ---
+
+--- Processing error_design_8_1 (design_8) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_8/error_design_8_1_prompt.json (7577 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_8_1. Skipping.
+--- error_design_8_1 COMPLETE ---
+
+--- Processing error_design_8_2 (design_8) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_8/error_design_8_2_prompt.json (7594 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_8_2. Skipping.
+--- error_design_8_2 COMPLETE ---
+
+--- Processing error_design_8_3 (design_8) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_8/error_design_8_3_prompt.json (7596 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_8_3. Skipping.
+--- error_design_8_3 COMPLETE ---
+
+--- Processing error_design_8_4 (design_8) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_8/error_design_8_4_prompt.json (7594 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_8_4. Skipping.
+--- error_design_8_4 COMPLETE ---
+
+--- Processing error_design_9_1 (design_9) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_9/error_design_9_1_prompt.json (7425 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_9_1. Skipping.
+--- error_design_9_1 COMPLETE ---
+
+--- Processing error_design_9_2 (design_9) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_9/error_design_9_2_prompt.json (7425 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_9_2. Skipping.
+--- error_design_9_2 COMPLETE ---
+
+--- Processing error_design_9_3 (design_9) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_9/error_design_9_3_prompt.json (7396 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_9_3. Skipping.
+--- error_design_9_3 COMPLETE ---
+
+--- Processing error_design_9_4 (design_9) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_9/error_design_9_4_prompt.json (7425 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_9_4. Skipping.
+--- error_design_9_4 COMPLETE ---
+
+--- Processing error_design_10_1 (design_10) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_10/error_design_10_1_prompt.json (6406 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_10_1. Skipping.
+--- error_design_10_1 COMPLETE ---
+
+--- Processing error_design_10_2 (design_10) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_10/error_design_10_2_prompt.json (6413 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_10_2. Skipping.
+--- error_design_10_2 COMPLETE ---
+
+--- Processing error_design_10_3 (design_10) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_10/error_design_10_3_prompt.json (6430 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_10_3. Skipping.
+--- error_design_10_3 COMPLETE ---
+
+--- Processing error_design_10_4 (design_10) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_10/error_design_10_4_prompt.json (6406 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_10_4. Skipping.
+--- error_design_10_4 COMPLETE ---
+
+--- Processing error_design_11_1 (design_11) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_11/error_design_11_1_prompt.json (9269 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_11_1. Skipping.
+--- error_design_11_1 COMPLETE ---
+
+--- Processing error_design_11_2 (design_11) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_11/error_design_11_2_prompt.json (9269 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_11_2. Skipping.
+--- error_design_11_2 COMPLETE ---
+
+--- Processing error_design_11_3 (design_11) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_11/error_design_11_3_prompt.json (9139 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_11_3. Skipping.
+--- error_design_11_3 COMPLETE ---
+
+--- Processing error_design_11_4 (design_11) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_11/error_design_11_4_prompt.json (9139 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_11_4. Skipping.
+--- error_design_11_4 COMPLETE ---
+
+--- Processing error_design_17_1 (design_17) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_17/error_design_17_1_prompt.json (4311 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_17_1. Skipping.
+--- error_design_17_1 COMPLETE ---
+
+--- Processing error_design_17_2 (design_17) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_17/error_design_17_2_prompt.json (4311 chars total)
+[*] Sending to Local LLM for Evaluation...
+Prompt not found for error_design_17_2. Skipping.
+--- error_design_17_2 COMPLETE ---
+
+============================================================
+✅ BASELINE 2 PIPELINE FULLY COMPLETE.
+Your ablation data is safely logged in: local_results_baseline3/master_results.jsonl
+============================================================
+
+All designs processed! Calculating final metrics...
+
+══════════════════════════════════════════════════
+ 📊 FINAL VERISLICER ACCURACY REPORT
+══════════════════════════════════════════════════
+ Total Errors Evaluated : 24
+ Total Exact Matches    : 4
+ OVERALL TOP-1 ACCURACY : 16.67%
+--------------------------------------------------
+ Breakdown by Design:
+  * design_1   :  25.00%  (1/4)
+  * design_2   :  50.00%  (2/4)
+  * design_3   :   0.00%  (0/4)
+  * design_4   :  25.00%  (1/4)
+  * design_5   :   0.00%  (0/4)
+  * design_6   :   0.00%  (0/4)
+══════════════════════════════════════════════════
+
+
+=============================================
+        FAULT LOCALISATION ACCURACY
+=============================================
+  Total designs evaluated : 24
+  Top-1 correct           :   4  (16.7%)
+  Top-5 correct           :   9  (37.5%)
+=============================================
+

@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1774162223" />
+    <testcase name="test_systolic_matmul" classname="test_design_5" file="/home/shannon/IIITB-CourseWork/Sem8/GithubClone/VeriSlicer/Dataset/Testbenches/design_5/test_design_5.py" lineno="90" time="0.014676332473754883" sim_time_ns="280.0" ratio_time="19078.335851324788">
+      <failure error_type="AssertionError" error_msg="Signal 'result7' failed.&#10;assert False" />
+    </testcase>
+  </testsuite>
+</testsuites>

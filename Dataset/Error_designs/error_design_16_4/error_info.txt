@@ -1,0 +1,32 @@
+
+
+Design: posit_mult
+Error line: 336
+
+Original code:
+    if (N == 2)
+
+Erroneous code:
+    if(!(N == 2))
+
+Error description:
+Flipped if condition
+
+==================================================
+
+
+Design: posit_mult
+Error line: 301
+
+Original code:
+      for (log2=0; value>0; log2=log2+1)
+
+Erroneous code:
+      for(log2=0; value>1; log2=log2+1)
+
+Error description:
+Modified loop upper bound
+
+==================================================
+
+

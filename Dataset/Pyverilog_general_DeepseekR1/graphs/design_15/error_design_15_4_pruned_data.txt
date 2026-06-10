@@ -1,0 +1,82 @@
+# Source File: ../Error_designs/error_design_15_4/design_15.v
+# Project Dir: error_design_15_4
+# Total Vertices: 33
+# Total Edges: 41
+
+=== VERTICES ===
+design_15.DSR_left_out
+design_15.G_m
+design_15.L_m
+design_15.N
+design_15.R_m
+design_15.St_m
+design_15.dsr2.a
+design_15.dsr2.b
+design_15.dsr2.c
+design_15.dsr2.tmp
+design_15.e_o_m
+design_15.es
+design_15.inf_final
+design_15.le_o
+design_15.ls
+design_15.out_m
+design_15.r_o_m
+design_15.rnd_ulp_m
+design_15.tmp1_oN_m
+design_15.tmp1_o_m
+design_15.tmp1_o_rnd_m
+design_15.tmp1_o_rnd_ulp_m
+design_15.tmp_o_m
+design_15.ulp_m
+design_15.uut_add_ulp.a
+design_15.uut_add_ulp.a1.a
+design_15.uut_add_ulp.a1.b
+design_15.uut_add_ulp.a1.c
+design_15.uut_add_ulp.ain
+design_15.uut_add_ulp.b
+design_15.uut_add_ulp.bin
+design_15.uut_add_ulp.c
+design_15.zero_final
+
+=== EDGES (Driver -> Target) ===
+design_15.ulp_m -> design_15.rnd_ulp_m
+design_15.uut_add_ulp.ain -> design_15.uut_add_ulp.a1.a
+design_15.rnd_ulp_m -> design_15.uut_add_ulp.b
+design_15.e_o_m -> design_15.tmp_o_m
+design_15.le_o -> design_15.tmp_o_m
+design_15.DSR_left_out -> design_15.tmp_o_m
+design_15.dsr2.tmp -> design_15.dsr2.c
+design_15.r_o_m -> design_15.dsr2.b
+design_15.dsr2.tmp -> design_15.dsr2.tmp
+design_15.dsr2.a -> design_15.dsr2.tmp
+design_15.dsr2.b -> design_15.dsr2.tmp
+design_15.es -> design_15.tmp1_o_rnd_m
+design_15.tmp1_o_m -> design_15.tmp1_o_rnd_m
+design_15.r_o_m -> design_15.tmp1_o_rnd_m
+design_15.N -> design_15.tmp1_o_rnd_m
+design_15.tmp1_o_rnd_ulp_m -> design_15.tmp1_o_rnd_m
+design_15.uut_add_ulp.c -> design_15.tmp1_o_rnd_ulp_m
+design_15.ls -> design_15.tmp1_oN_m
+design_15.tmp1_o_rnd_m -> design_15.tmp1_oN_m
+design_15.tmp1_o_m -> design_15.L_m
+design_15.dsr2.c -> design_15.tmp1_o_m
+design_15.uut_add_ulp.bin -> design_15.uut_add_ulp.a1.b
+design_15.zero_final -> design_15.out_m
+design_15.DSR_left_out -> design_15.out_m
+design_15.ls -> design_15.out_m
+design_15.inf_final -> design_15.out_m
+design_15.tmp1_oN_m -> design_15.out_m
+design_15.uut_add_ulp.a1.c -> design_15.uut_add_ulp.c
+design_15.G_m -> design_15.ulp_m
+design_15.St_m -> design_15.ulp_m
+design_15.R_m -> design_15.ulp_m
+design_15.L_m -> design_15.ulp_m
+design_15.tmp1_o_m -> design_15.St_m
+design_15.uut_add_ulp.a -> design_15.uut_add_ulp.ain
+design_15.uut_add_ulp.b -> design_15.uut_add_ulp.bin
+design_15.tmp1_o_m -> design_15.uut_add_ulp.a
+design_15.tmp1_o_m -> design_15.R_m
+design_15.uut_add_ulp.a1.a -> design_15.uut_add_ulp.a1.c
+design_15.uut_add_ulp.a1.b -> design_15.uut_add_ulp.a1.c
+design_15.tmp1_o_m -> design_15.G_m
+design_15.tmp_o_m -> design_15.dsr2.a

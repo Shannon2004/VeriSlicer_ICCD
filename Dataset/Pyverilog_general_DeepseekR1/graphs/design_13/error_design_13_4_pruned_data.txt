@@ -1,0 +1,42 @@
+# Source File: ../Error_designs/error_design_13_4/design_13.v
+# Project Dir: error_design_13_4
+# Total Vertices: 16
+# Total Edges: 18
+
+=== VERTICES ===
+design_13.es
+design_13.in1
+design_13.in1_svm
+design_13.s1
+design_13.uut_de1.N
+design_13.uut_de1.in
+design_13.uut_de1.rc
+design_13.uut_de1.xin
+design_13.uut_de1.xin_r
+design_13.uut_de1.xinst_k.N
+design_13.uut_de1.xinst_k.in
+design_13.uut_de1.xinst_k.l1.N
+design_13.uut_de1.xinst_k.l1.in
+design_13.uut_de1.xinst_k.l1.out
+design_13.uut_de1.xinst_k.out
+design_13.xin1
+
+=== EDGES (Driver -> Target) ===
+design_13.uut_de1.in -> design_13.uut_de1.xin
+design_13.es -> design_13.uut_de1.N
+design_13.uut_de1.xin_r -> design_13.uut_de1.xinst_k.in
+design_13.uut_de1.rc -> design_13.uut_de1.xinst_k.in
+design_13.in1 -> design_13.s1
+design_13.uut_de1.xinst_k.N -> design_13.uut_de1.xinst_k.l1.N
+design_13.uut_de1.xinst_k.in -> design_13.uut_de1.xinst_k.l1.in
+design_13.uut_de1.xinst_k.l1.N -> design_13.uut_de1.xinst_k.l1.out
+design_13.uut_de1.xinst_k.l1.in -> design_13.uut_de1.xinst_k.l1.out
+design_13.uut_de1.N -> design_13.uut_de1.xinst_k.N
+design_13.uut_de1.xin -> design_13.uut_de1.rc
+design_13.in1_svm -> design_13.in1
+design_13.xin1 -> design_13.uut_de1.in
+design_13.uut_de1.xinst_k.l1.out -> design_13.uut_de1.xinst_k.out
+design_13.s1 -> design_13.xin1
+design_13.in1 -> design_13.xin1
+design_13.uut_de1.rc -> design_13.uut_de1.xin_r
+design_13.uut_de1.xin -> design_13.uut_de1.xin_r

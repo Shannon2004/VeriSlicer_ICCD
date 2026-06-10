@@ -1,0 +1,90 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_1.v ---
+
+  16: module signed_shifter (
+  17:   input wire [`ITERATION_BITS-1:0] i,
+  18:   input wire signed [`XY_BITS:0] D,
+  19:   output reg signed [`XY_BITS:0] Q );
+...
+  21:   always @ * begin
+  22:     Q = D;
+  23:     for(j=0;j<i;j=j+1) Q = (Q >> 1) | (D[`XY_BITS] << `XY_BITS);
+  24:   end
+  25: endmodule
+  26: module rotator (
+  27:   input wire clk,
+  28:   input wire rst,
+...
+  34:   input wire signed  [`XY_BITS:0]    x_i,
+  35:   input wire signed  [`XY_BITS:0]    y_i,
+  36:   input wire signed  [`THETA_BITS:0] z_i,
+  37:   output wire signed [`XY_BITS:0]    x_o,
+  38:   output wire signed [`XY_BITS:0]    y_o,
+  39:   output wire signed [`THETA_BITS:0] z_o
+  40:   );
+...
+  43:   parameter signed [`THETA_BITS:0] tangle = 0;
+...
+  45:   reg signed [`XY_BITS:0] x_1;
+  46:   reg signed [`XY_BITS:0] y_1;
+  47:   reg signed [`THETA_BITS:0] z_1;
+  48:   wire signed [`XY_BITS:0] x_i_shifted;
+  49:   wire signed [`XY_BITS:0] y_i_shifted;
+  50:   signed_shifter x_shifter(iteration,x_i,x_i_shifted);
+  51:   signed_shifter y_shifter(iteration,y_i,y_i_shifted);
+...
+  56:   always @ (posedge clk)
+...
+  61:     if (rst) begin
+  62:       x_1 <= 0;
+  63:       y_1 <= 0;
+  64:       z_1 <= 0;
+  65:     end else begin
+...
+  74:       if (z_i < 0) begin
+...
+  79:         x_1 <= x_i + y_i_shifted;
+  80:         y_1 <= y_i + x_i_shifted;
+  81:         z_1 <= z_i + tangle;
+  82:       end else begin
+  83:         x_1 <= x_i - y_i_shifted;
+  84:         y_1 <= y_i + x_i_shifted;
+  85:         z_1 <= z_i - tangle;
+  86:       end
+  87:     end
+  88:   assign x_o = x_1;
+  89:   assign y_o = y_1;
+  90:   assign z_o = z_1;
+  91: endmodule
+  92: module design_1 (
+  93:   input wire clk,
+  94:   input wire rst,
+...
+  98:   input wire signed [`XY_BITS:0]    x_i,
+  99:   input wire signed [`XY_BITS:0]    y_i,
+ 100:   input wire signed [`THETA_BITS:0] theta_i,
+...
+ 102:   output wire signed [`XY_BITS:0]    x_o,
+ 103:   output wire signed [`XY_BITS:0]    y_o,
+ 104:   output wire signed [`THETA_BITS:0] theta_o
+...
+ 108: );
+...
+ 162:   wire signed [`XY_BITS:0] x [`ITERATIONS-1:0];
+ 163:   wire signed [`XY_BITS:0] y [`ITERATIONS-1:0];
+ 164:   wire signed [`THETA_BITS:0] z [`ITERATIONS-1:0];
+ 165:   assign x[0] = x_i;
+ 166:   assign y[0] = y_i;
+ 167:   assign z[0] = theta_i;
+ 168:   assign x_o = x[`ITERATIONS-1];
+ 169:   assign y_o = y[`ITERATIONS-1];
+ 170:   assign theta_o = z[`ITERATIONS-1];
+...
+ 186: generate for(i=0;i<`ITERATIONS-1;i=i+1) begin
+ 187:   rotator U (clk,rst,x[i],y[i],z[i],x[i+1],y[i+1],z[i+1]);
+ 188:   defparam U.iteration = i;
+ 189:   defparam U.tangle = tanangle(i);
+ 190: end 
+ 191: endgenerate
+...
+ 205: endmodule

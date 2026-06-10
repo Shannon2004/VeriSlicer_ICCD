@@ -1,0 +1,13 @@
+Design: FP IEEE754 ALU
+Error line: 478
+
+Original code:
+assign Overflow = ((exponent[8] & !exponent[7]) & !zero) ; 
+
+
+Erroneous code:
+assign Overflow = ((exponent[8] & exponent[7]) & !zero) ; 
+
+
+Error description:
+Wrong Overflow calculation

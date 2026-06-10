@@ -1,0 +1,6 @@
+
+=================================================================
+TEST FAILED AT 460.0 ns
+FAILING SIGNAL : done
+ERROR DETAILS  : Test 1: 'done' signal never asserted.
+=================================================================

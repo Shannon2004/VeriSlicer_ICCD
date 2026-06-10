@@ -1,0 +1,6 @@
+{
+    "error_id": "error_design_17_1",
+    "design_name": "design_17",
+    "system_prompt": "You are an expert VLSI Verification Engineer. Your task is to perform Fault Localization and RTL Repair. Analyze the provided Raw Verilog code and Error Symptom.\n    METHODOLOGY (follow these steps IN ORDER):\n1. Read the ERROR SYMPTOM to learn WHICH signal failed, and the EXPECTED vs ACTUAL values.\n2. Guess the NUMERICAL ANALYSIS to understand the mathematical relationship between expected and actual.\n3. Search the Sliced Verilog Code for the line that COMPUTES the failing signal.\n4. Make sure to give a valid line number ALWAYS, and do not return None.\nYou must output a JSON object with exactly three keys:\n1. \"buggy_line\": The exact integer line number from the Raw Verilog where the defect exists.\n2. \"root_cause\": A sentence explanation of why the logic failed at the failing timestamp.\n3. \"fixed_code\": The corrected single line of Verilog code.",
+    "user_prompt": "### [Raw Verilog Code]\n   1: module design_17 (\n   2:     input  [7:0] A,\n   3:     input  [7:0] B,\n   4:     input        Cin,\n   5:     output [7:0] Sum,\n   6:     output       Cout\n   7: );\n   8: \n   9: assign {Cout, Sum} = A + B + Cin;\n  10: \n  11: endmodule\n### [Error Symptom]\n[Missing file: ../Error_designs/error_design_17_1/error_timestamp.txt]\n"
+}

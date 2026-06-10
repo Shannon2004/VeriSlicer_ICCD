@@ -1,0 +1,15 @@
+
+Design: hdc_controller
+Error line: 147
+
+Original code:
+                        level_index            <= level_index + 1;
+
+Erroneous code:
+                        level_index            <= level_index + 10;
+
+Error description:
+Changed value +1 is changed to +10
+
+==================================================
+

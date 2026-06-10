@@ -1,0 +1,43 @@
+Design: posit_add
+Error line: 139
+
+Original code:
+reg_exp_op #(.es(es), .Bs(Bs)) uut_reg_ro (le_o[es+Bs:0], e_o, r_o);
+
+Erroneous code:
+reg_exp_op #(.es(Bs), .Bs(es)) uut_reg_ro (le_o[es+Bs:0], e_o, r_o);
+
+Error description:
+Swapped connections: .es(es) <-> .Bs(Bs)
+
+==================================================
+
+Design: posit_add
+Error line: 5
+
+Original code:
+input reg [31:0] value;
+
+Erroneous code:
+input reg [32:0] value;
+
+Error description:
+Bitwidth incremented by 1
+
+==================================================
+
+
+Design: posit_add
+Error line: 386
+
+Original code:
+      for (log2=0; value>0; log2=log2+1)
+
+Erroneous code:
+      for (log2=0; value>0; log2=log2-1)
+
+Error description:
+Arithmetic operator + changed to -
+
+==================================================
+

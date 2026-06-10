@@ -1,0 +1,48 @@
+# Source File: ../Error_designs/error_design_8_3/design_8.v
+# Project Dir: error_design_8_3
+# Total Vertices: 20
+# Total Edges: 20
+
+=== VERTICES ===
+design_8.decoder.instr
+design_8.decoder.rs1
+design_8.id_rd1
+design_8.id_rs1
+design_8.if_id_inst.instr_in
+design_8.if_id_inst.instr_out
+design_8.if_id_inst.reset
+design_8.if_instr
+design_8.instr
+design_8.regfile_inst.rd
+design_8.regfile_inst.rd1
+design_8.regfile_inst.reg_write
+design_8.regfile_inst.regs
+design_8.regfile_inst.reset
+design_8.regfile_inst.rs1
+design_8.regfile_inst.wd
+design_8.reset
+design_8.wb_rd
+design_8.wb_reg_write
+design_8.wb_wd
+
+=== EDGES (Driver -> Target) ===
+design_8.if_id_inst.instr_out -> design_8.instr
+design_8.id_rs1 -> design_8.regfile_inst.rs1
+design_8.regfile_inst.rd1 -> design_8.id_rd1
+design_8.wb_rd -> design_8.regfile_inst.rd
+design_8.reset -> design_8.if_id_inst.reset
+design_8.wb_reg_write -> design_8.regfile_inst.reg_write
+design_8.reset -> design_8.regfile_inst.reset
+design_8.decoder.instr -> design_8.decoder.rs1
+design_8.instr -> design_8.decoder.instr
+design_8.if_id_inst.instr_in -> design_8.if_id_inst.instr_out
+design_8.if_id_inst.reset -> design_8.if_id_inst.instr_out
+design_8.regfile_inst.regs -> design_8.regfile_inst.rd1
+design_8.regfile_inst.rs1 -> design_8.regfile_inst.rd1
+design_8.if_instr -> design_8.if_id_inst.instr_in
+design_8.regfile_inst.reset -> design_8.regfile_inst.regs
+design_8.regfile_inst.reg_write -> design_8.regfile_inst.regs
+design_8.regfile_inst.rd -> design_8.regfile_inst.regs
+design_8.regfile_inst.wd -> design_8.regfile_inst.regs
+design_8.wb_wd -> design_8.regfile_inst.wd
+design_8.decoder.rs1 -> design_8.id_rs1

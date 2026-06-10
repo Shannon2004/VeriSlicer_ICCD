@@ -1,0 +1,6 @@
+
+=================================================================
+TEST FAILED AT 11.0 ns
+FAILING SIGNAL : o_Write_Grant
+ERROR DETAILS  : Bug Caught: WriteGrant did not assert immediately in Idle.
+=================================================================

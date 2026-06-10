@@ -1,0 +1,34 @@
+
+
+
+
+Design: posit_add
+Error line: 59
+
+Original code:
+data_extract_v1 #(.N(N),.es(es)) uut_de1(.in(xin1), .rc(rc1), .regime(regime1), .exp(e1), .mant(mant1));
+
+Erroneous code:
+data_extract_v1 #(.N(es),.es(N)) uut_de1(.in(xin1), .rc(rc1), .regime(regime1), .exp(e1), .mant(mant1));
+
+Error description:
+Swapped connections: .N(N) <-> .es(es)
+
+==================================================
+
+Design: posit_add
+Error line: 365
+
+Original code:
+      for (log2=0; value>0; log2=log2+1)
+
+Erroneous code:
+      for(log2=0; value>1; log2=log2+1)
+
+Error description:
+Modified loop upper bound
+
+==================================================
+
+
+

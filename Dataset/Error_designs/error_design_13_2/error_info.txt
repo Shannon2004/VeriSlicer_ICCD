@@ -1,0 +1,30 @@
+
+Design: posit_add
+Error line: 139
+
+Original code:
+reg_exp_op #(.es(es), .Bs(Bs)) uut_reg_ro (le_o[es+Bs:0], e_o, r_o);
+
+Erroneous code:
+reg_exp_op #(.es(Bs), .Bs(es)) uut_reg_ro (le_o[es+Bs:0], e_o, r_o);
+
+Error description:
+Swapped connections: .es(es) <-> .Bs(Bs)
+
+==================================================
+
+
+Design: posit_add
+Error line: 128
+
+Original code:
+DSR_left_N_S #(.N(N), .S(Bs)) dsl1(.a(addm_[N:1]), .b(left_shift), .c(DSR_left_out_t));
+
+Erroneous code:
+DSR_left_N_S #(.N(Bs), .S(N)) dsl1(.a(addm_[N:1]), .b(left_shift), .c(DSR_left_out_t));
+
+Error description:
+Swapped connections: .N(N) <-> .S(Bs)
+
+==================================================
+

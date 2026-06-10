@@ -1,0 +1,32 @@
+
+Design: posit_decoder
+Error line: 37
+
+Original code:
+DSR_left_N_S #(.N(N), .S(Bs)) ls (.a({xin[N-3:0],2'b0}),.b(k),.c(xin_tmp));
+
+Erroneous code:
+DSR_left_N_S #(.N(Bs), .S(N)) ls (.a({xin[N-3:0],2'b0}),.b(k),.c(xin_tmp));
+
+Error description:
+Swapped connections: .N(N) <-> .S(Bs)
+
+==================================================
+
+
+
+Design: posit_decoder
+Error line: 118
+
+Original code:
+	for (i=1; i<S; i=i+1)begin:loop_blk
+
+Erroneous code:
+	for(i=1; i<S; i=i+1)begin:loop_blk
+
+Error description:
+Modified loop upper bound
+
+==================================================
+
+

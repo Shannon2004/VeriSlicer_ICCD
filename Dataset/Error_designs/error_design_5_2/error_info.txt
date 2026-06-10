@@ -1,0 +1,9 @@
+Design: Systolic Array
+Error line: 87
+Original code:
+	assign multi = inp_north*inp_west;
+
+Erroneous code:
+	assign multi = inp_north*inp_west*2;
+        
+added extra multiplication factor

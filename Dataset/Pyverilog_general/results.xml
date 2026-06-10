@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1776080232" />
+    <testcase name="if_stage_testbench" classname="test_design_10" file="/home/shannon/VeriSlicer_test/Dataset/Testbenches/design_10/test_design_10.py" lineno="72" time="0.0009834766387939453" sim_time_ns="21.0" ratio_time="21352.820363636365">
+      <failure error_type="AssertionError" error_msg="pc failed&#10;assert False" />
+    </testcase>
+  </testsuite>
+</testsuites>

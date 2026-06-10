@@ -1,0 +1,1049 @@
+$date
+	Sat May 30 10:30:23 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module design_4 $end
+$var wire 32 ! ALU_Output [31:0] $end
+$var wire 1 " AddBar_Sub $end
+$var wire 32 # Add_Sub_A [31:0] $end
+$var wire 32 $ Add_Sub_B [31:0] $end
+$var wire 1 % Exception $end
+$var wire 4 & Operation [3:0] $end
+$var wire 1 ' Overflow $end
+$var wire 1 ( Underflow $end
+$var wire 32 ) a_operand [31:0] $end
+$var wire 32 * b_operand [31:0] $end
+$var wire 32 + XOR_Output [31:0] $end
+$var wire 32 , R_S_Output [31:0] $end
+$var wire 32 - OR_Output [31:0] $end
+$var wire 1 . Mul_Underflow $end
+$var wire 1 / Mul_Overflow $end
+$var wire 32 0 Mul_Output [31:0] $end
+$var wire 1 1 Mul_Exception $end
+$var wire 32 2 Mul_B [31:0] $end
+$var wire 32 3 Mul_A [31:0] $end
+$var wire 32 4 L_S_Output [31:0] $end
+$var wire 32 5 Integer_Value [31:0] $end
+$var wire 32 6 Floating_Point [31:0] $end
+$var wire 32 7 Div_Output [31:0] $end
+$var wire 1 8 Div_Exception $end
+$var wire 32 9 Div_B [31:0] $end
+$var wire 32 : Div_A [31:0] $end
+$var wire 32 ; Complement_output [31:0] $end
+$var wire 32 < Add_Sub_Output [31:0] $end
+$var wire 1 = Add_Sub_Exception $end
+$var wire 32 > AND_Output [31:0] $end
+$scope module AuI $end
+$var wire 1 " AddBar_Sub $end
+$var wire 1 = Exception $end
+$var wire 32 ? a_operand [31:0] $end
+$var wire 32 @ b_operand [31:0] $end
+$var wire 25 A subtraction_diff [24:0] $end
+$var wire 31 B sub_diff [30:0] $end
+$var wire 24 C significand_sub_complement [23:0] $end
+$var wire 25 D significand_sub [24:0] $end
+$var wire 24 E significand_b_add_sub [23:0] $end
+$var wire 24 F significand_b [23:0] $end
+$var wire 25 G significand_add [24:0] $end
+$var wire 24 H significand_a [23:0] $end
+$var wire 32 I result [31:0] $end
+$var wire 1 J perform $end
+$var wire 1 K output_sign $end
+$var wire 1 L operation_sub_addBar $end
+$var wire 32 M operand_b [31:0] $end
+$var wire 32 N operand_a [31:0] $end
+$var wire 8 O exponent_sub [7:0] $end
+$var wire 8 P exponent_diff [7:0] $end
+$var wire 8 Q exponent_b_add_sub [7:0] $end
+$var wire 1 R exp_b $end
+$var wire 1 S exp_a $end
+$var wire 31 T add_sum [30:0] $end
+$var wire 1 U Comp_enable $end
+$scope module pe $end
+$var wire 8 V Exponent_a [7:0] $end
+$var wire 25 W significand [24:0] $end
+$var wire 8 X Exponent_sub [7:0] $end
+$var reg 25 Y Significand [24:0] $end
+$var reg 5 Z shift [4:0] $end
+$upscope $end
+$upscope $end
+$scope module DuI $end
+$var wire 1 8 Exception $end
+$var wire 32 [ a_operand [31:0] $end
+$var wire 32 \ b_operand [31:0] $end
+$var wire 32 ] denominator [31:0] $end
+$var wire 32 ^ operand_a_change [31:0] $end
+$var wire 1 _ sign $end
+$var wire 32 ` solution [31:0] $end
+$var wire 8 a shift [7:0] $end
+$var wire 32 b result [31:0] $end
+$var wire 32 c operand_a [31:0] $end
+$var wire 8 d exponent_a [7:0] $end
+$var wire 32 e divisor [31:0] $end
+$var wire 32 f Iteration_X3 [31:0] $end
+$var wire 32 g Iteration_X2 [31:0] $end
+$var wire 32 h Iteration_X1 [31:0] $end
+$var wire 32 i Iteration_X0 [31:0] $end
+$var wire 32 j Intermediate_X0 [31:0] $end
+$scope module END $end
+$var wire 1 k Exception $end
+$var wire 1 l Overflow $end
+$var wire 32 m b_operand [31:0] $end
+$var wire 1 n sign $end
+$var wire 1 o zero $end
+$var wire 9 p sum_exponent [8:0] $end
+$var wire 32 q result [31:0] $end
+$var wire 1 r product_round $end
+$var wire 48 s product_normalised [47:0] $end
+$var wire 23 t product_mantissa [22:0] $end
+$var wire 48 u product [47:0] $end
+$var wire 24 v operand_b [23:0] $end
+$var wire 24 w operand_a [23:0] $end
+$var wire 1 x normalised $end
+$var wire 9 y exponent [8:0] $end
+$var wire 32 z a_operand [31:0] $end
+$var wire 1 { Underflow $end
+$upscope $end
+$scope module X0 $end
+$var wire 1 | AddBar_Sub $end
+$var wire 1 } Exception $end
+$var wire 32 ~ b_operand [31:0] $end
+$var wire 1 !" operation_sub_addBar $end
+$var wire 1 "" output_sign $end
+$var wire 25 #" subtraction_diff [24:0] $end
+$var wire 31 $" sub_diff [30:0] $end
+$var wire 24 %" significand_sub_complement [23:0] $end
+$var wire 25 &" significand_sub [24:0] $end
+$var wire 24 '" significand_b_add_sub [23:0] $end
+$var wire 24 (" significand_b [23:0] $end
+$var wire 25 )" significand_add [24:0] $end
+$var wire 24 *" significand_a [23:0] $end
+$var wire 32 +" result [31:0] $end
+$var wire 1 ," perform $end
+$var wire 32 -" operand_b [31:0] $end
+$var wire 32 ." operand_a [31:0] $end
+$var wire 8 /" exponent_sub [7:0] $end
+$var wire 8 0" exponent_diff [7:0] $end
+$var wire 8 1" exponent_b_add_sub [7:0] $end
+$var wire 1 2" exp_b $end
+$var wire 1 3" exp_a $end
+$var wire 31 4" add_sum [30:0] $end
+$var wire 32 5" a_operand [31:0] $end
+$var wire 1 6" Comp_enable $end
+$scope module pe $end
+$var wire 8 7" Exponent_a [7:0] $end
+$var wire 25 8" significand [24:0] $end
+$var wire 8 9" Exponent_sub [7:0] $end
+$var reg 25 :" Significand [24:0] $end
+$var reg 5 ;" shift [4:0] $end
+$upscope $end
+$upscope $end
+$scope module X1 $end
+$var wire 32 <" operand_1 [31:0] $end
+$var wire 32 =" operand_2 [31:0] $end
+$var wire 32 >" solution [31:0] $end
+$var wire 32 ?" Intermediate_Value2 [31:0] $end
+$var wire 32 @" Intermediate_Value1 [31:0] $end
+$scope module A1 $end
+$var wire 1 A" AddBar_Sub $end
+$var wire 1 B" Exception $end
+$var wire 32 C" a_operand [31:0] $end
+$var wire 32 D" b_operand [31:0] $end
+$var wire 1 E" operation_sub_addBar $end
+$var wire 1 F" output_sign $end
+$var wire 25 G" subtraction_diff [24:0] $end
+$var wire 31 H" sub_diff [30:0] $end
+$var wire 24 I" significand_sub_complement [23:0] $end
+$var wire 25 J" significand_sub [24:0] $end
+$var wire 24 K" significand_b_add_sub [23:0] $end
+$var wire 24 L" significand_b [23:0] $end
+$var wire 25 M" significand_add [24:0] $end
+$var wire 24 N" significand_a [23:0] $end
+$var wire 32 O" result [31:0] $end
+$var wire 1 P" perform $end
+$var wire 32 Q" operand_b [31:0] $end
+$var wire 32 R" operand_a [31:0] $end
+$var wire 8 S" exponent_sub [7:0] $end
+$var wire 8 T" exponent_diff [7:0] $end
+$var wire 8 U" exponent_b_add_sub [7:0] $end
+$var wire 1 V" exp_b $end
+$var wire 1 W" exp_a $end
+$var wire 31 X" add_sum [30:0] $end
+$var wire 1 Y" Comp_enable $end
+$scope module pe $end
+$var wire 8 Z" Exponent_a [7:0] $end
+$var wire 25 [" significand [24:0] $end
+$var wire 8 \" Exponent_sub [7:0] $end
+$var reg 25 ]" Significand [24:0] $end
+$var reg 5 ^" shift [4:0] $end
+$upscope $end
+$upscope $end
+$scope module M1 $end
+$var wire 1 _" Exception $end
+$var wire 1 `" Overflow $end
+$var wire 32 a" a_operand [31:0] $end
+$var wire 32 b" b_operand [31:0] $end
+$var wire 1 c" sign $end
+$var wire 1 d" zero $end
+$var wire 9 e" sum_exponent [8:0] $end
+$var wire 32 f" result [31:0] $end
+$var wire 1 g" product_round $end
+$var wire 48 h" product_normalised [47:0] $end
+$var wire 23 i" product_mantissa [22:0] $end
+$var wire 48 j" product [47:0] $end
+$var wire 24 k" operand_b [23:0] $end
+$var wire 24 l" operand_a [23:0] $end
+$var wire 1 m" normalised $end
+$var wire 9 n" exponent [8:0] $end
+$var wire 1 o" Underflow $end
+$upscope $end
+$scope module M2 $end
+$var wire 1 p" Exception $end
+$var wire 1 q" Overflow $end
+$var wire 32 r" a_operand [31:0] $end
+$var wire 32 s" b_operand [31:0] $end
+$var wire 1 t" sign $end
+$var wire 1 u" zero $end
+$var wire 9 v" sum_exponent [8:0] $end
+$var wire 32 w" result [31:0] $end
+$var wire 1 x" product_round $end
+$var wire 48 y" product_normalised [47:0] $end
+$var wire 23 z" product_mantissa [22:0] $end
+$var wire 48 {" product [47:0] $end
+$var wire 24 |" operand_b [23:0] $end
+$var wire 24 }" operand_a [23:0] $end
+$var wire 1 ~" normalised $end
+$var wire 9 !# exponent [8:0] $end
+$var wire 1 "# Underflow $end
+$upscope $end
+$upscope $end
+$scope module X2 $end
+$var wire 32 ## operand_1 [31:0] $end
+$var wire 32 $# operand_2 [31:0] $end
+$var wire 32 %# solution [31:0] $end
+$var wire 32 &# Intermediate_Value2 [31:0] $end
+$var wire 32 '# Intermediate_Value1 [31:0] $end
+$scope module A1 $end
+$var wire 1 (# AddBar_Sub $end
+$var wire 1 )# Exception $end
+$var wire 32 *# a_operand [31:0] $end
+$var wire 32 +# b_operand [31:0] $end
+$var wire 1 ,# operation_sub_addBar $end
+$var wire 1 -# output_sign $end
+$var wire 25 .# subtraction_diff [24:0] $end
+$var wire 31 /# sub_diff [30:0] $end
+$var wire 24 0# significand_sub_complement [23:0] $end
+$var wire 25 1# significand_sub [24:0] $end
+$var wire 24 2# significand_b_add_sub [23:0] $end
+$var wire 24 3# significand_b [23:0] $end
+$var wire 25 4# significand_add [24:0] $end
+$var wire 24 5# significand_a [23:0] $end
+$var wire 32 6# result [31:0] $end
+$var wire 1 7# perform $end
+$var wire 32 8# operand_b [31:0] $end
+$var wire 32 9# operand_a [31:0] $end
+$var wire 8 :# exponent_sub [7:0] $end
+$var wire 8 ;# exponent_diff [7:0] $end
+$var wire 8 <# exponent_b_add_sub [7:0] $end
+$var wire 1 =# exp_b $end
+$var wire 1 ># exp_a $end
+$var wire 31 ?# add_sum [30:0] $end
+$var wire 1 @# Comp_enable $end
+$scope module pe $end
+$var wire 8 A# Exponent_a [7:0] $end
+$var wire 25 B# significand [24:0] $end
+$var wire 8 C# Exponent_sub [7:0] $end
+$var reg 25 D# Significand [24:0] $end
+$var reg 5 E# shift [4:0] $end
+$upscope $end
+$upscope $end
+$scope module M1 $end
+$var wire 1 F# Exception $end
+$var wire 1 G# Overflow $end
+$var wire 32 H# a_operand [31:0] $end
+$var wire 32 I# b_operand [31:0] $end
+$var wire 1 J# sign $end
+$var wire 1 K# zero $end
+$var wire 9 L# sum_exponent [8:0] $end
+$var wire 32 M# result [31:0] $end
+$var wire 1 N# product_round $end
+$var wire 48 O# product_normalised [47:0] $end
+$var wire 23 P# product_mantissa [22:0] $end
+$var wire 48 Q# product [47:0] $end
+$var wire 24 R# operand_b [23:0] $end
+$var wire 24 S# operand_a [23:0] $end
+$var wire 1 T# normalised $end
+$var wire 9 U# exponent [8:0] $end
+$var wire 1 V# Underflow $end
+$upscope $end
+$scope module M2 $end
+$var wire 1 W# Exception $end
+$var wire 1 X# Overflow $end
+$var wire 32 Y# a_operand [31:0] $end
+$var wire 32 Z# b_operand [31:0] $end
+$var wire 1 [# sign $end
+$var wire 1 \# zero $end
+$var wire 9 ]# sum_exponent [8:0] $end
+$var wire 32 ^# result [31:0] $end
+$var wire 1 _# product_round $end
+$var wire 48 `# product_normalised [47:0] $end
+$var wire 23 a# product_mantissa [22:0] $end
+$var wire 48 b# product [47:0] $end
+$var wire 24 c# operand_b [23:0] $end
+$var wire 24 d# operand_a [23:0] $end
+$var wire 1 e# normalised $end
+$var wire 9 f# exponent [8:0] $end
+$var wire 1 g# Underflow $end
+$upscope $end
+$upscope $end
+$scope module X3 $end
+$var wire 32 h# operand_1 [31:0] $end
+$var wire 32 i# operand_2 [31:0] $end
+$var wire 32 j# solution [31:0] $end
+$var wire 32 k# Intermediate_Value2 [31:0] $end
+$var wire 32 l# Intermediate_Value1 [31:0] $end
+$scope module A1 $end
+$var wire 1 m# AddBar_Sub $end
+$var wire 1 n# Exception $end
+$var wire 32 o# a_operand [31:0] $end
+$var wire 32 p# b_operand [31:0] $end
+$var wire 1 q# operation_sub_addBar $end
+$var wire 1 r# output_sign $end
+$var wire 25 s# subtraction_diff [24:0] $end
+$var wire 31 t# sub_diff [30:0] $end
+$var wire 24 u# significand_sub_complement [23:0] $end
+$var wire 25 v# significand_sub [24:0] $end
+$var wire 24 w# significand_b_add_sub [23:0] $end
+$var wire 24 x# significand_b [23:0] $end
+$var wire 25 y# significand_add [24:0] $end
+$var wire 24 z# significand_a [23:0] $end
+$var wire 32 {# result [31:0] $end
+$var wire 1 |# perform $end
+$var wire 32 }# operand_b [31:0] $end
+$var wire 32 ~# operand_a [31:0] $end
+$var wire 8 !$ exponent_sub [7:0] $end
+$var wire 8 "$ exponent_diff [7:0] $end
+$var wire 8 #$ exponent_b_add_sub [7:0] $end
+$var wire 1 $$ exp_b $end
+$var wire 1 %$ exp_a $end
+$var wire 31 &$ add_sum [30:0] $end
+$var wire 1 '$ Comp_enable $end
+$scope module pe $end
+$var wire 8 ($ Exponent_a [7:0] $end
+$var wire 25 )$ significand [24:0] $end
+$var wire 8 *$ Exponent_sub [7:0] $end
+$var reg 25 +$ Significand [24:0] $end
+$var reg 5 ,$ shift [4:0] $end
+$upscope $end
+$upscope $end
+$scope module M1 $end
+$var wire 1 -$ Exception $end
+$var wire 1 .$ Overflow $end
+$var wire 32 /$ a_operand [31:0] $end
+$var wire 32 0$ b_operand [31:0] $end
+$var wire 1 1$ sign $end
+$var wire 1 2$ zero $end
+$var wire 9 3$ sum_exponent [8:0] $end
+$var wire 32 4$ result [31:0] $end
+$var wire 1 5$ product_round $end
+$var wire 48 6$ product_normalised [47:0] $end
+$var wire 23 7$ product_mantissa [22:0] $end
+$var wire 48 8$ product [47:0] $end
+$var wire 24 9$ operand_b [23:0] $end
+$var wire 24 :$ operand_a [23:0] $end
+$var wire 1 ;$ normalised $end
+$var wire 9 <$ exponent [8:0] $end
+$var wire 1 =$ Underflow $end
+$upscope $end
+$scope module M2 $end
+$var wire 1 >$ Exception $end
+$var wire 1 ?$ Overflow $end
+$var wire 32 @$ a_operand [31:0] $end
+$var wire 32 A$ b_operand [31:0] $end
+$var wire 1 B$ sign $end
+$var wire 1 C$ zero $end
+$var wire 9 D$ sum_exponent [8:0] $end
+$var wire 32 E$ result [31:0] $end
+$var wire 1 F$ product_round $end
+$var wire 48 G$ product_normalised [47:0] $end
+$var wire 23 H$ product_mantissa [22:0] $end
+$var wire 48 I$ product [47:0] $end
+$var wire 24 J$ operand_b [23:0] $end
+$var wire 24 K$ operand_a [23:0] $end
+$var wire 1 L$ normalised $end
+$var wire 9 M$ exponent [8:0] $end
+$var wire 1 N$ Underflow $end
+$upscope $end
+$upscope $end
+$scope module x0 $end
+$var wire 1 O$ Exception $end
+$var wire 1 P$ Overflow $end
+$var wire 32 Q$ a_operand [31:0] $end
+$var wire 32 R$ b_operand [31:0] $end
+$var wire 1 S$ sign $end
+$var wire 1 T$ zero $end
+$var wire 9 U$ sum_exponent [8:0] $end
+$var wire 32 V$ result [31:0] $end
+$var wire 1 W$ product_round $end
+$var wire 48 X$ product_normalised [47:0] $end
+$var wire 23 Y$ product_mantissa [22:0] $end
+$var wire 48 Z$ product [47:0] $end
+$var wire 24 [$ operand_b [23:0] $end
+$var wire 24 \$ operand_a [23:0] $end
+$var wire 1 ]$ normalised $end
+$var wire 9 ^$ exponent [8:0] $end
+$var wire 1 _$ Underflow $end
+$upscope $end
+$upscope $end
+$scope module FuI $end
+$var wire 32 `$ a_operand [31:0] $end
+$var wire 32 a$ Integer [31:0] $end
+$var reg 24 b$ Integer_Value [23:0] $end
+$upscope $end
+$scope module MuI $end
+$var wire 1 1 Exception $end
+$var wire 1 / Overflow $end
+$var wire 32 c$ a_operand [31:0] $end
+$var wire 32 d$ b_operand [31:0] $end
+$var wire 1 e$ sign $end
+$var wire 1 f$ zero $end
+$var wire 9 g$ sum_exponent [8:0] $end
+$var wire 32 h$ result [31:0] $end
+$var wire 1 i$ product_round $end
+$var wire 48 j$ product_normalised [47:0] $end
+$var wire 23 k$ product_mantissa [22:0] $end
+$var wire 48 l$ product [47:0] $end
+$var wire 24 m$ operand_b [23:0] $end
+$var wire 24 n$ operand_a [23:0] $end
+$var wire 1 o$ normalised $end
+$var wire 9 p$ exponent [8:0] $end
+$var wire 1 . Underflow $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+bx p$
+xo$
+bxzzzzzzzzzzzzzzzzzzzzzzz n$
+bxzzzzzzzzzzzzzzzzzzzzzzz m$
+bx l$
+bx k$
+bx j$
+xi$
+bx h$
+bx g$
+xf$
+xe$
+bz d$
+bz c$
+bx b$
+bzxxxxxxxxxxxxxxxxxxxxxxx a$
+bz `$
+x_$
+bx ^$
+x]$
+b100010110100101101001011 \$
+b1zzzzzzzzzzzzzzzzzzzzzzz [$
+bx Z$
+bx Y$
+bx X$
+xW$
+b1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx V$
+b11111110 U$
+xT$
+1S$
+b1111110zzzzzzzzzzzzzzzzzzzzzzz R$
+b11000000000010110100101101001011 Q$
+xP$
+0O$
+xN$
+bx M$
+xL$
+bx K$
+bx J$
+bx I$
+bx H$
+bx G$
+xF$
+bx E$
+bx D$
+xC$
+xB$
+bx A$
+bx @$
+x?$
+x>$
+x=$
+bx <$
+x;$
+bx :$
+b1zzzzzzzzzzzzzzzzzzzzzzz 9$
+bx 8$
+bx 7$
+bx 6$
+x5$
+bx 4$
+bx 3$
+x2$
+x1$
+b1111110zzzzzzzzzzzzzzzzzzzzzzz 0$
+bx /$
+x.$
+x-$
+bx ,$
+bx +$
+bx *$
+bx )$
+bx ($
+x'$
+bx &$
+x%$
+x$$
+bx #$
+bx "$
+bx !$
+bx ~#
+bx }#
+x|#
+bx {#
+bx z#
+bx y#
+bx x#
+bx w#
+bx v#
+bx u#
+bx t#
+bx s#
+xr#
+xq#
+b1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx p#
+b1000000000000000000000000000000 o#
+xn#
+0m#
+bx l#
+bx k#
+bx j#
+b1111110zzzzzzzzzzzzzzzzzzzzzzz i#
+bx h#
+xg#
+bx f#
+xe#
+bx d#
+bx c#
+bx b#
+bx a#
+bx `#
+x_#
+bx ^#
+bx ]#
+x\#
+x[#
+bx Z#
+bx Y#
+xX#
+xW#
+xV#
+bx U#
+xT#
+bx S#
+b1zzzzzzzzzzzzzzzzzzzzzzz R#
+bx Q#
+bx P#
+bx O#
+xN#
+bx M#
+bx L#
+xK#
+xJ#
+b1111110zzzzzzzzzzzzzzzzzzzzzzz I#
+bx H#
+xG#
+xF#
+bx E#
+bx D#
+bx C#
+bx B#
+bx A#
+x@#
+bx ?#
+x>#
+x=#
+bx <#
+bx ;#
+bx :#
+bx 9#
+bx 8#
+x7#
+bx 6#
+bx 5#
+bx 4#
+bx 3#
+bx 2#
+bx 1#
+bx 0#
+bx /#
+bx .#
+x-#
+x,#
+b1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx +#
+b1000000000000000000000000000000 *#
+x)#
+0(#
+bx '#
+bx &#
+bx %#
+b1111110zzzzzzzzzzzzzzzzzzzzzzz $#
+bx ##
+x"#
+bx !#
+x~"
+bx }"
+bx |"
+bx {"
+bx z"
+bx y"
+xx"
+bx w"
+bx v"
+xu"
+xt"
+bx s"
+bx r"
+xq"
+xp"
+xo"
+bx n"
+xm"
+bx l"
+b1zzzzzzzzzzzzzzzzzzzzzzz k"
+bx j"
+bx i"
+bx h"
+xg"
+bx f"
+bx e"
+xd"
+xc"
+b1111110zzzzzzzzzzzzzzzzzzzzzzz b"
+bx a"
+x`"
+x_"
+bx ^"
+bx ]"
+bx \"
+bx ["
+bx Z"
+xY"
+bx X"
+xW"
+xV"
+bx U"
+bx T"
+bx S"
+bx R"
+bx Q"
+xP"
+bx O"
+bx N"
+bx M"
+bx L"
+bx K"
+bx J"
+bx I"
+bx H"
+bx G"
+xF"
+xE"
+b1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx D"
+b1000000000000000000000000000000 C"
+xB"
+0A"
+bx @"
+bx ?"
+bx >"
+b1111110zzzzzzzzzzzzzzzzzzzzzzz ="
+bx <"
+bx ;"
+bx :"
+bx 9"
+bx 8"
+bx 7"
+x6"
+b1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 5"
+bx 4"
+x3"
+x2"
+bx 1"
+bx 0"
+bx /"
+bx ."
+bx -"
+x,"
+bx +"
+bx *"
+bx )"
+bx ("
+bx '"
+bx &"
+bx %"
+bx $"
+bx #"
+x""
+x!"
+b1000000001101001011010010110101 ~
+x}
+0|
+x{
+bx z
+bx y
+xx
+bx w
+bxzzzzzzzzzzzzzzzzzzzzzzz v
+bx u
+bx t
+bx s
+xr
+bx q
+bx p
+xo
+xn
+bzxxxxxxxxzzzzzzzzzzzzzzzzzzzzzzz m
+xl
+xk
+b1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx j
+bx i
+bx h
+bx g
+bx f
+b1111110zzzzzzzzzzzzzzzzzzzzzzz e
+bx d
+bzxxxxxxxxzzzzzzzzzzzzzzzzzzzzzzz c
+bx b
+bx a
+bx `
+x_
+bzxxxxxxxxzzzzzzzzzzzzzzzzzzzzzzz ^
+b1111110zzzzzzzzzzzzzzzzzzzzzzz ]
+bz \
+bz [
+bx Z
+bx Y
+bx X
+bx W
+bz V
+xU
+bx T
+zS
+zR
+bx Q
+bx P
+bx O
+bz N
+bz M
+xL
+xK
+xJ
+bx I
+bxzzzzzzzzzzzzzzzzzzzzzzz H
+bx G
+bxzzzzzzzzzzzzzzzzzzzzzzz F
+bx E
+bx D
+bx C
+bx B
+bx A
+bz @
+bz ?
+bz >
+x=
+bx <
+bz ;
+bz :
+bz 9
+x8
+bx 7
+bz 6
+bzxxxxxxxxxxxxxxxxxxxxxxx 5
+bz 4
+bz 3
+bz 2
+x1
+bx 0
+x/
+x.
+b11111111111111011010100011111111 -
+bz ,
+bz +
+b10101000110101011010100001101110 *
+b1111111001011000010000011111001 )
+0(
+0'
+b100 &
+0%
+bz $
+bz #
+z"
+b11111111111111011010100011111111 !
+$end
+#1000
+b10011111100111111001110110011110 !
+b10011111100111111001110110011110 -
+b1111100101111001110010010110 *
+b10010111100110011001100110001010 )
+#2000
+b11111110111111111011111011101111 !
+b11111110111111111011111011101111 -
+b10010010010010111010100011001101 *
+b11111100111111010011011010101111 )
+#3000
+b1111011110111111011111111110101 !
+b1111011110111111011111111110101 -
+b1101001100001101010111100000100 *
+b110010110110010001111011110001 )
+#4000
+b11011111101110110111111011001001 !
+b11011111101110110111111011001001 -
+b11000110100110110111001010001000 *
+b11011101001000010100110001001001 )
+#5000
+b1101111111111111111111011111110 !
+b1101111111111111111111011111110 -
+b1001111011001011111110000000110 *
+b1101101101110101010011011111110 )
+#6000
+b11110011100000111101011110111111 !
+b11110011100000111101011110111111 -
+b10011100000111100001110011110 *
+b11100011100000000101011100111011 )
+#7000
+b10010011111011111111111101101011 !
+b10010011111011111111111101101011 -
+b11111001110011010101000011 *
+b10010010001011101100111000101011 )
+#8000
+b11111011111011101000110111111011 !
+b11111011111011101000110111111011 -
+b11111010111011001000000101110011 *
+b1001011011000101000110110001001 )
+#9000
+b1111110101111011010111111011101 !
+b1111110101111011010111111011101 -
+b1110010100001011010110111011101 *
+b11100001110010010001011011101 )
+#10000
+b10011101110011111101010111111111 !
+b10011101110011111101010111111111 -
+b10010100110010111001010100111101 *
+b10001001000001100101000011010110 )
+#11000
+b11111010011011111001110011110110 !
+b11111010011011111001110011110110 -
+b110000010001010001100010110010 *
+b11111010011010101001110001100100 )
+#12000
+b11111110110101111111101111101101 !
+b11111110110101111111101111101101 -
+b100110000100001011101101101001 *
+b11011000110001110101100110100100 )
+#13000
+b11111011101101101111111111111111 !
+b11111011101101101111111111111111 -
+b111001100000100100010101111001 *
+b11001011001101001111101011100110 )
+#14000
+b10111110110011011111111001111111 !
+b10111110110011011111111001111111 -
+b11100110011011110010000110111 *
+b10101010000000010101111001001000 )
+#15000
+b11001111111111011110011001111011 !
+b11001111111111011110011001111011 -
+b1000100110011011110011000100001 *
+b10001011001111010100010001111011 )
+#16000
+b11111100011011101110111011100111 !
+b11111100011011101110111011100111 -
+b10010000010010101100111001000001 *
+b11101100001011100110010010100111 )
+#17000
+b11101111100011110011111010101111 !
+b11101111100011110011111010101111 -
+b10101111100010100011111010001110 *
+b11101100000001010011001000100001 )
+#18000
+b11001000010100101111111110110101 !
+b11001000010100101111111110110101 -
+b1000000010100001111101010100101 *
+b10001000000000100101111110010000 )
+#19000
+b111110011110111110111111101011 !
+b111110011110111110111111101011 -
+b111110011110111010111011001001 *
+b111110011100100100001110101011 )
+#20000
+b11101101101011111110001101011000 !
+b11101101101011111110001101011000 -
+b10101001101010001110000101001000 *
+b1000101100011111000001000010000 )
+#21000
+b10010111111111110111111111101111 !
+b10010111111111110111111111101111 -
+b10000010010011110010110110101110 *
+b10010111101110000111011101001111 )
+#22000
+b11101111111011110110011001011111 !
+b11101111111011110110011001011111 -
+b11101000110010110100011001011000 *
+b1100111011011000010001001000111 )
+#23000
+b10111111110101110001100010111100 !
+b10111111110101110001100010111100 -
+b10111111100101000000100010111000 *
+b100001110001110001000000010100 )
+#24000
+b11010111110011011111111110111110 !
+b11010111110011011111111110111110 -
+b11010101100011010111111110101010 *
+b11010010010001011111000110011110 )
+#25000
+b101111111001111010101011100011 !
+b101111111001111010101011100011 -
+b101110111001101010101001100011 *
+b1111000000010000100010000001 )
+#26000
+b11011111111111101111101101111010 !
+b11011111111111101111101101111010 -
+b1001101010111101001001100011010 *
+b11010110101000001111100001101010 )
+#27000
+b11101111111111000111111100011111 !
+b11101111111111000111111100011111 -
+b101011011110000111111100000111 *
+b11000111100111000111101100011001 )
+#28000
+b11101011101101101111101111111111 !
+b11101011101101101111101111111111 -
+b1001011101101101111101011010101 *
+b11100011001001100100001111101010 )
+#29000
+b1101111111111011011010110110111 !
+b1101111111111011011010110110111 -
+b1101011111110001001000010110110 *
+b1101111010101011011010100000101 )
+#30000
+b1111111001110111111111010111111 !
+b1111111001110111111111010111111 -
+b1110101000110100000001000111101 *
+b1111110001100111111110010101011 )
+#31000
+b11001100011010011111110111010011 !
+b11001100011010011111110111010011 -
+b11000100010010010111010011010011 *
+b11001000001000011100100110010011 )
+#32000
+b1111111011011001011101001101111 !
+b1111111011011001011101001101111 -
+b10010001011000001000001101011 *
+b1101111011001001010101000100110 )
+#33000
+b110111110110111111111011111111 !
+b110111110110111111111011111111 -
+b110101100110001000101001101101 *
+b100011010000110111111010110011 )
+#34000
+b11110111111111110011000111111111 !
+b11110111111111110011000111111111 -
+b11100001100000100010000101010011 *
+b10110110111111110011000011111100 )
+#35000
+b11111110011111001111110111101101 !
+b11111110011111001111110111101101 -
+b11110000001111001110110001001001 *
+b11011110010001000101100110101101 )
+#36000
+b11110111111001100000011111111111 !
+b11110111111001100000011111111111 -
+b11110111101000100000011111111010 *
+b10100010011001100000001100111111 )
+#37000
+b11011011111111101010011111111111 !
+b11011011111111101010011111111111 -
+b11011010111011101010011011010101 *
+b1010001011110001010001101101010 )
+#38000
+b11001101011101111011101111111111 !
+b11001101011101111011101111111111 -
+b1001100011101010011101101001110 *
+b10001101000100101010100111110101 )
+#39000
+b11101011100101111001001101010111 !
+b11101011100101111001001101010111 -
+b11001010000101111001001101010000 *
+b10101001100000010001000100010111 )
+#40000
+b10100101101111111111111101101111 !
+b10100101101111111111111101101111 -
+b10100101100001101100101100001101 *
+b10100101101111011111110001101010 )
+#41000
+b11111111011111111111110110101111 !
+b11111111011111111111110110101111 -
+b10110011100101110100010100011 *
+b11101001000011010111110100001100 )
+#42000
+b1010111101111100101110111101111 !
+b1010111101111100101110111101111 -
+b1010101101101000101100101101111 *
+b1010110000111100101110111100100 )
+#43000
+b11011111110100011110101111111101 !
+b11011111110100011110101111111101 -
+b11011101000100000110100101111001 *
+b10010110100011010101010011100 )
+#44000
+b1111110110011001111011101100110 !
+b1111110110011001111011101100110 -
+b1101110010011000100000101100110 *
+b1011100100000001011011100000000 )
+#45000
+b11011111100010101111110011111111 !
+b11011111100010101111110011111111 -
+b11010001100000100010110011011011 *
+b10001110000010001101010000101110 )
+#46000
+b11100011100111011011110101111011 !
+b11100011100111011011110101111011 -
+b1100010000101011001100001101011 *
+b10100011100011011010110100111010 )
+#47000
+b1100011111111001111111111101001 !
+b1100011111111001111111111101001 -
+b1100001011101000110111110101001 *
+b1000010100111001101000001100001 )
+#48000
+b1111111101011110010000010011001 !
+b1111111101011110010000010011001 -
+b1101101101011110010000010010001 *
+b10010001000000010000010011000 )
+#49000
+b10111101111111110111000111111101 !
+b10111101111111110111000111111101 -
+b10111100101011100101000010111100 *
+b11101111101010011000111111001 )
+#50000
+b11111101111010011011011111101110 !
+bz -
+b11111101111010011011011111101110 >
+b101 &
+b101101010010000010001101001110 *
+b11110001101000011001011110100110 )
+#51000

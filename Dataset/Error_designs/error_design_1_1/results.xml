@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1774095324" />
+    <testcase name="cordic_testbench" classname="test_design_1" file="/home/chirag/VeriSlicer/VeriSlicer_v6/Testbenches/design_1/test_design_1.py" lineno="134" time="0.011883974075317383" sim_time_ns="37.0" ratio_time="3113.436613501856">
+      <failure error_type="AssertionError" error_msg="Signal 'x_o' failed.&#10;assert False" />
+    </testcase>
+  </testsuite>
+</testsuites>

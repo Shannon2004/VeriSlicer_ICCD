@@ -1,0 +1,28 @@
+
+Design: posit_encoder
+Error line: 17
+
+Original code:
+	value = value + 1;
+
+Erroneous code:
+	value = value - 1;
+
+Error description:
+Arithmetic operator changed from + to -
+==================================================
+
+Design: posit_encoder
+Error line: 79
+
+Original code:
+assign tmp[0]  = b[0] ? a >> 7'd1  : a; 
+
+Erroneous code:
+assign tmp[1]  = b[0] ? a >> 7'd1  : a; 
+
+Error description:
+Changed output bit assignment from tmp[0] to tmp[1]
+
+==================================================
+

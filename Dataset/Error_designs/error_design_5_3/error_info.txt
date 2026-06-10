@@ -1,0 +1,13 @@
+Design: Systolic Array
+Error line: 49
+Original code:
+if(rst) begin
+			done <= 0;
+			count <= 0;
+
+Erroneous code:
+if(!rst) begin
+			done <= 0;
+			count <= 0;
+        
+changed reset logic

@@ -1,0 +1,26 @@
+# Source File: ../Error_designs/error_design_5_1/design_5.v
+# Project Dir: error_design_5_1
+# Total Vertices: 9
+# Total Edges: 9
+
+=== VERTICES ===
+design_5.P0.inp_north
+design_5.P0.inp_west
+design_5.P0.multi
+design_5.P0.result
+design_5.P0.rst
+design_5.inp_north0
+design_5.inp_west0
+design_5.result0
+design_5.rst
+
+=== EDGES (Driver -> Target) ===
+design_5.P0.result -> design_5.result0
+design_5.inp_west0 -> design_5.P0.inp_west
+design_5.rst -> design_5.P0.rst
+design_5.P0.multi -> design_5.P0.result
+design_5.P0.rst -> design_5.P0.result
+design_5.P0.result -> design_5.P0.result
+design_5.inp_north0 -> design_5.P0.inp_north
+design_5.P0.inp_north -> design_5.P0.multi
+design_5.P0.inp_west -> design_5.P0.multi

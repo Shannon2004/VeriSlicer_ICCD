@@ -1,0 +1,17 @@
+
+
+Design: posit_encoder
+Error line: 15
+
+Original code:
+input reg [31:0] value;
+
+Erroneous code:
+input reg [32:0] value;
+
+Error description:
+Bitwidth incremented by 1
+
+==================================================
+
+

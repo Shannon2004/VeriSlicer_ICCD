@@ -1,0 +1,11 @@
+Design: SDRAM
+Error line: 127
+
+Original code:
+r_State <= 2'h1;
+
+Erroneous code:
+r_State <= 2'h2;
+
+Error description:
+Logic modified

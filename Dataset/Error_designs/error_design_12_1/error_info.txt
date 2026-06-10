@@ -1,0 +1,15 @@
+Design: mmu180
+Error line: 55
+
+Original code:
+assign iosel_BBR_wr = ! (iosel_BBR & ! wr_n);
+
+Erroneous code:
+assign iosel_BBR_wr = ! (iosel_BBR &  wr_n);
+
+Error description:
+Logic Flip
+
+==================================================
+
+

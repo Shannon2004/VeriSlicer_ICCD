@@ -1,0 +1,305 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_13.v ---
+
+   1: module design_13 (clk, in1_svm, in2_svm, start, out, inf, zero, done, add_m);
+...
+  13: parameter N = 12;
+...
+  15: parameter es = 2;
+...
+  17: input [N-1:0] in1_svm, in2_svm;
+...
+  19: output [N-1:0] out;
+  20: output inf, zero;
+  21: output done;
+...
+  33: wire [N-1:0]in1, in2;
+...
+  35:     assign in1 = in1_svm;
+...
+  41: wire s1 = in1[N-1];
+  42: wire s2 = in2[N-1];
+  43: wire zero_tmp1 = |in1[N-2:0];
+  44: wire zero_tmp2 = |in2[N-2:0];
+  45:     wire inf1 = in1[N-1] & (~zero_tmp1);
+  46: 	wire inf2 = in2[N-1] & (~zero_tmp2);
+  47:     wire zero1 = ~(in1[N-1] | zero_tmp1);
+  48: 	wire zero2 = ~(in2[N-1] | zero_tmp2);
+  49: assign inf = inf1 | inf2;
+  50: 	assign zero = zero1 & zero2;
+...
+  55: wire [es-1:0] e1, e2;
+  56: wire [N-es-1:0] mant1, mant2;
+  57: wire [N-1:0] xin1 = s1 ? -in1 : in1;
+  58: wire [N-1:0] xin2 = s2 ? -in2 : in2;
+  59: data_extract_v1 #(.N(es),.es(N)) uut_de1(.in(xin1), .rc(rc1), .regime(regime1), .exp(e1), .mant(mant1));
+  60: data_extract_v1 #(.N(N),.es(es)) uut_de2(.in(xin2), .rc(rc2), .regime(regime2), .exp(e2), .mant(mant2));
+...
+  62:     wire [N-es:0] m1 = {zero_tmp1,mant1};
+...
+  66: wire in1_gt_in2 = (xin1[N-2:0] >= xin2[N-2:0]) ? 1'b1 : 1'b0;
+...
+  68: wire ls = in1_gt_in2 ? s1 : s2;
+  69: wire op = s1 ~^ s2;
+...
+  77: wire [es-1:0] le = in1_gt_in2 ? e1 : e2;
+  78: wire [es-1:0] se = in1_gt_in2 ? e2 : e1;
+...
+  80: wire [N-es:0] lm = in1_gt_in2 ? m1 : m2;
+  81: wire [N-es:0] sm = in1_gt_in2 ? m2 : m1;
+...
+  84: wire [es+Bs+1:0] diff;
+...
+  87: abs_regime #(.N(Bs)) uut_abs_regime1 (lrc, lr, lr_N);
+  88: abs_regime #(.N(Bs)) uut_abs_regime2 (src, sr, sr_N);
+  89: sub_N #(.N(es+Bs+1)) uut_ediff ({lr_N,le}, {sr_N, se}, diff);
+  90: wire [Bs-1:0] exp_diff = (|diff[es+Bs:Bs]) ? {Bs{1'b1}} : diff[Bs-1:0];
+...
+  93: wire [N-1:0] DSR_right_in;
+  94: generate
+  95: 	if (es >= 2) 
+  96: 	assign DSR_right_in = {sm,{es-1{1'b0}}};
+  97: 	else 
+  98: 	assign DSR_right_in = sm;
+  99: endgenerate
+...
+ 101: wire [N-1:0] DSR_right_out;
+...
+ 103: DSR_right_N_S #(.N(N), .S(Bs))  dsr1(.a(DSR_right_in), .b(DSR_e_diff), .c(DSR_right_out));
+...
+ 106: wire [N-1:0] add_m_in1;
+ 107: generate
+ 108: 	if (es >= 2) 
+ 109: 	assign add_m_in1 = {lm,{es-1{1'b0}}};
+ 110: 	else 
+ 111: 	assign add_m_in1 = lm;
+ 112: endgenerate
+...
+ 114: input [N:0] add_m;
+ 115: add_sub_N #(.N(N)) uut_add_sub_N (op, add_m_in1, DSR_right_out, add_m);
+...
+ 119: wire [1:0] mant_ovf = add_m[N:N-1];
+...
+ 122: wire [N-1:0] LOD_in = {(add_m[N] | add_m[N-1]), add_m[N-2:0]};
+...
+ 124: LOD_N #(.N(N)) l2(.in(LOD_in), .out(left_shift));
+...
+ 128: wire [N-1:0] DSR_left_out_t;
+ 129: DSR_left_N_S #(.N(N), .S(Bs)) dsl1(.a(add_m[N:1]), .b(left_shift), .c(DSR_left_out_t));
+ 130: wire [N-1:0] DSR_left_out = DSR_left_out_t[N-1] ? DSR_left_out_t[N-1:0] : {DSR_left_out_t[N-2:0],1'b0}; 
+...
+ 134: wire [es+Bs+1:0] le_o_tmp, le_o;
+ 135: sub_N #(.N(es+Bs+1)) sub3 ({lr_N,le}, {{es+1{1'b0}},left_shift}, le_o_tmp);
+ 136: add_1 #(.N(es+Bs+1)) uut_add_mantovf (le_o_tmp, mant_ovf[1], le_o);
+...
+ 138: wire [es-1:0] e_o;
+...
+ 140: reg_exp_op #(.es(es), .Bs(Bs)) uut_reg_ro (le_o[es+Bs:0], e_o, r_o);
+...
+ 143: wire [2*N-1+3:0] tmp_o;
+ 144: generate
+ 145: 	if(es > 2)
+ 146: 		assign tmp_o = { {N{~le_o[es+Bs]}}, le_o[es+Bs], e_o, DSR_left_out[N-2:es-2], |DSR_left_out[es-3:0]};
+ 147: 	else 
+ 148: 		assign tmp_o = { {N{~le_o[es+Bs]}}, le_o[es+Bs], e_o, DSR_left_out[N-2:0], {3-es{1'b0}} };
+...
+ 150: endgenerate
+...
+ 154: wire [3*N-1+3:0] tmp1_o;
+ 155: DSR_right_N_S #(.N(3*N+3), .S(Bs)) dsr2 (.a({tmp_o,{N{1'b0}}}), .b(r_o), .c(tmp1_o));
+...
+ 159:     wire L = tmp1_o[N+4];
+ 160:     wire G = tmp1_o[N+3];
+ 161:     wire R = tmp1_o[N+2];
+ 162:     wire St = |tmp1_o[N+1:0];
+...
+ 164: wire [N-1:0] rnd_ulp = {{N-1{1'b0}},ulp};
+...
+ 166: wire [N:0] tmp1_o_rnd_ulp;
+ 167: add_N #(.N(N)) uut_add_ulp (tmp1_o[2*N-1+3:N+3], rnd_ulp, tmp1_o_rnd_ulp);
+ 168: wire [N-1:0] tmp1_o_rnd = (r_o < N-es-2) ? tmp1_o_rnd_ulp[N-1:0] : tmp1_o[2*N-1+3:N+3];
+...
+ 172: wire [N-1:0] tmp1_oN = ls ? -tmp1_o_rnd : tmp1_o_rnd;
+ 173:     assign out = inf|zero|(~DSR_left_out[N-1]) ? {inf,{N-1{1'b0}}} : {ls, tmp1_oN[N-1:1]};
+ 174: 	assign done = start0;
+...
+ 176: endmodule
+...
+ 179: module data_extract_v1(in, rc, regime, exp, mant);
+...
+ 189: parameter N=16;
+...
+ 191: parameter es = 2;
+...
+ 193: input [N-1:0] in;
+ 194: output rc;
+...
+ 196: output [es-1:0] exp;
+ 197: output [N-es-1:0] mant;
+...
+ 199: wire [N-1:0] xin = in;
+ 200: assign rc = xin[N-2];
+...
+ 202: wire [N-1:0] xin_r = rc ? ~xin : xin;
+...
+ 205: LOD_N #(.N(N)) xinst_k(.in({xin_r[N-2:0],rc^1'b0}), .out(k));
+...
+ 207: assign regime = rc ? k-1 : k;
+...
+ 209: wire [N-1:0] xin_tmp;
+ 210: DSR_left_N_S #(.N(N), .S(Bs)) ls (.a({xin[N-3:0],2'b0}),.b(k),.c(xin_tmp));
+...
+ 212: assign exp= xin_tmp[N-1:N-es];
+ 213: assign mant= xin_tmp[N-es-1:0];
+...
+ 215: endmodule
+...
+ 218: module sub_N (a,b,c);
+ 219: parameter N=16;
+ 220: input [N-1:0] a,b;
+ 221: output [N:0] c;
+ 222: wire [N:0] ain = {1'b0,a};
+ 223: wire [N:0] bin = {1'b0,b};
+ 224: sub_N_in #(.N(N)) s1 (ain,bin,c);
+ 225: endmodule
+...
+ 228: module add_N (a,b,c);
+ 229: parameter N=16;
+ 230: input [N-1:0] a,b;
+ 231: output [N:0] c;
+ 232: wire [N:0] ain = {1'b0,a};
+ 233: wire [N:0] bin = {1'b0,b};
+ 234: add_N_in #(.N(N)) a1 (ain,bin,c);
+ 235: endmodule
+...
+ 239: module add_N_Cin (a,b,cin,c);
+ 240: parameter N=16;
+ 241: input [N:0] a,b;
+...
+ 243: output [N:0] c;
+...
+ 245: endmodule
+...
+ 249: module sub_N_in (a,b,c);
+ 250: parameter N=8;
+ 251: input [N:0] a,b;
+ 252: output [N:0] c;
+...
+ 254: endmodule
+...
+ 257: module add_N_in (a,b,c);
+ 258: parameter N=16;
+ 259: input [N:0] a,b;
+ 260: output [N:0] c;
+...
+ 262: endmodule
+...
+ 265: module add_sub_N (op,a,b,c);
+ 266: parameter N=16;
+...
+ 268: input [N-1:0] a,b;
+ 269: output [N:0] c;
+ 270: wire [N:0] c_add, c_sub;
+...
+ 272: add_N #(.N(N)) a11 (a,b,c_add);
+ 273: sub_N #(.N(N)) s11 (a,b,c_sub);
+...
+ 275: endmodule
+...
+ 278: module add_1 (a,mant_ovf,c);
+ 279: parameter N=16;
+ 280: input [N:0] a;
+...
+ 282: output [N:0] c;
+...
+ 284: endmodule
+...
+ 287: module abs_regime (rc, regime, regime_N);
+ 288: parameter N = 16;
+ 289: input rc;
+ 290: input [N-1:0] regime;
+ 291: output [N:0] regime_N;
+...
+ 293: assign regime_N = rc ? {1'b0,regime} : -{1'b0,regime};
+ 294: endmodule
+...
+ 297: module conv_2c (a,c);
+ 298: parameter N=16;
+ 299: input [N:0] a;
+ 300: output [N:0] c;
+...
+ 302: endmodule
+...
+ 304: module reg_exp_op (exp_o, e_o, r_o);
+ 305: parameter es=2;
+...
+ 307: input [es+Bs:0] exp_o;
+ 308: output [es-1:0] e_o;
+...
+ 311: assign e_o = exp_o[es-1:0];
+...
+ 313: wire [es+Bs:0] exp_oN_tmp;
+ 314: conv_2c #(.N(es+Bs)) uut_conv_2c1 (~exp_o[es+Bs:0],exp_oN_tmp);
+ 315: wire [es+Bs:0] exp_oN = exp_o[es+Bs] ? exp_oN_tmp[es+Bs:0] : exp_o[es+Bs:0];
+ 316: assign r_o = (~exp_o[es+Bs] || |(exp_oN[es-1:0])) ? exp_oN[es+Bs-1:es] + 1 : exp_oN[es+Bs-1:es];
+ 317: endmodule
+...
+ 320: module DSR_left_N_S(a,b,c);
+ 321:         parameter N=16;
+...
+ 323:         input [N-1:0] a;
+...
+ 325:         output [N-1:0] c;
+...
+ 327: wire [N-1:0] tmp [S-1:0];
+...
+ 337: endmodule
+...
+ 341: module DSR_right_N_S(a,b,c);
+ 342:         parameter N=16;
+...
+ 344:         input [N-1:0] a;
+...
+ 346:         output [N-1:0] c;
+...
+ 348: wire [N-1:0] tmp [S-1:0];
+...
+ 359: endmodule
+...
+ 363: module LOD_N (in, out);
+...
+ 374: parameter N = 64;
+...
+ 376: input [N-1:0] in;
+ 377: output [S-1:0] out;
+...
+ 380: LOD #(.N(N)) l1 (in, out, vld);
+ 381: endmodule
+...
+ 384: module LOD (in, out, vld);
+...
+ 396: parameter N = 64;
+...
+ 399:    input [N-1:0] in;
+ 400:    output [S-1:0] out;
+...
+ 404:   generate
+ 405:     if (N == 2)
+ 406:       begin
+ 407: 	assign vld = |in;
+ 408: 	assign out = ~in[1] & in[0];
+ 409:       end
+ 410:     else if (N & (N-1))
+...
+ 412:       LOD #(1<<S) LOD ({in,{((1<<S) - N) {1'b0}}},out,vld);
+ 413:     else
+ 414:       begin
+ 415: 	wire [S-2:0] out_l, out_h;
+ 416: 	wire out_vl, out_vh;
+ 417: 	LOD #(N>>1) l(in[(N>>1)-1:0],out_l,out_vl);
+ 418: 	LOD #(N>>1) h(in[N-1:N>>1],out_h,out_vh);
+ 419: 	assign vld = out_vl | out_vh;
+ 420: 	assign out = out_vh ? {1'b0,out_h} : {out_vl,out_l};
+ 421:       end
+ 422:   endgenerate
+ 423: endmodule

@@ -1,0 +1,11 @@
+[0.0 ns] clk=1 | rst_n=0 | enable=0 | valid=0 | read=0 | mode=0 | cfg=0 | in_a=0000000000000000 | in_b=0000000000000000 | mac_out=0000000000000000 | error=1
+[5.0 ns] clk=0 | rst_n=0 | enable=0 | valid=0 | read=0 | mode=0 | cfg=0 | in_a=0000000000000000 | in_b=0000000000000000 | mac_out=0000000000000000 | error=1
+[10.0 ns] clk=1 | rst_n=0 | enable=0 | valid=0 | read=0 | mode=0 | cfg=0 | in_a=0000000000000000 | in_b=0000000000000000 | mac_out=0000000000000000 | error=1
+[15.0 ns] clk=0 | rst_n=1 | enable=0 | valid=0 | read=0 | mode=0 | cfg=0 | in_a=0000000000000000 | in_b=0000000000000000 | mac_out=0000000000000000 | error=1
+[20.0 ns] clk=1 | rst_n=1 | enable=0 | valid=0 | read=0 | mode=0 | cfg=0 | in_a=0000000000000000 | in_b=0000000000000000 | mac_out=0000000000000000 | error=1
+[25.0 ns] clk=0 | rst_n=1 | enable=0 | valid=0 | read=0 | mode=0 | cfg=1 | in_a=0000000000000000 | in_b=0000000000000000 | mac_out=0000000000000000 | error=1
+[30.0 ns] clk=1 | rst_n=1 | enable=0 | valid=0 | read=0 | mode=0 | cfg=1 | in_a=0000000000000000 | in_b=0000000000000000 | mac_out=0000000000000000 | error=1
+[35.0 ns] clk=0 | rst_n=1 | enable=0 | valid=0 | read=0 | mode=0 | cfg=0 | in_a=0000000000000000 | in_b=0000000000000000 | mac_out=0000000000000000 | error=1
+[40.0 ns] clk=1 | rst_n=1 | enable=0 | valid=0 | read=0 | mode=0 | cfg=0 | in_a=0000000000000000 | in_b=0000000000000000 | mac_out=0000000000000000 | error=1
+[45.0 ns] clk=0 | rst_n=1 | enable=1 | valid=1 | read=0 | mode=0 | cfg=0 | in_a=0000000000000011 | in_b=0000000000000100 | mac_out=0000000000000000 | error=1
+[50.0 ns] clk=1 | rst_n=1 | enable=1 | valid=1 | read=0 | mode=0 | cfg=0 | in_a=0000000000000011 | in_b=0000000000000100 | mac_out=0000000000000000 | error=1

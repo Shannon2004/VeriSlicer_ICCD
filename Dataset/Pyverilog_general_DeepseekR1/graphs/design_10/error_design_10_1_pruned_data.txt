@@ -1,0 +1,28 @@
+# Source File: ../Error_designs/error_design_10_1/design_10.v
+# Project Dir: error_design_10_1
+# Total Vertices: 10
+# Total Edges: 10
+
+=== VERTICES ===
+design_10.pc
+design_10.pc_adder_inst.pc
+design_10.pc_adder_inst.pc_plus4
+design_10.pc_inst._rn0_pc
+design_10.pc_inst.pc
+design_10.pc_inst.pc_next
+design_10.pc_inst.reset
+design_10.pc_next
+design_10.pc_plus4
+design_10.reset
+
+=== EDGES (Driver -> Target) ===
+design_10.pc_next -> design_10.pc_inst.pc_next
+design_10.pc_adder_inst.pc -> design_10.pc_adder_inst.pc_plus4
+design_10.pc_adder_inst.pc_plus4 -> design_10.pc_plus4
+design_10.pc_inst.pc_next -> design_10.pc_inst._rn0_pc
+design_10.reset -> design_10.pc_inst.reset
+design_10.pc -> design_10.pc_adder_inst.pc
+design_10.pc_inst._rn0_pc -> design_10.pc_inst.pc
+design_10.pc_inst.reset -> design_10.pc_inst.pc
+design_10.pc_plus4 -> design_10.pc_next
+design_10.pc_inst.pc -> design_10.pc

@@ -1,0 +1,74 @@
+### MODULE SPECIFICATION: design_6 (Multi-cycle SIMD Processor)
+
+## 1. ARCHITECTURAL INTENT
+* **Type:** Multi-cycle SIMD Processor with 6-stage execution pipeline.
+* **SIMD Widths:** Supports 16-bit (H), 8-bit packed (O), and 4-bit packed (Q) operations.
+* **Instruction Format:** 18-bit: `[17:12]` Opcode, `[11:10]` R0, `[9:0]` Immediate (`im_reg`), `[5:4]` R1, `[3:2]` R2, `[1:0]` R3.
+
+## 2. PORT INTERFACE
+* **Inputs:** `instruction_in[17:0]`, `data_in[15:0]`, `clk`, `rst`
+* **Outputs:** `data_out[15:0]`, `instruction_address[9:0]` (PC), `data_address[9:0]`, `data_R`, `data_W`, `done`
+
+## 3. FSM STATE MACHINE (Lines ~129-178)
+
+| State      | Code | Next State  | Key Action |
+|------------|------|-------------|------------|
+| STATE_IDLE | 0    | STATE_IF    | System startup |
+| STATE_IF   | 1    | STATE_ID    | Fetch instruction, set instruction_address = PC |
+| STATE_ID   | 2    | **STATE_EX**| Decode opcode → set CMD_* flags, extract register indices |
+| STATE_EX   | 3    | STATE_MEM   | Execute: ALU/shift/multiply, compute next_PC for branches |
+| STATE_MEM  | 4    | STATE_WB    | Memory access: load/store via data_R/data_W |
+| STATE_WB   | 5    | STATE_IF    | Write back results to register banks, advance PC |
+| STATE_HALT | 6    | (terminal)  | Done signal asserted |
+
+**CRITICAL:** The transition from STATE_ID to STATE_EX (line ~162) is essential. If this transition is broken (e.g., STATE_ID → STATE_ID instead of STATE_ID → STATE_EX), the processor will stall in the decode stage forever and `done` will never assert.
+
+**HALT DETECTION:** `opcode == 63` can trigger STATE_HALT from ANY state (line ~138), bypassing normal FSM flow.
+
+## 4. OPCODE MAP
+
+| Opcodes | Function    | CMD Flag            | SIMD Width |
+|---------|-------------|---------------------|------------|
+| 0-2     | ADD         | CMD_addition        | H/O/Q      |
+| 3-5     | ADD (imm)   | CMD_addition + Him/Oim/Qim | H/O/Q |
+| 6-8     | SUB         | CMD_substruction    | H/O/Q      |
+| 9-11    | SUB (imm)   | CMD_substruction    | H/O/Q      |
+| 12-14   | MUL         | CMD_multiplication  | H/O/Q      |
+| 15-17   | MUL (imm)   | CMD_multiplication  | H/O/Q      |
+| 18-20   | MAC         | CMD_mul_accumulation| H/O/Q      |
+| 21-23   | LSL         | CMD_logic_shift_left| H/O/Q      |
+| 24-26   | LSR         | CMD_logic_shift_right| H/O/Q     |
+| 27-29   | AND         | CMD_and             | H/O/Q      |
+| 30-32   | OR          | CMD_or              | H/O/Q      |
+| 33-35   | NOT         | CMD_not             | H/O/Q      |
+| 36      | LOOPJUMP    | CMD_loopjump        | —          |
+| 37      | SETLOOP     | CMD_setloop         | —          |
+| 38-40   | LOAD        | CMD_load            | H/O/Q      |
+| 41-43   | STORE       | CMD_store           | H/O/Q      |
+| 44-46   | SET         | CMD_set             | H/O/Q      |
+| 63      | HALT        | (direct FSM)        | —          |
+
+## 5. DATA PATH (Lines ~280-830)
+* **STATE_EX (lines ~280-590):** Executes the decoded operation.
+  - Arithmetic/logic operations use sub-modules: `SIMDadd`, `SIMDmultiply`, `SIMDshifter`
+  - Branch: LOOPJUMP checks loop counter (LC), jumps to im_reg if LC != 0, else next_PC = PC + 1
+  - STORE: Sets `current_data_address <= im_reg`, `rdata_en <= 1` to write data out
+  - LOAD: Sets `current_data_address <= im_reg`, flags for read
+* **STATE_MEM (lines ~590-630):** Memory read/write cycle
+* **STATE_WB (lines ~630-830):** Register bank writeback
+
+## 6. KEY LINE RANGES
+* FSM state machine: Lines 129-178
+* Instruction decode (STATE_ID): Lines 193-278
+* Execution (STATE_EX): Lines 280-590
+* Memory access (STATE_MEM): Lines 590-630
+* Writeback (STATE_WB): Lines 630-830
+* SIMDadd sub-module: Lines 834-852
+* SIMDmultiply sub-module: Lines 855-924
+* SIMDshifter sub-module: Lines 928-947
+
+## 7. DEBUGGING CONTEXT
+* **"done never asserted"** → Check FSM transitions (lines 129-178), especially STATE_ID → STATE_EX (line ~162)
+* **"data_out mismatch"** → Check STATE_EX data path (STORE command, data address, rdata_en), or STATE_WB writeback
+* **"PC jumped out of bounds"** → Check LOOPJUMP logic in STATE_EX (lines ~565-580), specifically next_PC assignments
+* **"Simulation timed out"** → The processor is stuck in a state loop — one of the FSM transitions is broken

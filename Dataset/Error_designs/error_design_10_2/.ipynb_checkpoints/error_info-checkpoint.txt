@@ -1,0 +1,15 @@
+Design: if_stage
+Error line: 67
+
+Original code:
+          assign pc_plus4 = pc + 32'd4;
+
+Erroneous code:
+          assign pc_plus4 = pc - 32'd4;
+
+Error description:
+changed posedge to negedge
+
+==================================================
+
+

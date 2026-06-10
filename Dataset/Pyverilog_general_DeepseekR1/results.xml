@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1780117496" />
+    <testcase name="full_adder_testbench" classname="test_design_17" file="/home/shannon/VeriSlicer_test/Dataset/Testbenches/design_17/test_design_17.py" lineno="72" time="0.00036907196044921875" sim_time_ns="0.0" ratio_time="0.0">
+      <failure error_type="TypeError" error_msg="Packed objects, either arrays or structs, cannot be indexed.&#10;Try instead reading the whole value and slicing: `t = handle.value; t[0:3]`.&#10;If you need to use an element in an Edge Trigger, consider making the array or struct unpacked.&#10;Alternatively, use `ValueChange` on the whole object and check the bit(s) you care about for changes afterwards." />
+    </testcase>
+  </testsuite>
+</testsuites>

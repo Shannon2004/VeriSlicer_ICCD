@@ -1,0 +1,201 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_11.v ---
+
+  23: module design_11
+  24:     #(parameter number_of_dimensions = 10,  //number of levels
+  25:   parameter D = 600,                   //pruned dimension size
+  26:   parameter chunk_size = D/100,        //each vector passed in chunks of 100
+  27:   parameter number_features = 784,     //number of features in the current class
+  28:   parameter number_class = 10 )        //number of unique class vectors
+  29:  (
+  30:     input   clk,
+  31:     input   reset,
+  32:     input   from_decoder_start,
+  33:     input  [31:0]    value,
+  34:     input  [3:0]     number_of_levels,
+  35:     input  [3:0]     capture_cv_pointer,
+  36:     output reg [9:0]     level_index, 
+  37:     output reg [12:0] feature_vector_pointer, //parameterize this to D/100
+...
+  39:     output reg [9:0] x_data_pointer,
+  40:     output reg [6:0] class_vector_pointer,
+  41:     output reg [3:0] hv_pointer,
+  42:     output reg       encode_enable,
+  43:     output reg       binarize_enable,
+  44:     output reg       accumulate_enable,
+  45:     output reg       similarity_check_enable,
+  46:     output reg       class_predictor_enable,
+  47:     output reg       SC_done,
+  48:     output reg [3:0] predicted_class
+  49:     );
+...
+  51:     parameter initial_state = 4'b0000;
+...
+  58:     reg   [3:0] state;
+...
+  61:     reg   [9:0] count, count2;
+  62:     reg         similarity_fsm_enable;
+  63:     reg   [1:0] similarity_state;
+...
+  69:     always @(posedge clk or posedge reset)
+  70:     begin
+  71:         if (reset) begin
+  72:         feature_vector_pointer  <=0;
+  73:         x_data_pointer          <=0;
+  74:         encode_enable           <=0;
+  75:         accumulate_enable       <=0;
+  76:         binarize_enable         <=0;
+  77:         similarity_fsm_enable   <= 0;
+  78:         count                   <= 0;
+  79:         level_index             <= 0;
+  80:         state = 4'b0000;
+  81:       end
+  82:       else
+  83:         case(state)
+  84:             initial_state: begin
+  85:                     if(from_decoder_start)
+  86:                       begin
+  87:                         feature_vector_pointer  <=0;
+  88:                         x_data_pointer          <=0;
+  89:                         encode_enable           <=0;
+  90:                         accumulate_enable       <=0;
+  91:                         binarize_enable         <=0;
+  92:                         similarity_fsm_enable   <= 0;
+  93:                         count                   <= 0;
+  94:                         level_index             <= 0;
+  95:                         state                   <= 4'b0001;
+  96:                      end
+  97:                 end
+  98:             4'b0001: begin
+  99:                     similarity_fsm_enable   <= 0;
+ 100:                     level_index <= temp_level_index[35:32]*number_of_dimensions;    //pointer to select 100 bits of level vectors from BRAM
+ 101:                     count       <= 0;    
+ 102:                     state       <= 4'b0010;   //SC_done? 4'b0010 : 4'b0001;
+ 103:                 end
+...
+ 105:             4'b0010: begin
+ 106:                     encode_enable           <= 1;
+ 107:                     level_index             <= level_index + 1;    //pointer to select 100 bits of level vectors from BRAM
+ 108:                     feature_vector_pointer  <= feature_vector_pointer + 1;
+ 109:                     count                   <= 0;    
+ 110:                     state                   <= 4'b0011;
+ 111:                 end    
+...
+ 113:             4'b0011: begin
+ 114:                     encode_enable          <= 1;
+ 115:                     binarize_enable        <= 0;
+ 116:                     level_index            <= (count <= (chunk_size-3))? level_index + 1 : level_index;
+ 117:                     count                  <= count + 1;
+ 118:                     feature_vector_pointer <= (count <= (chunk_size-3))? feature_vector_pointer + 1 : feature_vector_pointer;
+ 119:                     x_data_pointer         <= ((count == (chunk_size-4)) & (x_data_pointer == number_features))? x_data_pointer + 1 : x_data_pointer;
+...
+ 121:                     state                  <= (count == (chunk_size-2))? 4'b0100 : 4'b0011;
+ 122:                 end 
+...
+ 124:             4'b0100: begin
+ 125:                     count                  <= 0;
+...
+ 127:                     encode_enable          <= 0;
+ 128:                     binarize_enable        <= 0 ;//should 
+ 129:                     accumulate_enable      <= 1;
+ 130:                     level_index            <= temp_level_index[35:32]*number_of_dimensions;
+ 131:                     feature_vector_pointer <= (feature_vector_pointer == number_features*chunk_size - 1 )? feature_vector_pointer : feature_vector_pointer + 1;
+ 132:                     state                  <= 4'b0101;
+ 133:                 end
+...
+ 135:             4'b0101:  begin
+ 136:                     encode_enable          <= 1;
+...
+ 138:                     accumulate_enable      <= 0;
+ 139:                     if ((feature_vector_pointer == number_features*chunk_size -1 ))
+ 140:                       begin
+ 141:                         binarize_enable        <= 1;
+ 142:                         similarity_fsm_enable  <= 0;
+ 143:                         state                  <= 4'b0110;   
+ 144:                       end
+ 145:                     else
+ 146:                       begin
+ 147:                         level_index            <= level_index + 1;
+ 148:                         feature_vector_pointer <= feature_vector_pointer + 1;
+ 149:                         state                  <= 4'b0011;
+ 150:                       end
+...
+ 152:                 end
+...
+ 154:             4'b0110: begin
+ 155:                         binarize_enable        <= 0;
+ 156:                         similarity_fsm_enable  <= 1;
+ 157:                         state                  <= 4'b0111;  
+ 158:                      end   
+...
+ 160:              4'b0111: begin
+ 161:                      similarity_fsm_enable      <= 0;  
+ 162:                      if ( SC_done )
+ 163:                        begin    
+ 164:                             state                  <= 4'b0000;  
+...
+ 166:                        end
+ 167:                     end   
+ 168:         endcase 
+ 169:     end
+...
+ 171:    always @ (posedge clk or posedge reset)
+ 172:      begin
+ 173:         if (reset)
+ 174:           begin
+ 175:             similarity_check_enable <= 0;
+ 176:             class_predictor_enable  <= 0;
+ 177:             class_vector_pointer    <= 0;
+ 178:             hv_pointer              <= 0;
+ 179:             count2                  <= 0;
+ 180:             similarity_state        <= 2'b00;
+ 181:             SC_done                 <= 0;
+ 182:             predicted_class         <= 0;
+ 183:           end
+ 184:         else
+ 185:           case (similarity_state)
+ 186:           2'b00: begin
+ 187:                 similarity_check_enable <= 0;
+ 188:                 class_vector_pointer    <= 0;
+ 189:                 SC_done                 <= SC_done & from_decoder_start;
+ 190:                 predicted_class         <= SC_done? capture_cv_pointer : predicted_class;
+ 191:                 if (similarity_fsm_enable)
+ 192:                   begin 
+ 193:                         class_vector_pointer    <= class_vector_pointer + 1;
+ 194:                         hv_pointer              <= hv_pointer;
+ 195:                         similarity_state        <= 2'b01;
+ 196:                         similarity_check_enable <= 1;
+ 197:                   end
+ 198:             end 
+ 199:          2'b01: begin
+ 200:              SC_done                    <= 0;
+ 201:              similarity_check_enable    <= 1;
+ 202:              class_predictor_enable     <= (count2 == (chunk_size - 1))? 1:0;
+ 203:              hv_pointer                 <= hv_pointer + 1;
+ 204:              class_vector_pointer       <= (count2 < (chunk_size - 2))? class_vector_pointer + 1 : class_vector_pointer;
+ 205:              count2                     <= count2 + 1;
+ 206:              similarity_state           <= (count2 == (chunk_size - 2))? 2'b10 : 2'b01;
+ 207:            end
+...
+ 209:          2'b10: begin
+ 210:              hv_pointer                 <= 0;
+ 211:              similarity_check_enable    <= 0;           
+ 212:              class_predictor_enable     <= 1;
+ 213:              class_vector_pointer       <= (class_vector_pointer < (chunk_size*number_class - 2))? class_vector_pointer + 1 : class_vector_pointer;
+ 214:              count2                     <= 0;
+ 215:              similarity_state           <= 2'b11;
+ 216:            end
+...
+ 218:           2'b11: begin 
+ 219:              similarity_check_enable    <= (class_vector_pointer < (chunk_size*number_class - 2))? 1 : 0;         
+ 220:              class_predictor_enable     <= 0;
+ 221:              count2                     <= 0;
+ 222:              hv_pointer                 <= 0;
+ 223:              class_vector_pointer       <= (class_vector_pointer < (chunk_size*number_class - 2))? class_vector_pointer + 1 : 0;
+ 224:              similarity_state           <= (class_vector_pointer < (chunk_size*number_class - 2))? 2'b01 : 2'b00;
+ 225:               SC_done                    <= (class_vector_pointer < (chunk_size*number_class + 2))? 0 : 1;
+ 226:            end  
+ 227:      endcase
+ 228:    end       
+...
+ 231: endmodule

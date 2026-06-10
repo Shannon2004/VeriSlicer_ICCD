@@ -1,0 +1,11 @@
+Design: SDRAM
+Error line: 173
+
+Original code:
+assign o_Data_Valid = r_Read_Data_Valid_Pipe[TOTAL_READ_LATENCY-1];
+
+Erroneous code:
+assign o_Data_Valid = r_Read_Data_Valid_Pipe[0];
+
+Error description:
+Logic modified

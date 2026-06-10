@@ -1,0 +1,14 @@
+Design: posit_encoder
+Error line: 61
+
+Original code:
+assign out_m = inf_final|zero_final|(~DSR_left_out[2*(N-es)]) ? {inf_final,{N-1{1'b0}}} : {ls, tmp1_oN_m[N-1:1]};
+
+Erroneous code:
+assign out_m = inf_final|zero_final|(~DSR_left_out[2*(N-es)]) ? {inf_final,{N-1{1'b1}}} : {ls, tmp1_oN_m[N-1:1]};
+
+Error description:
+1'b0 changed to 1'b1
+
+==================================================
+

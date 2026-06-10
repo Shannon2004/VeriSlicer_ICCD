@@ -1,0 +1,81 @@
+# Source File: ../Error_designs/error_design_11_4/design_11.v
+# Project Dir: error_design_11_4
+# Total Vertices: 16
+# Total Edges: 57
+
+=== VERTICES ===
+design_11.D
+design_11.SC_done
+design_11._rn0_state
+design_11.chunk_size
+design_11.class_vector_pointer
+design_11.count
+design_11.count2
+design_11.feature_vector_pointer
+design_11.from_decoder_start
+design_11.initial_state
+design_11.number_class
+design_11.number_features
+design_11.reset
+design_11.similarity_fsm_enable
+design_11.similarity_state
+design_11.state
+
+=== EDGES (Driver -> Target) ===
+design_11.reset -> design_11.count2
+design_11.count2 -> design_11.count2
+design_11.similarity_state -> design_11.count2
+design_11.number_features -> design_11.similarity_fsm_enable
+design_11.initial_state -> design_11.similarity_fsm_enable
+design_11.chunk_size -> design_11.similarity_fsm_enable
+design_11.state -> design_11.similarity_fsm_enable
+design_11.reset -> design_11.similarity_fsm_enable
+design_11.SC_done -> design_11.similarity_fsm_enable
+design_11.feature_vector_pointer -> design_11.similarity_fsm_enable
+design_11.from_decoder_start -> design_11.similarity_fsm_enable
+design_11.D -> design_11.chunk_size
+design_11._rn0_state -> design_11.state
+design_11.initial_state -> design_11.state
+design_11.number_features -> design_11.state
+design_11.chunk_size -> design_11.state
+design_11.state -> design_11.state
+design_11.reset -> design_11.state
+design_11.SC_done -> design_11.state
+design_11.feature_vector_pointer -> design_11.state
+design_11.from_decoder_start -> design_11.state
+design_11.count -> design_11.state
+design_11.count2 -> design_11.similarity_state
+design_11.similarity_fsm_enable -> design_11.similarity_state
+design_11.chunk_size -> design_11.similarity_state
+design_11.reset -> design_11.similarity_state
+design_11.similarity_state -> design_11.similarity_state
+design_11.class_vector_pointer -> design_11.similarity_state
+design_11.number_class -> design_11.similarity_state
+design_11.similarity_fsm_enable -> design_11.SC_done
+design_11.chunk_size -> design_11.SC_done
+design_11.reset -> design_11.SC_done
+design_11.similarity_state -> design_11.SC_done
+design_11.SC_done -> design_11.SC_done
+design_11.class_vector_pointer -> design_11.SC_done
+design_11.number_class -> design_11.SC_done
+design_11.from_decoder_start -> design_11.SC_done
+design_11.count2 -> design_11.class_vector_pointer
+design_11.similarity_fsm_enable -> design_11.class_vector_pointer
+design_11.chunk_size -> design_11.class_vector_pointer
+design_11.reset -> design_11.class_vector_pointer
+design_11.similarity_state -> design_11.class_vector_pointer
+design_11.class_vector_pointer -> design_11.class_vector_pointer
+design_11.number_class -> design_11.class_vector_pointer
+design_11.number_features -> design_11.feature_vector_pointer
+design_11.initial_state -> design_11.feature_vector_pointer
+design_11.chunk_size -> design_11.feature_vector_pointer
+design_11.state -> design_11.feature_vector_pointer
+design_11.reset -> design_11.feature_vector_pointer
+design_11.feature_vector_pointer -> design_11.feature_vector_pointer
+design_11.from_decoder_start -> design_11.feature_vector_pointer
+design_11.count -> design_11.feature_vector_pointer
+design_11.initial_state -> design_11.count
+design_11.state -> design_11.count
+design_11.reset -> design_11.count
+design_11.from_decoder_start -> design_11.count
+design_11.count -> design_11.count

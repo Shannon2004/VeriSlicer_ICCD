@@ -1,0 +1,114 @@
+# Source File: ../Error_designs/error_design_9_3/design_9.v
+# Project Dir: error_design_9_3
+# Total Vertices: 46
+# Total Edges: 60
+
+=== VERTICES ===
+design_9.ex_funct3
+design_9.ex_funct7
+design_9.ex_imm
+design_9.ex_opcode
+design_9.ex_rd1
+design_9.ex_rd2
+design_9.uut.alu_b
+design_9.uut.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn0_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn10_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn11_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn1_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn2_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn3_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn4_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn5_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn6_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn7_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn8_alu_ctrl
+design_9.uut.alu_ctrl_inst._rn9_alu_ctrl
+design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst.funct3
+design_9.uut.alu_ctrl_inst.funct7
+design_9.uut.alu_ctrl_inst.opcode
+design_9.uut.alu_inst._rn12_result
+design_9.uut.alu_inst._rn13_result
+design_9.uut.alu_inst._rn14_result
+design_9.uut.alu_inst._rn15_result
+design_9.uut.alu_inst._rn16_result
+design_9.uut.alu_inst._rn17_result
+design_9.uut.alu_inst._rn18_result
+design_9.uut.alu_inst._rn19_result
+design_9.uut.alu_inst._rn20_result
+design_9.uut.alu_inst.a
+design_9.uut.alu_inst.alu_ctrl
+design_9.uut.alu_inst.b
+design_9.uut.alu_inst.result
+design_9.uut.alu_inst.zero
+design_9.uut.ex_funct3
+design_9.uut.ex_funct7
+design_9.uut.ex_imm
+design_9.uut.ex_opcode
+design_9.uut.ex_rd1
+design_9.uut.ex_rd2
+design_9.uut.zero
+design_9.zero
+
+=== EDGES (Driver -> Target) ===
+design_9.uut.alu_inst.result -> design_9.uut.alu_inst.zero
+design_9.ex_rd1 -> design_9.uut.ex_rd1
+design_9.uut.alu_ctrl_inst._rn9_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn6_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn11_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn1_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst.opcode -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn8_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn5_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst.funct3 -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst.funct7 -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn3_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn7_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn2_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn4_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn10_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.alu_ctrl_inst._rn0_alu_ctrl -> design_9.uut.alu_ctrl_inst.alu_ctrl
+design_9.uut.ex_funct3 -> design_9.uut.alu_ctrl_inst.funct3
+design_9.uut.alu_inst.b -> design_9.uut.alu_inst._rn16_result
+design_9.uut.alu_inst.a -> design_9.uut.alu_inst._rn16_result
+design_9.uut.zero -> design_9.zero
+design_9.uut.ex_funct7 -> design_9.uut.alu_ctrl_inst.funct7
+design_9.ex_funct3 -> design_9.uut.ex_funct3
+design_9.ex_rd2 -> design_9.uut.ex_rd2
+design_9.uut.alu_inst.b -> design_9.uut.alu_inst._rn17_result
+design_9.uut.alu_inst.a -> design_9.uut.alu_inst._rn17_result
+design_9.ex_imm -> design_9.uut.ex_imm
+design_9.uut.alu_inst.b -> design_9.uut.alu_inst._rn19_result
+design_9.uut.alu_inst.a -> design_9.uut.alu_inst._rn19_result
+design_9.uut.alu_inst.b -> design_9.uut.alu_inst._rn13_result
+design_9.uut.alu_inst.a -> design_9.uut.alu_inst._rn13_result
+design_9.uut.alu_ctrl -> design_9.uut.alu_inst.alu_ctrl
+design_9.uut.alu_inst.b -> design_9.uut.alu_inst._rn14_result
+design_9.uut.alu_inst.a -> design_9.uut.alu_inst._rn14_result
+design_9.uut.alu_inst.b -> design_9.uut.alu_inst._rn12_result
+design_9.uut.alu_inst.a -> design_9.uut.alu_inst._rn12_result
+design_9.uut.alu_inst.b -> design_9.uut.alu_inst._rn15_result
+design_9.uut.alu_inst.a -> design_9.uut.alu_inst._rn15_result
+design_9.uut.alu_ctrl_inst.alu_ctrl -> design_9.uut.alu_ctrl
+design_9.ex_opcode -> design_9.uut.ex_opcode
+design_9.uut.ex_rd2 -> design_9.uut.alu_b
+design_9.uut.ex_opcode -> design_9.uut.alu_b
+design_9.uut.ex_imm -> design_9.uut.alu_b
+design_9.uut.alu_b -> design_9.uut.alu_inst.b
+design_9.uut.alu_inst._rn12_result -> design_9.uut.alu_inst.result
+design_9.uut.alu_inst._rn15_result -> design_9.uut.alu_inst.result
+design_9.uut.alu_inst._rn17_result -> design_9.uut.alu_inst.result
+design_9.uut.alu_inst._rn16_result -> design_9.uut.alu_inst.result
+design_9.uut.alu_inst._rn13_result -> design_9.uut.alu_inst.result
+design_9.uut.alu_inst._rn19_result -> design_9.uut.alu_inst.result
+design_9.uut.alu_inst._rn18_result -> design_9.uut.alu_inst.result
+design_9.uut.alu_inst._rn20_result -> design_9.uut.alu_inst.result
+design_9.uut.alu_inst.alu_ctrl -> design_9.uut.alu_inst.result
+design_9.uut.alu_inst._rn14_result -> design_9.uut.alu_inst.result
+design_9.ex_funct7 -> design_9.uut.ex_funct7
+design_9.uut.ex_rd1 -> design_9.uut.alu_inst.a
+design_9.uut.ex_opcode -> design_9.uut.alu_ctrl_inst.opcode
+design_9.uut.alu_inst.zero -> design_9.uut.zero
+design_9.uut.alu_inst.b -> design_9.uut.alu_inst._rn18_result
+design_9.uut.alu_inst.a -> design_9.uut.alu_inst._rn18_result

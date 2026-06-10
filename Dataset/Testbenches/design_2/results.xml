@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1774261015" />
+    <testcase name="sd_controller_robust_test" classname="test_design_2" file="/home/chirag/VeriSlicer/VeriSlicer_v6/Testbenches/design_2/test_design_2.py" lineno="65" time="0.010910749435424805" sim_time_ns="33.0" ratio_time="3024.5401743766797" />
+  </testsuite>
+</testsuites>

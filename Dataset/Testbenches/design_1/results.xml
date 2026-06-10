@@ -1,0 +1,6 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1774260986" />
+    <testcase name="cordic_testbench" classname="test_design_1" file="/home/chirag/VeriSlicer/VeriSlicer_v6/Testbenches/design_1/test_design_1.py" lineno="134" time="0.07575774192810059" sim_time_ns="227.0" ratio_time="2996.3934275580564" />
+  </testsuite>
+</testsuites>

@@ -1,0 +1,42 @@
+***
+
+# MODULE SPECIFICATION: design_3 (SHA-1 Cryptographic Core)
+
+## 1. ARCHITECTURAL INTENT
+* **Type:** SHA-1 Hash Function Core with a 32-bit Memory-Mapped Interface.
+
+* **Mechanism:** Computes a 160-bit cryptographic hash digest from 512-bit message blocks. The architecture is split into three parts:
+  1. `sha1_w_mem`: A memory expander that takes the 16-word input block and dynamically generates the 80 W-words required for the SHA-1 rounds using a sliding window.
+  2. `sha1_core`: The main state machine that executes the 80 iterations of the SHA-1 algorithm, updating registers A-E using standard non-linear functions and magic constants.
+  3. `design_3` (Top Level): A 32-bit memory-mapped wrapper providing a standard CPU/bus interface (chip-select, write-enable, address) to write blocks and read the final digest.
+
+## 2. PORT INTERFACE (Memory-Mapped Bus)
+* **Global:** * `clk`: System Clock.
+  * `reset_n`: Active-low asynchronous reset.
+* **Control / Bus Interface:** * `cs`: Chip Select. Must be high for any read/write transaction.
+  * `we`: Write Enable. High for writes, low for reads.
+  * `address` (8-bit): Register address offset.
+* **Data Ports:**
+  * `write_data` (32-bit): Data driven into the core during writes.
+  * `read_data` (32-bit): Data retrieved from the core during reads.
+  * `error` (1-bit): Asserts high if an invalid memory address is accessed during a read operation.
+
+## 3. CRITICAL INTERNAL STATE (Registers & Wires)
+* **API Address Map:**
+  * `ADDR_CTRL` (`0x08`): Command register. Bit 0 triggers `init` (start new hash), Bit 1 triggers `next` (process next 512-bit block).
+  * `ADDR_STATUS` (`0x09`): Status register. Bit 0 is `ready`, Bit 1 is `digest_valid`.
+  * `ADDR_BLOCK0` to `ADDR_BLOCK15` (`0x10`-`0x1F`): 16x32-bit registers holding the incoming 512-bit message block.
+  * `ADDR_DIGEST0` to `ADDR_DIGEST4` (`0x20`-`0x24`): The final 160-bit computed hash.
+* **`sha1_core` FSM (`sha1_ctrl_reg`):**
+  * `CTRL_IDLE` (0): Waiting for `init` or `next` signals.
+  * `CTRL_ROUNDS` (1): Actively crunching the 80 rounds of SHA-1.
+  * `CTRL_DONE` (2): Latching the final hash into the digest registers.
+* **Cryptographic State (`H0_reg` to `H4_reg`, `a_reg` to `e_reg`):** 32-bit registers holding the intermediate and final hash values during the 80-round loop.
+
+## 4. BEHAVIORAL CONSTRAINTS & DEBUGGING CONTEXT
+* **Active-Low Reset:** Unlike many standard modules, this design uses an active-low reset (`reset_n`). Bugs often occur if testbenches treat this as active-high, keeping the core perpetually locked in reset.
+* **Strict 80-Cycle Latency:** The `sha1_core` FSM requires exactly 80 clock cycles (managed by `round_ctr_reg`) to compute the digest once `init` or `next` is asserted. If the LLM is debugging an invalid digest, the VCD window must capture the entire 80-cycle window to observe the cryptographic round transitions.
+* **Magic Constants:** SHA-1 relies on exact constants (e.g., `H0_0 = 32'h67452301` and `k = 32'h5a827999`). If a bug alters these values or misaligns the round boundaries (`round_ctr_reg` bounds like `>= 20`, `<= 39`), the non-linear math (`f`) will corrupt the hash completely.
+* **Big-Endian / Little-Endian Confusion:** SHA-1 is inherently sensitive to word ordering. The top module slices the 160-bit core digest into 32-bit words using a reversed index calculation: `(4 - (address - ADDR_DIGEST0)) * 32`. A bug here will result in a byte-swapped hash output.
+
+***

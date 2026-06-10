@@ -1,0 +1,67 @@
+--- TRACE HISTORY (2 CYCLES BEFORE CRASH) ---
+Hardware Type: Sequential
+
+Cycle -2 (Time: 0 ns)
+  design_9.alu_result = x
+  design_9.alu_result_out = x
+  design_9.alu_result_r = 0
+  design_9.ex_funct3 = z
+  design_9.ex_funct7 = z
+  design_9.ex_imm = z
+  design_9.ex_opcode = z
+  design_9.ex_rd1 = z
+  design_9.ex_rd2 = z
+  design_9.reset = 0
+  design_9.uut.alu_b = z
+  design_9.uut.alu_ctrl = 0
+  design_9.uut.alu_ctrl_inst.alu_ctrl = 0
+  design_9.uut.alu_ctrl_inst.funct3 = z
+  design_9.uut.alu_ctrl_inst.funct7 = z
+  design_9.uut.alu_ctrl_inst.opcode = z
+  design_9.uut.alu_inst.a = z
+  design_9.uut.alu_inst.alu_ctrl = 0
+  design_9.uut.alu_inst.b = z
+  design_9.uut.alu_inst.result = x
+  design_9.uut.alu_result = x
+  design_9.uut.ex_funct3 = z
+  design_9.uut.ex_funct7 = z
+  design_9.uut.ex_imm = z
+  design_9.uut.ex_opcode = z
+  design_9.uut.ex_rd1 = z
+  design_9.uut.ex_rd2 = z
+  design_9.zero = x
+  design_9.zero_out = 0
+  design_9.zero_r = 0
+----------------------------------------
+Cycle -1 (Time: 10000 ns)
+  design_9.alu_result = 11101111101001110110101111100111
+  design_9.alu_result_out = 11101111101001110110101111100111
+  design_9.alu_result_r = 11101111101001110110101111100111
+  design_9.ex_funct3 = 0
+  design_9.ex_funct7 = 0
+  design_9.ex_imm = 0
+  design_9.ex_opcode = 110011
+  design_9.ex_rd1 = 10011000111001111000101101111001
+  design_9.ex_rd2 = 10101001010000000001111110010010
+  design_9.reset = 0
+  design_9.uut.alu_b = 10101001010000000001111110010010
+  design_9.uut.alu_ctrl = 0
+  design_9.uut.alu_ctrl_inst.alu_ctrl = 0
+  design_9.uut.alu_ctrl_inst.funct3 = 0
+  design_9.uut.alu_ctrl_inst.funct7 = 0
+  design_9.uut.alu_ctrl_inst.opcode = 110011
+  design_9.uut.alu_inst.a = 10011000111001111000101101111001
+  design_9.uut.alu_inst.alu_ctrl = 0
+  design_9.uut.alu_inst.b = 10101001010000000001111110010010
+  design_9.uut.alu_inst.result = 11101111101001110110101111100111
+  design_9.uut.alu_result = 11101111101001110110101111100111
+  design_9.uut.ex_funct3 = 0
+  design_9.uut.ex_funct7 = 0
+  design_9.uut.ex_imm = 0
+  design_9.uut.ex_opcode = 110011
+  design_9.uut.ex_rd1 = 10011000111001111000101101111001
+  design_9.uut.ex_rd2 = 10101001010000000001111110010010
+  design_9.zero = 0
+  design_9.zero_out = 0
+  design_9.zero_r = 0
+----------------------------------------

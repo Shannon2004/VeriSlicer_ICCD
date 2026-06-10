@@ -1,0 +1,6 @@
+
+=================================================================
+TEST FAILED AT 501.0 ns
+FAILING SIGNAL : Exception
+ERROR DETAILS  : During EXCEPTION_TEST, Expected Exception=1, Got 0
+=================================================================

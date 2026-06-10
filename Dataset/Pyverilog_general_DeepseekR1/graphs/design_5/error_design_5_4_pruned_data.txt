@@ -1,0 +1,53 @@
+# Source File: ../Error_designs/error_design_5_4/design_5.v
+# Project Dir: error_design_5_4
+# Total Vertices: 21
+# Total Edges: 24
+
+=== VERTICES ===
+design_5.P3.inp_north
+design_5.P3.outp_south
+design_5.P3.rst
+design_5.P4.inp_west
+design_5.P4.outp_east
+design_5.P4.rst
+design_5.P5.inp_west
+design_5.P5.outp_east
+design_5.P5.rst
+design_5.P7.inp_north
+design_5.P7.inp_west
+design_5.P7.multi
+design_5.P7.result
+design_5.P7.rst
+design_5.inp_north3
+design_5.inp_west4
+design_5.outp_east4
+design_5.outp_east5
+design_5.outp_south3
+design_5.result7
+design_5.rst
+
+=== EDGES (Driver -> Target) ===
+design_5.inp_west4 -> design_5.P4.inp_west
+design_5.P7.inp_north -> design_5.P7.multi
+design_5.P7.inp_west -> design_5.P7.multi
+design_5.outp_east5 -> design_5.P7.inp_west
+design_5.P4.rst -> design_5.P4.outp_east
+design_5.P4.inp_west -> design_5.P4.outp_east
+design_5.P7.result -> design_5.result7
+design_5.P3.rst -> design_5.P3.outp_south
+design_5.P3.inp_north -> design_5.P3.outp_south
+design_5.P3.outp_south -> design_5.outp_south3
+design_5.P7.rst -> design_5.P7.result
+design_5.P7.multi -> design_5.P7.result
+design_5.P7.result -> design_5.P7.result
+design_5.outp_east4 -> design_5.P5.inp_west
+design_5.outp_south3 -> design_5.P7.inp_north
+design_5.rst -> design_5.P7.rst
+design_5.inp_north3 -> design_5.P3.inp_north
+design_5.P4.outp_east -> design_5.outp_east4
+design_5.rst -> design_5.P5.rst
+design_5.rst -> design_5.P4.rst
+design_5.rst -> design_5.P3.rst
+design_5.P5.outp_east -> design_5.outp_east5
+design_5.P5.rst -> design_5.P5.outp_east
+design_5.P5.inp_west -> design_5.P5.outp_east

@@ -1,0 +1,11 @@
+Design: SDRAM
+Error line: 97
+
+Original code:
+assign w_Write_Now = ~i_Read_Request & i_Write_Request;
+
+Erroneous code:
+assign w_Write_Now = i_Read_Request & i_Write_Request;
+
+Error description:
+Logic modified

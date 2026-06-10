@@ -1,0 +1,11 @@
+Design: SHA1
+Error line: 619
+
+Original code:
+if ((address >= ADDR_BLOCK0) && (address <= ADDR_BLOCK15))
+
+Erroneous code:
+if ((address >= ADDR_BLOCK0) && (address < ADDR_BLOCK15))
+
+Error description:
+Logic modified

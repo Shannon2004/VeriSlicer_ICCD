@@ -1,0 +1,13 @@
+Design: FP IEEE754 ALU
+Error line: 482
+
+Original code:
+assign Underflow = ((exponent[8] & exponent[7]) & !zero) ? 1'b1 : 1'b0; 
+
+
+Erroneous code:
+assign Underflow = ((exponent[8] | exponent[7]) & !zero) ? 1'b1 : 1'b0; 
+
+
+Error description:
+Wrong Underflow calculation

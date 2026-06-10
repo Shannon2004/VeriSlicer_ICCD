@@ -1,0 +1,14 @@
+Design: ex_stage
+Error line: 135
+
+Original code:
+    4'b0000: result = a + b;                     // ADD
+
+Erroneous code:
+    4'b0000: result = a - b;                     // ADD
+
+Error description:
+Replaced arithmetic + to -
+
+==================================================
+

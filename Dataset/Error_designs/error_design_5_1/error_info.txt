@@ -1,0 +1,9 @@
+Design: Systolic Array
+Error line: 82
+Original code:
+result <= result + multi;
+
+Erroneous code:
+result <= result - multi;
+        
+Add changed to sub

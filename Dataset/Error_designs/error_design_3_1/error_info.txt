@@ -1,0 +1,11 @@
+Design: SHA1
+Error line: 297
+
+Original code:
+H1_reg <= H1_new;
+
+Erroneous code:
+H1_reg <= H0_new;
+
+Error description:
+Logic modified

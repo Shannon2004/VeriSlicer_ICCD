@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1774095494" />
+    <testcase name="sd_controller_robust_test" classname="test_design_2" file="/home/chirag/VeriSlicer/VeriSlicer_v6/Testbenches/design_2/test_design_2.py" lineno="65" time="0.0075948238372802734" sim_time_ns="17.0" ratio_time="2238.3665986501333">
+      <failure error_type="AssertionError" error_msg="Signal 'o_Write_Grant' failed.&#10;assert False" />
+    </testcase>
+  </testsuite>
+</testsuites>

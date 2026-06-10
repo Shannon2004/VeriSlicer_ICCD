@@ -1,0 +1,155 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_2.v ---
+
+   1: module design_2 
+   2:     #(
+   3:     parameter [2:0] CMD_LOADMODE  = 3'd0,
+   4:     parameter [2:0] CMD_REFRESH   = 3'd1,
+   5:     parameter [2:0] CMD_PRECHARGE = 3'd2,
+   6:     parameter [2:0] CMD_ACTIVE    = 3'd3,
+   7:     parameter [2:0] CMD_WRITE     = 3'd4,
+   8:     parameter [2:0] CMD_READ      = 3'd5,
+   9:     parameter [2:0] CMD_NOP       = 3'd7
+  10:     )
+  11:     (
+  12:     clk,
+  13:     i_Read_Request,
+  14:     i_Write_Request,
+  15:     i_Read_Address,
+  16:     i_Write_Address,
+  17:     i_Write_Data,
+  18:     o_Read_Data,
+  19:     o_Read_Grant,
+  20:     o_Write_Grant,
+  21:     o_Data_Valid,
+  22:     o_Clk_Enable,
+  23:     o_Write_Enable,
+  24:     o_Data_Mask,
+  25:     o_Bank_Address,
+  26:     o_Address_10,
+  27:     o_Column_Address_Strobe,
+  28:     o_Row_Address_Strobe,
+  29:     io_DQ_Lines
+  30:     );
+...
+  39:     input i_Read_Request;
+  40:     input i_Write_Request;
+...
+  42:     input [ADDRESS_SIZE - 1:0] i_Read_Address;
+  43:     input [ADDRESS_SIZE - 1:0] i_Write_Address;
+...
+  47:     output reg [DATA_SIZE - 1:0] o_Read_Data;
+...
+  49:     output o_Read_Grant;
+  50:     output o_Write_Grant;
+  51:     output o_Data_Valid;
+...
+  53:     output o_Clk_Enable;
+  54:     output o_Write_Enable;
+...
+  56:     output reg [1:0] o_Data_Mask;
+...
+  58:     output reg o_Bank_Address;
+  59:     output reg [10:0] o_Address_10;
+...
+  61:     output o_Column_Address_Strobe;
+  62:     output o_Row_Address_Strobe;
+...
+  66:     assign o_Clk_Enable = 1'b1;
+...
+  69:     reg [1:0] r_State;
+  70:     reg r_Read_Select;
+  71:     reg [19:0] r_Address;
+...
+  77:     wire w_Read_Now;
+  78:     wire w_Write_Now;
+  79:     wire w_Write_Select;
+  80:     wire w_Read_Cycle;
+  81:     wire [19:0] w_Address;
+  82:     wire w_Same_Row_And_Bank;
+...
+  84:     initial  r_State=0;
+  85:     initial r_Read_Select=0; 
+  86:     initial r_Address=0;   
+...
+  93:     assign {o_Row_Address_Strobe, o_Column_Address_Strobe, o_Write_Enable} = r_Cmd;
+...
+  96:     assign w_Read_Now  =  i_Read_Request;  
+  97:     assign w_Write_Now = i_Read_Request & i_Write_Request;  
+...
+ 100:     always @(posedge clk) 
+ 101:         if(r_State==2'h0) 
+ 102:             r_Read_Select <= w_Read_Now;
+...
+ 105:     assign w_Write_Select = ~r_Read_Select;
+ 106:     assign w_Read_Cycle = (r_State==2'h0) ? w_Read_Now : r_Read_Select;
+ 107:     assign w_Address = w_Read_Cycle ? i_Read_Address : i_Write_Address;
+...
+ 110:     always @(posedge clk) 
+ 111:         r_Address <= w_Address;
+...
+ 114:     assign w_Same_Row_And_Bank = (w_Address[19:8]==r_Address[19:8]);
+ 115:     assign o_Read_Grant = (r_State==2'h0 &  w_Read_Now) | (r_State==2'h1 &  r_Read_Select & i_Read_Request & w_Same_Row_And_Bank);
+ 116:     assign o_Write_Grant = (r_State==2'h0 & w_Write_Now) | (r_State==2'h1 & w_Write_Select & i_Write_Request & w_Same_Row_And_Bank);
+...
+ 119:     always @(posedge clk) begin
+ 120:         case(r_State)
+ 121:             2'h0: begin
+ 122:                 if(i_Read_Request | i_Write_Request) begin  
+ 123:                     r_Cmd <= CMD_ACTIVE;  
+ 124:                     o_Bank_Address <= w_Address[19];  
+ 125:                     o_Address_10 <= w_Address[18:8]; 
+ 126:                     o_Data_Mask <= 2'b11;
+ 127:                     r_State <= 2'h1;
+ 128:                 end
+...
+ 130:                 else begin
+ 131:                     r_Cmd <= CMD_NOP;  
+ 132:                     o_Bank_Address <= 0;
+ 133:                     o_Address_10 <= 0;
+ 134:                     o_Data_Mask <= 2'b11;
+ 135:                     r_State <= 2'h0;
+ 136:                 end
+ 137:             end
+...
+ 139:             2'h1: begin
+ 140:                 r_Cmd <= r_Read_Select ? CMD_READ : CMD_WRITE;
+ 141:                 o_Bank_Address <= r_Address[19];
+ 142:                 o_Address_10[9:0] <= {2'b00, r_Address[7:0]};  
+ 143:                 o_Address_10[10] <= 1'b0;  
+ 144:                 o_Data_Mask <= 2'b00;
+ 145:                 r_State <= (r_Read_Select ? i_Read_Request : i_Write_Request) & w_Same_Row_And_Bank ? 2'h1 : 2'h2;
+ 146:             end
+...
+ 148:             2'h2: begin
+ 149:                 r_Cmd <= CMD_PRECHARGE;  
+ 150:                 o_Bank_Address <= 0;
+ 151:                 o_Address_10 <= 11'b100_0000_0000;  
+ 152:                 o_Data_Mask <= 2'b11;
+ 153:                 r_State <= 2'h0;
+ 154:             end
+...
+ 156:             2'h3: begin
+ 157:                 r_Cmd <= CMD_NOP;
+ 158:                 o_Bank_Address <= 0;
+ 159:                 o_Address_10 <= 0;
+ 160:                 o_Data_Mask <= 2'b11;
+ 161:                 r_State <= 2'h0;
+ 162:             end
+...
+ 164:         endcase 
+ 165:     end 
+...
+ 168:     always @(posedge clk) 
+ 169:         r_Read_Data_Valid_Pipe <= {r_Read_Data_Valid_Pipe[TOTAL_READ_LATENCY-2:0], r_State==2'h1 & r_Read_Select};
+...
+ 173:     assign o_Data_Valid = r_Read_Data_Valid_Pipe[TOTAL_READ_LATENCY-1];
+...
+ 175:     always @(posedge clk) begin
+ 176:         o_Read_Data <= io_DQ_Lines;
+ 177:         r_DQ_Lines <= (r_State==2'h1) & w_Write_Select;
+ 178:         r_Write_Data_1 <= i_Write_Data;
+ 179:         r_Write_Data_2 <= r_Write_Data_1;
+ 180:     end 
+...
+ 185: endmodule 

@@ -1,0 +1,11 @@
+Design: SHA1
+Error line: 334
+
+Original code:
+H0_new = H0_reg + a_reg;
+
+Erroneous code:
+H0_new = H0_reg ^ a_reg;
+
+Error description:
+Logic modified

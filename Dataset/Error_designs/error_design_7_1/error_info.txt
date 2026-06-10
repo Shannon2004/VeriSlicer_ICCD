@@ -1,0 +1,15 @@
+
+Design: bf16
+Error line: 517
+
+Original code:
+    assign tmp[0] = a[0] & b[0];
+
+Erroneous code:
+    assign tmp[0] = a[0] | b[0];
+
+Error description:
+Operator changed from & to |.
+
+==================================================
+

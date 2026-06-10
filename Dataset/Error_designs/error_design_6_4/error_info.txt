@@ -1,0 +1,11 @@
+Design: SIMD Processor
+Error line: 527
+
+Original code:
+rdata_en <= 1;
+
+Erroneous code:
+rdata_en <= 0;
+
+Error description:
+Read enable changed

@@ -1,0 +1,39 @@
+--- TRACE HISTORY (3 CYCLES BEFORE CRASH) ---
+Hardware Type: Sequential
+
+Cycle -3 (Time: 0 ns)
+  design_10.instr = 10011
+  design_10.pc = 0
+  design_10.pc_adder_inst.pc = 0
+  design_10.pc_adder_inst.pc_plus4 = 100
+  design_10.pc_inst.pc = 0
+  design_10.pc_inst.pc_next = 100
+  design_10.pc_inst.reset = 1
+  design_10.pc_next = 100
+  design_10.pc_plus4 = 100
+  design_10.reset = x
+----------------------------------------
+Cycle -2 (Time: 10000 ns)
+  design_10.instr = 10011
+  design_10.pc = 0
+  design_10.pc_adder_inst.pc = 0
+  design_10.pc_adder_inst.pc_plus4 = 100
+  design_10.pc_inst.pc = 0
+  design_10.pc_inst.pc_next = 100
+  design_10.pc_inst.reset = 0
+  design_10.pc_next = 100
+  design_10.pc_plus4 = 100
+  design_10.reset = x
+----------------------------------------
+Cycle -1 (Time: 20000 ns)
+  design_10.instr = 10011
+  design_10.pc = 100
+  design_10.pc_adder_inst.pc = 100
+  design_10.pc_adder_inst.pc_plus4 = 1000
+  design_10.pc_inst.pc = 100
+  design_10.pc_inst.pc_next = 1000
+  design_10.pc_inst.reset = 0
+  design_10.pc_next = 1000
+  design_10.pc_plus4 = 1000
+  design_10.reset = x
+----------------------------------------

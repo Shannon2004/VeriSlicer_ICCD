@@ -1,0 +1,19 @@
+Tells which lines have errors in which files.
+
+design_1:
+1. Line 23:(for(j=0;j<i;j=j+1) Q = (Q >> 1) | (D[`XY_BITS] << `XY_BITS);) TO (for(j=0;j<i;j=j+1) Q = (Q >> 1) & (D[`XY_BITS] << `XY_BITS);)
+2. Line 80: (y_1 <= y_i - x_i_shifted;) TO (y_1 <= y_i + x_i_shifted;)
+3. Line 90: (assign z_o = z_1;) TO (assign z_o = y_1;)
+4. Line 51: (signed_shifter y_shifter(iteration,y_i,y_i_shifted);) TO (signed_shifter y_shifter(iteration,x_i,y_i_shifted);)
+
+design_2:
+1. Line 105: (assign w_Write_Select = ~r_Read_Select;) TO (assign w_Write_Select = r_Read_Select;)
+2. Line 173: (assign o_Data_Valid = r_Read_Data_Valid_Pipe[TOTAL_READ_LATENCY-1];) TO (assign o_Data_Valid = r_Read_Data_Valid_Pipe[0];)
+3. Line 127: (r_State <= 2'h1;) TO (r_State <= 2'h2;)
+4. Line 97: (assign w_Write_Now = ~i_Read_Request & i_Write_Request;) TO (assign w_Write_Now = i_Read_Request & i_Write_Request;)
+
+design_3:
+1. Line 297: (H1_reg <= H1_new;) TO (H1_reg <= H0_new;)
+2. Line 334 : (H0_new = H0_reg + a_reg;) TO (H0_new = H0_reg ^ a_reg;)
+3. Line 487 : (if (round_ctr_reg == SHA1_ROUNDS)) TO (if (round_ctr_reg == (SHA1_ROUNDS - 1)))
+4. Line 619 : (if ((address >= ADDR_BLOCK0) && (address <= ADDR_BLOCK15))) TO (if ((address >= ADDR_BLOCK0) && (address < ADDR_BLOCK15)))

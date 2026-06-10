@@ -1,0 +1,47 @@
+# Source File: ../Error_designs/error_design_2_3/design_2.v
+# Project Dir: error_design_2_3
+# Total Vertices: 14
+# Total Edges: 25
+
+=== VERTICES ===
+design_2.i_Read_Address
+design_2.i_Read_Request
+design_2.i_Write_Address
+design_2.i_Write_Request
+design_2.o_Write_Grant
+design_2.r_Address
+design_2.r_Read_Select
+design_2.r_State
+design_2.w_Address
+design_2.w_Read_Cycle
+design_2.w_Read_Now
+design_2.w_Same_Row_And_Bank
+design_2.w_Write_Now
+design_2.w_Write_Select
+
+=== EDGES (Driver -> Target) ===
+design_2.i_Read_Request -> design_2.w_Write_Now
+design_2.i_Write_Request -> design_2.w_Write_Now
+design_2.r_State -> design_2.r_State
+design_2.i_Write_Request -> design_2.r_State
+design_2.w_Same_Row_And_Bank -> design_2.r_State
+design_2.r_Read_Select -> design_2.r_State
+design_2.i_Read_Request -> design_2.r_State
+design_2.w_Address -> design_2.r_Address
+design_2.w_Address -> design_2.w_Same_Row_And_Bank
+design_2.r_Address -> design_2.w_Same_Row_And_Bank
+design_2.w_Read_Now -> design_2.r_Read_Select
+design_2.r_State -> design_2.r_Read_Select
+design_2.i_Read_Address -> design_2.w_Address
+design_2.i_Write_Address -> design_2.w_Address
+design_2.w_Read_Cycle -> design_2.w_Address
+design_2.i_Read_Request -> design_2.w_Read_Now
+design_2.w_Read_Now -> design_2.w_Read_Cycle
+design_2.r_State -> design_2.w_Read_Cycle
+design_2.r_Read_Select -> design_2.w_Read_Cycle
+design_2.r_Read_Select -> design_2.w_Write_Select
+design_2.w_Write_Now -> design_2.o_Write_Grant
+design_2.r_State -> design_2.o_Write_Grant
+design_2.i_Write_Request -> design_2.o_Write_Grant
+design_2.w_Same_Row_And_Bank -> design_2.o_Write_Grant
+design_2.w_Write_Select -> design_2.o_Write_Grant

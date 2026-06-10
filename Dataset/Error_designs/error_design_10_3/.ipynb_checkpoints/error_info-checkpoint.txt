@@ -1,0 +1,14 @@
+Design: if_stage
+Error line: 55
+
+Original code:
+        pc <= 32'b0;
+
+Erroneous code:
+        pc <= 32'b1;
+
+Error description:
+0 changed to 1
+
+==================================================
+

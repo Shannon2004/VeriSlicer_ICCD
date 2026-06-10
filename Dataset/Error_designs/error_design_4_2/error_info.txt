@@ -1,0 +1,13 @@
+Design: FP IEEE754 ALU
+Error line: 452
+
+Original code:
+assign Exception = (&a_operand[30:23]) | (&b_operand[30:23]);
+
+
+Erroneous code:
+assign Exception = (&a_operand[30:23]) & (&b_operand[30:23]);
+
+
+Error description:
+Wrong Exception flag calculation

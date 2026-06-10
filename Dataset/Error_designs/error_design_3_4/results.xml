@@ -1,0 +1,8 @@
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1774095668" />
+    <testcase name="test_sha1_randomized" classname="test_design_3" file="/home/chirag/VeriSlicer/VeriSlicer_v6/Testbenches/design_3/test_design_3.py" lineno="139" time="0.048439741134643555" sim_time_ns="216.0" ratio_time="4459.148520212038">
+      <failure error_type="AssertionError" error_msg="Signal 'digest_output' failed.&#10;assert False" />
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,45 @@
+
+
+Design: posit_mult
+Error line: 81
+
+Original code:
+reg_exp_op #(.es(es), .Bs(Bs)) uut_reg_ro (mult_e_m[es+Bs+1:0], e_o_m, r_o_m);
+
+Erroneous code:
+reg_exp_op #(.es(Bs), .Bs(es)) uut_reg_ro (mult_e_m[es+Bs+1:0], e_o_m, r_o_m);
+
+Error description:
+Swapped connections: .es(es) <-> .Bs(Bs)
+
+==================================================
+
+
+Design: posit_mult
+Error line: 61
+
+Original code:
+data_extract_v1 #(.N(N),.es(es)) uut_de2(.in(xin2_m), .rc(rc2_m), .regime(regime2_m), .exp(e2_m), .mant(mant2_m));
+
+Erroneous code:
+data_extract_v1 #(.N(es),.es(N)) uut_de2(.in(xin2_m), .rc(rc2_m), .regime(regime2_m), .exp(e2_m), .mant(mant2_m));
+
+Error description:
+Swapped connections: .N(N) <-> .es(es)
+
+==================================================
+
+Design: posit_mult
+Error line: 81
+
+Original code:
+reg_exp_op #(.es(Bs), .Bs(es)) uut_reg_ro (mult_e_m[es+Bs+1:0], e_o_m, r_o_m);
+
+Erroneous code:
+reg_exp_op #(.es(es), .Bs(Bs)) uut_reg_ro (mult_e_m[es+Bs+1:0], e_o_m, r_o_m);
+
+Error description:
+Swapped connections: .es(Bs) <-> .Bs(es)
+
+==================================================
+

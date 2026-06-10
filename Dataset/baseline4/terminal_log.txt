@@ -1,0 +1,345 @@
+============================================================
+🚀 STARTING BASELINE 2 (TRACE ONLY) EVALUATION PIPELINE
+Found 25 error directories to process.
+============================================================
+
+--- Processing error_design_1_1 (design_1) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_1_prompt.json (10203 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_1_1...
+[Baseline 2] Ground Truth    : Line 23
+[Baseline 2] Top-1 Predicted : Line 9
+[Baseline 2] Top-5 List     : [9, 13, 80, 83, 90]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic failed at the failing timestamp due to an incorrect calculation in the rotator module. The expected value for x_o was 32768, but it got 19896. This discrepancy is likely caused by an incorrect handling of the rotation logic, specifically in lines where the values of x_1 and y_1 are updated based on the conditions of z_i and y_i.
+--- error_design_1_1 COMPLETE ---
+
+--- Processing error_design_1_2 (design_1) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_2_prompt.json (10413 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_1_2...
+[Baseline 2] Ground Truth    : Line 80
+[Baseline 2] Top-1 Predicted : Line 139
+[Baseline 2] Top-5 List     : [139, 148, 157, 166, 175]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic failed at the failing timestamp due to incorrect values being assigned to the `tanangle` function in the `design_1` module. The `tanangle` function is supposed to provide the correct tangent angle for each iteration, but it seems that the values are not correctly calculated or used.
+--- error_design_1_2 COMPLETE ---
+
+--- Processing error_design_1_3 (design_1) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_3_prompt.json (10203 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_1_3...
+[Baseline 2] Ground Truth    : Line 90
+[Baseline 2] Top-1 Predicted : Line 89
+[Baseline 2] Top-5 List     : [89, 90, 91, 73, 74]
+[Baseline 2] ✅ TOP-5 SUCCESS (hit at rank 2)
+--- error_design_1_3 COMPLETE ---
+
+--- Processing error_design_1_4 (design_1) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_1/error_design_1_4_prompt.json (10385 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_1_4...
+[Baseline 2] Ground Truth    : Line 51
+[Baseline 2] Top-1 Predicted : Line 139
+[Baseline 2] Top-5 List     : [139, 148, 157, 166, 175]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic failed at the failing timestamp because the `tanangle` function did not return the expected value for the given input. The `tanangle` function is defined in multiple places with different values, and the one being used might not be the correct one.
+--- error_design_1_4 COMPLETE ---
+
+--- Processing error_design_2_1 (design_2) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_1_prompt.json (11201 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_2_1...
+[Baseline 2] Ground Truth    : Line 105
+[Baseline 2] Top-1 Predicted : Line 102
+[Baseline 2] Top-5 List     : [102, 117, 139, 155, 164]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The issue arises because the WriteGrant signal is being dropped prematurely when a WriteReq is high. This happens due to incorrect state transitions and handling of write requests in the always block at line 101.
+--- error_design_2_1 COMPLETE ---
+
+--- Processing error_design_2_2 (design_2) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_2_prompt.json (11169 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_2_2...
+[Baseline 2] Ground Truth    : Line 173
+[Baseline 2] Top-1 Predicted : Line 173
+[Baseline 2] Top-5 List     : [173, 101, 102, 109, 110]
+[Baseline 2] ✅ TOP-1 SUCCESS
+--- error_design_2_2 COMPLETE ---
+
+--- Processing error_design_2_3 (design_2) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_3_prompt.json (11202 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_2_3...
+[Baseline 2] Ground Truth    : Line 127
+[Baseline 2] Top-1 Predicted : Line 116
+[Baseline 2] Top-5 List     : [116, 107, 109, 110, 111]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic for determining o_Write_Grant is flawed. It incorrectly drops the grant prematurely when i_Write_Request is high but w_Same_Row_And_Bank is not met.
+--- error_design_2_3 COMPLETE ---
+
+--- Processing error_design_2_4 (design_2) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_2/error_design_2_4_prompt.json (11192 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_2_4...
+[Baseline 2] Ground Truth    : Line 97
+[Baseline 2] Top-1 Predicted : Line 97
+[Baseline 2] Top-5 List     : [97, 102, 154, 159, 163]
+[Baseline 2] ✅ TOP-1 SUCCESS
+--- error_design_2_4 COMPLETE ---
+
+--- Processing error_design_3_1 (design_3) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_3/error_design_3_1_prompt.json (25712 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_3_1...
+[Baseline 2] Ground Truth    : Line 297
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_3_1 COMPLETE ---
+
+--- Processing error_design_3_2 (design_3) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_3/error_design_3_2_prompt.json (25712 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_3_2...
+[Baseline 2] Ground Truth    : Line 334
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_3_2 COMPLETE ---
+
+--- Processing error_design_3_3 (design_3) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_3/error_design_3_3_prompt.json (25717 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_3_3...
+[Baseline 2] Ground Truth    : Line 487
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_3_3 COMPLETE ---
+
+--- Processing error_design_3_4 (design_3) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_3/error_design_3_4_prompt.json (25711 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_3_4...
+[Baseline 2] Ground Truth    : Line 619
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_3_4 COMPLETE ---
+
+--- Processing error_design_4_1 (design_4) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_4/error_design_4_1_prompt.json (27386 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_4_1...
+[Baseline 2] Ground Truth    : Line 41
+[Baseline 2] Top-1 Predicted : Line 41
+[Baseline 2] Top-5 List     : [41, 73, 92, 108, 140]
+[Baseline 2] ✅ TOP-1 SUCCESS
+--- error_design_4_1 COMPLETE ---
+
+--- Processing error_design_4_2 (design_4) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_4/error_design_4_2_prompt.json (27392 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_4_2...
+[Baseline 2] Ground Truth    : Line 452
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_4_2 COMPLETE ---
+
+--- Processing error_design_4_3 (design_4) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_4/error_design_4_3_prompt.json (27389 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_4_3...
+[Baseline 2] Ground Truth    : Line 478
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_4_3 COMPLETE ---
+
+--- Processing error_design_4_4 (design_4) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_4/error_design_4_4_prompt.json (27381 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_4_4...
+[Baseline 2] Ground Truth    : Line 482
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_4_4 COMPLETE ---
+
+--- Processing error_design_5_1 (design_5) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_5/error_design_5_1_prompt.json (7974 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_5_1...
+[Baseline 2] Ground Truth    : Line 82
+[Baseline 2] Top-1 Predicted : Line 23
+[Baseline 2] Top-5 List     : [23, 49, 50, 51, 72]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic failed at the failing timestamp due to an incorrect initialization of the 'result' register in the block module. The subtraction operation (result <= result - multi) with an uninitialized 'result' leads to unexpected values.
+--- error_design_5_1 COMPLETE ---
+
+--- Processing error_design_5_2 (design_5) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_5/error_design_5_2_prompt.json (8138 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_5_2...
+[Baseline 2] Ground Truth    : Line 87
+[Baseline 2] Top-1 Predicted : Line 75
+[Baseline 2] Top-5 List     : [75, 82, 83, 84, 77]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The issue lies in the 'block' module where the multiplication factor is incorrectly set to 2 instead of 1. This results in each multiplication operation producing a result that is twice the expected value.
+--- error_design_5_2 COMPLETE ---
+
+--- Processing error_design_5_3 (design_5) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_5/error_design_5_3_prompt.json (7935 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_5_3...
+[Baseline 2] Ground Truth    : Line 49
+[Baseline 2] Top-1 Predicted : Line 54
+[Baseline 2] Top-5 List     : [54, 55, 56, 57, 59]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The 'done' signal is never asserted because the condition to set it (count == 9) is never met. The count register increments by 1 every clock cycle but does not reset or decrement under any conditions.
+--- error_design_5_3 COMPLETE ---
+
+--- Processing error_design_5_4 (design_5) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_5/error_design_5_4_prompt.json (8067 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_5_4...
+[Baseline 2] Ground Truth    : Line 38
+[Baseline 2] Top-1 Predicted : Line 23
+[Baseline 2] Top-5 List     : [23, 17, 45, 61, 80]
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: The logic failed at the failing timestamp because the multiplication operation in the 'block' module did not produce the expected result. The issue likely lies in the way the inputs are being handled or the multiplication operation itself.
+--- error_design_5_4 COMPLETE ---
+
+--- Processing error_design_6_1 (design_6) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_6/error_design_6_1_prompt.json (40564 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_6_1...
+[Baseline 2] Ground Truth    : Line 162
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_6_1 COMPLETE ---
+
+--- Processing error_design_6_2 (design_6) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_6/error_design_6_2_prompt.json (40669 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_6_2...
+[Baseline 2] Ground Truth    : Line 548
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_6_2 COMPLETE ---
+
+--- Processing error_design_6_3 (design_6) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_6/error_design_6_3_prompt.json (40569 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_6_3...
+[Baseline 2] Ground Truth    : Line 577
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_6_3 COMPLETE ---
+
+--- Processing error_design_6_4 (design_6) ---
+[*] Building Baseline 2 Prompt (Raw Code + Full VCD)...
+Saved LLM prompt to: llm_prompts/design_6/error_design_6_4_prompt.json (40741 chars total)
+[*] Sending to Local LLM for Evaluation...
+
+[Baseline 2] Analyzing error_design_6_4...
+[Baseline 2] Ground Truth    : Line 527
+[Baseline 2] Top-1 Predicted : Line None
+[Baseline 2] Top-5 List     : []
+[Baseline 2] ❌ FAILED (not in top-5)
+[Baseline 2] Reason given: None
+--- error_design_6_4 COMPLETE ---
+
+============================================================
+✅ BASELINE 2 PIPELINE FULLY COMPLETE.
+Your ablation data is safely logged in: local_results_baseline4/master_results.jsonl
+============================================================
+
+All designs processed! Calculating final metrics...
+
+══════════════════════════════════════════════════
+ 📊 FINAL VERISLICER ACCURACY REPORT
+══════════════════════════════════════════════════
+ Total Errors Evaluated : 24
+ Total Exact Matches    : 3
+ OVERALL TOP-1 ACCURACY : 12.50%
+--------------------------------------------------
+ Breakdown by Design:
+  * design_1   :   0.00%  (0/4)
+  * design_2   :  50.00%  (2/4)
+  * design_3   :   0.00%  (0/4)
+  * design_4   :  25.00%  (1/4)
+  * design_5   :   0.00%  (0/4)
+  * design_6   :   0.00%  (0/4)
+══════════════════════════════════════════════════
+
+
+=============================================
+        FAULT LOCALISATION ACCURACY
+=============================================
+  Total designs evaluated : 24
+  Top-1 correct           :   3  (12.5%)
+  Top-5 correct           :   4  (16.7%)
+=============================================
+

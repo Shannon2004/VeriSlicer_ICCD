@@ -1,0 +1,255 @@
+--- TRACE HISTORY (12 STATE CHANGES BEFORE CRASH) ---
+Hardware Type: Combinational
+
+Event -12 (Time: 114000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 0
+  design_14.k = 0
+  design_14.ls.N = 10000
+  design_14.mant = 1101001000
+  design_14.posit_in = 1100000011010010
+  design_14.rc = 1
+  design_14.regime = 1111
+  design_14.xin = 1100000011010010
+  design_14.xin_r = 11111100101101
+  design_14.xin_tmp = 1101001000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 111111001011011
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 111111001011011
+  design_14.xinst_k.l1.out = 0
+  design_14.xinst_k.out = 0
+----------------------------------------
+Event -11 (Time: 115000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 11
+  design_14.k = 0
+  design_14.ls.N = 10000
+  design_14.mant = 11000110110000
+  design_14.posit_in = 111110001101100
+  design_14.rc = 1
+  design_14.regime = 1111
+  design_14.xin = 111110001101100
+  design_14.xin_r = 1000001110010011
+  design_14.xin_tmp = 1111000110110000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 11100100111
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 11100100111
+  design_14.xinst_k.l1.out = 0
+  design_14.xinst_k.out = 0
+----------------------------------------
+Event -10 (Time: 116000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 1
+  design_14.k = 0
+  design_14.ls.N = 10000
+  design_14.mant = 10101000011100
+  design_14.posit_in = 1101010000111
+  design_14.rc = 0
+  design_14.regime = 0
+  design_14.xin = 1101010000111
+  design_14.xin_r = 1101010000111
+  design_14.xin_tmp = 110101000011100
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 11010100001110
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 11010100001110
+  design_14.xinst_k.l1.out = 0
+  design_14.xinst_k.out = 0
+----------------------------------------
+Event -9 (Time: 117000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 1
+  design_14.k = 1
+  design_14.ls.N = 10000
+  design_14.mant = 101111111000
+  design_14.posit_in = 1100100101111111
+  design_14.rc = 1
+  design_14.regime = 0
+  design_14.xin = 1100100101111111
+  design_14.xin_r = 11011010000000
+  design_14.xin_tmp = 100101111111000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 110110100000001
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 110110100000001
+  design_14.xinst_k.l1.out = 1
+  design_14.xinst_k.out = 1
+----------------------------------------
+Event -8 (Time: 118000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 10
+  design_14.k = 0
+  design_14.ls.N = 10000
+  design_14.mant = 11101100110000
+  design_14.posit_in = 1110111011001100
+  design_14.rc = 1
+  design_14.regime = 1111
+  design_14.xin = 1110111011001100
+  design_14.xin_r = 1000100110011
+  design_14.xin_tmp = 1011101100110000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 10001001100111
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 10001001100111
+  design_14.xinst_k.l1.out = 0
+  design_14.xinst_k.out = 0
+----------------------------------------
+Event -7 (Time: 119000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 1
+  design_14.k = 0
+  design_14.ls.N = 10000
+  design_14.mant = 101010001000
+  design_14.posit_in = 1001010100010
+  design_14.rc = 0
+  design_14.regime = 0
+  design_14.xin = 1001010100010
+  design_14.xin_r = 1001010100010
+  design_14.xin_tmp = 100101010001000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 10010101000100
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 10010101000100
+  design_14.xinst_k.l1.out = 0
+  design_14.xinst_k.out = 0
+----------------------------------------
+Event -6 (Time: 120000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 0
+  design_14.k = 0
+  design_14.ls.N = 10000
+  design_14.mant = 11100001111100
+  design_14.posit_in = 1000111000011111
+  design_14.rc = 0
+  design_14.regime = 0
+  design_14.xin = 1000111000011111
+  design_14.xin_r = 1000111000011111
+  design_14.xin_tmp = 11100001111100
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 1110000111110
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 1110000111110
+  design_14.xinst_k.l1.out = 0
+  design_14.xinst_k.out = 0
+----------------------------------------
+Event -5 (Time: 121000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 10
+  design_14.k = 0
+  design_14.ls.N = 10000
+  design_14.mant = 11000111000
+  design_14.posit_in = 110000110001110
+  design_14.rc = 1
+  design_14.regime = 1111
+  design_14.xin = 110000110001110
+  design_14.xin_r = 1001111001110001
+  design_14.xin_tmp = 1000011000111000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 11110011100011
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 11110011100011
+  design_14.xinst_k.l1.out = 0
+  design_14.xinst_k.out = 0
+----------------------------------------
+Event -4 (Time: 122000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 1
+  design_14.k = 1
+  design_14.ls.N = 10000
+  design_14.mant = 10001110101000
+  design_14.posit_in = 110110001110101
+  design_14.rc = 1
+  design_14.regime = 0
+  design_14.xin = 110110001110101
+  design_14.xin_r = 1001001110001010
+  design_14.xin_tmp = 110001110101000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 10011100010101
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 10011100010101
+  design_14.xinst_k.l1.out = 1
+  design_14.xinst_k.out = 1
+----------------------------------------
+Event -3 (Time: 123000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 1
+  design_14.k = 1
+  design_14.ls.N = 10000
+  design_14.mant = 10110001101000
+  design_14.posit_in = 1110110110001101
+  design_14.rc = 1
+  design_14.regime = 0
+  design_14.xin = 1110110110001101
+  design_14.xin_r = 1001001110010
+  design_14.xin_tmp = 110110001101000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 10010011100101
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 10010011100101
+  design_14.xinst_k.l1.out = 1
+  design_14.xinst_k.out = 1
+----------------------------------------
+Event -2 (Time: 124000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 1
+  design_14.k = 0
+  design_14.ls.N = 10000
+  design_14.mant = 100011010000
+  design_14.posit_in = 1001000110100
+  design_14.rc = 0
+  design_14.regime = 0
+  design_14.xin = 1001000110100
+  design_14.xin_r = 1001000110100
+  design_14.xin_tmp = 100100011010000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 10010001101000
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 10010001101000
+  design_14.xinst_k.l1.out = 0
+  design_14.xinst_k.out = 0
+----------------------------------------
+Event -1 (Time: 126000 ns)
+  design_14.Bs = 100
+  design_14.N = 10000
+  design_14.es = 10
+  design_14.exp = 1
+  design_14.k = 0
+  design_14.ls.N = 10000
+  design_14.mant = 100011010000
+  design_14.posit_in = 1001000110100
+  design_14.rc = 0
+  design_14.regime = 0
+  design_14.xin = 1001000110100
+  design_14.xin_r = 1001000110100
+  design_14.xin_tmp = 100100011010000
+  design_14.xinst_k.N = 10000
+  design_14.xinst_k.in = 10010001101000
+  design_14.xinst_k.l1.N = 10000
+  design_14.xinst_k.l1.in = 10010001101000
+  design_14.xinst_k.l1.out = 0
+  design_14.xinst_k.out = 0
+----------------------------------------

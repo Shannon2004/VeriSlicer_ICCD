@@ -1,0 +1,113 @@
+#! /usr/bin/vvp
+:ivl_version "12.0 (stable)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision - 12;
+:vpi_module "/usr/lib64/ivl/system.vpi";
+:vpi_module "/usr/lib64/ivl/vhdl_sys.vpi";
+:vpi_module "/usr/lib64/ivl/vhdl_textio.vpi";
+:vpi_module "/usr/lib64/ivl/v2005_math.vpi";
+:vpi_module "/usr/lib64/ivl/va_math.vpi";
+:vpi_module "/usr/lib64/ivl/v2009.vpi";
+S_0x5596da135290 .scope package, "$unit" "$unit" 2 1;
+ .timescale -9 -12;
+S_0x5596da135420 .scope module, "design_10" "design_10" 3 1;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /OUTPUT 32 "pc";
+    .port_info 3 /OUTPUT 32 "instr";
+L_0x5596da16ebd0 .functor BUFZ 32, L_0x5596da16e690, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+o0x7f32e92b6288 .functor BUFZ 1, C4<z>; HiZ drive
+v0x5596da15e120_0 .net "clk", 0 0, o0x7f32e92b6288;  0 drivers
+v0x5596da15e1e0_0 .net "instr", 31 0, L_0x5596da16e730;  1 drivers
+v0x5596da15e280_0 .net "pc", 31 0, v0x5596da15de10_0;  1 drivers
+v0x5596da15e350_0 .net "pc_next", 31 0, L_0x5596da16ebd0;  1 drivers
+v0x5596da15e420_0 .net "pc_plus4", 31 0, L_0x5596da16e690;  1 drivers
+o0x7f32e92b62e8 .functor BUFZ 1, C4<z>; HiZ drive
+v0x5596da15e510_0 .net "reset", 0 0, o0x7f32e92b62e8;  0 drivers
+S_0x5596da146f60 .scope module, "instr_mem_inst" "instr_mem" 3 32, 3 72 0, S_0x5596da135420;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 32 "addr";
+    .port_info 1 /OUTPUT 32 "instr";
+L_0x5596da16e730 .functor BUFZ 32, L_0x5596da16e810, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>, C4<00000000000000000000000000000000>;
+v0x5596da147140_0 .net *"_ivl_0", 31 0, L_0x5596da16e810;  1 drivers
+v0x5596da15d020_0 .net *"_ivl_3", 7 0, L_0x5596da16e8d0;  1 drivers
+v0x5596da15d100_0 .net *"_ivl_4", 9 0, L_0x5596da16e9a0;  1 drivers
+L_0x7f32e926d060 .functor BUFT 1, C4<00>, C4<0>, C4<0>, C4<0>;
+v0x5596da15d1c0_0 .net *"_ivl_7", 1 0, L_0x7f32e926d060;  1 drivers
+v0x5596da15d2a0_0 .net "addr", 31 0, v0x5596da15de10_0;  alias, 1 drivers
+v0x5596da15d3d0_0 .var/i "i", 31 0;
+v0x5596da15d4b0_0 .net "instr", 31 0, L_0x5596da16e730;  alias, 1 drivers
+v0x5596da15d590 .array "mem", 255 0, 31 0;
+L_0x5596da16e810 .array/port v0x5596da15d590, L_0x5596da16e9a0;
+L_0x5596da16e8d0 .part v0x5596da15de10_0, 2, 8;
+L_0x5596da16e9a0 .concat [ 8 2 0 0], L_0x5596da16e8d0, L_0x7f32e926d060;
+S_0x5596da15d6b0 .scope module, "pc_adder_inst" "pc_adder" 3 24, 3 63 0, S_0x5596da135420;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 32 "pc";
+    .port_info 1 /OUTPUT 32 "pc_plus4";
+L_0x7f32e926d018 .functor BUFT 1, C4<00000000000000000000000000000100>, C4<0>, C4<0>, C4<0>;
+v0x5596da15d890_0 .net/2u *"_ivl_0", 31 0, L_0x7f32e926d018;  1 drivers
+v0x5596da15d990_0 .net "pc", 31 0, v0x5596da15de10_0;  alias, 1 drivers
+v0x5596da15da50_0 .net "pc_plus4", 31 0, L_0x5596da16e690;  alias, 1 drivers
+L_0x5596da16e690 .arith/sum 32, v0x5596da15de10_0, L_0x7f32e926d018;
+S_0x5596da15db50 .scope module, "pc_inst" "pc" 3 14, 3 46 0, S_0x5596da135420;
+ .timescale -9 -12;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /INPUT 1 "reset";
+    .port_info 2 /INPUT 32 "pc_next";
+    .port_info 3 /OUTPUT 32 "pc";
+v0x5596da15dd30_0 .net "clk", 0 0, o0x7f32e92b6288;  alias, 0 drivers
+v0x5596da15de10_0 .var "pc", 31 0;
+v0x5596da15df20_0 .net "pc_next", 31 0, L_0x5596da16ebd0;  alias, 1 drivers
+v0x5596da15dfe0_0 .net "reset", 0 0, o0x7f32e92b62e8;  alias, 0 drivers
+E_0x5596da109d30 .event posedge, v0x5596da15dd30_0;
+S_0x5596da146dd0 .scope module, "iverilog_dump" "iverilog_dump" 4 2;
+ .timescale -9 -12;
+    .scope S_0x5596da15db50;
+T_0 ;
+    %wait E_0x5596da109d30;
+    %load/vec4 v0x5596da15dfe0_0;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_0.0, 8;
+    %pushi/vec4 0, 0, 32;
+    %assign/vec4 v0x5596da15de10_0, 0;
+    %jmp T_0.1;
+T_0.0 ;
+    %load/vec4 v0x5596da15df20_0;
+    %store/vec4 v0x5596da15de10_0, 0, 32;
+T_0.1 ;
+    %jmp T_0;
+    .thread T_0;
+    .scope S_0x5596da146f60;
+T_1 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5596da15d3d0_0, 0, 32;
+T_1.0 ;
+    %load/vec4 v0x5596da15d3d0_0;
+    %cmpi/s 257, 0, 32;
+    %jmp/0xz T_1.1, 5;
+    %pushi/vec4 19, 0, 32;
+    %ix/getv/s 4, v0x5596da15d3d0_0;
+    %store/vec4a v0x5596da15d590, 4, 0;
+    %load/vec4 v0x5596da15d3d0_0;
+    %addi 1, 0, 32;
+    %store/vec4 v0x5596da15d3d0_0, 0, 32;
+    %jmp T_1.0;
+T_1.1 ;
+    %vpi_call/w 3 86 "$readmemh", "C:/Users/sagni/Desktop/program.hex", v0x5596da15d590 {0 0 0};
+    %end;
+    .thread T_1;
+    .scope S_0x5596da146dd0;
+T_2 ;
+    %vpi_call/w 4 4 "$dumpfile", "/home/shannon/VeriSlicer_test/Dataset/Pyverilog_general/../Error_designs/error_design_10_1/design_10.vcd" {0 0 0};
+    %vpi_call/w 4 5 "$dumpvars", 32'sb00000000000000000000000000000000, S_0x5596da135420 {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 5;
+    "N/A";
+    "<interactive>";
+    "-";
+    "/home/shannon/VeriSlicer_test/Dataset/Pyverilog_general/../Error_designs/error_design_10_1/design_10.v";
+    "iverilog_dump.v";

@@ -1,0 +1,15 @@
+
+Design: ex_stage
+Error line: 137
+
+Original code:
+            4'b0010: result = a & b;                     // AND
+
+Erroneous code:
+            4'b0010: result = a * b;                     // AND
+
+Error description:
+Arithmetic error & changed to *
+
+==================================================
+

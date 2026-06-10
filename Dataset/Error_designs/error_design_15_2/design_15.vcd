@@ -1,0 +1,155 @@
+$date
+	Wed Apr 22 16:41:19 2026
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module design_15 $end
+$var wire 29 ! DSR_left_out [28:0] $end
+$var wire 1 " done_m $end
+$var wire 2 # e_o_m [1:0] $end
+$var wire 1 $ inf_final $end
+$var wire 9 % le_o [8:0] $end
+$var wire 1 & ls $end
+$var wire 5 ' r_o_m [4:0] $end
+$var wire 1 ( start0_m $end
+$var wire 1 ) ulp_m $end
+$var wire 1 * zero_final $end
+$var wire 35 + tmp_o_m [34:0] $end
+$var wire 17 , tmp1_o_rnd_ulp_m [16:0] $end
+$var wire 16 - tmp1_o_rnd_m [15:0] $end
+$var wire 51 . tmp1_o_m [50:0] $end
+$var wire 16 / tmp1_oN_m [15:0] $end
+$var wire 16 0 rnd_ulp_m [15:0] $end
+$var wire 16 1 out_m [15:0] $end
+$var wire 1 2 St_m $end
+$var wire 1 3 R_m $end
+$var wire 1 4 L_m $end
+$var wire 1 5 G_m $end
+$var parameter 32 6 Bs $end
+$var parameter 32 7 N $end
+$var parameter 32 8 es $end
+$scope module dsr2 $end
+$var wire 51 9 a [50:0] $end
+$var wire 5 : b [4:0] $end
+$var wire 51 ; c [50:0] $end
+$var parameter 65 < N $end
+$var parameter 33 = S $end
+$scope begin loop_blk[1] $end
+$var parameter 2 > i $end
+$upscope $end
+$scope begin loop_blk[2] $end
+$var parameter 3 ? i $end
+$upscope $end
+$scope begin loop_blk[3] $end
+$var parameter 3 @ i $end
+$upscope $end
+$scope begin loop_blk[4] $end
+$var parameter 4 A i $end
+$upscope $end
+$upscope $end
+$scope module uut_add_ulp $end
+$var wire 16 B a [15:0] $end
+$var wire 16 C b [15:0] $end
+$var wire 17 D c [16:0] $end
+$var wire 17 E bin [16:0] $end
+$var wire 17 F ain [16:0] $end
+$var parameter 32 G N $end
+$scope module a1 $end
+$var wire 17 H a [16:0] $end
+$var wire 17 I b [16:0] $end
+$var wire 17 J c [16:0] $end
+$var parameter 32 K N $end
+$upscope $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+b10000 K
+b10000 G
+b100 A
+b11 @
+b10 ?
+b1 >
+b101 =
+b110011 <
+b10 8
+b10000 7
+b100 6
+$end
+#0
+$dumpvars
+b0 J
+b0 I
+b0 H
+b0 F
+b0 E
+b0 D
+b0 C
+b0 B
+b111111111111111100000000000000000000000000000000000 ;
+b0 :
+b111111111111111100000000000000000000000000000000000 9
+05
+04
+03
+02
+b0 1
+b0 0
+b0 /
+b111111111111111100000000000000000000000000000000000 .
+b0 -
+b0 ,
+b11111111111111110000000000000000000 +
+1*
+0)
+1(
+b0 '
+0&
+b0 %
+0$
+b0 #
+1"
+b0 !
+$end
+#1000
+b1000000000000000 1
+0*
+1$
+#2000
+b1 E
+b1 I
+b1 0
+b1 C
+1)
+b100000001000000 /
+b100000001000000 -
+12
+13
+15
+14
+b100000001000000 ,
+b100000001000000 D
+b100000001000000 J
+b100000000111111 F
+b100000000111111 H
+b100000000111111 B
+bx1111111111111101000000001111111110000000000000000 .
+bx1111111111111101000000001111111110000000000000000 ;
+b0 1
+b10 :
+0$
+b10 '
+b111111111111111111111 !
+b111111111111111101000000001111111110000000000000000 9
+b11111111111111110100000000111111111 +
+b10 #
+b101 %
+#3000
+b1011111111000000 /
+1&
+#4000

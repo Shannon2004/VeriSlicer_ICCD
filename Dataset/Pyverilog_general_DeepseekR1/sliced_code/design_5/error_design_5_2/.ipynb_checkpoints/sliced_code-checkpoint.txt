@@ -1,0 +1,72 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_5.v ---
+
+   1: module design_5(inp_west0, inp_west4, inp_west8, inp_west12,
+   2: 		      inp_north0, inp_north1, inp_north2, inp_north3,
+   3: 		      clk, rst, done, result0, result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11, result12, result13, result14, result15);
+...
+   5: 	input [31:0] inp_west0, inp_west4, inp_west8, inp_west12,
+   6: 		      inp_north0, inp_north1, inp_north2, inp_north3;
+   7: 	output reg done;
+   8:     output [63:0] result0, result1, result2, result3, result4, result5, result6, result7, result8, result9, result10, result11, result12, result13, result14, result15;
+   9: 	input clk, rst;
+...
+  14: 	wire [31:0] inp_north0, inp_north1, inp_north2, inp_north3;
+  15: 	wire [31:0] inp_west0, inp_west4, inp_west8, inp_west12;
+...
+  23: 	block P0 (inp_north0, inp_west0, clk, rst, outp_south0, outp_east0, result0);
+...
+  25: 	block P1 (inp_north1, outp_east0, clk, rst, outp_south1, outp_east1, result1);
+  26: 	block P2 (inp_north2, outp_east1, clk, rst, outp_south2, outp_east2, result2);
+  27: 	block P3 (inp_north3, outp_east2, clk, rst, outp_south3, outp_east3, result3);
+...
+  30: 	block P4 (outp_south0, inp_west4, clk, rst, outp_south4, outp_east4, result4);
+  31: 	block P8 (outp_south4, inp_west8, clk, rst, outp_south8, outp_east8, result8);
+  32: 	block P12 (outp_south8, inp_west12, clk, rst, outp_south12, outp_east12, result12);
+...
+  36: 	block P5 (outp_south1, outp_east4, clk, rst, outp_south5, outp_east5, result5);
+  37: 	block P6 (outp_south2, outp_east5, clk, rst, outp_south6, outp_east6, result6);
+      ... [5 similar lines omitted for brevity] ...
+...
+  45: 	block P14 (outp_south10, outp_east13, clk, rst, outp_south14, outp_east14, result14);
+  46: 	block P15 (outp_south11, outp_east14, clk, rst, outp_south15, outp_east15, result15);
+...
+  48: 	always @(posedge clk or posedge rst) begin
+  49: 		if(rst) begin
+  50: 			done <= 0;
+  51: 			count <= 0;
+  52: 		end
+  53: 		else begin
+  54: 			if(count == 9) begin
+  55: 				done <= 1;
+  56: 				count <= 0;
+  57: 			end
+  58: 			else begin
+  59: 				done <= 0;
+  60: 				count <= count + 1;
+  61: 			end
+  62: 		end	
+  63: 	end 
+...
+  66: endmodule
+...
+  69: module block(inp_north, inp_west, clk, rst, outp_south, outp_east, result);
+  70: 	input [31:0] inp_north, inp_west;
+...
+  72: 	input clk, rst;
+  73: 	output reg [63:0] result;
+  74: 	wire [63:0] multi;
+  75: 	always @(posedge rst or posedge clk) begin
+  76: 		if(rst) begin
+  77: 			result <= 0;
+  78: 			outp_east <= 0;
+  79: 			outp_south <= 0;
+  80: 		end
+  81: 		else begin
+  82: 			result <= result + multi;
+  83: 			outp_east <= inp_west;
+  84: 			outp_south <= inp_north;
+  85: 		end
+  86: 	end
+  87: 	assign multi = inp_north*inp_west*2;
+  88: endmodule

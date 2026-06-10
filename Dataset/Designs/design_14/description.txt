@@ -1,0 +1,43 @@
+MODULE SPECIFICATION: posit_decoder (Posit Decoder Unit)
+
+1. ARCHITECTURAL INTENT
+Type: Posit Arithmetic Utility — Decoder
+Numerical Format: Posit representation
+  - N = total bit width (default: 16)
+  - es = exponent size (default: 2)
+  - Bs = log₂(N), used for regime encoding (default: 4)
+Operation: Decomposes a Posit input into its constituent fields: regime, exponent, mantissa
+Execution Model: Combinational logic
+Key Features: Sign/Regime extraction, Left shift normalization, Leading-One Detection (LOD)
+
+2. PORT INTERFACE
+Data Input: in [N-1:0] : Posit input (16 bits)
+Outputs: 
+  - rc : regime check (1 bit)
+  - regime [Bs-1:0] : regime field (4 bits)
+  - exp [es-1:0] : exponent field (2 bits)
+  - mant [N-es-1:0] : mantissa field (14 bits)
+
+3. CRITICAL INTERNAL STATE (Wires & Logic)
+Sign & Regime Check: rc = in[N-2]; indicates if regime is negative (rc=1) or positive (rc=0)
+Conditional Bit Inversion: xin_r = rc ? ~in : in; ensures proper regime counting
+Leading-One Detection: k = LOD_N({xin_r[N-2:0], rc^1'b0}); determines number of regime bits
+Regime Assignment: regime = rc ? k-1 : k
+Mantissa Normalization: 
+  - xin_tmp = DSR_left_N_S({in[N-3:0], 2'b0}, k); shifts mantissa left by regime length
+  - exp = xin_tmp[N-1:N-es]; extracts exponent bits
+  - mant = xin_tmp[N-es-1:0]; extracts mantissa bits
+
+4. INTERNAL MODULES
+4.1 LOD_N: Wrapper for leading-one detector; computes position of first ‘1’ in N-bit input
+4.2 LOD: Recursive implementation of Leading-One Detector
+4.3 DSR_left_N_S: Variable left-shifter using S-bit control; normalizes mantissa after regime extraction
+
+5. BEHAVIORAL CONSTRAINTS
+Combinational Logic: Decoder executes fully combinationally; inputs must be stable
+Range: Designed for 16-bit Posit format; Bs=4, es=2, mantissa=14
+Corner Cases: Handles negative and positive regimes via rc bit; zero input produces rc=0, k=0, mantissa all zeros
+
+6. DESIGN LIMITATIONS & EXTENSIBILITY
+Limitations: Fixed N=16, es=2; no pipeline; combinational only
+Future Enhancements: Parameterize N/es; support pipelining; integrate with full Posit ALU; extend LOD width for larger Posits

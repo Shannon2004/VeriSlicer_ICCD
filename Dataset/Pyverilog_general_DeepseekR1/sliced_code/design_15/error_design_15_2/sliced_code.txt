@@ -1,0 +1,39 @@
+--- SLICED VERILOG CODE ---
+--- Extracted from design_15.v ---
+
+   1: module design_15(
+   2: le_o, //8 bits
+   3: e_o_m, //2bits
+   4: DSR_left_out, //29bits
+   5: r_o_m, //4 bits
+   6: ls,
+   7: inf_final,
+   8: zero_final,
+   9: start0_m,	
+  10: out_m, // 16 bits
+  11: done_m
+...
+  13: );
+...
+  24: input ls;
+...
+  28: output [N-1:0] out_m; // 16 bits
+  29: output done_m;
+...
+  60: assign tmp1_oN_m = ls ? -tmp1_o_rnd_m : tmp1_o_rnd_m;
+  61:     assign out_m = inf_final|zero_final|(~DSR_left_out[2*(N-es)]) ? {inf_final,{N-1{1'b0}}} : {ls, tmp1_oN_m[N-1:1]};
+  62: 	assign done_m = start0_m;
+...
+  64: endmodule
+...
+  67: module DSR_right_N_S(a,b,c);
+...
+  85: endmodule
+...
+  88: module add_N (a,b,c);
+...
+  95: endmodule
+...
+  98: module add_N_in (a,b,c);
+...
+ 103: endmodule

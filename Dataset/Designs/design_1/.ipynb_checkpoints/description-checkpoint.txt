@@ -1,0 +1,46 @@
+MODULE SPECIFICATION: design_1 (CORDIC Core)
+1. ARCHITECTURAL INTENT
+
+    Type: First Quadrant CORDIC (Coordinate Rotation Digital Computer) Generator.
+
+    Active Configuration: Based on the compiler macros, this core is currently synthesized as a 16-stage Pipelined Architecture operating in ROTATE mode using Radian angle formatting.
+
+    Mechanism: It computes trigonometric functions (sine and cosine) using iterative shift-and-add operations instead of hardware multipliers. In ROTATE mode, it seeks to reduce the input angle (theta_i / z) to zero by micro-rotating an input vector.
+
+2. PORT INTERFACE
+
+    Global: * clk: System Clock.
+
+        rst: Active-high synchronous reset.
+
+    Inputs (17-bit Signed, format U(1,15)): * x_i: Initial X vector. (For pure sin/cos calculation, this should be pre-scaled to the CORDIC inverse gain: 17'd19896).
+
+        y_i: Initial Y vector. (For pure sin/cos, this should be 0).
+
+        theta_i: The target angle in radians.
+
+    Outputs (17-bit Signed, format U(1,15)): * x_o: Final X coordinate (represents Cosine).
+
+        y_o: Final Y coordinate (represents Sine).
+
+        theta_o: Residual angle (should be very close to 0 upon completion).
+
+3. CRITICAL INTERNAL STATE (Registers & Wires)
+
+    rotator (Sub-module): The core processing element. It takes x, y, and z inputs and computes the next iteration's values using a cross-addition/subtraction mechanism determined by the sign of z_i (the remaining angle).
+
+    signed_shifter (Sub-module): Performs arithmetic right-shifts (D >> i) while preserving the 17th sign bit (D[16]). This simulates the division by 2i required for the CORDIC iterations.
+
+    tanangle (Function): A hardcoded lookup table (LUT) returning the arctangent of 1/2i in Radian format.
+
+    x, y, z (Wire Arrays): In pipelined mode, these multi-dimensional wires daisy-chain the 16 rotator stages together. x[i] connects the output of stage i-1 to the input of stage i.
+
+4. BEHAVIORAL CONSTRAINTS & DEBUGGING CONTEXT
+
+    Pipelined Latency: Because PIPELINE and ITERATIONS 16 are defined, this design has a strict 16-clock-cycle latency. The outputs at x_o and y_o correspond to the inputs provided 16 clock edges ago. If an LLM is debugging a VCD trace, it must look 16 cycles backward to find the root cause of an output error.
+
+    Sign-Extension Vulnerability: CORDIC heavily relies on perfect 2's complement math. Bugs frequently hide inside the signed_shifter module if the sign bit is not properly duplicated during the logical right shift (Q >> 1) | (D[16] << 16).
+
+    First Quadrant Restriction: The core is only natively designed for the first quadrant (+X, +Y). If the testbench feeds an angle outside of +/−2π​, the outputs will mathematically overflow or wrap around incorrectly unless pre-rotated by the testbench.
+
+    Generate Block Instantiation: The core uses a generate loop to stamp out 15 rotator modules. The defparam overrides ensure each rotator receives its specific iteration step i and tanangle(i).
